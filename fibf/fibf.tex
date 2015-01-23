@@ -4,8 +4,22 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+
+\usepackage{hyperref}
+% http://en.wikibooks.org/wiki/LaTeX/Glossary#Jump_start
+% Place \usepackage{glossaries} and \makeglossaries in your preamble (after \usepackage{hyperref} if present).
+
+% Glossary
+\usepackage{glossaries}
+\newacronym{dnf}{DNF}{disjunctive normal form}
+\makeglossaries
+
 \author{Filip Bártek}
-\title{Minimal DNF representation of false point interval Boolean functions}
+\title{Minimal \acrshort{dnf} representation of false point interval Boolean functions}
+
 \begin{document}
 \maketitle
+
+\printglossaries
+
 \end{document}
