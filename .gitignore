@@ -1,2 +1,10 @@
 # gedit backup files
 *~
+
+# LaTeX output files
+*.aux
+*.bak
+*.bib.bak
+*.log
+*.pdf
+*.synctex.gz
