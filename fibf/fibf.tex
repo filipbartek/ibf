@@ -7,6 +7,8 @@
 
 % Theorem environments
 \usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[subsection]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 
@@ -25,6 +27,7 @@
 % Glossary
 \usepackage{glossaries}
 \newacronym{dnf}{DNF}{disjunctive normal form}
+\newacronym{msb}{MSB}{most significant bit}
 \makeglossaries
 
 \author{Filip Bártek}
@@ -87,10 +90,72 @@ We'll transform the second case to an instance of spanning a true point interval
 which can be handled using the method introduced in \cite{Schieber2005154}.
 
 \subsection{$\bit{a}{1} = \bit{b}{1}$}
-% TODO: Finish.
+Let $\bit{a}{1} = \bit{b}{1} = 0$.
+Note that the other case (\acrshort{msb} of $a$ and $b$ is $1$)
+is symmetric so we'll only discuss the case of $0$.
+
+Let $a_2 = \bits{a}{2}{n}$ and $b_2 = \bits{b}{2}{n}$.
+
+Let $\mathcal{T}_2$ be the $(n-1)$-bit minimal spanning set of $\finterval{a_2}{b_2}$.
+We can get such set by recursion.
+
+Let $\mathcal{T}_0$ be the $n$-bit set we get by prepending each vector from $\mathcal{T}_2$ by $0$.
+
+Let $\mathcal{T}_1 = \{ 1 \phi^{n-1} \}$.
+
+Let $\mathcal{T} = \mathcal{T}_0 \cup \mathcal{T}_1$.
+
+We claim that $\mathcal{T}$ spans exactly $\finterval{a}{b}$
+and that $\mathcal{T}$ is minimal.
+
+\begin{theorem}
+$\mathcal{T}$ spans exactly $\finterval{a}{b}$.
+\end{theorem}
+
+\begin{proof}
+Part 1: $span(\mathcal{T}) \subseteq \finterval{a}{b}$
+
+Let $c \in span(T)$, $T \in \mathcal{T}$.
+
+\begin{enumerate}
+\item $\bit{c}{1} = 1$: Since $\bit{b}{1} = 0$, necessarily $c > b$, so $c \in \finterval{a}{b}$.
+\item $\bit{c}{1} = 0$: Necessarily $T \in \mathcal{T}_0$.
+Let $T_2 = \bits{T}{2}{n}$ and $c_2 = \bits{c}{2}{n}$.
+Since $T$ spans $c$, $T_2$ spans $c_2$.
+By construction of $\mathcal{T}_0$ necessarily $T_2 \in \mathcal{T}_2$,
+so $T_2$ doesn't span any number in $\interval{a_2}{b_2}$.
+Thus $c_2 \in \finterval{a_2}{b_2}$.
+Observe that prepending a $0$ bit to $c_2$, $a_2$ and $b_2$ preserves the interval membership:
+$c_2 \in \finterval{a_2}{b_2} \Rightarrow 0 c_2 \in \finterval{0 a_2}{0 b_2}$.
+Since $0 c_2 = c$, $0 a_2 = a$ and $0 b_2 = b$,
+$c \in \finterval{a}{b}$.
+\end{enumerate}
+
+Part 2: $\finterval{a}{b} \subseteq span(\mathcal{T})$
+% TODO: Finish
+\end{proof}
+
+\begin{theorem}
+$\mathcal{T}$ is a minimal spanning set of $\finterval{a}{b}$.
+\end{theorem}
+
+% TODO: Finish
 
 \subsection{$\bit{a}{1} \neq \bit{b}{1}$}
-% TODO: Finish.
+Let $\bit{a}{1} \neq \bit{b}{1}$.
+Since $a \leq b$, necessarily $\bit{a}{1} = 0$ and $\bit{b}{1} = 1$.
+
+% TODO: Construct \mathcal{T}
+
+\begin{theorem}
+$\mathcal{T}$ spans exactly $\finterval{a}{b}$.
+\end{theorem}
+
+\begin{theorem}
+$\mathcal{T}$ is a minimal spanning set of $\finterval{a}{b}$.
+\end{theorem}
+
+% TODO: Finish
 
 \bibliography{fibf}
 
