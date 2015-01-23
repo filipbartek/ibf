@@ -9,3 +9,7 @@
 *.pdf
 *.synctex.gz
 *.dvi
+
+# BibTeX output files
+*.bbl
+*.blg
