@@ -5,6 +5,17 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
+% Theorem environments
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+% Macros
+\newcommand{\interval}[2]{[#1, #2]}
+\newcommand{\finterval}[2]{\overline{\interval{#1}{#2}}}
+\newcommand{\bit}[2]{#1^{[#2]}}
+\newcommand{\bits}[3]{#1^{\interval{#2}{#3}}}
+
 \bibliographystyle{plain}
 
 \usepackage{hyperref}
@@ -30,6 +41,56 @@ of false point interval Boolean functions,
 i.e.~the pointwise complements of interval Boolean functions.
 Doing so, I will simplify the method shown in \cite{Dubovsky2012}
 and extend the results shown in \cite{Schieber2005154}.
+
+\section{Definitions}
+\begin{definition}[Interval Boolean function]
+Let $a \leq b$ be two $n$-bit numbers ($0 \leq a \leq b \leq 2^n - 1$).
+Then $f^n_{\interval{a}{b}}: 2^n \rightarrow 2$ is a function defined as follows:
+% http://en.wikibooks.org/wiki/LaTeX/Advanced_Mathematics#Using_aligned_braces_for_piecewise_functions
+% http://en.wikipedia.org/wiki/Piecewise
+\[f^n_{\interval{a}{b}} (x) = \left\{
+  \begin{array}{lr}
+    1 & $if $ x \in \interval{a}{b}\\
+    0 & $otherwise$
+  \end{array}
+\right.
+\]
+\end{definition}
+
+\begin{definition}[False point interval Boolean function]
+Let $a \leq b$ be two $n$-bit numbers ($0 \leq a \leq b \leq 2^n - 1$).
+Then $f^n_{\finterval{a}{b}}: 2^n \rightarrow 2$ is a function defined as follows:
+\[f^n_{\finterval{a}{b}} (x) = \left\{
+  \begin{array}{lr}
+    1 & $if $ x \notin \interval{a}{b}\\
+    0 & $otherwise$
+  \end{array}
+\right.
+\]
+\end{definition}
+
+\section{Spanning false point interval Boolean functions}
+Let $0 \leq a \leq b \leq 2^n - 1$.
+We need to find a set of ternary vectors of minimal cardinality that spans exactly $\finterval{a}{b}$.
+
+We'll consider two cases separately:
+
+\begin{enumerate}
+\item $\bit{a}{1} = \bit{b}{1}$
+\item $\bit{a}{1} \neq \bit{b}{1}$
+\end{enumerate}
+
+We'll deal with the first case by solving the instance $\finterval{\bits{a}{2}{n}}{\bits{b}{2}{n}}$
+and adding an extra ternary vector.
+
+We'll transform the second case to an instance of spanning a true point interval Boolean function,
+which can be handled using the method introduced in \cite{Schieber2005154}.
+
+\subsection{$\bit{a}{1} = \bit{b}{1}$}
+% TODO: Finish.
+
+\subsection{$\bit{a}{1} \neq \bit{b}{1}$}
+% TODO: Finish.
 
 \bibliography{fibf}
 
