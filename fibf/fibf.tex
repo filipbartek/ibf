@@ -14,7 +14,8 @@
 
 % Macros
 \newcommand{\interval}[2]{[#1, #2]}
-\newcommand{\finterval}[2]{\overline{\interval{#1}{#2}}}
+\newcommand{\compl}[1]{\overline{#1}}
+\newcommand{\finterval}[2]{\compl{\interval{#1}{#2}}}
 \newcommand{\bit}[2]{#1^{[#2]}}
 \newcommand{\bits}[3]{#1^{\interval{#2}{#3}}}
 \newcommand{\booldom}{\mathbf{B}} % Boolean domain
@@ -259,13 +260,13 @@ We need to show that $c \in \finterval{a}{b}$.
 
 Let $T \in \mathcal{T}$ span $c$.
 
-Let $T' = \overline{\bit{T}{1}} \bits{T}{2}{n}$
+Let $T' = \compl{\bit{T}{1}} \bits{T}{2}{n}$
 (flipping the first bit).
 
 By definition of $\mathcal{T}$,
 $T' \in \mathcal{T}_1'$.
 
-Let $c' = \overline{\bit{c}{1}} \bits{c}{2}{n}$
+Let $c' = \compl{\bit{c}{1}} \bits{c}{2}{n}$
 (flipping the first bit).
 Note that $T'$ spans $c'$.
 
