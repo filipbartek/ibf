@@ -214,7 +214,33 @@ our algorithm produces a sound and optimal result.
 Let $\bit{a}{1} \neq \bit{b}{1}$.
 Since $a \leq b$, necessarily $\bit{a}{1} = 0$ and $\bit{b}{1} = 1$.
 
-% TODO: Construct \mathcal{T}
+% TODO: Solve a=0 or b=1^n
+
+By flipping the first bit in the external boundary values
+$a - 1$ and $b + 1$,
+we'll effectively reduce this case
+to an instance of spanning a true point interval.
+
+Let $a_1 = a - 1$ and $b_1 = b + 1$.
+Note that these are exactly the external boundary values
+of the interval $\interval{a}{b}$.
+
+Let $a_1' = 1 \bits{a_1}{2}{n}$ and $b_1' = 0 \bits{b_1}{2}{n}$. Note that $b_1' \leq a_1'$.
+
+Let $\mathcal{T}_1'$ be the minimal spanning set
+of the true point interval $\interval{b_1'}{a_1'}$.
+This set can be computed efficiently
+using the method introduced in \cite{Schieber2005154}.
+
+Let's flip all the non-$\phi$ first bits
+of vectors in $\mathcal{T}_1'$,
+forming $\mathcal{T}$.
+Note that $|\mathcal{T}| = |\mathcal{T}_1'|$
+and also that all the vectors in $\mathcal{T}_1'$
+and $\mathcal{T}$ have the length $n$.
+
+We claim that $\mathcal{T}$ is an optimal spanning set
+of $\finterval{a}{b}$.
 
 \begin{theorem}
 $\mathcal{T}$ spans exactly $\finterval{a}{b}$.
