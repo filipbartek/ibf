@@ -253,7 +253,42 @@ $\mathcal{T}$ spans exactly $\finterval{a}{b}$.
 % TODO: Reformat the proofs
 \begin{proof}
 Part 1: $span(\mathcal{T}) \subseteq \finterval{a}{b}$
-% TODO: Prove
+
+Let $c \in span(\mathcal{T})$.
+We need to show that $c \in \finterval{a}{b}$.
+
+Let $T \in \mathcal{T}$ span $c$.
+
+Let $T' = \overline{\bit{T}{1}} \bits{T}{2}{n}$
+(flipping the first bit).
+
+By definition of $\mathcal{T}$,
+$T' \in \mathcal{T}_1'$.
+
+Let $c' = \overline{\bit{c}{1}} \bits{c}{2}{n}$
+(flipping the first bit).
+Note that $T'$ spans $c'$.
+
+Since $\mathcal{T}_1'$ spans $\interval{b_1'}{a_1'}$
+and $T' \in \mathcal{T}_1'$ spans $c'$,
+$c' \in \interval{b_1'}{a_1'}$.
+
+This means that $c' \geq b_1'$ and $c' \leq a_1'$.
+
+Let $\bit{c'}{1} = 0$.
+Since $\bit{b_1'}{1} = 0$ (by definition),
+necessarily $\bits{c'}{2}{n} \geq \bits{b_1'}{2}{n}$.
+
+Since $c = 1 \bits{c'}{2}{n}$
+and $b_1 = 1 \bits{b_1'}{2}{n}$,
+also $c \geq b_1$.
+
+Since $b_1 = b + 1$,
+$c > b$,
+so $c \in \finterval{a}{b}$.
+
+A symmetric argument can be shown for $\bit{c'}{1} = 1$
+using $a_1'$.
 \end{proof}
 
 \begin{proof}
