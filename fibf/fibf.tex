@@ -295,7 +295,53 @@ using $a_1'$.
 
 \begin{proof}
 Part 2: $\finterval{a}{b} \subseteq span(\mathcal{T})$
-% TODO: Prove
+
+Let $c \in \finterval{a}{b}$.
+We need to show that $\mathcal{T}$ spans $c$.
+
+Let $c' = \compl{\bit{c}{1}} \bits{c}{2}{n}$
+(flipping the first bit in $c$).
+
+We'll first show that $c' \in \interval{b_1'}{a_1'}$
+(see definition of $b_1'$ and $a_1'$
+in the algorithm description).
+
+\begin{enumerate}
+\item $\bit{c}{1} = 0$
+
+From $\bit{b}{1} = 1$,
+$c \in \finterval{a}{b}$
+and $\bit{c}{1} = 0$,
+we get $c < a$.
+
+Then trivially $c \leq a_1 = a - 1$.
+
+Since $\bit{a_1}{1} = 0 = \bit{c}{1}$,
+the inequality is preserved after flipping the first bit,
+i.e.~$c' \leq a_1'$.
+
+Since $\bit{b_1'}{1} = 0$, we get $c' \geq b_1'$.
+
+Altogether, we get $c' \in \interval{b_1'}{a_1'}$.
+\item $\bit{c}{1} = 1$
+
+This case is symmetric to the previous one.
+Using an analogous argumentation,
+we get $c' \in \interval{b_1'}{a_1'}$.
+\end{enumerate}
+
+Let $T' \in \mathcal{T}_1'$ span $c'$.
+Such vector exists because
+$\mathcal{T}_1'$ spans $\interval{b_1'}{a_1'}$
+by definition
+and $c' \in \interval{b_1'}{a_1'}$.
+
+Let $T = \compl{\bit{T'}{1}} \bits{T'}{2}{n}$.
+$T \in \mathcal{T}$ by definition.
+$T$ spans $c$ because $T'$ spans $c'$
+and flipping a fixed bit preserves spanning.
+
+Thus $\mathcal{T}$ spans $c$.
 \end{proof}
 
 \begin{theorem}
