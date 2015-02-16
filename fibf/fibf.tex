@@ -159,7 +159,21 @@ $c \in \finterval{a}{b}$.
 \end{enumerate}
 
 Part 2: $\finterval{a}{b} \subseteq span(\mathcal{T})$
-% TODO: Finish
+
+Let $c \in \finterval{a}{b}$.
+We need a $T \in \mathcal{T}$ that spans $c$.
+
+\begin{enumerate}
+\item $\bit{c}{1} = 1$: $1 \phi^{n-1} \in \mathcal{T}_1 \subseteq \mathcal{T}$ spans $c$.
+\item $\bit{c}{1} = 0$:
+Similarly to $a_2$ and $b_2$, let $c_2 = \bits{c}{2}{n}$.
+Since $a$, $b$ and $c$ start with a $0$ bit,
+$c_2 \in \finterval{a_2}{b_2}$.
+Since $\mathcal{T}_2$ spans $\finterval{a_2}{b_2}$,
+$\exists T_2 \in \mathcal{T}_2 . T_2$ spans $c_2$.
+Prepending $0$ preserves spanning,
+so $0 T_2 \in \mathcal{T}_0 \subseteq \mathcal{T}$ spans $c$.
+\end{enumerate}
 \end{proof}
 
 \begin{theorem}
