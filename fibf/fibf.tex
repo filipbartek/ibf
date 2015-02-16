@@ -90,8 +90,13 @@ sequence extraction $\bits{a}{i}{j}$
 etc.~are shown in \cite{Schieber2005154}.
 
 \section{Spanning false point interval Boolean functions}
-Let $0 \leq a \leq b \leq 2^n - 1$.
+Let $n \geq 0$ and $0 \leq a \leq b \leq 2^n - 1$.
 We need to find a set of ternary vectors of minimal cardinality that spans exactly $\finterval{a}{b}$.
+
+Since we'll solve the problem recursively,
+let's first simply observe that the optimal spanning set of a $0$-bit Boolean function ($n = 0$)
+is an empty set.
+From now on, let $n \geq 1$.
 
 We'll consider two cases separately:
 
