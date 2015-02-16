@@ -106,11 +106,14 @@ We'll consider two cases separately:
 \item $\bit{a}{1} \neq \bit{b}{1}$
 \end{enumerate}
 
-We'll deal with the first case by solving the instance $\finterval{\bits{a}{2}{n}}{\bits{b}{2}{n}}$
-and adding an extra ternary vector.
+We'll deal with the first case
+by recursively solving the $(n-1)$-bit instance $\finterval{\bits{a}{2}{n}}{\bits{b}{2}{n}}$
+and adding one extra ternary vector.
 
-We'll transform the second case to an instance of spanning a true point interval Boolean function,
-which can be handled using the method introduced in \cite{Schieber2005154}.
+We'll transform the second case
+to an instance of spanning a true point interval Boolean function
+of equal arity,
+which can be solved optimally using a method introduced in \cite{Schieber2005154}.
 
 \subsection{$\bit{a}{1} = \bit{b}{1}$}
 Let $\bit{a}{1} = \bit{b}{1} = 0$.
