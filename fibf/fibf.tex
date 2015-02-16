@@ -17,6 +17,7 @@
 \newcommand{\finterval}[2]{\overline{\interval{#1}{#2}}}
 \newcommand{\bit}[2]{#1^{[#2]}}
 \newcommand{\bits}[3]{#1^{\interval{#2}{#3}}}
+\newcommand{\booldom}{\mathbf{B}} % Boolean domain
 
 \bibliographystyle{plain}
 
@@ -57,7 +58,7 @@ shown in \cite{Schieber2005154}.
 \section{Definitions}
 \begin{definition}[Interval Boolean function]
 Let $a \leq b$ be $n$-bit numbers ($0 \leq a \leq b \leq 2^n - 1$).
-Then $f^n_{\interval{a}{b}}: 2^n \rightarrow 2$ is a function defined as follows:
+Then $f^n_{\interval{a}{b}}: \booldom{}^n \rightarrow \booldom{}$ is a function defined as follows:
 % http://en.wikibooks.org/wiki/LaTeX/Advanced_Mathematics#Using_aligned_braces_for_piecewise_functions
 % http://en.wikipedia.org/wiki/Piecewise
 \[f^n_{\interval{a}{b}} (x) = \left\{
@@ -71,7 +72,7 @@ Then $f^n_{\interval{a}{b}}: 2^n \rightarrow 2$ is a function defined as follows
 
 \begin{definition}[False point interval Boolean function]
 Let $a \leq b$ be $n$-bit numbers ($0 \leq a \leq b \leq 2^n - 1$).
-Then $f^n_{\finterval{a}{b}}: 2^n \rightarrow 2$ is a function defined as follows:
+Then $f^n_{\finterval{a}{b}}: \booldom{}^n \rightarrow \booldom{}$ is a function defined as follows:
 \[f^n_{\finterval{a}{b}} (x) = \left\{
   \begin{array}{lr}
     1 & $if $ x \notin \interval{a}{b}\\
