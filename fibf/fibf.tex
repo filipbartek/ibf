@@ -349,7 +349,107 @@ $\mathcal{T}$ is a minimal spanning set of $\finterval{a}{b}$.
 \end{theorem}
 
 \begin{proof}
-% TODO: Prove
+We'll prove the statement by contradiction.
+Let the size of the minimal spanning set
+of the interval $\interval{b_1'}{a_1'}$ be $k$.
+Then trivially $|\mathcal{T}| = k$,
+and $\mathcal{T}$ spans $\finterval{a}{b}$ as shown above.
+
+% TODO: Consider clarifying spanning as "span exactly"
+Let a set $\mathcal{T}_{k-1}$ of size $k-1$
+span $\finterval{a}{b}$.
+We'll use $\mathcal{T}_{k-1}$ to construct
+a set of size $k-1$ that spans $\interval{b_1'}{a_1'}$,
+reaching a contradiction
+and thus rejecting the existence
+of a smaller set spanning exactly $\finterval{a}{b}$.
+
+Let $\mathcal{T}_{k-1}'$ be the result of flipping all
+the non-$\phi$ first bits
+of vectors in $\mathcal{T}_{k-1}$.
+Trivially
+$|\mathcal{T}_{k-1}'| = |\mathcal{T}_{k-1}| = k-1$.
+We claim that $\mathcal{T}_{k-1}'$
+spans $\interval{b_1'}{a_1'}$.
+
+The proof is very similar
+to the proof of theorem \ref{diffsound}:
+
+% TODO: Clean up the following part of the proof
+\begin{enumerate}
+\item
+$span(\mathcal{T}_{k-1}') \subseteq \interval{b_1'}{a_1'}$
+
+Let $c' \in span(\mathcal{T}_{k-1}')$.
+We'll show that $c' \in \interval{b_1'}{a_1'}$.
+
+Let $T' \in \mathcal{T}_{k-1}'$ span $c'$.
+
+Let $c = \compl{\bit{c'}{1}} \bits{c'}{2}{n}$
+and $T = \compl{\bit{T'}{1}} \bits{T'}{2}{n}$.
+
+$T \in \mathcal{T}_{k-1}$,
+so $c \in \finterval{a}{b}$
+by definition of $\mathcal{T}_{k-1}$.
+
+\begin{enumerate}
+\item $\bit{c'}{1} = 0$:
+
+$\bit{c}{1} = 1$.
+
+Since $c \in \finterval{a}{b}$, then $c > b$.
+
+Then also
+$c \geq b + 1 = b_1$
+and
+$c' \geq b_1'$.
+
+Since $\bit{c'}{1} = 0$ and $\bit{a_1'}{1} = 1$,
+then $c' \leq a_1'$.
+
+Altogether $c' \in \interval{b_1'}{a_1'}$.
+
+\item $\bit{c'}{1} = 1$: symmetric.
+\end{enumerate}
+
+\item
+$\interval{b_1'}{a_1'} \subseteq span(\mathcal{T}_{k-1}')$
+
+Let $c' \in \interval{b_1'}{a_1'}$.
+
+Let $c = \compl{\bit{c'}{1}} \bits{c'}{2}{n}$.
+
+We'll first show that $c \in \finterval{a}{b}$.
+
+\begin{enumerate}
+\item $\bit{c'}{1} = 1$:
+
+$c' \leq a_1'$
+
+$c \leq a_1$
+
+$c < a$
+
+$c \in \finterval{a}{b}$
+\item $\bit{c'}{1} = 0$: symmetric.
+\end{enumerate}
+
+$\mathcal{T}_{k-1}$ spans $c$
+
+$\mathcal{T}_{k-1}'$ spans $c'$
+\end{enumerate}
+
+Thus we have shown that $\mathcal{T}_{k-1}'$
+spans exactly $\interval{b_1'}{a_1'}$.
+Since $|\mathcal{T}_{k-1}'| = k-1$,
+this contradicts the assumption that
+the size of the minimal spanning set of the interval
+$\interval{b_1'}{a_1'}$ is $k$.
+Thus we reject the existence of a set of size $k-1$
+spanning exactly $\finterval{a}{b}$,
+proving that $\mathcal{T}$ constructed by our algorithm
+($|\mathcal{T}| = k$)
+is optimal.
 \end{proof}
 
 % TODO: Conclude
