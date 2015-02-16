@@ -180,8 +180,26 @@ so $0 T_2 \in \mathcal{T}_0 \subseteq \mathcal{T}$ spans $c$.
 \begin{theorem}
 $\mathcal{T}$ is a minimal spanning set of $\finterval{a}{b}$.
 \end{theorem}
+\begin{proof}
+Clearly $T_0$ optimally spans $\finterval{a}{b} \cap \interval{0^n}{0 1^{n-1}}$.
 
-% TODO: Finish
+The optimal spanning set $\mathcal{T}_{opt}$ of $\finterval{a}{b}$
+must span the binary vector $a' = 1 \bits{a}{2}{n} \in \finterval{a}{b}$.
+Let $T \in \mathcal{T}_{opt}$ be a ternary vector that spans $a'$.
+If $T$ spanned any vector that starts with $0$,
+then $T$ would also span $a$,
+which is a false point.
+So $T$ can't span any number that starts with $0$.
+
+This means we can't correctly generalize $T_0$
+to span \emph{all} the true points of $\finterval{a}{b}$
+as we need to add at least one independent ternary vector
+to span the true point $a'$,
+which is exactly what the algorithm does
+(the independent vector $1 \phi^{n-1}$
+spanning the whole $\interval{1 0^{n-1}}{1^n}$).
+\end{proof}
+
 
 \subsection{$\bit{a}{1} \neq \bit{b}{1}$}
 Let $\bit{a}{1} \neq \bit{b}{1}$.
