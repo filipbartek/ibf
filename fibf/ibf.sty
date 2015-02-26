@@ -1,0 +1,33 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ibf}[2015/02/26 Interval Boolean functions]
+
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+
+% Theorem environments
+\RequirePackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[subsection]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+% Macros
+\newcommand{\interval}[2]{[#1, #2]}
+\newcommand{\compl}[1]{\overline{#1}}
+\newcommand{\finterval}[2]{\compl{\interval{#1}{#2}}}
+\newcommand{\bit}[2]{#1^{[#2]}}
+\newcommand{\bits}[3]{#1^{\interval{#2}{#3}}}
+\newcommand{\booldom}{\mathbf{B}} % Boolean domain
+
+\RequirePackage{hyperref}
+% http://en.wikibooks.org/wiki/LaTeX/Glossary#Jump_start
+% Place \usepackage{glossaries} and \makeglossaries in your preamble (after \usepackage{hyperref} if present).
+
+% Glossary
+\RequirePackage{glossaries}
+\newacronym{dnf}{DNF}{disjunctive normal form}
+\newacronym{msb}{MSB}{most significant bit}
+\makeglossaries
+
+\endinput
