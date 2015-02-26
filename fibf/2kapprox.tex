@@ -1,0 +1,146 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{ibf}
+
+\bibliographystyle{plain}
+
+\author{Filip Bártek}
+\title{$2k$-approximation algorithm
+for minimizing \acrshort{dnf} representation
+of $k$-interval Boolean functions}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+In the following text,
+an algorithm will be shown that computes
+a small \acrshort{dnf} representation
+of Boolean function given as a set of $k$ intervals.
+An approximation ratio of $2k$ will be proved.
+
+\section{Definitions}
+
+\begin{definition}[$k$-interval Boolean function]
+\label{def:kibf}
+Let $a_1, b_1, \ldots, a_k, b_k$ be $n$-bit numbers
+such that $0 \leq a_1$,
+$a_1 \leq b_1$,
+$b_1 \leq a_2 - 2$,
+$\ldots$,
+$b_k \leq 2^n - 1$.
+Then $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}: \booldom{}^n \rightarrow \booldom{}$ is a function defined as follows:
+\[f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}} (x) = \left\{
+  \begin{array}{lr}
+    1 & $if $ x \in \interval{a_i}{b_i}$ for some $i\\
+    0 & $otherwise$
+  \end{array}
+\right.
+\]
+\end{definition}
+Note that the adjacent intervals
+are required to be separated by at least one false point.
+
+\section{Algorithm}
+
+\subsection{Description}
+\paragraph{Input}
+Numbers $a_1, b_1, \ldots, a_k, b_k$
+that satisfy the inequalities in definition \ref{def:kibf}
+
+\paragraph{Output}
+A set of ternary vectors
+
+\paragraph{Procedure}
+The algorithm goes through
+all the intervals $\interval{a_i}{b_i}$.
+For each $i$, the longest common prefix of $a_i$ and $b_i$
+is computed. Let $j$ be its length.
+Note that $\bit{a}{j+1} = 0$ and $\bit{b}{j+1} = 1$.
+Now let $a'' = \bits{a_i}{j+2}{n}$
+and $b'' = \bits{b_i}{j+2}{n}$.
+Optimally span the suffix interval
+$\interval{a''}{1^{n-j-1}}$
+and the prefix interval
+$\interval{0^{n-j-1}}{b''}$
+using the (linear time) algorithm
+introduced in \cite{Schieber2005154}.
+Prepend $\bits{a_i}{1}{j+1}$
+and $\bits{b_i}{1}{j+1}$
+to the respective ternary vectors
+and add them to the output spanning set.
+
+% TODO: Treat (explicitly) the degenerate cases:
+% a_1 = 0
+% b_k = 2^n - 1
+% j = n
+% j = n - 1
+
+\subsection{Correctness}
+\begin{theorem}
+The algorithm spans exactly
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
+\end{theorem}
+
+\begin{proof}
+This is easy to see from the fact that the subintervals
+form a partition of the multi-interval
+(i.e.~the set of all true points)
+% TODO: Use a better term if available
+and that each of them is spanned exactly
+by the suffix or prefix procedure.
+\end{proof}
+
+\subsection{Approximation ratio}
+\begin{theorem}
+Let $\mathcal{T}_{opt}$ be an optimal spanning set of
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+and let $\mathcal{T}_{approx}$ be the spanning set returned
+by the algorithm.
+We claim that:
+\begin{equation}
+|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_{opt}|
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal{T}_x$ be the largest ($n$-bit) spanning set
+of a "suffix" or "prefix" subinterval
+% TODO: Clarify: the interval is prefix or suffix
+% on n - j - 1 bits, but not in general on n bits.
+added in the algorithm.
+Without loss of generality,
+let the respective subinterval be "prefix"
+$\interval{\bits{b_i}{1}{j+1}}{b_i}$.
+From \cite[p.~36]{Dubovsky2012} we know that
+there is an orthogonal set
+of $\interval{\bits{b_i}{1}{j+1}}{b_i}$
+of size $|\mathcal{T}_x|$,
+and moreover that its orthogonality only depends
+on the false point $b+1$.
+Note, however, that $b+1$ is also a false point in
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
+Thus we obtain an orthogonal set of size $|\mathcal{T}_x|$
+for the $k$-interval function,
+limiting the size of its optimal spanning set
+$|\mathcal{T}_{opt}| \geq |\mathcal{T}_x|$.
+
+Since $\mathcal{T}_x$ is the largest
+of the $2k$ partial sets used to span the function
+in the approximation algorithm,
+we know that
+$|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_x|$.
+
+Joining the inequalities together we conclude:
+$|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_x| \leq
+2k |\mathcal{T}_{opt}|$.
+\end{proof}
+
+\bibliography{ibf}
+
+\printglossaries
+
+\end{document}
