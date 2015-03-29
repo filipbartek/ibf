@@ -1,0 +1,63 @@
+%%% The main file.
+
+
+% Build process:
+
+% pdflatex thesis
+% bibtex thesis
+% makeglossaries thesis
+% pdflatex thesis
+% pdflatex thesis
+
+
+% Style guide (directive):
+% http://www.mff.cuni.cz/vnitro/dekan/2015/smer01.htm
+
+%% Settings for single-side (simplex) printing
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{ibf}
+\usepackage{thesis}
+
+\bibliographystyle{plain}
+
+\begin{document}
+
+\input en/title.tex
+
+%%% A page with automatically generated content of the bachelor thesis. For
+%%% a mathematical thesis, it is permissible to have a list of tables and abbreviations,
+%%% if any, at the beginning of the thesis instead of at its end.
+
+\tableofcontents
+
+%%% Each chapter is kept in a separate file
+\include{en/preface}
+\include{en/chap1}
+\include{en/chap2}
+
+\include{en/epilog}
+
+%%% Bibliography
+%\include{en/bibliography}
+\bibliography{ibf}
+
+%%% Figures used in the thesis (consider if this is needed)
+%\listoffigures
+
+%%% Tables used in the thesis (consider if this is needed)
+%\listoftables
+
+%%% Abbreviations used in the thesis, if any, including their explanation
+%\chapwithtoc{List of Abbreviations}
+\printglossaries
+
+%%% Attachments to the bachelor thesis, if any (various additions such
+%%% as programme extracts, diagrams, etc.). Each attachment must be referred to
+%%% at least once from one's own text of the thesis. Attachments are numbered.
+%\chapwithtoc{Attachments}
+
+\openright
+\end{document}
