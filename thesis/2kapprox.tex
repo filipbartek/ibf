@@ -85,6 +85,7 @@ by the suffix or prefix procedure.
 
 \subsection{Approximation ratio}
 \begin{theorem}
+\label{theorem:2kapproxratio}
 Let $\mathcal{T}_{opt}$ be an optimal spanning set of
 $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
 and let $\mathcal{T}_{approx}$ be the spanning set returned
@@ -126,4 +127,58 @@ $|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_x|$.
 Joining the inequalities together we conclude:
 $|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_x| \leq
 2k |\mathcal{T}_{opt}|$.
+\end{proof}
+
+\begin{theorem}
+The approximation ratio of $2k$ is tight.
+\end{theorem}
+
+\begin{proof}
+For every $k$ that is a power of $2$
+we'll show a $k$-interval function such that
+$|\mathcal{T}_{approx}| = 2k |\mathcal{T}_{opt}|$
+(following the notation from
+Theorem~\ref{theorem:2kapproxratio}.
+
+Let $k = 2^{n_k}$.
+Let $P$ be all the $n_k$-bit numbers,
+that is $P = \booldom^{n_k}$.
+Note that $|P| = k$.
+
+For each $p \in P$,
+we define the interval $\interval{a_p}{b_p}$
+by appending $2$-bit suffixes to $p$:
+
+\begin{itemize}
+\item $a_p = p 0 0$
+\item $b_p = p 0 1$
+\end{itemize}
+
+The first appended bit ($0$ for both $a_p$ and $b_p$)
+ensures that there is at least one false point
+between any pair of intervals defined this way.
+The second appended bit ($0$ for $a_p$ and $1$ for $b_p$)
+ensures that the interval has two points,
+so the approximation algorithm will use two vectors
+to span it.
+Thus we have $k$ $(n_k + 2)$-bit intervals,
+none of which intersect or touch.
+
+Since $P = \booldom^{n_k}$,
+we can span all the intervals by the single ternary vector
+$\rep{\phi}{n_k} 0 \phi$.
+Clearly $|\mathcal{T}_{opt}| = 1$.
+
+However,
+the approximation algorithm uses $2k$ vectors to span
+the intervals,
+since it spans each of the intervals separately
+and uses two vectors for each interval.
+
+We get
+$|\mathcal{T}_{approx}| = 2k |\mathcal{T}_{opt}|$.
+
+Note that the optimal spanning set is disjoint,
+so the ratio is tight in disjoint case as well.
+% TODO: Introduce disjoint case
 \end{proof}
