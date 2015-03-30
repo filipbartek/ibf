@@ -1,0 +1,18 @@
+% Co je znamo
+% Cil prace
+% Je to dulezite
+% Volba metody
+
+% Intervalové funkce byly zavedeny v (Schieber et al., 2005). O booleovské funkci f na n proměnných řekneme, že je intervalová, pokud existují dvě čísla 0≤a≤b≤2^n, pro které platí, že f je splněna právě na ohodnoceních v, která splňují a≤v≤b, uvažujeme-li v jako binární reprezentaci n-bitového čísla. Autoři (Schieber et al., 2005) popsali algoritmus pro konstrukci minimální disjunktivně normální formy (DNF) reprezentující intervalovou funkci. Cílem diplomanta je prozkoumat, jak by bylo možno postupy uvedené v (Schieber et al., 2005) zobecnit pro případ funkcí definovovaných více intervaly. Výsledkem mohou být jak optimalizační algoritmy, tak i algoritmy aproximační. Diplomová práce svým způsobem navazuje na diplomovou práci J. Dubovského (Konstrukce minimálních DNF reprezentací 2-intervalových funkcí, ak. rok 2011/12), v níž byly studovány podtřídy 2-intervalových funkcí.
+
+When we interpret the input vector of a Boolean function as a binary number,
+we define interval Boolean function $\intervalfn{f}{a}{b}$
+so that $\intervalfn{f}{a}{b}(x) = 1$ if and only if $a \leq x \leq b$.
+\Acrlong{dnf} is a common way of representing Boolean functions.
+Minimizing \acrshort{dnf} representation of an interval Boolean function
+can be performed in linear time.\cite{Schieber2005154}
+The natural generalization to $k$-interval functions
+seems to be significantly harder to tackle.
+In this thesis,
+I discuss the difficulties with finding an optimal solution
+and introduce a $2k$-approximation algorithm.
