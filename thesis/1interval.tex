@@ -1,0 +1,126 @@
+\chapter{Single interval functions}
+
+In this chapter,
+I will introduce an efficient algorithm for optimal spanning
+of single interval Boolean functions,
+originally shown by Schieber et al.\cite{Schieber2005154}
+
+In the following chapters,
+I will use this algorithm as a procedure
+in order to span multi-interval functions.
+
+In the remainder of this chapter,
+$a$ and $b$ ($a \leq b$) will denote the endpoints
+of the spanned interval
+and $n$ the number of input bits.
+Thus,
+we'll be spanning the function $\intervalfn{f}{a}{b}^n$.
+
+\section{Prefix and suffix case}
+
+Let's first consider the prefix case,
+that is $\interval{\rep{0}{n}}{b}$ ($a = \rep{0}{n}$),
+and the suffix case,
+that is $\interval{a}{\rep{1}{n}}$ ($b = \rep{1}{n}$).
+
+If both $a = \rep{0}{n}$ and $b = \rep{1}{n}$,
+the optimal spanning set trivially consists
+of the single ternary vector $\rep{\phi}{n}$,
+corresponding to the trivial formula $1$.
+
+From now on,
+let $a > \rep{0}{n}$ or $b < \rep{1}{n}$.
+
+Note that prefix and suffix cases are complementary --
+we may transform a suffix instance
+$\interval{a}{\rep{1}{n}}$
+to a prefix instance $\interval{\rep{0}{n}}{\compl{a}}$.
+Flipping the polarity of the resulting ternary vectors
+yields a solution for the initial suffix instance
+$\interval{a}{\rep{1}{n}}$.
+This means it's enough to solve the prefix case,
+which is what we'll do.
+
+Let $a = \rep{0}{n}$ and $b < \rep{1}{n}$.
+Let $c$ be the $n$-bit number $b + 1$.
+Since $b < \rep{1}{n}$,
+we don't need more than $n$ bits to encode $c$.
+
+The algorithm produces one ternary vector
+for each $1$-bit in $c$.
+If $o$ is a position of a $1$-bit in $c$
+($\bit{c}{o} = 1$),
+then the corresponding ternary vector
+is $\bits{c}{1}{o - 1} 0 \rep{\phi}{n - o}$.
+Thus we get the following spanning set:
+
+\begin{equation*}
+\mathcal{T} =
+\{\bits{c}{1}{o - 1} 0 \rep{\phi}{n - o} | \bit{c}{o} = 1\}
+\end{equation*}
+
+\begin{theorem}
+$\mathcal{T}$ spans exactly the interval
+$\interval{\rep{0}{n}}{b}$ (feasibility).
+\end{theorem}
+
+\begin{proof}
+To see that every number spanned by $\mathcal{T}$
+is in $\interval{\rep{0}{n}}{b}$,
+note that all the numbers spanned by $\mathcal{T}$
+are smaller than $c$,
+since their \acrlong{msb} different from $c$
+must be a $0$-bit
+and they must differ from $c$.
+
+On the other hand,
+every number $x$ smaller than $c$ must differ from $c$,
+and the leftmost different bit must be $0$.
+Let $o$ be its position.
+Then
+$\bits{c}{1}{o - 1} 0 \rep{\phi}{n - o} \in \mathcal{T}$
+spans $x$.
+\end{proof}
+
+\begin{theorem}
+$\mathcal{T}$ is minimal in size (optimality).
+\end{theorem}
+
+\begin{proof}
+We'll construct a set of $|\mathcal{T}|$ true points
+no pair of which can be spanned by a single ternary vector.
+Doing so, we'll show a lower bound $|\mathcal{T}|$
+on the size of feasible solutions,
+proving optimality of $\mathcal{T}$.
+
+Once more,
+the orthogonal true points correspond to $1$-bits of $c$:
+
+\begin{equation}
+V =
+\{\bits{c}{1}{o - 1} 0 \bits{c}{o + 1}{n} |
+\bit{c}{o} = 1\}
+\end{equation}
+
+Clearly $|V| = |\mathcal{T}|$.
+
+It's easy to see that any ternary vector that spans two
+% TODO: Not so easy to see for a fresh reader.
+% Go into more detail.
+different points in $V$ must also span the false point $c$,
+so it can't be a part of the solution.
+Also note that all points in $V$ are smaller than $c$,
+so they are true points.
+
+If there was a feasible spanning set
+of size smaller than $|V|$,
+at least one of its vectors would need to span at least
+two points in $V$.
+As we have shown, such ternary vector would necessarily
+also span the false point $c$,
+leading to contradiction with its feasibility.
+\end{proof}
+
+% TODO: Solve the general case
+% (without proving optimality
+% and perhaps also feasibility).
