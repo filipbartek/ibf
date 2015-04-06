@@ -6,6 +6,173 @@ shown by Schieber et al.\cite{Schieber2005154}
 
 \section{Definitions}
 
+The basic terminology used in this thesis
+was introduced by Schieber et al.\cite{Schieber2005154}
+and Dubovský.\cite{Dubovsky2012}
+
+\begin{definition}[Binary vector]
+For the purpose of this thesis,
+we'll use the term \definiendum{binary vector}
+to describe a vector over the Boolean domain.
+That is, $x$ is a binary vector if and only if
+$\exists n. x \in \booldom^n$.
+\end{definition}
+
+\begin{definition}
+[Symbol extraction]
+Let $v$ be a vector of length $n$ and $1 \leq i \leq n$.
+Then $\bit{v}{i}$ is the $i$-th component of $v$.
+
+Let $1 \leq a \leq b \leq n$.
+Then $\bits{v}{a}{b}$ is the subvector of $v$
+that starts at $a$-th position
+and ends at $b$-th position
+($\bits{v}{a}{b} = (\bit{v}{a}, \ldots, \bit{v}{b})$).
+\end{definition}
+
+Notably,
+$v = \bit{v}{1}, \ldots, \bit{v}{n} = \bits{v}{1}{n}$.
+
+\begin{definition}
+[Symbol repetition]
+Let $x$ be a symbol (for example $0$ or $1$)
+and $0 \leq n$.
+Then $\rep{x}{n}$ is the vector of length $n$
+whose every component is equal to $x$.
+\end{definition}
+
+\begin{definition}[Boolean function]
+$f: \booldom^n \rightarrow \booldom$ is an $n$-ary
+\definiendum{Boolean function}.
+\end{definition}
+
+Since we won't be dealing with any non-Boolean functions,
+in the remainder of the text,
+I will use the terms ,,function'' and ,,Boolean function''
+interchangeably.
+
+% http://en.wikipedia.org/wiki/Boolean_function
+Every $n$-ary Boolean function $f$ can be expressed
+as a propositional formula $\mathcal{F}$ in $n$ variables
+$x_1, \ldots, x_n$.
+There's a natural bijection
+between binary vectors of length $n$
+and valuations of $n$ variables
+($1$-bits in the binary vector
+correspond exactly to $1$-valued variables
+in the valuation).
+
+% TODO: Add example Boolean function with logical representation etc.
+
+% http://en.wikipedia.org/wiki/Disjunctive_normal_form
+\begin{definition}[\Acrlong{dnf}]
+A propositional logic formula $\mathcal{F}$
+is in \definiendum{\acrfull{dnf}} if and only if
+$\mathcal{F}$ is a disjunction of conjuncts,
+where \definiendum{conjuncts} are conjunctions of literals.
+
+We'll often view conjuncts as sets of literals
+and \acrshort{dnf} formulas as sets of conjuncts.
+\end{definition}
+
+% http://en.wikipedia.org/wiki/Valuation_%28logic%29
+A \acrshort{dnf} formula is
+a \definiendum{\acrshort{dnf} representation}
+of a Boolean function
+if it expresses the same function,
+that is
+$\forall x \in \booldom^n: f(x) = 1 \iff
+\valuation{\mathcal{F}}{x} = 1$.
+% TODO: Rewrite; should be more natural or use the bijection explicitly.
+
+To make our work easier,
+we'll define a vector representation of a conjunct:
+
+\begin{definition}
+[Ternary vector]
+A \definiendum{ternary vector}
+is a vector over the set
+$\{0, 1, \phi\}$.
+\end{definition}
+
+There's a natural bijection between ternary vectors
+and conjuncts that don't mix polarities of variables\footnote{A conjunct
+that mixes polarities of a variable,
+for example $x_1 \overline{x_1}$,
+is trivially false.
+Note that leaving out such conjunct from a formula
+always preserves the represented function.}.
+Each of the $n$ components of a ternary vector $T$
+corresponds to the single occurrence (or its absence)
+of one of the $n$ variables of conjunct $C$:
+
+% TODO: Correct equivalence sign.
+\[
+T \equiv C \iff \forall i \in \curly{1, \ldots, n}.
+\left\{
+  \begin{array}{lll}
+    \bit{T}{i} = \phi & \text{iff} & C \cap \curly{x_i, \overline{x_i}} = \emptyset \\
+    \bit{T}{i} = 1 & \text{iff} & C \cap \curly{x_i, \overline{x_i}} = \curly{x_i} \\
+    \bit{T}{i} = 0 & \text{iff} & C \cap \curly{x_i, \overline{x_i}} = \curly{\overline{x_i}}
+  \end{array}
+\right.
+\]
+
+Namely,
+a binary vector corresponds to a full conjunct,
+and the ternary vector $\rep{\phi}{n}$
+corresponds to the empty conjunct (tautology).
+% TODO: Consider defining "more qualified", "most qualified", "least qualified".
+
+It's easy to see that sets of ternary vectors of length $n$
+correspond to \acrshort{dnf} \emph{formulas}
+on $n$ variables.
+
+\begin{definition}[Spanning]
+A ternary vector $T$ of length $n$ \definiendum{spans}
+a binary vector $x$ of length $n$
+if and only if
+$\forall i \in \curly{1, \ldots, n} .
+\bit{T}{i} = \phi \text{ or } \bit{T}{i} = \bit{x}{i}$.
+\end{definition}
+
+If $\bit{T}{i}$ is a ,,fixed bit''
+($\bit{T}{i} \in \curly{0, 1}$),
+the spanned binary vector $x$
+is forced to have the same value
+in its $i$-th position,
+that is $\bit{x}{i} = \bit{T}{i}$.
+If $\bit{T}{i}$ is the ,,don't care symbol'' $\phi$,
+the spanned binary vector
+may have any value in its $i$-th position.
+
+\begin{definition}
+[Spanned set]
+Let $T$ be a ternary vector of length $n$.
+Set of points spanned by $T$,
+denoted $span(T)$,
+is defined in the following way:
+
+\begin{equation*}
+span(T) = \curly{
+x \in \booldom^n |
+T\text{ spans }x
+}
+\end{equation*}
+\end{definition}
+
+Note that every ternary vector $T$
+spans $2^m$ binary vectors,
+where $m$ is the number of $\phi$ positions in $T$.
+
+We'll also use a natural extension
+to sets of ternary vectors:
+
+\begin{equation*}
+span(\mathcal{T}) =
+\bigcup_{T \in \mathcal{T}} span(T)
+\end{equation*}
+
 \begin{definition}
 [$k$-interval Boolean function]
 \label{def:kibf}
