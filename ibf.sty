@@ -19,14 +19,14 @@
 \newtheorem{definition}{Definition}[section]
 
 % Macros
-\newcommand{\interval}[2]{[#1, #2]}
+\newcommand{\interval}[2]{\sq{#1, #2}}
 \newcommand{\compl}[1]{\overline{#1}}
 \newcommand{\finterval}[2]{\compl{\interval{#1}{#2}}}
 \newcommand{\bit}[2]{#1^{[#2]}}
 \newcommand{\bits}[3]{#1^{\interval{#2}{#3}}}
-\newcommand{\booldom}{\{0, 1\}} % Boolean domain
+\newcommand{\booldom}{\curly{0, 1}} % Boolean domain
 \newcommand{\intervalfn}[4]{#1^#2_{\interval{#3}{#4}}}
-\newcommand{\rep}[2]{#1^{\{#2\}}}
+\newcommand{\rep}[2]{#1^{\curly{#2}}}
 \newcommand{\definiendum}[1]{\emph{#1}}
 
 \endinput
