@@ -4,4 +4,27 @@
 I will build on the results about interval Boolean functions
 shown by Schieber et al.\cite{Schieber2005154}
 
+\section{Definitions}
+
+\begin{definition}
+[$k$-interval Boolean function]
+\label{def:kibf}
+Let $a_1, b_1, \ldots, a_k, b_k$ be $n$-bit numbers
+such that $0 \leq a_1$,
+$a_1 \leq b_1$,
+$b_1 \leq a_2 - 2$,
+$\ldots$,
+$b_k \leq 2^n - 1$.
+Then $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}: \booldom{}^n \rightarrow \booldom{}$ is a function defined as follows:
+\[f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}} (x) = \left\{
+  \begin{array}{lr}
+    1 & $if $ x \in \interval{a_i}{b_i}$ for some $i\\
+    0 & $otherwise$
+  \end{array}
+\right.
+\]
+\end{definition}
+Note that the adjacent intervals
+are required to be separated by at least one false point.
+
 % TODO: Finish.
