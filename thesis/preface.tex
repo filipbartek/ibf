@@ -15,6 +15,25 @@ $\exists n. x \in \booldom^n$.
 We call such $x$ an \definiendum{$n$-bit binary vector}.
 \end{definition}
 
+Note that each binary vector represents a natural number.
+% TODO: Add "in binary coding" or something similar.
+More specifically,
+$n$-bit binary vectors represent numbers
+between $0$ and $2^n - 1$.
+We won't differentiate between a number
+and its binary representation.
+Especially,
+we'll use a lexicographic linear ordering
+on binary vectors --
+for $n$-bit vectors $a$ and $b$,
+$a \leq b$ if and only if $a = b$ or
+the \acrlong{msb}
+in which $a$ and $b$ differ
+is $0$ in $a$ and $1$ in $b$.
+Clearly,
+this ordering corresponds to the natural ordering
+on the represented numbers.
+
 \begin{definition}
 [Symbol extraction]
 Let $v$ be a vector of length $n$ and $1 \leq i \leq n$.
