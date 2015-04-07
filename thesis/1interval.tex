@@ -16,29 +16,72 @@ and $n$ the number of input bits.
 Thus,
 we'll be spanning the function $\intervalfn{f}{n}{a}{b}$.
 
-\section{Prefix and suffix case}
+The algorithm is recursive.
 
-Let's first consider the prefix case,
+\section{Trivial cases}
+
+First we'll deal with the trivial interval functions.
+
+\subsection{\texorpdfstring{$a = b$}{a = b}}
+
+We span the interval $\interval{a}{a}$
+with the single ternary vector $a$.
+
+From now on,
+let $a < b$.
+
+\subsection{
+\texorpdfstring{$a = \rep{0}{n}$}{a = 0^n}
+and
+\texorpdfstring{$b = \rep{1}{n}$}{b = 1^n}
+}
+
+We span the interval
+$\interval{\rep{0}{n}}{\rep{1}{n}}$
+with the single ternary vector $\rep{\phi}{n}$.
+
+From now on,
+let $a > \rep{0}{n}$ or $b < \rep{1}{n}$.
+
+\section{Prefix and suffix case}
+\label{sec:prefixsuffix}
+
+Since we have dealt with the trivial cases,
+we are now left with the situation
+$\rep{0}{n} \leq a < b \leq \rep{1}{n}$
+and
+$a > \rep{0}{n}$ or $b < \rep{1}{n}$.
+
+Let's consider the prefix case,
 that is $\interval{\rep{0}{n}}{b}$ ($a = \rep{0}{n}$),
 and the suffix case,
 that is $\interval{a}{\rep{1}{n}}$ ($b = \rep{1}{n}$).
 
-If both $a = \rep{0}{n}$ and $b = \rep{1}{n}$,
-the optimal spanning set trivially consists
-of the single ternary vector $\rep{\phi}{n}$,
-corresponding to the trivial formula $1$.
+\begin{definition}[Complement]
+The complement of a binary symbol $x$ ($x \in \booldom$),
+denoted $\compl{x}$,
+is $1 - x$.
 
-From now on,
-let $a > \rep{0}{n}$ or $b < \rep{1}{n}$.
+We get the complement of a binary vector
+by flipping all of its bits,
+that is $\compl{x} = (\compl{x_1}, \ldots,
+\compl{x_n})$.
+
+The complement of the $\phi$ symbol is $\phi$
+($\compl{\phi} = \phi$).
+
+To obtain the complement of a ternary vector,
+we flip all its fixed bits.
+\end{definition}
 
 Note that prefix and suffix cases are complementary --
 we may transform a suffix instance
 $\interval{a}{\rep{1}{n}}$
 to a prefix instance $\interval{\rep{0}{n}}{\compl{a}}$.
 Flipping the polarity of the resulting ternary vectors
-yields a solution for the initial suffix instance
+yields a solution of the initial suffix instance
 $\interval{a}{\rep{1}{n}}$.
-This means it's enough to solve the prefix case,
+This means it suffices to solve the prefix case,
 which is what we'll do.
 
 Let $a = \rep{0}{n}$ and $b < \rep{1}{n}$.
@@ -75,7 +118,8 @@ and they must differ from $c$.
 
 On the other hand,
 every number $x$ smaller than $c$ must differ from $c$,
-and the leftmost different bit must be $0$.
+and the leftmost different bit must be $0$ in $x$
+and $1$ in $c$.
 Let $o$ be its position.
 Then
 $\bits{c}{1}{o - 1} 0 \rep{\phi}{n - o} \in \mathcal{T}$
@@ -87,13 +131,14 @@ $\mathcal{T}$ is minimal in size (optimality).
 \end{theorem}
 
 \begin{proof}
-We'll construct a set of $|\mathcal{T}|$ true points
+We'll construct a set $V$ of $|\mathcal{T}|$ true points
 no pair of which can be spanned by a single ternary vector.
+Dubovský\cite{Dubovsky2013} calls such sets ,,orthogonal''.
 Doing so, we'll show a lower bound $|\mathcal{T}|$
 on the size of feasible solutions,
 proving optimality of $\mathcal{T}$.
 
-Once more,
+Similarly to the spanning vectors,
 the orthogonal true points correspond to $1$-bits of $c$:
 
 \begin{equation}
@@ -118,8 +163,107 @@ at least one of its vectors would need to span at least
 two points in $V$.
 As we have shown, such ternary vector would necessarily
 also span the false point $c$,
-leading to contradiction with its feasibility.
+leading to contradiction with the set's feasibility.
 \end{proof}
+
+\section{General case}
+
+Having solved the trivial and prefix and suffix cases,
+we are left with the situation
+$\rep{0}{n} < a < b < \rep{1}{n}$.
+
+If $a$ and $b$ have the same \acrshort{msb},
+we recursively span
+$\interval{\bits{a}{2}{n}}{\bits{b}{2}{n}}$
+and prepend the \acrshort{msb}
+to the solution.
+
+Let $\bit{a}{1} \neq \bit{b}{1}$.
+Since $a \leq b$,
+necessarily $\bit{a}{1} = 0$
+and $\bit{b}{1} = 1$.
+This restriction leaves us with
+four possible combinations of pairs
+of \acrshort{msb}s:
+
+\begin{enumerate}
+\item $\bits{a}{1}{2} = 01$, $\bits{b}{1}{2} = 10$
+\item $\bits{a}{1}{2} = 00$, $\bits{b}{1}{2} = 10$
+\item $\bits{a}{1}{2} = 01$, $\bits{b}{1}{2} = 11$
+\item $\bits{a}{1}{2} = 00$, $\bits{b}{1}{2} = 11$
+\end{enumerate}
+
+Following Schieber et al.,\cite{Schieber2005154}
+we'll deal with each of these cases separately.
+We won't prove feasibility nor optimality in this text.
+Please refer to the original article for the proofs.
+
+\subsection{\texorpdfstring
+{$\bits{a}{1}{2} = 01$ and $\bits{b}{1}{2} = 10$}
+{a[1,2] = 01 and b[1,2] = 10}
+}
+
+In this case,
+we'll span the two sub-intervals
+$\interval{a}{0 \rep{1}{n-1}}$
+and
+$\interval{1 \rep{0}{n-1}}{b}$
+separately.
+Note that after leaving out the initial shared bit,
+they are prefix and suffix interval, respectively,
+so the algorithm from section \ref{sec:prefixsuffix}
+is used to span each of the sub-intervals.
+
+\subsection{\texorpdfstring
+{$\bits{a}{1}{2} = 00$ and $\bits{b}{1}{2} = 10$}
+{a[1,2] = 00 and b[1,2] = 10}
+}
+\label{sec:0010}
+
+In this case,
+we divide the interval in three sub-intervals:
+
+\begin{itemize}
+\item $\interval{a}{00 \rep{1}{n-2}}$
+\item $\interval{01 \rep{0}{n-2}}{01 \rep{1}{n-2}}$
+\item $\interval{10 \rep{0}{n-2}}{b}$
+\end{itemize}
+
+The subinterval
+$\interval{01 \rep{0}{n-2}}{01 \rep{1}{n-2}}$
+is spanned by the single ternary vector
+$01 \rep{\phi}{n-2}$.
+
+The subintervals
+$\interval{a}{00 \rep{1}{n-2}}$
+and
+$\interval{10 \rep{0}{n-2}}{b}$
+are spanned together as follows:
+
+\begin{itemize}
+\item Recursively solve the $(n-1)$-bit instance
+$\interval{0 \bits{a}{3}{n}}{1 \bits{b}{3}{n}}
+= \interval{\bit{a}{1} \bits{a}{3}{n}}{\bit{b}{1} \bits{b}{3}{n}}$
+\item Insert a $0$-bit in the second position
+of the vectors from the resulting spanning set
+\end{itemize}
+
+\subsection{\texorpdfstring
+{$\bits{a}{1}{2} = 01$ and $\bits{b}{1}{2} = 11$}
+{a[1,2] = 01 and b[1,2] = 11}
+}
+
+This case is complementary to case \ref{sec:0010}.
+As in suffix case,
+note that flipping the bits in the endpoints
+transforms this case to case \ref{sec:0010}
+and flipping the fixed bits in the resulting spanning set
+preserves correctness.
+
+\subsection{\texorpdfstring
+{$\bits{a}{1}{2} = 00$ and $\bits{b}{1}{2} = 11$}
+{a[1,2] = 00 and b[1,2] = 11}
+}
 
 % TODO: Solve the general case
 % (without proving optimality

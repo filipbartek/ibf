@@ -47,6 +47,7 @@ and ends at $b$-th position
 \end{definition}
 
 Notably,
+% TODO: Is "notably" used correctly here?
 $v = \bit{v}{1}, \ldots, \bit{v}{n} = \bits{v}{1}{n}$.
 
 \begin{definition}
@@ -135,7 +136,7 @@ T \equiv C \iff \forall i \in \curly{1, \ldots, n}.
 \]
 
 Namely,
-a binary vector corresponds to a full conjunct
+a \emph{binary} vector corresponds to a full conjunct
 (that is one that contains every variable),
 and the ternary vector $\rep{\phi}{n}$
 corresponds to the empty conjunct (tautology).
@@ -181,11 +182,11 @@ T\text{ spans }x
 \end{equation*}
 \end{definition}
 
-Note that every ternary vector
+Note that a ternary vector
 with $m$ $\phi$-positions
 spans $2^m$ binary vectors.
 
-We'll also use a natural extension
+We'll also use a natural extension of spanning
 to sets of ternary vectors --
 if $\mathcal{T}$ is a set of ternary vectors, then
 
@@ -279,8 +280,8 @@ ternary vector set & \acrshort{dnf} formula \\
 binary vector & variable valuation \\
 ternary vector \emph{spans} a binary vector &
 valuation \emph{satisfies} a conjunct \\
-ternary vector set spans a binary vector &
-valuation satisfies a \acrshort{dnf} formula
+ternary vector set \emph{spans} a binary vector &
+valuation \emph{satisfies} a \acrshort{dnf} formula
 \end{tabular}
 \caption{
 Corresponding terms used
