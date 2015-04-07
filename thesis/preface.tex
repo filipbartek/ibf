@@ -174,6 +174,100 @@ span(\mathcal{T}) =
 \bigcup_{T \in \mathcal{T}} span(T)
 \end{equation*}
 
+\begin{definition}[True point]
+Let $f$ be an $n$-ary Boolean function.
+An $n$-bit binary vector $x$ is a \definiendum{true point}
+of $f$ if and only if $f(x)  = 1$.
+\end{definition}
+
+Equivalently,
+we define a \definiendum{false point} of $f$
+as any point $x$
+such that $f(x) = 0$.
+
+We'll denote the set of all true points of $f$ as $TP(f)$
+and the set of all false points as $FP(f)$.
+
+\begin{definition}
+[Minimum \acrshort{dnf} representation]
+A \acrshort{dnf} representation of a function is
+\definiendum{minimum}
+if and only if
+there's no representation with fewer conjuncts.
+\end{definition}
+
+The focus of this thesis is
+minimizing the number of conjuncts
+of \acrshort{dnf} representations
+of certain Boolean functions.
+
+Note that a function may have more than one minimum
+\acrshort{dnf} representation.
+
+\begin{definition}
+[Spanning set]
+Let $f$ be an $n$-ary Boolean function.
+Set $\mathcal{T}$ of $n$-bit ternary vectors
+is a \definiendum{spanning set} of $f$
+if and only if
+$span(\mathcal{T}) = TP(f)$.
+\end{definition}
+
+In other words,
+a spanning set of a function
+spans all of its true points
+and none of its false points.
+
+Note that spanning sets of a function
+correspond to \acrshort{dnf} representations
+of the function.
+The correspondence preserves size
+(number of ternary vectors and conjuncts, respectively),
+so a minimum spanning set
+corresponds to a minimum \acrshort{dnf} representation.
+
+\begin{definition}
+[Disjoint spanning set]
+A spanning set $\mathcal{T}$ is \definiendum{disjoint}
+if and only if the spanned sets of its vectors
+don't overlap,
+that is
+\[
+\forall T_i, T_j \in \mathcal{T} . T_i = T_j \text{ or }
+span(T_i) \cap span(T_j) = \emptyset
+\]
+\end{definition}
+
+In terms of \acrshort{dnf},
+disjoint spanning sets
+correspond to \acrshort{dnf} formulas
+such that every valuation satisfies at most one conjunct.
+
+We have introduced two equivalent representations
+of Boolean functions --
+one based on ternary vectors
+and the other being the \acrshort{dnf} representation.
+Table \ref{table:representations}
+shows the corresponding terms side by side.
+
+\begin{table}[h]
+\label{table:representations}
+\centering
+\begin{tabular}{ll}
+ternary vector & conjunct \\
+ternary vector set & \acrshort{dnf} formula \\
+binary vector & variable valuation \\
+ternary vector \emph{spans} a binary vector &
+valuation \emph{satisfies} a conjunct \\
+ternary vector set spans a binary vector &
+valuation satisfies a \acrshort{dnf} formula
+\end{tabular}
+\caption{
+Corresponding terms used
+in Boolean function representations
+}
+\end{table}
+
 \begin{definition}
 [$k$-interval Boolean function]
 \label{def:kibf}
