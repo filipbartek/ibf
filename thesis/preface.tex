@@ -272,11 +272,11 @@ in Boolean function representations
 [$k$-interval Boolean function]
 \label{def:kibf}
 Let $a_1, b_1, \ldots, a_k, b_k$ be $n$-bit numbers
-such that $0 \leq a_1$,
+such that $\rep{0}{n} \leq a_1$,
 $a_1 \leq b_1$,
 $b_1 \leq a_2 - 2$,
 $\ldots$,
-$b_k \leq 2^n - 1$.
+$b_k \leq \rep{1}{n}$.
 Then $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}: \booldom{}^n \rightarrow \booldom{}$ is a function defined as follows:
 \[f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}} (x) = \left\{
   \begin{array}{lr}
