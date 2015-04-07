@@ -265,6 +265,26 @@ preserves correctness.
 {a[1,2] = 00 and b[1,2] = 11}
 }
 
-% TODO: Solve the general case
-% (without proving optimality
-% and perhaps also feasibility).
+Let $j$ be maximal such that
+$\bits{a}{1}{j} = \rep{0}{j}$ and
+$\bits{b}{1}{j} = \rep{1}{j}$.
+Since $a > \rep{0}{n}$ (and $b < \rep{1}{n}$),
+necessarily $j < n$.
+
+$j$ gives us three sub-intervals to span:
+
+\begin{itemize}
+\item $\interval{a}{\rep{0}{j} \rep{1}{n-j}}$
+\item $\interval{\rep{0}{j-1} 1 \rep{0}{n-j}}
+{\rep{1}{j-1} 0 \rep{1}{n-j}}$
+\item $\interval{\rep{1}{j} \rep{0}{n-j}}{b}$
+\end{itemize}
+
+Note that the second sub-interval contains exactly
+the numbers that don't start with either $j$ zeros
+or $j$ ones,
+and as such can be spanned by $j$ ternary vectors.
+% TODO: Show them.
+
+The other two sub-intervals are spanned recursively.
+% TODO: Elaborate.
