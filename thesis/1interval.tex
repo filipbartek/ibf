@@ -284,7 +284,60 @@ Note that the second sub-interval contains exactly
 the numbers that don't start with either $j$ zeros
 or $j$ ones,
 and as such can be spanned by $j$ ternary vectors.
-% TODO: Show them.
+We construct $T_1, \ldots, T_j$ that span
+the second sub-interval
+by appending $\rep{\phi}{n-j}$
+to each of the $j$ cyclic shifts of $01 \rep{\phi}{j-2}$.
+Thus,
+$T_1 = 01 \rep{\phi}{j-2} \rep{\phi}{n-j}$,
+$\ldots$,
+$T_i = \rep{\phi}{i-1} 01 \rep{\phi}{j-1-i} \rep{\phi}{n-j}$,
+$\ldots$,
+$T_{j-1} = \rep{\phi}{j-2} 01 \rep{\phi}{n-j}$,
+$T_j = 1 \rep{\phi}{j-2} 0 \rep{\phi}{n-j}$.
 
 The other two sub-intervals are spanned recursively.
-% TODO: Elaborate.
+Let $a'' = \bits{a}{j}{n}$ and $b'' = \bits{b}{j}{n}$.
+Note that $\bit{a''}{1} = 0$ and $\bit{b''}{1} = 1$.
+Note that $|a''| = |b''| = n - j + 1$.
+Since $j \geq 2$, $n-j+1 < n$.
+Let $\mathcal{T}''$ be the spanning set
+of $\interval{a''}{b''}$ computed recursively.
+
+The spanning set of $\interval{a}{b}$ will be computed
+from the vectors $T_1, \ldots, T_j$ and $\mathcal{T}''$
+based on the relation between $(n-j)$-bit suffixes of $a$
+and $b$.
+Let $a' = \bits{a}{j+1}{n}$ and $b' = \bits{b}{j+1}{n}$.
+
+\subsubsection{\texorpdfstring
+{$b' < a' - 1$}
+{b' < a' - 1}
+}
+
+In this case,
+the spanning set of $\interval{a}{b}$ consists
+of the vectors $T_1, \ldots, T_j$ and vectors obtained
+by prepending each vector from $\mathcal{T}''$ with
+$j-1$ leading $\phi$s.
+
+\subsubsection{\texorpdfstring
+{$b' \leq a' - 1$}
+{b' >= a' - 1}
+}
+
+In this case,
+the spanning set of $\interval{a}{b}$ consists
+of the vectors $T_1, \ldots, T_{j-1}$ (omitting $T_j$)
+and a set $\mathcal{T}'$ derived from $\mathcal{T}''$
+in the following way:
+
+\[
+\mathcal{T}' = \curly{
+\rep{\phi}{j-1} T | T \in \mathcal{T}'' \text{ and }
+\bit{T}{1} \in \curly{0, \phi}
+} \cup \curly{
+1 \rep{\phi}{j-1} \bits{T}{2}{n-j+1} | T \in \mathcal{T}''
+\text{ and } \bit{T}{1} = 1
+}
+\]
