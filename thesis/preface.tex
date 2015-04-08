@@ -125,18 +125,16 @@ Each of the $n$ components of a ternary vector $T$
 corresponds to the single occurrence (or its absence)
 of one of the $n$ variables of a term $C$:
 
-% TODO: Correct equivalence sign.
-\[
-T \equiv C \iff \fora{i \in \curly{1, \ldots, n}}{
-\left\{
-  \begin{array}{lll}
-    \bit{T}{i} = \phi & \text{iff} & C \cap \curly{x_i, \overline{x_i}} = \emptyset \\
-    \bit{T}{i} = 1 & \text{iff} & C \cap \curly{x_i, \overline{x_i}} = \curly{x_i} \\
-    \bit{T}{i} = 0 & \text{iff} & C \cap \curly{x_i, \overline{x_i}} = \curly{\overline{x_i}}
-  \end{array}
-\right.
-}
-\]
+% TODO: Consider wrapping in `table` environment
+%       and adding a caption.
+\centering
+\begin{tabular}{cc}
+$\bit{T}{i}$ & $C \cap \curly{x_i, \overline{x_i}}$ \\
+\hline
+$\phi$ & $\emptyset$ \\
+$1$ & $\curly{x_i}$ \\
+$0$ & $\curly{\overline{x_i}}$
+\end{tabular}
 
 Namely,
 a \emph{binary} vector corresponds to a full term
