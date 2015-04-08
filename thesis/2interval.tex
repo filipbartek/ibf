@@ -2,6 +2,57 @@
 
 \section{Two step functions}
 
+\begin{definition}[$l$-step function]
+A Boolean function $f$ is \definiendum{$l$-step}
+if and only if
+there are exactly $l$ input vectors $x$ such that
+$f(x) = \nott{f(x+1)}$.
+\end{definition}
+
+It is easy to see that
+the prefix and suffix interval functions are $1$-step.
+
+Depending on $f(0)$,
+an $l$-step Boolean function $f$
+is $\ceil*{\frac{l}{2}}$-interval in case $f(0) = 0$
+% f(0) = 0:
+% 1-step: 1-interval
+% 2-step: 1-interval
+% 3-step: 2-interval
+% 4-step: 2-interval
+% l-step: \ceil{l/2}-interval
+or $\ceil*{\frac{l+1}{2}}$-interval in case $f(0) = 1$.
+% f(0) = 1:
+% 1-step: 1-interval
+% 2-step: 2-interval
+% 3-step: 2-interval
+% 4-step: 3-interval
+% l-step: \ceil{(l+1)/2}-interval
+
+Namely,
+a $2$-step Boolean function such that $f(0) = 0$
+is $1$-interval.
+
+Let $f$ be a $2$-step Boolean function
+such that $f(0) = 1$.
+We will show that $f$
+can be optimally spanned by reduction to
+a $2$-step Boolean function $f'$ of the same arity
+such that $f'(0) = 0$,
+which is necessarily $1$-interval.
+
+From the definition of $f$ we know that it is $2$-interval
+with the outer endpoints being
+$\rep{0}{n}$ and $\rep{1}{n}$:
+
+\[
+f = f^n_{\interval{\rep{0}{n}}{b_1},
+\interval{a_2}{\rep{1}{n}}}
+\]
+
+Let's call the inner interval endpoints $b_1$ and $a_2$,
+$\rep{0}{n} \leq b_1 < a_2 \leq \rep{1}{n}$.
+
 \section{Three step functions}
 
 % TODO: Finish.
