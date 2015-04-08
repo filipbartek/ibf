@@ -86,8 +86,8 @@ in the valuation).
 \begin{definition}[\Acrlong{dnf}]
 A propositional logic formula $\mathcal{F}$
 is in \definiendum{\acrfull{dnf}} if and only if
-$\mathcal{F}$ is a disjunction of conjuncts,
-where \definiendum{conjuncts}
+$\mathcal{F}$ is a disjunction of terms,
+where \definiendum{terms}
 are elementary\footnote{In an elementary conjunction
 of literals,
 no variable appears in both polarities.
@@ -95,8 +95,8 @@ A trivial example of a non-elementary conjunction
 is $x_1 \overline{x_1}$.}
 conjunctions of literals.
 
-We'll often view conjuncts as sets of literals
-and \acrshort{dnf} formulas as sets of conjuncts.
+We'll often view terms as sets of literals
+and \acrshort{dnf} formulas as sets of terms.
 \end{definition}
 
 % http://en.wikipedia.org/wiki/Valuation_%28logic%29
@@ -110,7 +110,7 @@ $\fora{x \in \booldom^n}{f(x) = 1 \iff
 % TODO: Rewrite; should be more natural or use the bijection explicitly.
 
 To make our work easier,
-we'll define a vector representation of a conjunct:
+we'll define a vector representation of a term:
 
 \begin{definition}
 [Ternary vector]
@@ -120,15 +120,15 @@ $\{0, 1, \phi\}$.
 \end{definition}
 
 There's a natural bijection between ternary vectors
-and conjuncts that do not mix polarities of variables\footnote{A conjunct
+and terms that do not mix polarities of variables\footnote{A term
 that mixes polarities of a variable,
 for example $x_1 \overline{x_1}$,
 is trivially false.
-Note that leaving out such conjunct from a formula
+Note that leaving out such term from a formula
 always preserves the represented function.}.
 Each of the $n$ components of a ternary vector $T$
 corresponds to the single occurrence (or its absence)
-of one of the $n$ variables of conjunct $C$:
+of one of the $n$ variables of term $C$:
 
 % TODO: Correct equivalence sign.
 \[
@@ -144,10 +144,10 @@ T \equiv C \iff \fora{i \in \curly{1, \ldots, n}}{
 \]
 
 Namely,
-a \emph{binary} vector corresponds to a full conjunct
+a \emph{binary} vector corresponds to a full term
 (that is one that contains every variable),
 and the ternary vector $\rep{\phi}{n}$
-corresponds to the empty conjunct (tautology).
+corresponds to the empty term (tautology).
 % TODO: Consider defining "more qualified", "most qualified", "least qualified".
 
 It's easy to see that sets of ternary vectors of length $n$
@@ -223,11 +223,11 @@ and the set of all false points as $FP(f)$.
 A \acrshort{dnf} representation of a function is
 \definiendum{minimum}
 if and only if
-there's no representation with fewer conjuncts.
+there's no representation with fewer terms.
 \end{definition}
 
 The focus of this thesis is
-minimizing the number of conjuncts
+minimizing the number of terms
 of \acrshort{dnf} representations
 of certain Boolean functions.
 
@@ -252,7 +252,7 @@ Note that spanning sets of a function
 correspond to \acrshort{dnf} representations
 of the function.
 The correspondence preserves size
-(number of ternary vectors and conjuncts, respectively),
+(number of ternary vectors and terms, respectively),
 so a minimum spanning set
 corresponds to a minimum \acrshort{dnf} representation.
 
@@ -271,7 +271,7 @@ span(T_i) \cap span(T_j) = \emptyset}
 In terms of \acrshort{dnf},
 disjoint spanning sets
 correspond to \acrshort{dnf} formulas
-such that every valuation satisfies at most one conjunct.
+such that every valuation satisfies at most one term.
 
 We have introduced two equivalent representations
 of Boolean functions --
@@ -284,11 +284,11 @@ shows the corresponding terms side by side.
 \label{table:representations}
 \centering
 \begin{tabular}{ll}
-ternary vector & conjunct \\
+ternary vector & term \\
 ternary vector set & \acrshort{dnf} formula \\
 binary vector & variable valuation \\
 ternary vector \emph{spans} a binary vector &
-valuation \emph{satisfies} a conjunct \\
+valuation \emph{satisfies} a term \\
 ternary vector set \emph{spans} a binary vector &
 valuation \emph{satisfies} a \acrshort{dnf} formula
 \end{tabular}
