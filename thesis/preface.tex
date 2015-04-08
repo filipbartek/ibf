@@ -20,7 +20,7 @@ Note that each binary vector represents a natural number.
 More specifically,
 $n$-bit binary vectors represent numbers
 between $0$ and $2^n - 1$.
-We won't differentiate between a number
+We will not differentiate between a number
 and its binary representation.
 Especially,
 we'll use a lexicographic linear ordering
@@ -63,7 +63,7 @@ $f: \booldom^n \rightarrow \booldom$ is
 an \definiendum{$n$-ary Boolean function}.
 \end{definition}
 
-Since we won't be dealing with any non-Boolean functions,
+Since we will not be dealing with any non-Boolean functions,
 in the remainder of the text,
 I will use the terms ,,function'' and ,,Boolean function''
 interchangeably.
@@ -113,7 +113,7 @@ $\{0, 1, \phi\}$.
 \end{definition}
 
 There's a natural bijection between ternary vectors
-and conjuncts that don't mix polarities of variables\footnote{A conjunct
+and conjuncts that do not mix polarities of variables\footnote{A conjunct
 that mixes polarities of a variable,
 for example $x_1 \overline{x_1}$,
 is trivially false.
@@ -165,6 +165,7 @@ must have the same value
 in its $i$-th position,
 that is $\bit{x}{i} = \bit{T}{i}$.
 If $\bit{T}{i}$ is the ,,don't care symbol'' $\phi$,
+% "don't" is used in Schieber2005
 the spanned binary vector
 may have any value in its $i$-th position.
 
@@ -252,7 +253,7 @@ corresponds to a minimum \acrshort{dnf} representation.
 [Disjoint spanning set]
 A spanning set $\mathcal{T}$ is \definiendum{disjoint}
 if and only if the spanned sets of its vectors
-don't overlap,
+do not overlap,
 that is
 \[
 \fora{T_i, T_j \in \mathcal{T}}{T_i = T_j \text{ or }
