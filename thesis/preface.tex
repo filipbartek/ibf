@@ -87,7 +87,13 @@ in the valuation).
 A propositional logic formula $\mathcal{F}$
 is in \definiendum{\acrfull{dnf}} if and only if
 $\mathcal{F}$ is a disjunction of conjuncts,
-where \definiendum{conjuncts} are conjunctions of literals.
+where \definiendum{conjuncts}
+are elementary\footnote{In an elementary conjunction
+of literals,
+no variable appears in both polarities.
+A trivial example of a non-elementary conjunction
+is $x_1 \overline{x_1}$.}
+conjunctions of literals.
 
 We'll often view conjuncts as sets of literals
 and \acrshort{dnf} formulas as sets of conjuncts.
