@@ -11,7 +11,7 @@ In this thesis,
 we'll use the term \definiendum{binary vector}
 to denote a vector over the Boolean domain.
 That is, $x$ is a binary vector if and only if
-$\exists n. x \in \booldom^n$.
+$\ex{n}{x \in \booldom^n}$.
 We call such $x$ an \definiendum{$n$-bit binary vector}.
 \end{definition}
 
@@ -98,8 +98,8 @@ a \definiendum{\acrshort{dnf} representation}
 of a Boolean function
 if it expresses the same function,
 that is
-$\forall x \in \booldom^n: f(x) = 1 \iff
-\valuation{\mathcal{F}}{x} = 1$.
+$\fora{x \in \booldom^n}{f(x) = 1 \iff
+\valuation{\mathcal{F}}{x} = 1}$.
 % TODO: Rewrite; should be more natural or use the bijection explicitly.
 
 To make our work easier,
@@ -125,7 +125,7 @@ of one of the $n$ variables of conjunct $C$:
 
 % TODO: Correct equivalence sign.
 \[
-T \equiv C \iff \forall i \in \curly{1, \ldots, n}.
+T \equiv C \iff \fora{i \in \curly{1, \ldots, n}}{
 \left\{
   \begin{array}{lll}
     \bit{T}{i} = \phi & \text{iff} & C \cap \curly{x_i, \overline{x_i}} = \emptyset \\
@@ -133,6 +133,7 @@ T \equiv C \iff \forall i \in \curly{1, \ldots, n}.
     \bit{T}{i} = 0 & \text{iff} & C \cap \curly{x_i, \overline{x_i}} = \curly{\overline{x_i}}
   \end{array}
 \right.
+}
 \]
 
 Namely,
@@ -150,8 +151,8 @@ on $n$ variables.
 A ternary vector $T$ of length $n$ \definiendum{spans}
 a binary vector $x$ of length $n$
 if and only if
-$\forall i \in \curly{1, \ldots, n} .
-\bit{T}{i} = \phi \text{ or } \bit{T}{i} = \bit{x}{i}$.
+$\fora{i \in \curly{1, \ldots, n}}
+{\bit{T}{i} = \phi \text{ or } \bit{T}{i} = \bit{x}{i}}$.
 \end{definition}
 
 The $i$-th symbol of a ternary vector
@@ -254,8 +255,8 @@ if and only if the spanned sets of its vectors
 don't overlap,
 that is
 \[
-\forall T_i, T_j \in \mathcal{T} . T_i = T_j \text{ or }
-span(T_i) \cap span(T_j) = \emptyset
+\fora{T_i, T_j \in \mathcal{T}}{T_i = T_j \text{ or }
+span(T_i) \cap span(T_j) = \emptyset}
 \]
 \end{definition}
 
