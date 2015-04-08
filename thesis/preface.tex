@@ -329,3 +329,31 @@ are required to be separated by at least one false point.
 Especially,
 $\intervalfn{f}{n}{a}{b}$ is a ($1$-interval) function
 whose true points form the interval $\interval{a}{b}$.
+
+% TODO: Fix reference.
+Table \ref{table:exampleintfns} shows
+examples of interval functions.
+
+\begin{table}[h]
+\label{table:exampleintfns}
+\centering
+\begin{tabular}{lll}
+Interval function & Propositional formula & Description \\
+\hline
+$\intervalfn{f}{2}{11}{11}$ &
+$x_1 \wedge x_2$ & Conjunction \\
+$\intervalfn{f}{2}{01}{11}$ &
+$x_1 \vee x_2$ & Disjunction \\
+$\intervalfn{f}{n}{\rep{0}{n}}{\rep{1}{n}}$ &
+$1$ & Tautology \\
+$\intervalfn{f}{n}{\rep{0}{n-1} 1}{\rep{1}{n-1} 0}$ &
+$\nott{x_1 \ldots x_n} \wedge
+\nott{\nott{x_1} \ldots \nott{x_n}}$ &
+Non-equivalence \\
+$f^n_{\interval{\rep{0}{n}}{\rep{0}{n}},
+\interval{\rep{1}{n}}{\rep{1}{n}}}$ &
+$x_1 \ldots x_n \vee \nott{x_1} \ldots \nott{x_n}$ &
+Equivalence
+\end{tabular}
+\caption{Examples of interval functions}
+\end{table}
