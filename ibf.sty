@@ -7,7 +7,7 @@
 
 \RequirePackage{mathtools}
 \DeclarePairedDelimiter{\round}{(}{)}
-\DeclarePairedDelimiter{\sq}{[}{]}
+\DeclarePairedDelimiter{\bracketsquare}{[}{]}
 \DeclarePairedDelimiter{\curly}{\{}{\}}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
@@ -19,7 +19,7 @@
 \newtheorem{definition}{Definition}[section]
 
 % Macros
-\newcommand{\interval}[2]{\sq{#1, #2}}
+\newcommand{\interval}[2]{\bracketsquare{#1, #2}}
 \newcommand{\compl}[1]{\overline{#1}}
 \newcommand{\finterval}[2]{\compl{\interval{#1}{#2}}}
 \newcommand{\bit}[2]{#1^{[#2]}}
