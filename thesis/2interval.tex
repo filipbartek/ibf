@@ -122,6 +122,71 @@ $f^n_{\interval{\rep{0}{n}}{b_1},
 \interval{a_2}{\rep{1}{n}}}$
 and that $\mathcal{T}$ is minimum such.
 
+\begin{theorem}
+$\mathcal{T}$ spans exactly
+$f^n_{\interval{\rep{0}{n}}{b_1},
+\interval{a_2}{\rep{1}{n}}}$ (feasibility).
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item{$span(\mathcal{T}) \subseteq TP(f)$}
+
+Let $c \in span(T)$, $T \in \mathcal{T}$.
+We need to show that $c \leq b_1$ or $c \geq a_2$.
+
+\begin{enumerate}
+\item $\bit{c}{1} = 1$: Since $\bit{a_2}{1} = 0$,
+necessarily $c \geq a_2$.
+
+\item $\bit{c}{1} = 0$: Necessarily $T \in \mathcal{T}_0$.
+Let $T' = \bits{T}{2}{n}$ and $c' = \bits{c}{2}{n}$.
+Since $T$ spans $c$, $T'$ spans $c'$.
+By construction of $\mathcal{T}_0$
+necessarily $T' \in \mathcal{T}_0'$,
+so $T'$ does not span any number
+in $\interval{b_1' + 1}{a_2' - 1}$.
+Thus $c' \leq b_1'$ or $c' \geq a_2'$.
+Observe that prepending a $0$ bit
+to $c'$, $b_1'$ and $a_2'$
+preserves the inequalities:
+\[
+c' \leq b_1' \text{ or } c' \geq a_2'
+\Rightarrow
+0 c' \leq 0 b_1' \text{ or } 0 c' \geq 0 a_2'
+\]
+
+Since $0 c' = c$, $0 a' = a$ and $0 b' = b$,
+we get $c \leq b_1$ or $c \geq a_2$.
+% meaning f(c) = 1
+\end{enumerate}
+
+\item{$TP(f) \subseteq span(\mathcal{T})$}
+
+Let $c \leq b_1$ or $c \geq a_2$.
+We need a $T \in \mathcal{T}$ that spans $c$.
+
+\begin{enumerate}
+\item $\bit{c}{1} = 1$:
+$1 \phi^{n-1} \in \mathcal{T}_1 \subseteq \mathcal{T}$
+spans $c$.
+
+\item $\bit{c}{1} = 0$:
+Similarly to $b_1'$ and $a_2'$, let $c' = \bits{c}{2}{n}$.
+Since $b_1$, $a_2$ and $c$ all start with a $0$ bit,
+$c' \leq b_1'$ or $c' \geq a_2'$.
+Since $\mathcal{T}_0'$ spans
+$f^{n-1}_{\interval{\rep{0}{n-1}}{b_1'},
+\interval{a_2'}{\rep{1}{n-1}}}$,
+$\ex{T \in \mathcal{T}_0'}{T \text{ spans } c'}$.
+Prepending the symbol $0$ to both $T$ and $c'$
+preserves spanning,
+so $0 T \in \mathcal{T}_0 \subseteq \mathcal{T}$ spans $c$.
+\end{enumerate}
+
+\end{enumerate}
+\end{proof}
+
 \subsection{\texorpdfstring{$\bit{b_1}{1}
 \neq \bit{a_2}{1}$}
 {b1[1] != a2[1]}
