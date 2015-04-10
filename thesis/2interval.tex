@@ -251,6 +251,140 @@ our algorithm produces a feasible and optimal spanning set.
 % TODO: Use a better text symbol for inequality.
 }
 
+Let $\bit{b_1}{1} \neq \bit{a_2}{1}$.
+Since $b_1 \leq a_2$,
+necessarily $\bit{b_1}{1} = 0$ and $\bit{a_2}{1} = 1$.
+
+By flipping the leading bit in the endpoints
+$b_1$ and $a_2$,
+we will effectively reduce this case
+to an instance of spanning a true point interval
+on $n$ bits.
+% TODO: Rephrase.
+
+%Let $a_1 = a - 1$ and $b_1 = b + 1$.
+
+Let $b_1' = 1 \bits{b_1}{2}{n}$
+and $a_2' = 0 \bits{a_2}{2}{n}$
+(flipping the leading bits of $b_1$ and $a_2$).
+Note that $a_2' \leq b_1'$.
+
+Let $\mathcal{T}'$ be a minimum spanning set
+of $\intervalfn{f}{n}{a_2'}{b_1'}$.
+This set can be computed efficiently
+using the method introduced
+in chapter \ref{chap:1interval}.
+
+Let's flip all the non-$\phi$ leading symbols
+of vectors in $\mathcal{T}'$,
+forming $\mathcal{T}$.
+Note that $\size{\mathcal{T}} = \size{\mathcal{T}'}$
+and also that all the vectors in $\mathcal{T}'$
+and $\mathcal{T}$ have the length $n$.
+
+We claim that $\mathcal{T}$ is an optimal spanning set
+of $\fnba$.
+
+\begin{theorem} \label{diffsound}
+$\mathcal{T}$ spans exactly $\fnba$ (feasibility).
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item $span(\mathcal{T}) \subseteq TP(f)$:
+
+Let $c \in span(T)$, $T \in \mathcal{T}$.
+We need to show that $c \leq b_1$ or $c \geq a_2$.
+
+Let $T' = \compl{\bit{T}{1}} \bits{T}{2}{n}$
+(flipping the leading symbol).
+By definition of $\mathcal{T}$,
+$T' \in \mathcal{T}'$,
+where $\mathcal{T}'$ is an optimum spanning set
+of $\interval{a_2'}{b_1'}$.
+
+Let $c' = \compl{\bit{c}{1}} \bits{c}{2}{n}$
+(flipping the leading bit).
+Note that $T'$ spans $c'$.
+
+Since $\mathcal{T}'$ spans exactly $\interval{a_2'}{b_1'}$
+and $T' \in \mathcal{T}'$ spans $c'$,
+$c' \in \interval{a_2'}{b_1'}$.
+
+This means that $c' \geq a_2'$ and $c' \leq b_1'$.
+
+\begin{enumerate}
+\item $\bit{c'}{1} = 0$:
+
+Since $\bit{a_2'}{1} = 0$ (by definition)
+and $c' \geq a_2'$,
+necessarily $\bits{c'}{2}{n} \geq \bits{a_2'}{2}{n}$.
+
+Since $c = 1 \bits{c'}{2}{n}$
+and $a_2 = 1 \bits{a_2'}{2}{n}$,
+also $c \geq a_2$.
+
+\item $\bit{c'}{1} = 1$:
+
+The argument for $\bit{c'}{1} = 1$ is symmetric
+to the previous case,
+using the endpoint $b_1'$
+to show $c \leq b_1$.
+\end{enumerate}
+
+\item $TP(f) \subseteq span(\mathcal{T})$:
+
+Let $c \leq b_1$ or $c \geq a_2$
+(equivalently $c \in TP(f)$).
+We need to show a $T \in \mathcal{T}$ that spans $c$.
+
+Let $c' = \compl{\bit{c}{1}} \bits{c}{2}{n}$
+(flipping the leading bit).
+
+We will first show that $c' \in \interval{a_2'}{b_1'}
+= \interval{0 \bits{a_2}{2}{n}}{1 \bits{b_1}{2}{n}}$.
+
+\begin{enumerate}
+\item $\bit{c}{1} = 0$:
+
+Since $\bit{a_2}{1} = 1$,
+$c \ngeq a_2$.
+Then necessarily $c \leq b_1$.
+
+Since $\bit{b_1}{1} = 0 = \bit{c}{1}$,
+the inequality is preserved
+after flipping the leading bits,
+that is $c' \leq b_1'$.
+
+Since $\bit{a_2'}{1} = 0$ and $\bit{c'}{1} = 1$,
+we get $c' \geq a_2'$.
+
+We conclude that $c' \in \interval{a_2'}{b_1'}$.
+
+\item $\bit{c}{1} = 1$:
+
+This case is symmetric to the previous one.
+Using an analogous argumentation,
+again we get $c' \in \interval{a_2'}{b_1'}$.
+\end{enumerate}
+
+We have shown that $c' \in \interval{a_2'}{b_1'}$.
+
+Let $T' \in \mathcal{T}'$ span $c'$.
+Such vector exists because
+$\mathcal{T}'$ spans $\interval{a_2'}{b_1'}$
+by definition.
+
+Let $T = \compl{\bit{T'}{1}} \bits{T'}{2}{n}$.
+$T \in \mathcal{T}$ by definition.
+$T$ spans $c$ because $T'$ spans $c'$
+and flipping a fixed symbol preserves spanning.
+
+We conclude that $\mathcal{T}$ spans $c$.
+
+\end{enumerate}
+\end{proof}
+
 \section{\texorpdfstring{$3$}{3}-step functions}
 
 % TODO: Finish.
