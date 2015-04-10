@@ -90,6 +90,38 @@ $a_2 \leq \rep{1}{n}$.
 {b1[1] = a2[1]}
 }
 
+In case $b_1$ and $a_2$ have the same \acrshort{msb}s,
+we recursively solve the $(n-1)$-bit
+case
+$\interval{\rep{0}{n-1}}{\bits{b_1}{2}{n}},
+\interval{\bits{a_2}{2}{n}}{\rep{1}{n-1}}$,
+and add an extra ternary vector to span the remainder
+of the true points.
+
+Without loss of generality,
+let $\bit{b_1}{1} = \bit{a_2}{1} = 0$.
+The complementary case is symmetric.
+
+Let $b_1' = \bits{b_1}{2}{n}$
+and $a_2' = \bits{a_2}{2}{n}$.
+Let $\mathcal{T}_0'$ be the optimal spanning set of
+$f' = f^{n-1}_{\interval{\rep{0}{n-1}}{b_1'},
+\interval{a_2'}{\rep{1}{n-1}}}$.
+Note that $f'$ is of the same type
+(that is $2$-interval $2$-step)
+and has a lower arity,
+so we can span it by recursion.
+Let $\mathcal{T}_0$ be the $n$-bit set we get
+by prepending the symbol $0$
+to each vector from $\mathcal{T}_0'$
+($\mathcal{T}_0 = \curly{0 T | T \in \mathcal{T}_0'}$).
+Let $\mathcal{T}_1 = \curly{1 \rep{\phi}{n-1}}$.
+Let $\mathcal{T} = \mathcal{T}_0 \cup \mathcal{T}_1$.
+We claim that $\mathcal{T}$ spans exactly
+$f^n_{\interval{\rep{0}{n}}{b_1},
+\interval{a_2}{\rep{1}{n}}}$
+and that $\mathcal{T}$ is minimum such.
+
 \subsection{\texorpdfstring{$\bit{b_1}{1}
 \neq \bit{a_2}{1}$}
 {b1[1] != a2[1]}
