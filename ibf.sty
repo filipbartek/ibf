@@ -10,6 +10,7 @@
 \DeclarePairedDelimiter{\bracketsquare}{[}{]}
 \DeclarePairedDelimiter{\curly}{\{}{\}}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\vertical}{|}{|}
 
 % Theorem environments
 \RequirePackage{amsthm}
@@ -34,6 +35,8 @@
 \newcommand{\fora}[2]{\quantify{\forall}{#1}{#2}}
 \newcommand{\quot}[1]{``#1''}
 \newcommand{\nott}[1]{\overline{#1}}
+\newcommand{\size}[1]{\vertical{#1}}
+
 \newcommand{\dubovsky}{\foreignlanguage{czech}{Dubovský}}
 \newcommand{\husek}{\foreignlanguage{czech}{Hušek}}
 
