@@ -189,6 +189,59 @@ so $0 T \in \mathcal{T}_0 \subseteq \mathcal{T}$ spans $c$.
 \end{enumerate}
 \end{proof}
 
+\begin{theorem}
+$\mathcal{T}$ is a minimum spanning set of
+$\fnba$ (optimality).
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal{T}_{opt}$ be an optimal spanning set of
+$\fnba$.
+We'll show that
+$\size{\mathcal{T}_{opt}} \geq \size{\mathcal{T}}$.
+
+First recall that
+$\mathcal{T}_0'$ is an optimal spanning set of
+$\ftwointtwostep{f}{n-1}{b_1'}{a_2'}$
+and
+$\size{\mathcal{T}} = \size{\mathcal{T}_0'} + 1$.
+Thus we need to show
+$\size{\mathcal{T}_{opt}} \geq \size{\mathcal{T}_0'} + 1$
+
+$\mathcal{T}_{opt}$ must span the true point
+$\bar{a} = 1 \bits{(a+1)}{2}{n} \in TP(\fnba)$.
+Let $T_{\bar{a}} \in \mathcal{T}_{opt}$
+be a ternary vector that spans $\bar{a}$.
+If $T_{\bar{a}}$ spanned any vector that starts with a $0$,
+then $T_{\bar{a}}$ would also span the false point $a+1$.
+So $T_{\bar{a}}$
+can't span any vector that starts with a $0$.
+
+To get a contradiction,
+let's suppose that
+$\size{\mathcal{T}_{opt}} \leq \size{\mathcal{T}_0'}$.
+Since we need a dedicated vector
+$T_{\bar{a}} \in \mathcal{T}_{opt}$ to span $\bar{a}$,
+there are at most
+$\size{\mathcal{T}_{opt}} - 1
+\leq \size{\mathcal{T}_0'} - 1$
+vectors in $\mathcal{T}_{opt}$ that span a number
+that starts with $0$
+(so these vectors start with $0$ or $\phi$).
+Removing the first symbol of these vectors,
+we get a spanning set of
+$\ftwointtwostep{f}{n-1}{b_1'}{a_2'}$
+of size at most $\size{\mathcal{T}_0'} - 1$,
+which contradicts $\mathcal{T}_0'$'s optimality.
+
+We conclude that we need at least
+$\size{\mathcal{T}_0'} + 1$ vectors to span
+$\fnba$,
+proving the lower bound of
+$\size{\mathcal{T}_{opt}}$
+and the optimality of $\mathcal{T}$.
+\end{proof}
+
 \subsection{\texorpdfstring{$\bit{b_1}{1}
 \neq \bit{a_2}{1}$}
 {b1[1] != a2[1]}
