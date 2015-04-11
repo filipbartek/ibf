@@ -310,12 +310,12 @@ such that $\rep{0}{n} \leq a_1 \leq b_1 < a_2
 \leq \cdots < a_k \leq b_k \leq \rep{1}{n}$.
 % TODO: Clarify the inequalities.
 Then $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}: \booldom{}^n \rightarrow \booldom{}$ is a function defined as follows:
-\[f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}} (x) = \left\{
-  \begin{array}{lr}
-    1 & $if $ a_i \leq x \leq b_i$ for some $i\\
-    0 & $otherwise$
-  \end{array}
-\right.
+\[
+f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}} (x) =
+\begin{cases}
+1 & \text{if } a_i \leq x \leq b_i \text{ for some } i \\
+0 & \text{otherwise}
+\end{cases}
 \]
 \end{definition}
 
