@@ -339,14 +339,15 @@ of the vectors $T_1, \ldots, T_{j-1}$ (omitting $T_j$)
 and a set $\mathcal{T}'$ derived from $\mathcal{T}''$
 in the following way:
 
-\[
-\mathcal{T}' = \curly{
+\begin{align*}
+\mathcal{T}' &= \curly{
 \rep{\phi}{j-1} T | T \in \mathcal{T}'' \text{ and }
 \bit{T}{1} \in \curly{0, \phi}
-} \cup \curly{
+} \\
+&\cup \curly{
 1 \rep{\phi}{j-1} \bits{T}{2}{n-j+1} | T \in \mathcal{T}''
 \text{ and } \bit{T}{1} = 1
 }
-\]
+\end{align*}
 
 % TODO: Go into more detail.
