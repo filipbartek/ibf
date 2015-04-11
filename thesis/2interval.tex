@@ -209,19 +209,26 @@ Thus we need to show
 $\size{\mathcal{T}_{opt}} \geq \size{\mathcal{T}_0'} + 1$
 
 $\mathcal{T}_{opt}$ must span the true point
-$\bar{a} = 1 \bits{(a+1)}{2}{n} \in TP(\fnba)$.
-Let $T_{\bar{a}} \in \mathcal{T}_{opt}$
-be a ternary vector that spans $\bar{a}$.
-If $T_{\bar{a}}$ spanned any vector that starts with a $0$,
-then $T_{\bar{a}}$ would also span the false point $a+1$.
-So $T_{\bar{a}}$
+$\bar{b}_1 = 1 \bits{(b_1 + 1)}{2}{n}$.
+We don't need more than $n$ bits for $\bar{b}_1$
+because $b_1 < a_2 \leq 0 \rep{1}{n-1}$.
+Let $T_{\bar{b}_1} \in \mathcal{T}_{opt}$
+be a ternary vector that spans $\bar{b}_1$.
+If $T_{\bar{b}_1}$ spanned
+any vector that starts with a $0$,
+then $T_{\bar{b}_1}$ would also span
+the vector $b_1 + 1$.
+However,
+since $f$ is \emph{proper} $2$-interval,
+$b_1 + 1$ is a false point ($b_1 < b_1 + 1 < a_2$).
+So $T_{\bar{b}_1}$
 can't span any vector that starts with a $0$.
 
 To get a contradiction,
 let's suppose that
 $\size{\mathcal{T}_{opt}} \leq \size{\mathcal{T}_0'}$.
 Since we need a dedicated vector
-$T_{\bar{a}} \in \mathcal{T}_{opt}$ to span $\bar{a}$,
+$T_{\bar{b}_1} \in \mathcal{T}_{opt}$ to span $\bar{b}_1$,
 there are at most
 $\size{\mathcal{T}_{opt}} - 1
 \leq \size{\mathcal{T}_0'} - 1$
