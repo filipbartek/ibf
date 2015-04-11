@@ -329,6 +329,22 @@ Note that the inequalities ensure
 that the intervals $\interval{a_i}{b_i}$
 are non-empty and don't intersect.
 
+\begin{definition}
+[Proper $k$-interval Boolean function]
+\label{def:properkibf}
+Let
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+be a $k$-interval Boolean function.
+If the endpoints satisfy the inequalities
+$b_1 < a_2 - 1$, \ldots, $b_i < a_{i+1} - 1$, \ldots,
+$b_{k-1} < a_k - 1$
+(in other words, adjacent intervals
+are separated by at least one false point),
+we call
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+a \definiendum{proper $k$-interval Boolean function}.
+\end{definition}
+
 
 Especially,
 $\intervalfn{f}{n}{a}{b}$ is a ($1$-interval) function
