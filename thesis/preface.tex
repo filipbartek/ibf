@@ -304,15 +304,10 @@ in Boolean function representations
 \begin{definition}
 [$k$-interval Boolean function]
 \label{def:kibf}
-Let $a_1, b_1, \ldots, a_k, b_k$ be $n$-bit numbers
-such that $\rep{0}{n} \leq a_1$,
-$a_1 \leq b_1$,
-$b_1 \leq a_2 - 2$,
-$\ldots$,
-$a_i \leq b_i$,
-$b_i \leq a_{i+1} - 2$,
-$\ldots$,
-$b_k \leq \rep{1}{n}$.
+Let $a_1, b_1, \ldots, a_k, b_k$ be $n$-bit binary vectors
+such that $\rep{0}{n} \leq a_1 \leq b_1 < a_2
+\leq \cdots < a_i \leq b_i < a_{i+1}
+\leq \cdots < a_k \leq b_k \leq \rep{1}{n}$.
 % TODO: Clarify the inequalities.
 Then $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}: \booldom{}^n \rightarrow \booldom{}$ is a function defined as follows:
 \[f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}} (x) = \left\{
@@ -324,8 +319,6 @@ Then $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}: \booldom{}^n \righ
 \]
 \end{definition}
 
-Note that adjacent intervals
-are required to be separated by at least one false point.
 
 Especially,
 $\intervalfn{f}{n}{a}{b}$ is a ($1$-interval) function
