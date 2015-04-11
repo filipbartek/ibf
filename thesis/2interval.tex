@@ -294,105 +294,177 @@ and $\mathcal{T}$ have the length $n$.
 We claim that $\mathcal{T}$ is a minimum spanning set
 of $\fnba$.
 
-\begin{theorem} \label{diffsound}
-$\mathcal{T}$ spans exactly $\fnba$ (feasibility).
-\end{theorem}
+The argument is based on a pair of lemmas.
+
+\begin{lemma}
+\label{lemma:cflip}
+Let $c$ be an $n$-bit binary vector
+and $a, b$ be $(n-1)$-bit binary vectors.
+Let $c' = \compl{\bit{c}{1}} \bits{c}{2}{n}$
+(flipping the leading bit of $c$).
+Then ($c \leq 0 b$ or $c \geq 1 a$)
+if and only if
+($c' \geq 0 a$ and $c' \leq 1 b$).
+\end{lemma}
 
 \begin{proof}
 \begin{enumerate}
-\item $span(\mathcal{T}) \subseteq TP(f)$:
-
-Let $c \in span(T)$, $T \in \mathcal{T}$.
-We need to show that $c \leq b_1$ or $c \geq a_2$.
-
-Let $T' = \compl{\bit{T}{1}} \bits{T}{2}{n}$
-(flipping the leading symbol).
-By definition of $\mathcal{T}$,
-$T' \in \mathcal{T}'$,
-where $\mathcal{T}'$ is an optimum spanning set
-of $\interval{a_2'}{b_1'}$.
-
-Let $c' = \compl{\bit{c}{1}} \bits{c}{2}{n}$
-(flipping the leading bit).
-Note that $T'$ spans $c'$.
-
-Since $\mathcal{T}'$ spans exactly $\interval{a_2'}{b_1'}$
-and $T' \in \mathcal{T}'$ spans $c'$,
-$c' \in \interval{a_2'}{b_1'}$.
-
-This means that $c' \geq a_2'$ and $c' \leq b_1'$.
-
-\begin{enumerate}
-\item $\bit{c'}{1} = 0$:
-
-Since $\bit{a_2'}{1} = 0$ (by definition)
-and $c' \geq a_2'$,
-necessarily $\bits{c'}{2}{n} \geq \bits{a_2'}{2}{n}$.
-
-Since $c = 1 \bits{c'}{2}{n}$
-and $a_2 = 1 \bits{a_2'}{2}{n}$,
-also $c \geq a_2$.
-
-\item $\bit{c'}{1} = 1$:
-
-The argument for $\bit{c'}{1} = 1$ is symmetric
-to the previous case,
-using the endpoint $b_1'$
-to show $c \leq b_1$.
-\end{enumerate}
-
-\item $TP(f) \subseteq span(\mathcal{T})$:
-
-Let $c \leq b_1$ or $c \geq a_2$
-(equivalently $c \in TP(f)$).
-We need to show a $T \in \mathcal{T}$ that spans $c$.
-
-Let $c' = \compl{\bit{c}{1}} \bits{c}{2}{n}$
-(flipping the leading bit).
-
-We will first show that $c' \in \interval{a_2'}{b_1'}
-= \interval{0 \bits{a_2}{2}{n}}{1 \bits{b_1}{2}{n}}$.
-
-\begin{enumerate}
 \item $\bit{c}{1} = 0$:
 
-Since $\bit{a_2}{1} = 1$,
-$c \ngeq a_2$.
-Then necessarily $c \leq b_1$.
+Let $c = 0 \bits{c}{2}{n}$ and $c' = 1 \bits{c}{2}{n}$.
 
-Since $\bit{b_1}{1} = 0 = \bit{c}{1}$,
-the inequality is preserved
-after flipping the leading bits,
-that is $c' \leq b_1'$.
+Since $\bit{c}{1} = 0$,
+$c \ngeq 1 a$.
+Thus ($c \leq 0 b$ or $c \geq 1 a$)
+if and only if
+$c \leq 0 b$.
 
-Since $\bit{a_2'}{1} = 0$ and $\bit{c'}{1} = 1$,
-we get $c' \geq a_2'$.
+Since $\bit{c}{1} = 0$,
+$c \leq 0 b$
+if and only if
+$\bits{c}{2}{n} \leq b$.
 
-We conclude that $c' \in \interval{a_2'}{b_1'}$.
+Since $\bit{c'}{1} = 1$
+and $\bits{c'}{2}{n} = \bits{c}{2}{n}$,
+$\bits{c}{2}{n} \leq b$
+if and only if
+$c' \leq 1 b$.
+
+From $\bit{c'}{1} = 1$ we immediately get $c' \geq 0 a$.
+
+Chaining the equivalences together:
+\begin{align*}
+c \leq 0 b \text{ or }c \geq 1 a
+&\iff c \leq 0 b \\
+&\iff \bits{c}{2}{n} \leq b \\
+&\iff c' \leq 1 b \\
+&\iff c' \leq 1 b \text{ and } c' \geq 0 a
+\end{align*}
 
 \item $\bit{c}{1} = 1$:
 
 This case is symmetric to the previous one.
-Using an analogous argumentation,
-again we get $c' \in \interval{a_2'}{b_1'}$.
-\end{enumerate}
-
-We have shown that $c' \in \interval{a_2'}{b_1'}$.
-
-Let $T' \in \mathcal{T}'$ span $c'$.
-Such vector exists because
-$\mathcal{T}'$ spans $\interval{a_2'}{b_1'}$
-by definition.
-
-Let $T = \compl{\bit{T'}{1}} \bits{T'}{2}{n}$.
-$T \in \mathcal{T}$ by definition.
-$T$ spans $c$ because $T'$ spans $c'$
-and flipping a fixed symbol preserves spanning.
-
-We conclude that $\mathcal{T}$ spans $c$.
 
 \end{enumerate}
 \end{proof}
+
+\begin{lemma}
+\label{lemma:tflip}
+Let $\mathcal{T}$ be a set of ternary vectors
+and $\mathcal{T}'
+= \curly{\compl{\bit{T}{1}} \bits{T}{2}{n}
+|T \in \mathcal{T}}$.
+Let $a, b$ be any $(n-1)$-bit binary vectors.
+% such that $0 b \leq 1 a - 2$.
+Then $\mathcal{T}$ spans $\ftwointtwostep{f}{n}{0 b}{1 a}$
+if and only if
+$\mathcal{T}'$ spans
+$\intervalfn{f}{n}{0 a}{1 b}$.\footnote{Note that
+the statement holds even in the single case that
+the function is not proper $2$-interval,
+that is $a = \rep{1}{n-1}$ and $b = \rep{0}{n-1}$.}
+% TODO: Add "However, we won't use this case."
+\end{lemma}
+
+\begin{proof}
+\begin{enumerate}
+\item
+If $\mathcal{T}$ spans $\ftwointtwostep{f}{n}{0 b}{1 a}$,
+then $\mathcal{T}'$ spans $\intervalfn{f}{n}{0 a}{1 b}$:
+
+Let $\mathcal{T}$ span $\ftwointtwostep{f}{n}{0 b}{1 a}$.
+
+Let $c'$ be an $n$-bit binary vector.
+We need to show that
+$\mathcal{T}'$ spans $c'$
+if and only if
+$c' \geq 0 a$ and $c' \leq 1 b$.
+
+Let $c = \compl{\bit{c'}{1}} \bits{c'}{2}{n}$.
+By definition of $\mathcal{T}'$,
+$\mathcal{T}'$ spans $c'$
+if and only if
+$\mathcal{T}$ spans $c$.
+
+Since $\mathcal{T}$ spans
+$\ftwointtwostep{f}{n}{0 b}{1 a}$,
+$\mathcal{T}$ spans $c$
+if and only if
+$c \leq 0 b$ or $c \geq 1 a$.
+
+From Lemma \ref{lemma:cflip}
+we get ($c \leq 0 b$ or $c \geq 1 a$)
+if and only if
+($c' \geq 0 a$ and $c' \leq 1 b$).
+
+Chaining the equivalences together:
+\begin{align*}
+\mathcal{T}' \text{ spans } c' &\iff \mathcal{T} \text{ spans } c \\
+&\iff c \leq 0 b \text{ or } c \geq 1 a \\
+&\iff c' \geq 0 a \text{ and } c' \leq 1 b \\
+&\iff \intervalfn{f}{n}{0 a}{1 b}(c') = 1
+\end{align*}
+
+\item
+If $\mathcal{T}'$ spans $\intervalfn{f}{n}{0 a}{1 b}$,
+then $\mathcal{T}$ spans $\ftwointtwostep{f}{n}{0 b}{1 a}$:
+
+Let $\mathcal{T}'$ span $\intervalfn{f}{n}{0 a}{1 b}$.
+
+Let $c$ be an $n$-bit binary vector.
+We need to show that $\mathcal{T}$ spans $c$
+if and only if
+$c \leq 0 b$ or $c \geq 1 a$.
+
+Let $c' = \compl{\bit{c}{1}} \bits{c}{2}{n}$.
+By definition of $\mathcal{T}'$,
+$\mathcal{T}$ spans $c$
+if and only if
+$\mathcal{T}'$ spans $c'$.
+
+Since $\mathcal{T}'$ spans $\intervalfn{f}{n}{0 a}{1 b}$,
+$\mathcal{T}'$ spans $c'$
+if and only if
+$c' \geq 0 a$ and $c' \leq 1 b$.
+
+Using Lemma \ref{lemma:cflip},
+we get
+($c' \geq 0 a$ and $c' \leq 1 b$)
+if and only if
+($c \leq 0 b$ or $c \geq 1 a$).
+
+Chaining the equivalences together:
+\begin{align*}
+\mathcal{T} \text{ spans } c
+&\iff \mathcal{T}' \text{ spans } c' \\
+&\iff c' \geq 0 a \text{ and } c' \leq 1 b \\
+&\iff c \leq 0 b \text{ or } c \geq 1 a \\
+&\iff \ftwointtwostep{f}{n}{0 b}{1 a}(c) = 1
+\end{align*}
+
+\end{enumerate}
+\end{proof}
+
+Lemma \ref{lemma:tflip} shows a bijection between
+the spanning sets of functions of form
+$\ftwointtwostep{f}{n}{0 b}{1 a}$
+and $\intervalfn{f}{n}{0 a}{1 b}$
+for general $a$ and $b$.
+Since $b_1$ starts with a $0$ ($b_1 = 0 b$),
+$a_2$ starts with a $1$ ($a_2 = 1 a$)
+and the set $\mathcal{T}$ was constructed
+from an optimal spanning set $\mathcal{T}'$
+of
+$\intervalfn{f}{n}{0 \bits{a_2}{2}{n}}{1 \bits{b_1}{2}{n}}$
+using the bijection
+shown in \ref{lemma:tflip},
+that is flipping the leading symbols
+of all the ternary vectors,
+both feasibility and optimality of $\mathcal{T}$
+with respect to $\fnba$
+follow from the feasibility and optimality
+of $\mathcal{T}'$ with respect to
+$\intervalfn{f}{n}{0 \bits{a_2}{2}{n}}{1 \bits{b_1}{2}{n}}$.
 
 \section{\texorpdfstring{$3$}{3}-step functions}
 
