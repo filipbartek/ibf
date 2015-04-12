@@ -478,4 +478,30 @@ $\intervalfn{f}{n}{0 \bits{a_2}{2}{n}}{1 \bits{b_1}{2}{n}}$.
 
 \section{\texorpdfstring{$3$}{3}-switch functions}
 
-% TODO: Finish.
+The situation changes in $3$-switch functions.
+In $1$-switch (prefix and suffix)
+and $2$-switch ($1$-interval and $2$-interval
+with extreme outer endpoints\todo{Rephrase.})
+functions,
+we have implicitly \todo{Make it explicit.}
+used so-called orthogonal sets \todo{Cite Dubovsky.}
+for proving optimality of the spanning sets
+produced by our algorithms.
+\todo{Draw connection to \quot{essential sets}.}
+
+However,
+\dubovsky{} has identified a $3$-switch function
+whose maximum orthogonal set is strictly smaller than its
+minimum spanning set.
+The function is
+$f^4_{\interval{0}{4}, \interval{9}{14}}$.
+The size of its maximum orthogonal set is 4
+and the size of its minimum spanning set is
+5.\cite[p.~32]{Dubovsky2012}
+
+\todo[inline]{Try to generalize for larger
+number of switches.}
+
+This result indicates that minimizing the \acrshort{dnf}
+representation of $3$-switch functions
+requires a different approach for proving optimality.
