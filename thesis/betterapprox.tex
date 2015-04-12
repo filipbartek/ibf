@@ -1,3 +1,25 @@
 \chapter{Better approximation}
 
+\dubovsky{} has shown a $2$-approximation algorithm
+for spanning general $2$-interval functions
+(including $3$-switch and $4$-switch).\cite[p.~33]{Dubovsky2012}
+The algorithm simply spans each of the two intervals
+separately optimally and then returns the union
+of these partial spanning sets.
+A natural generalization of this algorithm to $k$-interval
+functions spans each of the $k$ intervals separately
+optimally.
+It's easy to see that this algorithm performs
+at least as well as the $2k$-approximation algorithm
+shown in chapter \ref{chap:2kapprox}.
+We'll show, however,
+that for a large $k$,
+the approximation ratio of the enhanced algorithm
+converges to $2k$.
+\todo{Consider rewording.}
+
+In order to do this,
+we will construct a class of \quot{hard} multi-interval
+Boolean functions.
+
 \todo[inline]{Finish.}
