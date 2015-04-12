@@ -11,57 +11,57 @@ of $2$-interval functions \cite[p.~5]{Dubovsky2012}
 which seem to require different approaches for spanning.
 % TODO: Reword "seem to require".
 I find \husek{}'s concept of
-\quot{step} \cite[p.~13]{Husek2014}
+\quot{switch} \cite[p.~13]{Husek2014}
 (\quot{\foreignlanguage{czech}{zlom}} in Czech)
 useful to differentiate between these classes.
 
-\begin{definition}[$l$-step function]
-A Boolean function $f$ is \definiendum{$l$-step}
+\begin{definition}[$l$-switch function]
+A Boolean function $f$ is \definiendum{$l$-switch}
 if and only if
 there are exactly $l$ input vectors $x$ such that
 $f(x) \neq f(x+1)$.
 \end{definition}
 
 It is easy to see that
-prefix and suffix interval functions are $1$-step.
+prefix and suffix interval functions are $1$-switch.
 
 Depending on $f(0)$,
-an $l$-step Boolean function $f$
+an $l$-switch Boolean function $f$
 is $\ceil*{\frac{l}{2}}$-interval in case $f(0) = 0$,
 % f(0) = 0:
-% 1-step: 1-interval
-% 2-step: 1-interval
-% 3-step: 2-interval
-% 4-step: 2-interval
-% l-step: \ceil{l/2}-interval
+% 1-switch: 1-interval
+% 2-switch: 1-interval
+% 3-switch: 2-interval
+% 4-switch: 2-interval
+% l-switch: \ceil{l/2}-interval
 or $\ceil*{\frac{l+1}{2}}$-interval in case $f(0) = 1$.
 % f(0) = 1:
-% 1-step: 1-interval
-% 2-step: 2-interval
-% 3-step: 2-interval
-% 4-step: 3-interval
-% l-step: \ceil{(l+1)/2}-interval
+% 1-switch: 1-interval
+% 2-switch: 2-interval
+% 3-switch: 2-interval
+% 4-switch: 3-interval
+% l-switch: \ceil{(l+1)/2}-interval
 
 Namely,
-a $2$-step Boolean function such that $f(0) = 0$
+a $2$-switch Boolean function such that $f(0) = 0$
 is $1$-interval.
 
-\section{\texorpdfstring{$2$}{2}-step functions}
+\section{\texorpdfstring{$2$}{2}-switch functions}
 
-\newcommand{\ftwointtwostep}[4]
+\newcommand{\ftwointtwoswitch}[4]
 {#1^{#2}_{\interval{\rep{0}{#2}}{#3},
 \interval{#4}{\rep{1}{#2}}}}
 
-\newcommand{\fnba}{\ftwointtwostep{f}{n}{b_1}{a_2}}
+\newcommand{\fnba}{\ftwointtwoswitch{f}{n}{b_1}{a_2}}
 
-Let $f$ be a $2$-interval $2$-step Boolean function
+Let $f$ be a $2$-interval $2$-switch Boolean function
 (necessarily $f(\rep{0}{n}) = f(\rep{1}{n})
 = 1$).\footnote{This corresponds to class $A_0$
 in \dubovsky{}'s classification
 \cite[p.~5]{Dubovsky2012}.}
 We will show that $f$
 can be optimally spanned by reduction to
-a $2$-step $1$-interval Boolean function $f'$
+a $2$-switch $1$-interval Boolean function $f'$
 of at most the same arity,
 which can be spanned using the algorithm introduced
 in chapter \ref{chap:1interval}.
@@ -112,9 +112,9 @@ The complementary case is symmetric.
 Let $b_1' = \bits{b_1}{2}{n}$
 and $a_2' = \bits{a_2}{2}{n}$.
 Let $\mathcal{T}_0'$ be an optimal spanning set of
-$f' = \ftwointtwostep{f}{n-1}{b_1'}{a_2'}$.
+$f' = \ftwointtwoswitch{f}{n-1}{b_1'}{a_2'}$.
 Note that $f'$ is of the same type
-(that is $2$-interval $2$-step)
+(that is $2$-interval $2$-switch)
 and has a lower arity,
 so we can span it by recursion.
 Let $\mathcal{T}_0$ be the $n$-bit set we get
@@ -181,7 +181,7 @@ Similarly to $b_1'$ and $a_2'$, let $c' = \bits{c}{2}{n}$.
 Since $b_1$, $a_2$ and $c$ all start with a $0$ bit,
 $c' \leq b_1'$ or $c' \geq a_2'$.
 Since $\mathcal{T}_0'$ spans
-$\ftwointtwostep{f}{n-1}{b_1'}{a_2'}$,
+$\ftwointtwoswitch{f}{n-1}{b_1'}{a_2'}$,
 there is $T \in \mathcal{T}_0'$ that spans $c'$.
 Prepending the symbol $0$ to both $T$ and $c'$
 preserves spanning,
@@ -204,7 +204,7 @@ $\size{\mathcal{T}_{opt}} \geq \size{\mathcal{T}}$.
 
 First recall that
 $\mathcal{T}_0'$ is an optimal spanning set of
-$\ftwointtwostep{f}{n-1}{b_1'}{a_2'}$
+$\ftwointtwoswitch{f}{n-1}{b_1'}{a_2'}$
 and
 $\size{\mathcal{T}} = \size{\mathcal{T}_0'} + 1$.
 Thus we need to show
@@ -239,7 +239,7 @@ that starts with $0$
 (so these vectors start with $0$ or $\phi$).
 Removing the first symbol of these vectors,
 we get a spanning set of
-$\ftwointtwostep{f}{n-1}{b_1'}{a_2'}$
+$\ftwointtwoswitch{f}{n-1}{b_1'}{a_2'}$
 of size at most $\size{\mathcal{T}_0'} - 1$,
 which contradicts $\mathcal{T}_0'$'s optimality.
 
@@ -357,7 +357,7 @@ and $\mathcal{T}'
 |T \in \mathcal{T}}$.
 Let $a, b$ be any $(n-1)$-bit binary vectors.
 % such that $0 b \leq 1 a - 2$.
-Then $\mathcal{T}$ spans $\ftwointtwostep{f}{n}{0 b}{1 a}$
+Then $\mathcal{T}$ spans $\ftwointtwoswitch{f}{n}{0 b}{1 a}$
 if and only if
 $\mathcal{T}'$ spans
 $\intervalfn{f}{n}{0 a}{1 b}$.\footnote{Note that
@@ -372,10 +372,10 @@ that is $a = \rep{1}{n-1}$ and $b = \rep{0}{n-1}$.}
 % TODO: Prevent page break here.
 \begin{enumerate}
 \item
-If $\mathcal{T}$ spans $\ftwointtwostep{f}{n}{0 b}{1 a}$,
+If $\mathcal{T}$ spans $\ftwointtwoswitch{f}{n}{0 b}{1 a}$,
 then $\mathcal{T}'$ spans $\intervalfn{f}{n}{0 a}{1 b}$:
 
-Let $\mathcal{T}$ span $\ftwointtwostep{f}{n}{0 b}{1 a}$.
+Let $\mathcal{T}$ span $\ftwointtwoswitch{f}{n}{0 b}{1 a}$.
 
 Let $c'$ be an $n$-bit binary vector.
 We need to show that
@@ -390,7 +390,7 @@ if and only if
 $\mathcal{T}$ spans $c$.
 
 Since $\mathcal{T}$ spans
-$\ftwointtwostep{f}{n}{0 b}{1 a}$,
+$\ftwointtwoswitch{f}{n}{0 b}{1 a}$,
 $\mathcal{T}$ spans $c$
 if and only if
 $c \leq 0 b$ or $c \geq 1 a$.
@@ -410,7 +410,7 @@ Chaining the equivalences together:
 
 \item
 If $\mathcal{T}'$ spans $\intervalfn{f}{n}{0 a}{1 b}$,
-then $\mathcal{T}$ spans $\ftwointtwostep{f}{n}{0 b}{1 a}$:
+then $\mathcal{T}$ spans $\ftwointtwoswitch{f}{n}{0 b}{1 a}$:
 
 Let $\mathcal{T}'$ span $\intervalfn{f}{n}{0 a}{1 b}$.
 
@@ -442,7 +442,7 @@ Chaining the equivalences together:
 &\iff \mathcal{T}' \text{ spans } c' \\
 &\iff c' \geq 0 a \text{ and } c' \leq 1 b \\
 &\iff c \leq 0 b \text{ or } c \geq 1 a \\
-&\iff \ftwointtwostep{f}{n}{0 b}{1 a}(c) = 1
+&\iff \ftwointtwoswitch{f}{n}{0 b}{1 a}(c) = 1
 \end{align*}
 
 \end{enumerate}
@@ -450,7 +450,7 @@ Chaining the equivalences together:
 
 Lemma \ref{lemma:tflip} shows a bijection between
 the spanning sets of functions of form
-$\ftwointtwostep{f}{n}{0 b}{1 a}$
+$\ftwointtwoswitch{f}{n}{0 b}{1 a}$
 and $\intervalfn{f}{n}{0 a}{1 b}$
 for general $a$ and $b$.
 Since $b_1$ starts with a $0$ ($b_1 = 0 b$),
@@ -469,6 +469,6 @@ follow from the feasibility and optimality
 of $\mathcal{T}'$ with respect to
 $\intervalfn{f}{n}{0 \bits{a_2}{2}{n}}{1 \bits{b_1}{2}{n}}$.
 
-\section{\texorpdfstring{$3$}{3}-step functions}
+\section{\texorpdfstring{$3$}{3}-switch functions}
 
 % TODO: Finish.
