@@ -2,7 +2,7 @@
 \label{chap:1interval}
 
 In this chapter,
-I will introduce an efficient algorithm
+we will introduce an efficient algorithm
 for optimal spanning
 of single interval Boolean functions,
 originally shown by Schieber et al.\cite{Schieber2005154}
@@ -13,9 +13,10 @@ in order to span multi-interval functions.
 
 In the remainder of this chapter,
 $a$ and $b$ ($a \leq b$) will denote the endpoints
-of the spanned interval
+of the interval in question
 and $n$ the number of input bits;
-we'll be spanning the function $\intervalfn{f}{n}{a}{b}$.
+we'll be looking for a minimum representation of
+the function $\intervalfn{f}{n}{a}{b}$.
 
 The algorithm is recursive in input length.
 
@@ -52,7 +53,7 @@ $\rep{0}{n} \leq a < b \leq \rep{1}{n}$
 and
 $a > \rep{0}{n}$ or $b < \rep{1}{n}$.
 
-Let's consider the prefix case,
+In this section we shall consider the prefix case,
 that is $\interval{\rep{0}{n}}{b}$ ($a = \rep{0}{n}$),
 and the suffix case,
 that is $\interval{a}{\rep{1}{n}}$ ($b = \rep{1}{n}$).
@@ -74,8 +75,8 @@ Since $b < \rep{1}{n}$,
 we don't need more than $n$ bits to encode $c$.
 
 The algorithm produces one ternary vector
-for each $1$-bit in $c$.
-If $o$ is a position of a $1$-bit in $c$
+for each bit that is set to $1$ in $c$.
+If $o$ is a position of a $1$ in $c$
 ($\bit{c}{o} = 1$),
 then the corresponding ternary vector
 is $\bits{c}{1}{o - 1} 0 \rep{\phi}{n - o}$.
@@ -94,17 +95,18 @@ $\interval{\rep{0}{n}}{b}$ (feasibility).
 \begin{proof}
 To see that every number spanned by $\mathcal{T}$
 is in $\interval{\rep{0}{n}}{b}$,
-note that all the numbers spanned by $\mathcal{T}$
-are smaller than $c$,
-since their \acrlong{msb} different from $c$
-must be a $0$-bit
-and they must differ from $c$.
+note that given an index $o$ of a bit which is set to $1$
+in $c$,
+the biggest number spanned by
+$\bits{c}{1}{o-1} 0 \rep{\phi}{n-o}$ is
+$\bits{c}{1}{o-1} 0 \rep{1}{n-o}$
+which is still strictly smaller than $c$.
 
 On the other hand,
-every number $x$ smaller than $c$ must differ from $c$,
-and the leftmost different bit must be $0$ in $x$
-and $1$ in $c$.
-Let $o$ be its position.
+consider a number $x$ smaller than $c$
+and let $o$ be the most significant bit in which $x$ and $c$ differ. It follows that
+$\bits{x}{1}{o-1} = \bits{c}{1}{o-1}$
+and $0 = \bit{x}{o} < \bit{c}{o} = 1$.
 Then
 $\bits{c}{1}{o - 1} 0 \rep{\phi}{n - o} \in \mathcal{T}$
 spans $x$.
@@ -135,14 +137,14 @@ V =
 \end{equation}
 
 Clearly $|V| = |\mathcal{T}|$.
+Also note that all points in $V$ are smaller than $c$,
+so they are true points.
 
 It's easy to see that any ternary vector that spans two
 % TODO: Not so easy to see for a fresh reader.
 % Go into more detail.
 different points in $V$ must also span the false point $c$,
 so it can't be a part of the solution.
-Also note that all points in $V$ are smaller than $c$,
-so they are true points.
 
 If there was a feasible spanning set
 of size smaller than $|V|$,
@@ -165,7 +167,8 @@ $\interval{\bits{a}{2}{n}}{\bits{b}{2}{n}}$
 and prepend the \acrshort{msb}
 to the solution.
 
-Let $\bit{a}{1} \neq \bit{b}{1}$.
+Let us now consider the case when
+$\bit{a}{1} \neq \bit{b}{1}$.
 Since $a \leq b$,
 necessarily $\bit{a}{1} = 0$
 and $\bit{b}{1} = 1$.
@@ -182,7 +185,9 @@ of \acrshort{msb}s:
 
 Following Schieber et al.,\cite{Schieber2005154}
 we'll deal with each of these cases separately.
-We won't prove feasibility nor optimality in this text.
+The proofs of feasibility and optimality of the following
+algorithm are rather technical and they are out of scope
+of this text.
 Please refer to the original article for the proofs.
 
 \subsection{\texorpdfstring
@@ -199,7 +204,7 @@ separately.
 Note that after leaving out the initial shared bit,
 they are prefix and suffix interval, respectively,
 so the algorithm from section \ref{sec:prefixsuffix}
-is used to span each of the sub-intervals.
+can be used to span each of the sub-intervals.
 
 \subsection{\texorpdfstring
 {$\bits{a}{1}{2} = 00$ and $\bits{b}{1}{2} = 10$}
@@ -208,7 +213,7 @@ is used to span each of the sub-intervals.
 \label{sec:0010}
 
 In this case,
-we divide the interval in three sub-intervals:
+we divide the interval into three sub-intervals:
 
 \begin{itemize}
 \item $\interval{a}{00 \rep{1}{n-2}}$
@@ -306,7 +311,7 @@ In this case,
 the spanning set of $\interval{a}{b}$ consists
 of the vectors $T_1, \ldots, T_j$ and vectors obtained
 by prepending each vector from $\mathcal{T}''$ with
-$j-1$ leading $\phi$s.
+$\rep{\phi}{j-1}$.
 
 \subsubsection{\texorpdfstring
 {$b' \leq a' - 1$}
@@ -316,7 +321,8 @@ $j-1$ leading $\phi$s.
 In this case,
 the spanning set of $\interval{a}{b}$ consists
 of the vectors $T_1, \ldots, T_{j-1}$ (omitting $T_j$)
-and a set $\mathcal{T}'$ derived from $\mathcal{T}''$
+and a set $\mathcal{T}'$ which is derived
+from $\mathcal{T}''$
 in the following way:
 
 \begin{align*}
