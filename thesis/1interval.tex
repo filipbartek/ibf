@@ -89,6 +89,7 @@ Thus we get the following spanning set:
 \end{equation*}
 
 \begin{theorem}[Feasibility]
+\label{theorem:prefixfeasible}
 $\mathcal{T}$ spans exactly the interval
 $\interval{\rep{0}{n}}{b}$.
 \end{theorem}
@@ -154,7 +155,8 @@ at least one of its vectors would need to span at least
 two points in $V$.
 As we have shown, such ternary vector would necessarily
 also span the false point $c$,
-leading to contradiction with the set's feasibility.
+leading to contradiction with the set's feasibility
+(Theorem \ref{theorem:prefixfeasible}).
 \end{proof}
 
 \section{General case}
