@@ -208,6 +208,27 @@ span(\mathcal{T}) =
 \bigcup_{T \in \mathcal{T}} span(T)
 \end{equation*}
 
+\begin{definition}[Complement]
+The complement of a binary symbol $\alpha$
+($\alpha \in \booldom$),
+denoted $\compl{\alpha}$,
+is $1 - \alpha$.
+\todo[author=Kučera]{\foreignlanguage{czech}{Pokud neřeknete, jak jsou reprezentována záporná čísla, tak tento zápis nedává smysl.}}
+
+We get the complement of a binary vector $x$
+by flipping all of its bits,
+that is $\compl{x}
+= (\compl{x_1}, \ldots, \compl{x_n})
+= \rep{1}{n} - x$.
+
+The complement of the $\phi$ symbol is $\phi$
+($\compl{\phi} = \phi$).
+
+It follows that
+we obtain the complement of a ternary vector
+by flipping all of its fixed bits.
+\end{definition}
+
 \begin{definition}[True point]
 Let $f$ be an $n$-ary Boolean function.
 An $n$-bit binary vector $x$ is a \definiendum{true point}
