@@ -40,8 +40,7 @@ Clearly,
 this ordering corresponds to the natural ordering
 on the represented numbers.
 
-\begin{definition}
-[Symbol extraction]
+\begin{definition}[Symbol extraction]
 Let $v$ be a vector of length $n$ and $1 \leq i \leq n$.
 Then $\bit{v}{i}$ is the $i$-th component of $v$.
 
@@ -57,8 +56,7 @@ and ends at $b$-th position
 Notably,
 $v = (\bit{v}{1}, \ldots, \bit{v}{n}) = \bits{v}{1}{n}$.
 
-\begin{definition}
-[Symbol repetition]
+\begin{definition}[Symbol repetition]
 Let $x$ be a symbol (for example $0$ or $1$)
 and $0 \leq n$.
 Then $\rep{x}{n}$ is the vector of length $n$
@@ -119,8 +117,7 @@ $\fora{x \in \booldom^n}{f(x) = 1 \iff
 To make our work easier,
 we'll define a vector representation of a term:
 
-\begin{definition}
-[Ternary vector]
+\begin{definition}[Ternary vector]
 A \definiendum{ternary vector}
 is a vector over the set
 $\{0, 1, \phi\}$.
@@ -180,8 +177,7 @@ If $\bit{T}{i}$ is the \quot{don't care symbol} $\phi$,
 the spanned binary vector
 may have any value in its $i$-th position.
 
-\begin{definition}
-[Spanned set]
+\begin{definition}[Spanned set]
 Let $T$ be a ternary vector of length $n$.
 Set of points spanned by $T$,
 denoted $span(T)$,
@@ -243,8 +239,7 @@ such that $f(x) = 0$.
 We'll denote the set of all true points of $f$ as $TP(f)$
 and the set of all false points as $FP(f)$.
 
-\begin{definition}
-[Minimum \acrshort{dnf} representation]
+\begin{definition}[Minimum \acrshort{dnf} representation]
 A \acrshort{dnf} representation of a function is
 \definiendum{minimum}
 if and only if
@@ -259,8 +254,7 @@ of certain Boolean functions.
 Note that a function may have more than one minimum
 \acrshort{dnf} representation.
 
-\begin{definition}
-[Spanning set]
+\begin{definition}[Spanning set]
 Let $f$ be an $n$-ary Boolean function.
 Set $\mathcal{T}$ of $n$-bit ternary vectors
 is a \definiendum{spanning set} of $f$
@@ -281,8 +275,7 @@ The correspondence preserves size
 so a minimum spanning set
 corresponds to a minimum \acrshort{dnf} representation.
 
-\begin{definition}
-[Disjoint spanning set]
+\begin{definition}[Disjoint spanning set]
 A spanning set $\mathcal{T}$ is \definiendum{disjoint}
 if and only if the spanned sets of its vectors
 do not overlap,
@@ -330,8 +323,7 @@ in Boolean function representations
 % TODO: Define comparison operators on binary vectors.
 % TODO: Clarify the usage of "number" for "binary vector".
 
-\begin{definition}
-[$k$-interval Boolean function]
+\begin{definition}[$k$-interval Boolean function]
 \label{def:kibf}
 Let $a_1, b_1, \ldots, a_k, b_k$ be $n$-bit binary vectors
 such that $\rep{0}{n} \leq a_1 \leq b_1 < a_2
@@ -358,8 +350,7 @@ Note that the inequalities ensure
 that the intervals $\interval{a_i}{b_i}$
 are non-empty and don't intersect.
 
-\begin{definition}
-[Proper $k$-interval Boolean function]
+\begin{definition}[Proper $k$-interval Boolean function]
 \label{def:properkibf}
 Let
 $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
