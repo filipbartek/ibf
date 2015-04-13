@@ -1,0 +1,400 @@
+\chapter{Definitions}
+
+The basic terminology used in this thesis
+was introduced by Schieber et al. \cite{Schieber2005154},
+\dubovsky{} \cite{Dubovsky2012}
+and \husek{} \cite{Husek2014, Husek2015}.
+
+\begin{definition}[Binary vector]
+In this thesis,
+we'll use the term \definiendum{binary vector}
+to denote a vector over the Boolean domain.
+That is, $x$ is a binary vector if and only if
+$\ex{n \in \nat}{x \in \booldom^n}$.
+We call such $x$ an \definiendum{$n$-bit binary vector}.
+\end{definition}
+
+Note that each binary vector represents a natural number.
+% TODO: Add "in binary coding" or something similar.
+More specifically,
+$n$-bit binary vectors represent numbers
+between $0$ and $2^n - 1$.
+We will not differentiate between a number
+and its binary representation.
+Specifically,
+we'll use a lexicographic linear ordering
+on binary vectors --
+for $n$-bit vectors $a$ and $b$,
+$a \leq b$ if and only if $a = b$ or
+the \acrlong{msb}
+\todo{Avoid using \acrshort{msb}.}
+in which $a$ and $b$ differ
+is $0$ in $a$ and $1$ in $b$.
+Clearly,
+this ordering corresponds to the natural ordering
+on the represented numbers.
+\todo{Mention arithmetic operations on binary vectors and numbers.}
+
+\begin{definition}[Symbol extraction]
+Let $v$ be a vector of length $n$ and $1 \leq i \leq n$.
+Then $\bit{v}{i}$ is the $i$-th component of $v$.
+
+Let $1 \leq a \leq b \leq n$.
+Then $\bits{v}{a}{b}$ is the subvector of $v$
+that starts at $a$-th position
+and ends at $b$-th position
+($\bits{v}{a}{b}
+= (\bit{v}{a}, \bit{v}{a+1},
+\ldots, \bit{v}{b-1}, \bit{v}{b})$).
+\end{definition}
+
+Notably,
+$v = (\bit{v}{1}, \ldots, \bit{v}{n}) = \bits{v}{1}{n}$.
+
+\begin{definition}[Symbol repetition]
+Let $x$ be a symbol (for example $0$ or $1$)
+and $0 \leq n$.
+Then $\rep{x}{n}$ is the vector of length $n$
+each component of which is equal to $x$.
+\end{definition}
+
+\begin{definition}[Boolean function]
+$f: \booldom^n \rightarrow \booldom$ is
+an \definiendum{$n$-ary Boolean function}.
+\end{definition}
+
+Since we will not be dealing with any non-Boolean functions,
+in the remainder of the text,
+I will use the terms
+\quot{function} and \quot{Boolean function}
+interchangeably.
+
+% http://en.wikipedia.org/wiki/Boolean_function
+Every $n$-ary Boolean function $f$ can be expressed
+as a propositional formula $\mathcal{F}$ on $n$ variables
+$x_1, \ldots, x_n$.
+There's a natural bijection
+between binary vectors of length $n$
+and valuations of $n$ variables
+($1$-bits in the binary vector
+correspond exactly to $1$-valued variables
+in the valuation).
+
+% TODO: Add example Boolean function with logical representation etc.
+
+% http://en.wikipedia.org/wiki/Disjunctive_normal_form
+\begin{definition}[\Acrlong{dnf}]
+A propositional logic formula $\mathcal{F}$
+is in \definiendum{\acrfull{dnf}} if and only if
+$\mathcal{F}$ is a disjunction of terms,
+where \definiendum{terms}
+are elementary\footnote{In an elementary conjunction
+of literals,
+no variable appears in both polarities.
+A trivial example of a non-elementary conjunction
+is $x_1 \overline{x_1}$.}
+conjunctions of literals.
+
+We'll often view terms as sets of literals
+and \acrshort{dnf} formulas as sets of terms.
+\end{definition}
+
+% http://en.wikipedia.org/wiki/Valuation_%28logic%29
+A \acrshort{dnf} formula $\mathcal{F}$ is
+a \definiendum{\acrshort{dnf} representation}
+of a Boolean function $f$
+if it expresses the same function,
+that is
+$\fora{x \in \booldom^n}{f(x) = 1 \iff
+\valuation{\mathcal{F}}{x} = 1}$.
+% TODO: Rewrite; should be more natural or use the bijection explicitly.
+
+To make our work easier,
+we'll define a vector representation of a term:
+
+\begin{definition}[Ternary vector]
+A \definiendum{ternary vector}
+is a vector over the set
+$\{0, 1, \phi\}$.
+\end{definition}
+
+There's a natural bijection between ternary vectors
+and terms (elementary conjunctions of literals).
+Each of the $n$ components of a ternary vector $T$
+corresponds to an occurrence (or its absence)
+of one of the $n$ variables of a term $C$:
+
+% TODO: Consider wrapping in `table` environment
+%       and adding a caption.
+\begin{center}
+\begin{tabular}{cc}
+$\bit{T}{i}$ & $C \cap \curly{x_i, \overline{x_i}}$ \\
+\hline
+$\phi$ & $\emptyset$ \\
+$1$ & $\curly{x_i}$ \\
+$0$ & $\curly{\overline{x_i}}$
+\end{tabular}
+\end{center}
+
+Note that since $C$ is elementary,
+it can not contain both $x_i$ and $\overline{x_i}$.
+
+Namely,
+a \emph{binary} vector corresponds to a full term
+(that is one that contains every variable),
+and the ternary vector $\rep{\phi}{n}$
+corresponds to the empty term (tautology).
+% TODO: Consider defining "more qualified", "most qualified", "least qualified".
+
+It's easy to see that sets of ternary vectors of length $n$
+correspond to \acrshort{dnf} \emph{formulas}
+on $n$ variables.
+
+\begin{definition}[Spanning]
+A ternary vector $T$ of length $n$ \definiendum{spans}
+a binary vector $x$ of length $n$
+if and only if
+$\fora{i \in \curly{1, \ldots, n}}
+{\bit{T}{i} = \phi \text{ or } \bit{T}{i} = \bit{x}{i}}$.
+\end{definition}
+
+The $i$-th symbol of a ternary vector
+constrains the $i$-th symbol of the spanned binary vector
+(or, equivalently, the valuation of the $i$-th variable).
+If $\bit{T}{i}$ is a \quot{fixed bit}
+($\bit{T}{i} \in \curly{0, 1}$),
+the spanned binary vector $x$
+must have the same value
+in its $i$-th position,
+that is $\bit{x}{i} = \bit{T}{i}$.
+If $\bit{T}{i}$ is the \quot{don't care symbol} $\phi$,
+% "don't" is used in Schieber2005
+the spanned binary vector
+may have any value in its $i$-th position.
+
+\begin{definition}[Spanned set]
+Let $T$ be a ternary vector of length $n$.
+Set of points spanned by $T$,
+denoted $span(T)$,
+is defined in the following way:
+
+\begin{equation*}
+span(T) = \curly{
+x \in \booldom^n |
+T\text{ spans }x
+}
+\end{equation*}
+\end{definition}
+
+Note that a ternary vector
+with $m$ $\phi$-positions
+spans $2^m$ binary vectors.
+
+We'll also use a natural extension of spanning
+to sets of ternary vectors --
+if $\mathcal{T}$ is a set of ternary vectors, then
+
+\begin{equation*}
+span(\mathcal{T}) =
+\bigcup_{T \in \mathcal{T}} span(T)
+\end{equation*}
+
+\begin{definition}[Complement]
+The complement of a binary symbol $\alpha$
+($\alpha \in \booldom$),
+denoted $\compl{\alpha}$,
+is $1 - \alpha$.
+\todo[author=Kučera]{\foreignlanguage{czech}{Pokud neřeknete, jak jsou reprezentována záporná čísla, tak tento zápis nedává smysl.}}
+
+We get the complement of a binary vector $x$
+by flipping all of its bits,
+that is $\compl{x}
+= (\compl{x_1}, \ldots, \compl{x_n})
+= \rep{1}{n} - x$.
+
+The complement of the $\phi$ symbol is $\phi$
+($\compl{\phi} = \phi$).
+
+It follows that
+we obtain the complement of a ternary vector
+by flipping all of its fixed bits.
+\end{definition}
+
+\begin{definition}[True point]
+Let $f$ be an $n$-ary Boolean function.
+An $n$-bit binary vector $x$ is a \definiendum{true point}
+of $f$ if and only if $f(x)  = 1$.
+\end{definition}
+
+Equivalently,
+we define a \definiendum{false point} of $f$
+as any point $x$
+such that $f(x) = 0$.
+
+We'll denote the set of all true points of $f$ as $TP(f)$
+and the set of all false points as $FP(f)$.
+
+\begin{definition}[Minimum \acrshort{dnf} representation]
+A \acrshort{dnf} representation of a function is
+\definiendum{minimum}
+if and only if
+there's no representation with fewer terms.
+\end{definition}
+
+The focus of this thesis is
+minimizing the number of terms
+of \acrshort{dnf} representations
+of certain Boolean functions.
+
+Note that a function may have more than one minimum
+\acrshort{dnf} representation.
+
+\begin{definition}[Spanning set]
+Let $f$ be an $n$-ary Boolean function.
+Set $\mathcal{T}$ of $n$-bit ternary vectors
+is a \definiendum{spanning set} of $f$
+if and only if
+$span(\mathcal{T}) = TP(f)$.
+\end{definition}
+
+In other words,
+a spanning set of a function
+spans all of its true points
+and none of its false points.
+
+Note that spanning sets of a function
+correspond to \acrshort{dnf} representations
+of the function.
+The correspondence preserves size
+(number of ternary vectors and terms, respectively),
+so a minimum spanning set
+corresponds to a minimum \acrshort{dnf} representation.
+
+\begin{definition}[Disjoint spanning set]
+A spanning set $\mathcal{T}$ is \definiendum{disjoint}
+if and only if the spanned sets of its vectors
+do not overlap,
+that is
+\[
+\fora{T_i, T_j \in \mathcal{T}}{T_i = T_j \text{ or }
+span(T_i) \cap span(T_j) = \emptyset}
+\]
+\end{definition}
+
+In terms of \acrshort{dnf},
+disjoint spanning sets
+correspond to \acrshort{dnf} formulas
+such that every valuation satisfies at most one term.
+
+We have introduced two equivalent representations
+of Boolean functions --
+one based on ternary vectors
+and the other being the \acrshort{dnf} representation.
+Table \ref{table:representations}
+shows the corresponding terms side by side.
+% Note the inconsistent use of "term" here and in the table
+% caption.
+
+\begin{table}[h]
+\label{table:representations}
+\centering
+\begin{tabular}{ll}
+ternary vector & term \\
+ternary vector set & \acrshort{dnf} formula \\
+binary vector & variable valuation \\
+ternary vector \emph{spans} a binary vector &
+valuation \emph{satisfies} a term \\
+ternary vector set \emph{spans} a binary vector &
+valuation \emph{satisfies} a \acrshort{dnf} formula
+\end{tabular}
+\caption{
+Corresponding terms used
+in Boolean function representations
+}
+\end{table}
+
+\section{Interval Boolean functions}
+
+% TODO: Define comparison operators on binary vectors.
+% TODO: Clarify the usage of "number" for "binary vector".
+
+\begin{definition}[$k$-interval Boolean function]
+\label{def:kibf}
+Let $a_1, b_1, \ldots, a_k, b_k$ be $n$-bit binary vectors
+such that $\rep{0}{n} \leq a_1 \leq b_1 < a_2
+\leq \cdots < a_i \leq b_i < a_{i+1}
+\leq \cdots < a_k \leq b_k \leq \rep{1}{n}$.
+% TODO: Clarify the inequalities.
+Then $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}: \booldom{}^n \rightarrow \booldom{}$ is a function defined as follows:
+\[
+f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}} (x) =
+\begin{cases}
+1 & \text{if } a_i \leq x \leq b_i \text{ for some } i \\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+We call
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+a \definiendum{$k$-interval Boolean function}
+and the vectors $a_1, b_1, \ldots, a_k, b_k$ its
+\definiendum{endpoints}.
+\end{definition}
+
+Note that the inequalities ensure
+that the intervals $\interval{a_i}{b_i}$
+are non-empty and don't intersect.
+
+\begin{definition}[Proper $k$-interval Boolean function]
+\label{def:properkibf}
+Let
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+be a $k$-interval Boolean function.
+If the endpoints satisfy the inequalities
+$b_1 < a_2 - 1$, \ldots, $b_i < a_{i+1} - 1$, \ldots,
+$b_{k-1} < a_k - 1$
+(in other words, adjacent intervals
+are separated by at least one false point),
+we call
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+a \definiendum{proper $k$-interval Boolean function}.
+\end{definition}
+
+%Note that if $f$ is proper $k$-interval,
+%it is also $k$-interval,
+%and that if $f$ is $k$-interval
+%and $g$ is \emph{proper} $l$-interval
+%for $l > k$,
+%then $f$ and $g$ differ.
+
+Especially,
+$\intervalfn{f}{n}{a}{b}$ is a function
+whose true points form the interval $\interval{a}{b}$.
+
+% TODO: Fix reference.
+Table \ref{table:exampleintfns} shows
+examples of interval functions.
+
+\begin{table}[H]
+\label{table:exampleintfns}
+\centering
+\begin{tabular}{lll}
+Interval function & Propositional formula & Description \\
+\hline
+$\intervalfn{f}{2}{11}{11}$ &
+$x_1 \wedge x_2$ & Conjunction \\
+$\intervalfn{f}{2}{01}{11}$ &
+$x_1 \vee x_2$ & Disjunction \\
+$\intervalfn{f}{n}{\rep{0}{n}}{\rep{1}{n}}$ &
+$1$ & Tautology \\
+$\intervalfn{f}{n}{\rep{0}{n-1} 1}{\rep{1}{n-1} 0}$ &
+$\nott{x_1 \ldots x_n} \wedge
+\nott{\nott{x_1} \ldots \nott{x_n}}$ &
+Non-equivalence \\
+$f^n_{\interval{\rep{0}{n}}{\rep{0}{n}},
+\interval{\rep{1}{n}}{\rep{1}{n}}}$ &
+$x_1 \ldots x_n \vee \nott{x_1} \ldots \nott{x_n}$ &
+Equivalence
+\end{tabular}
+\caption{Examples of interval functions}
+\end{table}
