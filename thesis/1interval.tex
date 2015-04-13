@@ -19,6 +19,7 @@ we'll be looking for a minimum representation of
 the function $\intervalfn{f}{n}{a}{b}$.
 
 The algorithm is recursive in input length.
+\todo{Consider removing.}
 
 \section{Trivial cases}
 
@@ -144,10 +145,9 @@ Also note that all points in $V$ are smaller than $c$,
 so they are true points.
 
 It's easy to see that any ternary vector that spans two
-% TODO: Not so easy to see for a fresh reader.
-% Go into more detail.
 different points in $V$ must also span the false point $c$,
 so it can't be a part of the solution.
+\todo{Explain in detail.}
 
 If there was a feasible spanning set
 of size smaller than $|V|$,
@@ -195,6 +195,8 @@ of this text.
 Please refer to the original article for the proofs.
 Note that the proof of optimality is implicitly based
 on showing orthogonal sets.
+
+\todo[inline]{Consider spelling the leading bits of $a$ and $b$ explicitly, for example $00 a'$ in place of $a$.}
 
 \subsection{\texorpdfstring
 {$\bits{a}{1}{2} = 01$ and $\bits{b}{1}{2} = 10$}
