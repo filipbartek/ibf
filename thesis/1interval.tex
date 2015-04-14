@@ -25,7 +25,7 @@ function $\intervalfn{f}{n}{a}{b}$.
 \end{description}
 
 The algorithm is recursive in input length.
-\todo{Consider removing.}
+\todokucera{Buď rozvést nebo odstranit.}
 
 \section{Trivial cases}
 
@@ -133,9 +133,10 @@ We'll construct a set $V$ of $|\mathcal{T}|$ true points
 no pair of which can be spanned by a single ternary vector.
 \dubovsky{}\cite{Dubovsky2012} calls such sets
 \quot{orthogonal}.
-% TODO: Mention essential sets.
-% TODO: Consider defining orthogonality.
+\todo{Define orthogonality in chapter Definitions.}
+\todo{Relate to essential sets.}
 Doing so, we'll show a lower bound $|\mathcal{T}|$
+\todo{Refer to a statement that demonstrates properties of orthogonal sets.}
 on the size of feasible solutions,
 proving optimality of $\mathcal{T}$.
 
@@ -187,6 +188,7 @@ and $\bit{b}{1} = 1$.
 This restriction leaves us with
 four possible combinations of pairs
 of \acrshort{msb}s:
+\todo{Avoid using MSBs.}
 
 \begin{enumerate}
 \item $\bits{a}{1}{2} = 01$, $\bits{b}{1}{2} = 10$
@@ -196,6 +198,7 @@ of \acrshort{msb}s:
 \end{enumerate}
 
 Following Schieber et al.,\cite{Schieber2005154}
+\todokucera{pokud chcete mít v citacích jméno, tak použijte odpovídající BiBTeXový styl (autoři rok)}
 we'll deal with each of these cases separately.
 The proofs of feasibility and optimality of the following
 algorithm are rather technical and they are out of scope
