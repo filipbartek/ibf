@@ -25,12 +25,24 @@ by joining the touching adjacent intervals.
 \section{Algorithm}
 
 \subsection{Description}
-\paragraph{Input}
-Numbers $a_1, b_1, \ldots, a_k, b_k$
-that satisfy the inequalities in definition \ref{def:kibf}
 
-\paragraph{Output}
-A set of ternary vectors
+\begin{description}
+\item[Input] Numbers $a_1, b_1, \ldots, a_k, b_k$
+such that
+$\rep{0}{n} \leq a_1$,
+$a_1 \leq b_1$,
+$b_1 < a_2 - 1$,
+\ldots,
+$a_i \leq b_i$,
+$b_i < a_{i+1} - 1$
+(for $i \in \curly{1, \ldots, k-1}$),
+\ldots,
+$b_{k-1} < a_k - 1$,
+$a_k \leq b_k$,
+$b_k \leq \rep{1}{n}$.
+
+\item[Output] A set of ternary vectors
+\end{description}
 
 \paragraph{Procedure}
 The algorithm goes through
