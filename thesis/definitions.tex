@@ -5,41 +5,21 @@ was introduced by Schieber et al. \cite{Schieber2005154},
 \dubovsky{} \cite{Dubovsky2012}
 and \husek{} \cite{Husek2014, Husek2015}.
 
-\begin{definition}[Binary vector]
-In this thesis,
-we'll use the term \definiendum{binary vector}
-to denote a vector over the Boolean domain.
-That is, $x$ is a binary vector if and only if
-$\ex{n \in \nat}{x \in \booldom^n}$.
-We call such $x$ an \definiendum{$n$-bit binary vector}.
-\end{definition}
+\section{Vector operations}
 
-Note that each binary vector represents a natural number.
-% TODO: Add "in binary coding" or something similar.
-More specifically,
-$n$-bit binary vectors represent numbers
-between $0$ and $2^n - 1$.
-We will not differentiate between a number
-and its binary representation.
-Specifically,
-we'll use a lexicographic linear ordering
-on binary vectors --
-for $n$-bit vectors $a$ and $b$,
-$a \leq b$ if and only if $a = b$ or
-the \acrlong{msb}
-\todo{Avoid using \acrshort{msb}.}
-in which $a$ and $b$ differ
-is $0$ in $a$ and $1$ in $b$.
-Clearly,
-this ordering corresponds to the natural ordering
-on the represented numbers.
-\todo{Mention arithmetic operations on binary vectors and numbers.}
+Throughout the thesis we will use vectors
+over small finite domains extensively.
 
-\begin{definition}[Symbol extraction]
+\begin{definition}[Component extraction $\bit{v}{i}$]
 Let $v$ be a vector of length $n$ and $1 \leq i \leq n$.
 Then $\bit{v}{i}$ is the $i$-th component of $v$.
+\end{definition}
 
-Let $1 \leq a \leq b \leq n$.
+\begin{definition}[Subsequence extraction $\bits{v}{a}{b}$]
+Let
+$v$ be a vector of length $n$
+and
+$1 \leq a \leq b \leq n$.
 Then $\bits{v}{a}{b}$ is the subvector of $v$
 that starts at $a$-th position
 and ends at $b$-th position
@@ -49,14 +29,60 @@ and ends at $b$-th position
 \end{definition}
 
 Notably,
-$v = (\bit{v}{1}, \ldots, \bit{v}{n}) = \bits{v}{1}{n}$.
+$v = \round{\bit{v}{1}, \ldots, \bit{v}{n}} = \bits{v}{1}{n}$.
 
-\begin{definition}[Symbol repetition]
-Let $x$ be a symbol (for example $0$ or $1$)
-and $0 \leq n$.
-Then $\rep{x}{n}$ is the vector of length $n$
-each component of which is equal to $x$.
+\begin{definition}[Concatenation $uv$]
+Let $u, v$ be vectors of lengths $m, n$ respectively.
+Then $uv = (u_1, \ldots, u_m, v_1, \ldots, v_n)$
+is the concatenation of the vectors $u, v$.
 \end{definition}
+
+Note that we will use symbols
+and vectors of length $1$ interchangeably,
+for example $v = \bit{v}{1} \bit{v}{2} \ldots \bit{v}{n}$.
+
+\begin{definition}[Symbol repetition $\rep{\alpha}{n}$]
+Let $\alpha$ be a symbol (for example $0$ or $1$)
+and $n \in \nat$.
+Then $\rep{\alpha}{n}$ is the vector of length $n$
+each component of which is equal to $\alpha$.
+\end{definition}
+
+For example
+$\rep{0}{2} = 00$.
+
+\section{Binary vectors}
+
+\begin{definition}[Binary vector]
+We will use the term \definiendum{binary vector}
+to denote a vector over the Boolean domain.
+That is, $x$ is a binary vector if and only if
+$x \in \booldom^n$ for some $n \in \nat$.
+We call such $x$ an \definiendum{$n$-bit binary vector}.
+\end{definition}
+
+Note that an $n$-bit binary vector $x$
+represents the natural number
+$\sum_{i = 1}^n \bit{x}{i} 2^{n-i}
+= \sum_{i|\bit{x}{i}=1} 2^{n-i}$.
+An $n$-bit vector
+corresponds to a number between $0$ and $2^n - 1$.
+We will not differentiate between a number
+and its binary vector representation.
+Specifically,
+we will use a lexicographic linear ordering
+on binary vectors --
+for $n$-bit vectors $a$ and $b$,
+$a \leq b$ if and only if $a = b$ or
+$\bit{a}{i} = 0$ and $\bit{b}{i} = 1$
+where $i$ is the smallest index such that
+$\bit{a}{i} \neq \bit{b}{i}$.
+Clearly,
+this ordering corresponds to the natural ordering
+on the represented numbers.
+\todo{Mention arithmetic operations on binary vectors and numbers.}
+
+\section{Boolean functions}
 
 \begin{definition}[Boolean function]
 $f: \booldom^n \rightarrow \booldom$ is
@@ -65,9 +91,26 @@ an \definiendum{$n$-ary Boolean function}.
 
 Since we will not be dealing with any non-Boolean functions,
 in the remainder of the text,
-I will use the terms
+we will use the terms
 \quot{function} and \quot{Boolean function}
 interchangeably.
+
+\begin{definition}[True point]
+Let $f$ be an $n$-ary Boolean function.
+An $n$-bit binary vector $x$ is a \definiendum{true point}
+of $f$ if and only if $f(x)  = 1$.
+\end{definition}
+
+Equivalently,
+we define a \definiendum{false point} of $f$
+as any point $x$
+such that $f(x) = 0$.
+
+We'll denote the set of all true points of $f$ as $TP(f)$
+and the set of all false points as $FP(f)$.
+
+\section{\texorpdfstring{\acrshort{dnf}}{DNF}
+representations of Boolean functions}
 
 % http://en.wikipedia.org/wiki/Boolean_function
 Every $n$-ary Boolean function $f$ can be expressed
@@ -95,7 +138,7 @@ A trivial example of a non-elementary conjunction
 is $x_1 \overline{x_1}$.}
 conjunctions of literals.
 
-We'll often view terms as sets of literals
+We will often view terms as sets of literals
 and \acrshort{dnf} formulas as sets of terms.
 \end{definition}
 
@@ -109,8 +152,23 @@ $\fora{x \in \booldom^n}{f(x) = 1 \iff
 \valuation{\mathcal{F}}{x} = 1}$.
 % TODO: Rewrite; should be more natural or use the bijection explicitly.
 
-To make our work easier,
-we'll define a vector representation of a term:
+\begin{definition}[Minimum \acrshort{dnf} representation]
+A \acrshort{dnf} representation of function $f$ is
+\definiendum{minimum}
+if and only if
+there is no \acrshort{dnf} representation of $f$
+with fewer terms.
+\end{definition}
+
+The focus of this thesis is
+minimizing the number of terms
+of \acrshort{dnf} representations
+of certain Boolean functions.
+
+Note that a function may have more than one minimum
+\acrshort{dnf} representation.
+
+\section{Ternary vectors}
 
 \begin{definition}[Ternary vector]
 A \definiendum{ternary vector}
@@ -137,17 +195,21 @@ $0$ & $\curly{\overline{x_i}}$
 \end{center}
 
 Note that since $C$ is elementary,
-it can not contain both $x_i$ and $\overline{x_i}$.
+it can not contain both $x_i$ and $\overline{x_i}$
+for any $i$.
 
 Namely,
-a \emph{binary} vector corresponds to a full term
+a \emph{binary} vector
+(a ternary vector that does not contain any $\phi$)
+corresponds to a full term
 (that is one that contains every variable),
 and the ternary vector $\rep{\phi}{n}$
 corresponds to the empty term (tautology).
 % TODO: Consider defining "more qualified", "most qualified", "least qualified".
 
-It's easy to see that sets of ternary vectors of length $n$
-correspond to \acrshort{dnf} \emph{formulas}
+It's easy to see that a set of ternary vectors,
+each of length $n$,
+corresponds to a \acrshort{dnf} \emph{formula}
 on $n$ variables.
 
 \begin{definition}[Spanning]
@@ -162,7 +224,7 @@ The $i$-th symbol of a ternary vector
 constrains the $i$-th symbol of the spanned binary vector
 (or, equivalently, the valuation of the $i$-th variable).
 If $\bit{T}{i}$ is a \quot{fixed bit}
-($\bit{T}{i} \in \curly{0, 1}$),
+(that is $\bit{T}{i} \in \curly{0, 1}$),
 the spanned binary vector $x$
 must have the same value
 in its $i$-th position,
@@ -174,9 +236,8 @@ may have any value in its $i$-th position.
 
 \begin{definition}[Spanned set]
 Let $T$ be a ternary vector of length $n$.
-Set of points spanned by $T$,
-denoted $span(T)$,
-is defined in the following way:
+We denote the set of points spanned by $T$
+as $span(T)$:
 
 \begin{equation*}
 span(T) = \curly{
@@ -199,61 +260,34 @@ span(\mathcal{T}) =
 \bigcup_{T \in \mathcal{T}} span(T)
 \end{equation*}
 
-\begin{definition}[Complement]
-The complement of a binary symbol $\alpha$
-($\alpha \in \booldom$),
-denoted $\compl{\alpha}$,
-is $1 - \alpha$.
-\todo[author=Kučera]{\foreignlanguage{czech}{Pokud neřeknete, jak jsou reprezentována záporná čísla, tak tento zápis nedává smysl.}}
-
-We get the complement of a binary vector $x$
-by flipping all of its bits,
-that is $\compl{x}
-= (\compl{x_1}, \ldots, \compl{x_n})
-= \rep{1}{n} - x$.
-
-The complement of the $\phi$ symbol is $\phi$
-($\compl{\phi} = \phi$).
-
-It follows that
-we obtain the complement of a ternary vector
-by flipping all of its fixed bits.
-\end{definition}
-
-\begin{definition}[True point]
-Let $f$ be an $n$-ary Boolean function.
-An $n$-bit binary vector $x$ is a \definiendum{true point}
-of $f$ if and only if $f(x)  = 1$.
-\end{definition}
-
-Equivalently,
-we define a \definiendum{false point} of $f$
-as any point $x$
-such that $f(x) = 0$.
-
-We'll denote the set of all true points of $f$ as $TP(f)$
-and the set of all false points as $FP(f)$.
-
-\begin{definition}[Minimum \acrshort{dnf} representation]
-A \acrshort{dnf} representation of a function is
-\definiendum{minimum}
+\begin{definition}[Exact spanning]
+A ternary vector $T$ of length $n$
+\definiendum{spans exactly}
+a set of $n$-bit binary vectors $S$
 if and only if
-there's no representation with fewer terms.
+$span(T) = S$.
+
+$T$ \definiendum{spans exactly}
+an $n$-ary Boolean function $f$
+if and only if
+$span(T) = TP(f)$.
 \end{definition}
 
-The focus of this thesis is
-minimizing the number of terms
-of \acrshort{dnf} representations
-of certain Boolean functions.
-
-Note that a function may have more than one minimum
-\acrshort{dnf} representation.
+Again,
+we will generalize \definiendum{exact spanning}
+to sets of ternary vectors
+-- the set of ternary vectors $\mathcal{T}$
+\definiendum{spans exactly} $S$
+if and only if
+$span(\mathcal{T}) = S$.
 
 \begin{definition}[Spanning set]
 Let $f$ be an $n$-ary Boolean function.
-Set $\mathcal{T}$ of $n$-bit ternary vectors
+The set $\mathcal{T}$ of $n$-bit ternary vectors
 is a \definiendum{spanning set} of $f$
 if and only if
+it $\mathcal{T}$ spans exactly $f$,
+that is
 $span(\mathcal{T}) = TP(f)$.
 \end{definition}
 
@@ -285,6 +319,7 @@ In terms of \acrshort{dnf},
 disjoint spanning sets
 correspond to \acrshort{dnf} formulas
 such that every valuation satisfies at most one term.
+\todo{Is there a better, more established term?}
 
 We have introduced two equivalent representations
 of Boolean functions --
@@ -312,6 +347,27 @@ Corresponding terms used
 in Boolean function representations
 }
 \end{table}
+
+\begin{definition}[Complement]
+The complement of a binary symbol $\alpha$
+($\alpha \in \booldom$),
+denoted $\compl{\alpha}$,
+is $1 - \alpha$.
+\todo[author=Kučera]{\foreignlanguage{czech}{Pokud neřeknete, jak jsou reprezentována záporná čísla, tak tento zápis nedává smysl.}}
+
+We get the complement of a binary vector $x$
+by flipping all of its bits,
+that is $\compl{x}
+= (\compl{x_1}, \ldots, \compl{x_n})
+= \rep{1}{n} - x$.
+
+The complement of the $\phi$ symbol is $\phi$
+($\compl{\phi} = \phi$).
+
+It follows that
+we obtain the complement of a ternary vector
+by flipping all of its fixed bits.
+\end{definition}
 
 \section{Interval Boolean functions}
 
@@ -370,6 +426,8 @@ a \definiendum{proper $k$-interval Boolean function}.
 Especially,
 $\intervalfn{f}{n}{a}{b}$ is a function
 whose true points form the interval $\interval{a}{b}$.
+
+\todo[inline]{Define $l$-switch function?}
 
 % TODO: Fix reference.
 Table \ref{table:exampleintfns} shows
