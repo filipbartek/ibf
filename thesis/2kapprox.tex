@@ -105,22 +105,21 @@ on $n - j - 1$ bits, but not in general on $n$ bits.}
 added in the algorithm.
 Without loss of generality,
 let the respective subinterval be \quot{prefix}
-$\interval{\bits{b_i}{1}{j+1}}{b_i}$.
-From \cite[p.~36]{Dubovsky2012} we know that
-there is an orthogonal set
-of $\interval{\bits{b_i}{1}{j+1}}{b_i}$
+$\interval{\bits{b_i}{1}{j+1} \rep{0}{n-j-1}}{b_i}$.
+From Section \ref{sec:prefixsuffix} we know that
+there is an orthogonal set of
+$\interval{\bits{b_i}{1}{j+1} \rep{0}{n-j-1}}{b_i}$
 of size $|\mathcal{T}_x|$,
 and moreover that its orthogonality only depends
-on the false point $b+1$.
-\todo{Refer to the prefix algorithm introduced earlier.
-We showed an orthogonal set that only depends on
-$b_i + 1$.}
-Note, however, that $b+1$ is also a false point in
-$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
+on the false point $b_i + 1$.
+Note, however, that $b_i + 1$ is also a false point in
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+since $b_i < a_{i+1} - 1$.
 Thus we obtain an orthogonal set of size $|\mathcal{T}_x|$
 for the $k$-interval function,
 limiting the size of its optimal spanning set
 $|\mathcal{T}_{opt}| \geq |\mathcal{T}_x|$.
+\todo{Reference a more general statement.}
 
 Since $\mathcal{T}_x$ is the largest
 of the $2k$ partial sets used to span the function
@@ -129,8 +128,46 @@ we know that
 $|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_x|$.
 
 Joining the inequalities together we conclude:
-$|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_x| \leq
-2k |\mathcal{T}_{opt}|$.
+
+\begin{equation*}
+|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_x| \leq
+2k |\mathcal{T}_{opt}|
+\end{equation*}
+\end{proof}
+
+Note that the spanning set returned by the algorithm
+is disjoint.
+This makes the algorithm $2k$-approximation
+for the disjoint case as well:
+
+\begin{theorem}
+Let $\mathcal{T}_{disjoint}$ be an optimal \emph{disjoint}
+spanning set of
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+and let $\mathcal{T}_{approx}$ be the (disjoint)
+spanning set returned by our algorithm.
+We claim that:
+\begin{equation*}
+|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_{disjoint}|
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+Since every disjoint spanning set
+is a spanning set in general,
+$\size{\mathcal{T}_{disjoint}} \geq
+\size{\mathcal{T}_{opt}}$,
+where $\mathcal{T}_{opt}$ is an optimal
+(not necessarily disjoint)
+spanning set of
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
+
+Using Theorem \ref{theorem:2kapproxratio} we get:
+
+\begin{equation*}
+|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_{opt}|
+\leq k |\mathcal{T}_{disjoint}|
+\end{equation*}
 \end{proof}
 
 \begin{theorem}
@@ -147,7 +184,7 @@ Theorem~\ref{theorem:2kapproxratio}).
 Let $k = 2^{n_k}$.
 Let $P$ be all the $n_k$-bit numbers,
 that is $P = \booldom^{n_k}$.
-Note that $|P| = k$.
+Note that $|P| = 2^{n_k} = k$.
 
 For each $p \in P$,
 we define the interval $\interval{a_p}{b_p}$
@@ -160,12 +197,15 @@ by appending $2$-bit suffixes to $p$:
 
 The first appended bit ($0$ for both $a_p$ and $b_p$)
 ensures that there is at least one false point
-between any pair of intervals defined this way.
+between any pair of intervals defined this way
+(all the points that have $1$ in their $(n_k + 1)$-st
+component are false points).
 The second appended bit ($0$ for $a_p$ and $1$ for $b_p$)
 ensures that the interval has two points,
 so the approximation algorithm will use two vectors
 to span it.
-Thus we have $k$ $(n_k + 2)$-bit intervals,
+Thus we have $k$ intervals
+on $(n_k + 2)$-bit numbers,
 none of which intersect or touch.
 
 Since $P = \booldom^{n_k}$,
@@ -184,5 +224,4 @@ $|\mathcal{T}_{approx}| = 2k |\mathcal{T}_{opt}|$.
 
 Note that the optimal spanning set is disjoint,
 so the ratio is tight in disjoint case as well.
-\todokucera{předpokládám, že o disjunktním případu budete ještě psát a že to pak bude před tímto.}
 \end{proof}
