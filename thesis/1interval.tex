@@ -65,18 +65,20 @@ that is $\interval{\rep{0}{n}}{b}$ ($a = \rep{0}{n}$),
 and the suffix case,
 that is $\interval{a}{\rep{1}{n}}$ ($b = \rep{1}{n}$).
 
-Note that prefix and suffix cases are complementary --
-we may transform a suffix instance
+Note that prefix and suffix cases are complementary.
+We may transform a suffix instance
 $\interval{a}{\rep{1}{n}}$
-to a prefix instance $\interval{\rep{0}{n}}{\compl{a}}$.
-Flipping the polarity of the resulting ternary vectors
-yields a solution
-\todo{Discuss optimality?}
-of the initial suffix instance
-$\interval{a}{\rep{1}{n}}$.
-This means it suffices to solve the prefix case,
-which is what we will do.
-% TODO: Reword.
+to a prefix instance $\interval{\rep{0}{n}}{\compl{a}}$
+(where $\compl{a}$ is the complementary vector of $a$)
+and flip the polarity of the resulting ternary vectors
+in all their components.
+Since the instances $\interval{a}{\rep{1}{n}}$
+and $\interval{\rep{0}{n}}{\compl{a}}$
+are symmetric in general,
+using an optimal algorithm to span the prefix instance
+$\interval{\rep{0}{n}}{\compl{a}}$
+ensures we get an optimal spanning set
+of the original suffix instance as well.
 
 Let $a = \rep{0}{n}$ and $b < \rep{1}{n}$.
 Let $c$ be the $n$-bit number $b + 1$.
