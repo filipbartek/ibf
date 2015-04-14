@@ -11,6 +11,17 @@ The input intervals are represented by pairs of endpoints
 ($n$-bit numbers).
 An approximation ratio of $2k$ will be proved.
 
+We will only consider
+proper $k$-interval Boolean functions,
+that is those whose adjacent intervals are separated by
+at least one false point
+(see Definition \ref{def:properkibf}).
+A $k$-interval Boolean function
+which is not proper $k$-interval
+can be efficiently reduced to a proper $l$-interval
+where $l < k$
+by joining the touching adjacent intervals.
+
 \section{Algorithm}
 
 \subsection{Description}
