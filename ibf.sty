@@ -24,9 +24,9 @@
 \RequirePackage[marginparwidth=30mm, marginparsep=5mm]{geometry}
 %\usepackage[top=1.5cm, bottom=1.5cm, outer=5cm, inner=2cm, heightrounded, marginparwidth=2.5cm, marginparsep=2cm]{geometry}
 \RequirePackage[obeyFinal]{todonotes}
-\newcommand{\todokucera}[1]
+\newcommand{\todokucera}[2][]
 {\todo[author=\foreignlanguage{czech}{Kučera},
-color=green]{#1}}
+color=green,#1]{#2}}
 
 % Macros
 \newcommand{\interval}[2]{\bracketsquare{#1, #2}}
