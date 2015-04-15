@@ -67,22 +67,40 @@ that is $\interval{\rep{0}{n}}{b}$ ($a = \rep{0}{n}$),
 and the suffix case,
 that is $\interval{a}{\rep{1}{n}}$ ($b = \rep{1}{n}$).
 
-Note that prefix and suffix cases are complementary.
-We may transform a suffix instance
-$\interval{a}{\rep{1}{n}}$
-to a prefix instance $\interval{\rep{0}{n}}{\compl{a}}$
-(where $\compl{a}$ is the complementary vector of $a$)
-and flip the polarity of the resulting ternary vectors
-in all their components.
-Since the instances $\interval{a}{\rep{1}{n}}$
-and $\interval{\rep{0}{n}}{\compl{a}}$
-are symmetric in general,
-using an optimal algorithm to span the prefix instance
-$\interval{\rep{0}{n}}{\compl{a}}$
-ensures we get an optimal spanning set
-of the original suffix instance as well.
+\subsection{Suffix case}
 
-Let's proceed to span a prefix instance.
+The prefix and suffix cases are complementary.
+There is a 1-1
+\todomaybe{Typeset \quot{1-1} properly (correct dash etc.).}
+correspondence between
+the spanning sets of suffix intervals
+and the spanning sets
+of prefix intervals.
+The correspondence spans the suffix interval
+$\interval{a}{\rep{1}{n}}$
+by complementing each of the vectors in the spanning set
+of the prefix interval
+$\interval{\rep{0}{n}}{\compl{a}}$:
+
+\[
+\mathcal{T} \text{ spans } \interval{a}{\rep{1}{n}}
+\iff
+\curly{\compl{T} | T \in \mathcal{T}}
+\text{ spans } \interval{\rep{0}{n}}{\compl{a}}
+\]
+\todomaybe[inline]{Prove correctness.}
+
+Since the correspondence preserves
+size of the spanning sets,
+it also preserves optimality.
+Thus we can use the correspondence to optimally span
+suffix intervals
+using a procedure that spans prefix intervals.
+We will show such procedure in the following section.
+
+\subsection{Prefix case}
+
+Let's proceed to span a prefix interval.
 Let $a = \rep{0}{n}$ and $b < \rep{1}{n}$.
 Let $c$ be the $n$-bit number $b + 1$.
 Since $b < \rep{1}{n}$,
