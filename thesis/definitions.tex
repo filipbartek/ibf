@@ -160,9 +160,12 @@ of a Boolean function $f$
 if it expresses the same function,
 that is
 $\fora{x \in \booldom^n}{f(x) = 1 \iff
-\valuation{\mathcal{F}}{x} = 1}$.
-\todo{Clarify what $\valuation{\mathcal{F}}{x}$ means?}
-\todo{Rewrite; should be more natural or use the bijection explicitly.}
+\valuation{\mathcal{F}}{x} \equiv 1}$,
+where $\valuation{\mathcal{F}}{x}$ is the formula
+given by substituting
+each occurrence of a variable $x_i$ in $\mathcal{F}$
+with the value $\bit{x}{i}$
+for every $i \in \curly{1, \ldots, n}$.
 
 \begin{definition}[Minimum \acrshort{dnf} representation]
 A \acrshort{dnf} representation of function $f$ is
