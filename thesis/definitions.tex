@@ -385,8 +385,93 @@ we obtain the complement of a ternary vector
 by flipping all of its fixed bits.
 \end{definition}
 
-\section{Interval Boolean functions}
+\section{Orthogonal sets and coverable functions}
 
+\begin{definition}[Orthogonality]
+% Dubovsky2012: Definition 1.15, page 6
+Let $x, y$ be true points of Boolean function $f$
+($f(x) = f(y) = 1$).
+$x$ and $y$ are \definiendum{orthogonal}
+(with respect to $f$)
+if and only if
+every ternary vector that spans both $x$ and $y$
+necessarily also spans a false point of $f$.
+
+A set of true points $S$ is \definiendum{orthogonal}
+if and only if
+all the vectors in $S$ are pairwise orthogonal.
+\end{definition}
+
+This notion of orthogonality was introduced
+by \citet{Dubovsky2012}.
+For a given $f$,
+we will call the size of its maximum orthogonal set
+\definiendum{$\apply{ortho}{f}$}.
+
+\begin{theorem}[$\apply{ortho}{f} \leq \apply{dnf}{f}$]
+For any Boolean function,
+the size of its maximum orthogonal set
+is at most as high
+as the size of its minimum \acrshort{dnf} representation.
+\end{theorem}
+
+\begin{proof}
+We will prove the statement by contradiction.
+Let $f$ be a Boolean function such that
+$\apply{ortho}{f} > \apply{dnf}{f}$.
+Let $S$ be an orthogonal set of size $\apply{ortho}{f}$
+and $\mathcal{T}$ be any spanning set
+of size $\apply{dnf}{f}$.
+Since $\size{\mathcal{T}} < \size{S}$
+and $\mathcal{T}$ spans $TP(f) \supseteq S$,
+there must be a $T \in \mathcal{T}$ that spans
+two distinct vectors $x, y \in S$.
+However,
+since $S$ is orthogonal,
+$x$ is orthogonal to $y$,
+so $T$ necessarily spans a false point,
+which contradicts the premise that $\mathcal{T}$
+spans exactly $f$.
+\end{proof}
+
+We conclude that the size of any orthogonal set
+is a lower bound on the size of minimum
+\acrshort{dnf} representation.
+Specifically,
+if we show a \acrshort{dnf} representation of a function
+and an orthogonal set of the same size,
+we may conclude that the representation is minimum.
+
+\begin{definition}[Coverability]
+\label{def:coverable}
+Let $f$ be a Boolean function.
+$f$ is \definiendum{coverable}
+if and only if
+$\apply{ortho}{f} = \apply{dnf}{f}$.
+\end{definition}
+
+Informally speaking,
+a coverable function is one for which it may be
+easy to prove optimality of a spanning set.
+We will see
+in Chapters \ref{chap:1interval} and \ref{chap:2interval}
+that all $1$-interval
+and a concise
+\todomaybe{Reword.}
+class of $2$-interval functions
+are coverable.
+
+The concept of coverability was originally introduced by
+\citet{Cepek2012}.
+They use a different yet equivalent definition.
+\todo{Is it actually equivalent? Is \quot{equivalent} a correct word, esp. since Cepek's coverability is in CNF (dual)?}
+For brevity,
+we will omit proof of the equivalence
+\todomaybe{Write the proof. May require many definitions.}
+and simply use Definition \label{def:coverable},
+which is sufficient for our purpose.
+
+\section{Interval Boolean functions}
 
 \begin{definition}[$k$-interval Boolean function]
 \label{def:kibf}
