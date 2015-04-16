@@ -136,16 +136,18 @@ in the valuation).
 
 % http://en.wikipedia.org/wiki/Disjunctive_normal_form
 \begin{definition}[\Acrlong{dnf}]
-A propositional logic formula $\mathcal{F}$
-is in \definiendum{\acrfull{dnf}} if and only if
-$\mathcal{F}$ is a disjunction of terms,
-where \definiendum{terms}
-are elementary\footnote{In an elementary conjunction
-of literals,
-no variable appears in both polarities.
-A trivial example of a non-elementary conjunction
-is $x_1 \overline{x_1}$.}
-conjunctions of literals.
+% Dubovsky2012: Definitions 1.9-1.11, page 3
+A \definiendum{literal} is an occurrence
+of a variable ($x_i$) or its negation ($\nott{x_i}$)
+in a propositional formula.
+
+A \definiendum{term} is
+an elementary conjunction of literals,
+that is a conjunction in which every variable appears
+at most once.
+
+A \definiendum{\acrfull{dnf}} propositional formula
+is a disjunction of terms.
 
 We will often view terms as sets of literals
 and \acrshort{dnf} formulas as sets of terms.
