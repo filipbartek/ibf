@@ -152,16 +152,10 @@ $\intervalfn{f}{n}{\rep{0}{n}}{b}$.
 \end{theorem}
 
 \begin{proof}
-We'll construct a set $V$ of $|\mathcal{T}|$ true points
-no pair of which can be spanned by a single ternary vector.
-\citet{Dubovsky2012} calls such sets
-\quot{orthogonal}.
-\todo{Define orthogonality in chapter Definitions.}
-\todo{Relate to essential sets.}
-Doing so, we'll show a lower bound $|\mathcal{T}|$
-\todo{Refer to a statement that demonstrates properties of orthogonal sets.}
-on the size of feasible solutions,
-proving optimality of $\mathcal{T}$.
+We will construct an orthogonal set $V$
+of size $\size{\mathcal{T}}$.
+With the aid of \autoref{theorem:orthodnf},
+this proves that $\mathcal{T}$ is a minimum spanning set.
 
 Similarly to the spanning vectors,
 the orthogonal true points correspond to $1$-bits of $c$:
@@ -177,19 +171,72 @@ Clearly $|V| = |\mathcal{T}|$.
 Also note that all points in $V$ are smaller than $c$,
 so they are true points.
 
-It's easy to see that any ternary vector that spans two
-different points in $V$ must also span the false point $c$,
-so it can't be a part of the solution.
-\todo{Explain in detail.}
+We need to prove that $V$ is orthogonal.
+Let $x, y \in V$, $x \neq y$.
+Let $o_x$ and $o_y$ be the positions of the symbol $1$
+in $c$
+that were used to construct $x$ and $y$
+($x = \bits{c}{1}{o_x - 1} 0 \bits{c}{o_x + 1}{n}$,
+$y = \bits{c}{1}{o_y - 1} 0 \bits{c}{o_y + 1}{n}$).
+Since $x \neq y$, necessarily $o_x \neq o_y$.
+%Without loss of generality
+%let $o_x < o_y$.
 
-If there was a feasible spanning set
-of size smaller than $|V|$,
-at least one of its vectors would need to span at least
-two points in $V$.
-As we have shown, such ternary vector would necessarily
-also span the false point $c$,
-leading to contradiction with the set's feasibility
-(Theorem \ref{theorem:prefixfeasible}).
+Let $T$ be any ternary vector that spans both $x$ and $y$.
+To see that $T$ must also span the false point $c$,
+note that every component $i$ of $c$
+matches the respective component in at least one of $x,y$
+(for every $i$,
+$\bit{c}{i} = \bit{x}{i}$ or $\bit{c}{i} = \bit{y}{i}$).
+
+\Cref{tab:xyc}
+% \Cref used instead of \autoref for correct capitalization. Make sure the element names match in the packages cleveref and hyperref.
+shows a more detailed comparison
+of the corresponding subvectors of $x$, $y$ and $c$
+in case $o_x < o_y$.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|lllll}
+& $\interval{1}{o_x - 1}$ & $o_x$
+& $\interval{o_x + 1}{o_y - 1}$ & $o_y$
+& $\interval{o_y + 1}{n}$ \\
+\hline
+$x$
+& \underline{$\bits{c}{1}{o_x - 1}$}
+& $0$
+& \underline{$\bits{c}{o_x + 1}{o_y - 1}$}
+& \underline{$\bit{c}{o_y}$}
+& \underline{$\bits{c}{o_y + 1}{n}$} \\
+$y$
+& \underline{$\bits{c}{1}{o_x - 1}$}
+& \underline{$\bit{c}{o_x}$}
+& \underline{$\bits{c}{o_x + 1}{o_y - 1}$}
+& $0$
+& \underline{$\bits{c}{o_y + 1}{n}$} \\
+\hline
+$c$
+& $\bits{c}{1}{o_x - 1}$
+& $\bit{c}{o_x}$
+& $\bits{c}{o_x + 1}{o_y - 1}$
+& $\bit{c}{o_y}$
+& $\bits{c}{o_y + 1}{n}$
+\end{tabular}
+\caption{Subvectors of $x$, $y$ and $c$
+in case $o_x < o_y$.
+The underlined subvectors of $x$ and $y$
+match their counterparts in $c$.}
+\label{tab:xyc}
+\end{table}
+
+%This example demonstrates a basic technique
+%of proving orthogonality of vectors.
+
+We conclude that $V$ is orthogonal
+and since $\size{\mathcal{T}} = \size{V}$,
+$\mathcal{T}$ is a minimum spanning set
+by \autoref{theorem:orthodnf}.
+
 \end{proof}
 
 \section{General case}
