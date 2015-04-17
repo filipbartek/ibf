@@ -420,18 +420,18 @@ as the size of its minimum \acrshort{dnf} representation.
 We will prove the statement by contradiction.
 Let $f$ be a Boolean function such that
 $\apply{ortho}{f} > \apply{dnf}{f}$.
-Let $S$ be an orthogonal set of size $\apply{ortho}{f}$
+Let $V$ be an orthogonal set of size $\apply{ortho}{f}$
 and $\mathcal{T}$ be any spanning set
 of size $\apply{dnf}{f}$
 (such spanning set exists because of the correspondence
 between \acrshort{dnf} representations and spanning sets).
-Since $\size{\mathcal{T}} < \size{S}$
+Since $\size{\mathcal{T}} < \size{V}$
 and $\mathcal{T}$ spans $TP(f) \supseteq S$,
 there must be a ternary vector $T \in \mathcal{T}$
 that spans
-two distinct vectors $x, y \in S$.
+two distinct vectors $x, y \in V$.
 However,
-since $S$ is orthogonal,
+since $V$ is orthogonal,
 $x$ is orthogonal to $y$,
 so $T$ necessarily spans a false point,
 which contradicts the premise that $\mathcal{T}$
