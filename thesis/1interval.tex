@@ -251,8 +251,9 @@ $\rep{0}{n} < a < b < \rep{1}{n}$.
 If $a$ and $b$ have the same \acrshort{msb},
 we recursively span
 $\interval{\bits{a}{2}{n}}{\bits{b}{2}{n}}$
-and prepend the \acrshort{msb}
+and prepend the common \acrshort{msb}
 to the solution.
+This clearly preserves both feasibility and optimality.
 
 Let us now consider the case when
 $\bit{a}{1} \neq \bit{b}{1}$.
@@ -261,7 +262,7 @@ necessarily $\bit{a}{1} = 0$
 and $\bit{b}{1} = 1$.
 This restriction leaves us with
 four possible combinations of pairs
-of \acrshort{msb}s:
+of leading bits of $a$ and $b$:
 
 \begin{enumerate}
 \item $\bits{a}{1}{2} = 01$, $\bits{b}{1}{2} = 10$
