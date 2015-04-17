@@ -46,10 +46,10 @@ color=yellow,#1]{#2}}
 \newcommand{\textbits}[3]{#1\textinterval{#2}{#3}}
 \newcommand{\booldom}{\curly{0, 1}} % Boolean domain
 \newcommand{\intervalfn}[4]{#1^{#2}_{\interval{#3}{#4}}}
-\newcommand{\rep}[2]{#1^{\curly{#2}}}
+\newcommand{\rep}[2]{#1^{\curly{#2}}} % symbol repetition
 \newcommand{\textrep}[2]{#1\textcurly{#2}}
 \newcommand{\definiendum}[1]{\emph{#1}}
-\newcommand{\valuation}[2]{\apply{#1}{#2}}
+\newcommand{\valuation}[2]{\apply{#1}{#2}} % Propositional formula substitution
 
 \newcommand{\quantify}[3]{(#1 #2) [#3]}
 \newcommand{\ex}[2]{\quantify{\exists}{#1}{#2}}
@@ -60,6 +60,6 @@ color=yellow,#1]{#2}}
 \newcommand{\size}[1]{\vertical{#1}}
 
 \newcommand{\textneq}{≠}
-\newcommand{\nat}{\curly{0, 1, \ldots}}
+\newcommand{\nat}{\curly{0, 1, \ldots}} % Natural numbers
 
 \endinput
