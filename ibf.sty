@@ -8,7 +8,9 @@
 \RequirePackage{mathtools}
 \DeclarePairedDelimiter{\round}{(}{)}
 \DeclarePairedDelimiter{\bracketsquare}{[}{]}
+\newcommand{\textbracketsquare}[1]{[#1]}
 \DeclarePairedDelimiter{\curly}{\{}{\}}
+\newcommand{\textcurly}[1]{\{#1\}}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \DeclarePairedDelimiter{\vertical}{|}{|}
 
@@ -35,13 +37,17 @@ color=yellow,#1]{#2}}
 
 % Macros
 \newcommand{\interval}[2]{\bracketsquare{#1, #2}}
+\newcommand{\textinterval}[2]{\textbracketsquare{#1,#2}}
 \newcommand{\compl}[1]{\overline{#1}}
 \newcommand{\finterval}[2]{\compl{\interval{#1}{#2}}}
 \newcommand{\bit}[2]{#1^{[#2]}}
+\newcommand{\textbit}[2]{#1\textbracketsquare{#2}}
 \newcommand{\bits}[3]{#1^{\interval{#2}{#3}}}
+\newcommand{\textbits}[3]{#1\textinterval{#2}{#3}}
 \newcommand{\booldom}{\curly{0, 1}} % Boolean domain
 \newcommand{\intervalfn}[4]{#1^{#2}_{\interval{#3}{#4}}}
 \newcommand{\rep}[2]{#1^{\curly{#2}}}
+\newcommand{\textrep}[2]{#1\textcurly{#2}}
 \newcommand{\definiendum}[1]{\emph{#1}}
 \newcommand{\valuation}[2]{#1 \round{#2}}
 \newcommand{\quantify}[3]{(#1 #2) [#3]}
