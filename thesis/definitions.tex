@@ -543,10 +543,14 @@ examples of interval functions.
 \begin{tabular}{lll}
 Interval function & Propositional formula & Description \\
 \hline
-$\intervalfn{f}{2}{11}{11}$ &
-$x_1 \wedge x_2$ & Conjunction \\
-$\intervalfn{f}{2}{01}{11}$ &
-$x_1 \vee x_2$ & Disjunction \\
+%$\intervalfn{f}{2}{11}{11}$ &
+%$x_1 \wedge x_2$ & Conjunction \\
+%$\intervalfn{f}{2}{01}{11}$ &
+%$x_1 \vee x_2$ & Disjunction \\
+$\intervalfn{f}{n}{\rep{1}{n}}{\rep{1}{n}}$ &
+$\bigwedge_i{x_i}$ & Conjunction \\
+$\intervalfn{f}{n}{\rep{0}{n-1} 1}{\rep{1}{n}}$ &
+$\bigvee_i{x_i}$ & Disjunction \\
 $\intervalfn{f}{n}{\rep{0}{n}}{\rep{1}{n}}$ &
 $1$ (an empty term) & Tautology \\
 $\intervalfn{f}{n}{\rep{0}{n-1} 1}{\rep{1}{n-1} 0}$ &
