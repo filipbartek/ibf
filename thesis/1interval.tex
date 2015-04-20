@@ -284,23 +284,37 @@ Note, however, that the proof of optimality is implicitly
 based on building an orthogonal set of the same size
 as the computed spanning set.
 
-\todo[inline]{Consider spelling the leading bits of $a$ and $b$ explicitly, for example $00 a'$ in place of $a$.}
+We will denote $\bits{a}{3}{n}$ with $\hat{a}$
+($a = \bits{a}{1}{2} \hat{a}$)
+and $\bits{b}{3}{n}$ with $\hat{b}$
+($b = \bits{b}{1}{2} \hat{b}$).
 
 \subsection{\texorpdfstring
 {$\bits{a}{1}{2} = 01$ and $\bits{b}{1}{2} = 10$}
 {\textbits{a}{1}{2} = 01 and \textbits{b}{1}{2} = 10}
 }
 
-In this case,
-we'll span the two sub-intervals
-$\interval{a}{0 \rep{1}{n-1}}$
+In this case
+we span the two sub-intervals
+$\interval{01 \hat{a}}{01 \rep{1}{n-2}}$
 and
-$\interval{1 \rep{0}{n-1}}{b}$
+$\interval{10 \rep{0}{n-2}}{10 \hat{b}}$
 separately.
-Note that after leaving out the initial shared bit,
-they are prefix and suffix interval, respectively,
-so the algorithm from section \ref{sec:prefixsuffix}
-can be used to span each of the sub-intervals.
+
+The endpoints of the sub-interval
+$\interval{01 \hat{a}}{01 \rep{1}{n-2}}$
+share the leading bit $0$.
+This means that this sub-interval is immediately
+reduced to the suffix instance
+$\interval{1 \hat{a}}{1 \rep{1}{n-2}}$,
+which can be spanned using the suffix algorithm
+show in \autoref{sec:prefixsuffix}.
+
+The remaining sub-interval
+$\interval{10 \rep{0}{n-2}}{10 \hat{b}}$
+is reduced to a prefix interval
+$\interval{0 \rep{0}{n-2}}{0 \hat{b}}$
+in a similar fashion.
 
 \subsection{\texorpdfstring
 {$\bits{a}{1}{2} = 00$ and $\bits{b}{1}{2} = 10$}
@@ -312,25 +326,25 @@ In this case,
 we divide the interval into three sub-intervals:
 
 \begin{itemize}
-\item $\interval{a}{00 \rep{1}{n-2}}$
+\item $\interval{00 \hat{a}}{00 \rep{1}{n-2}}$
 \item $\interval{01 \rep{0}{n-2}}{01 \rep{1}{n-2}}$
-\item $\interval{10 \rep{0}{n-2}}{b}$
+\item $\interval{10 \rep{0}{n-2}}{10 \hat{b}}$
 \end{itemize}
 
-The subinterval
+The sub-interval
 $\interval{01 \rep{0}{n-2}}{01 \rep{1}{n-2}}$
 is spanned by the single ternary vector
 $01 \rep{\phi}{n-2}$.
 
-The subintervals
-$\interval{a}{00 \rep{1}{n-2}}$
+The sub-intervals
+$\interval{00 \hat{a}}{00 \rep{1}{n-2}}$
 and
-$\interval{10 \rep{0}{n-2}}{b}$
+$\interval{10 \rep{0}{n-2}}{10 \hat{b}}$
 are spanned together as follows:
 
 \begin{itemize}
 \item Recursively solve the $(n-1)$-bit instance
-$\interval{0 \bits{a}{3}{n}}{1 \bits{b}{3}{n}}
+$\interval{0 \hat{a}}{1 \hat{b}}
 = \interval{\bit{a}{1} \bits{a}{3}{n}}{\bit{b}{1} \bits{b}{3}{n}}$
 \item Insert a $0$-bit in the second position
 of the vectors from the resulting spanning set
