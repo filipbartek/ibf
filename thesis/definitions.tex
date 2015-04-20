@@ -9,6 +9,14 @@ and \citet{Husek2014, Husek2015}.
 
 Throughout the thesis we will use vectors
 over small finite domains extensively.
+We shall write a vector as a sequence of symbols
+and vectors.
+For example, if $v$ is a vector of length $n$,
+then $00v11$ denotes a vector of length $n+4$
+whose leading two components have the value $0$,
+trailing two components have the value $1$
+and $i$-th component for $i \in \curly{3, \ldots, n+2}$
+has the value of the $(i-2)$-th component of $v$.
 
 \begin{definition}[Component extraction $\bit{v}{i}$]
 Let $v$ be a vector of length $n$ and $1 \leq i \leq n$.
@@ -24,22 +32,13 @@ Then $\bits{v}{a}{b}$ is the subvector of $v$
 that starts at $a$-th position
 and ends at $b$-th position
 ($\bits{v}{a}{b}
-= (\bit{v}{a}, \bit{v}{a+1},
-\ldots, \bit{v}{b-1}, \bit{v}{b})$).
+= \bit{v}{a} \bit{v}{a+1}
+\ldots \bit{v}{b-1} \bit{v}{b}$).
+\todomaybe{Change $\ldots$ to $\cdots$.}
 \end{definition}
 
 Notably,
-$v = \round{\bit{v}{1}, \ldots, \bit{v}{n}} = \bits{v}{1}{n}$.
-
-\begin{definition}[Concatenation $uv$]
-Let $u, v$ be vectors of lengths $m, n$ respectively.
-Then $uv = (u_1, \ldots, u_m, v_1, \ldots, v_n)$
-is the concatenation of the vectors $u, v$.
-\end{definition}
-
-Note that we will use symbols
-and vectors of length $1$ interchangeably,
-for example $v = \bit{v}{1} \bit{v}{2} \ldots \bit{v}{n}$.
+$v = \bit{v}{1} \ldots \bit{v}{n} = \bits{v}{1}{n}$.
 
 \begin{definition}[Symbol repetition $\rep{\alpha}{n}$]
 Let $\alpha$ be a symbol (for example $0$ or $1$)
