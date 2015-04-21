@@ -36,9 +36,7 @@ by joining the adjoint
 \todo{Is "adjoint" a good word for this quality?}
 intervals.
 
-\section{Algorithm}
-
-\subsection{Description}
+\section{Description}
 
 \begin{description}
 \item[Input] Numbers $a_1, b_1, \ldots, a_k, b_k$
@@ -86,7 +84,7 @@ $b_k = 2^n - 1$,
 $j = n$,
 $j = n - 1$.}
 
-\subsection{Feasibility}
+\section{Feasibility}
 \begin{theorem}
 The algorithm spans exactly
 $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
@@ -101,7 +99,8 @@ by the suffix and prefix procedure.
 \todo{Go into more detail.}
 \end{proof}
 
-\subsection{Approximation ratio}
+\section{Approximation ratio}
+
 \begin{theorem}
 \label{theorem:2kapproxratio}
 Let $\mathcal{T}_{opt}$ be an optimal spanning set of
