@@ -1,4 +1,65 @@
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
 
-\todo[inline]{Finish.}
+We have shown that
+with respect to finding
+a minimum \acrshort{dnf} representation,
+$2$-switch $2$-interval functions
+can be reduced to $1$-interval functions.
+
+Then we showed that for every $l \geq 3$,
+there is an $l$-switch function that is not coverable,
+extending \citeauthor{Dubovsky2012}'s result
+about $3$-switch functions.
+This suggests that possible future algorithms
+that optimally span multi-interval functions
+are going to require a different approach
+for proving optimality.
+
+To remedy the difficulty with spanning multi-interval
+functions,
+we introduced a $2k$-approximation algorithm
+for minimizing \acrshort{dnf} representations
+of $k$-interval functions.
+The algorithm naturally extends
+\citeauthor{Schieber2005154}'s suffix-prefix
+approximation algorithm
+for disjoint spanning sets of $1$-interval functions
+\citep[section 6]{Schieber2005154}.
+\todo{Cite in section 2kapprox as well.}
+Our algorithm produces disjoint spanning sets
+and has the approximation ratio of $2k$
+for the problem of finding
+a minimum disjoint representation as well.
+
+Some interesting questions are still left to be answered
+regarding multi-interval Boolean functions.
+Since general Boolean minimization is
+$\Sigma_2^p$-hard \citep{Umans1998},
+there must
+\todo{Really? Probably yes; note that we can translate a $k$-interval function in a spanning set of size $2kn$.}
+be some $k$ such that minimization
+of $k$-interval functions is $\Sigma_2^p$-hard,
+and a $k'$ for which minimization is NP-hard.
+\citeauthor{Schieber2005154} showed that such $k' > 1$,
+which is the only bound shown so far.
+There is a substantial difference
+between $1$- and $2$-interval functions
+since the former are coverable in general,
+while the latter are not.
+This prevents us from using a similar approach
+to minimizing $2$-interval functions.
+I suspect this difference could correspond to
+a difference in computational complexity of the problem.
+\todo{Is it a good idea to "suspect" in a thesis?}
+\todomaybe{Suspect more explicitly, e.g. $3$-switch functions are NP-hard.}
+
+The $2k$-approximation algorithm presented in this thesis
+is constructed so that we can use the orthogonal sets
+for proving the approximation ratio.
+There may be a better approximation algorithm
+for $k$-interval functions
+\todo{We may have shown a better one in \texttt{betterapprox}.}
+and searching for it could provide an interesting insight
+in proving lower bounds for minimum \acrshort{dnf}
+representation size of the functions in question.
