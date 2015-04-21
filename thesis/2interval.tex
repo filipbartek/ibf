@@ -522,17 +522,143 @@ and the size of its minimum spanning set is
 on sizes of orthogonal sets and spanning sets
 by exhaustion using software tools.
 
-\todo[inline]{Try to generalize for larger
-number of switches.
-Prepend two bits to Dubovsky's example and
-add a true point at far right.
-This increments size of the spanning set and
-size of the orthogonal set
-and number of switches.
-Iterating increases number of switches by two
--- however, we can also start with Dubovsky's
-example of $4$-switch non-coverable function.}
+This result shows that $3$-switch functions
+are not coverable in general.
+
+We will generalize the result for functions
+with larger number of switches.
+
+\begin{lemma}
+If there is an $l$-switch function that is not coverable,
+then there is also an $(l+1)$-switch function
+that is not coverable.
+\end{lemma}
+
+\begin{proof}
+Let $f$ be an $n$-ary $l$-switch function
+that is not coverable.
+
+\begin{enumerate}
+\item $\apply{f}{\rep{1}{n}} = 1$:
+
+Let $f'$ be an $(n+1)$-ary function
+defined in the following way:
+
+\[
+\apply{f'}{x'} =
+\begin{cases}
+\apply{f}{\bits{x'}{2}{n+1}} & \text{if } \bit{x'}{1} = 0 \\
+0 & \text{if } \bit{x'}{1} = 1
+\end{cases}
+\]
+
+Since $f$ is $l$-switch,
+there are exactly $l$ vectors $x$ of length $n$
+($x < \rep{1}{n}$)
+such that $\apply{f}{x} \neq \apply{f}{x+1}$.
+Prepending a $0$ to each of these vectors,
+we get $l$ vectors $x'$ of length $n+1$
+such that $\apply{f'}{x'} \neq \apply{f'}{x'+1}$.
+The $(l+1)$-st \quot{switch} vector of $f'$
+is $0 \rep{1}{n}$,
+since $\apply{f'}{0 \rep{1}{n}} = 1$
+and $\apply{f'}{1 \rep{0}{n}} = 0$.
+\todo{Prove that $f'$ doesn't have more switch vectors.}
+Thus we have shown that $f'$ is $(l+1)$-switch.
+
+It is easy to see that there is
+a size preserving 1-1 correspondence
+between the spanning sets of $f$ and $f'$.
+The same holds for orthogonal sets.
+\todomaybe{Elaborate.}
+This proves that if $f$ is not coverable,
+neither is $f'$.
+
+\item $\apply{f}{\rep{1}{n}} = 0$:
+
+Let $f'$ be an $(n+1)$-ary function
+defined in the following way:
+
+\[
+\apply{f'}{x'} =
+\begin{cases}
+\apply{f}{\bits{x'}{2}{n+1}} & \text{if } \bit{x'}{1} = 0 \\
+0 & \text{if } x' \in \interval{1 \rep{0}{n}}{\rep{1}{n} 0} \\
+1 & \text{if } x' = \rep{1}{n+1}
+\end{cases}
+\]
+
+\todo[inline]{Note that with Kucera on 15 April 2015, we found it necessary for $f$ to also have the false point $\rep{1}{n-1} 0$ for the procedure to work. I believe that the proof also works in the other case as well.}
+
+%f' is l+1 swtich
+Again,
+the $l$ switches of $f$ translate to $l$ switches of $f'$
+by prepending a $0$.
+The $(l+1)$-st switch is $\rep{1}{n} 0$ in this case.
+
+%f' is not coverable
+\begin{description}
+\item[$dnf(f') \geq dnf(f) + 1$]
+We need a special ternary vector to span the true point
+$\rep{1}{n+1}$ in $f'$.
+If a ternary vector spanned both $\rep{1}{n+1}$
+and $0 x$,
+it would necessarily also span the false point
+$0 \rep{1}{n}$.
+
+If we could span $f'$ with less than $dnf(f) + 1$ vectors,
+we could span $f$ with less than $dnf(f)$ vectors,
+since given a spanning set of $f'$,
+leaving out the vector
+that spans the true point $\rep{1}{n+1}$
+and removing the leading symbol of the rest
+(necessarily a $0$)
+gives a spanning set of $f$.
+
+\item[$ortho(f') \leq ortho(f) + 1$]
+To get a contradiction,
+let $V'$ be an orthogonal set of $f'$
+of size $ortho(f) + 2$.
+Let $V = \curly{\bits{v'}{2}{n+1} | v' \in V'
+\text{ and } \bit{v'}{1} = 0}$.
+Since $V'$ only consists of true points of $f'$,
+there can be at most one vector in $V'$
+that starts with a $1$.
+It follows that
+$\size{V} \geq \size{V'} - 1 = ortho(f) + 1$.
+$V$ is an orthogonal set of $f$ --
+if $0 u$ and $0 v$ are orthogonal in $f'$,
+every ternary vector that spans them must span
+a false point $0 x$.
+Leaving out the leading symbol preserves the relation,
+and thus orthogonality as well.
+We have shown an orthogonal set of $f$ of size at least
+$ortho(f) + 1$,
+which contradicts the premise that $ortho(f)$ is the size
+of a maximum orthogonal set of $f$.
+\end{description}
+
+Putting the inequalities together:
+
+\[
+ortho(f') \leq ortho(f) + 1 < dnf(f) + 1 = dnf(f')
+\]
+
+We conclude that $f'$ is an $(l+1)$-switch non-coverable
+function.
+\end{enumerate}
+\end{proof}
+
+We conclude with the following theorem:
+
+\begin{theorem}
+For any $l \geq 3$,
+there is an $l$-switch non-coverable function.
+
+Moreover, the arity of such function can be as small as
+$l+1$.
+\end{theorem}
 
 This result indicates that minimizing the \acrshort{dnf}
-representation of $3$-switch functions
+representation of functions that have at least $3$ switches
 requires a different approach for proving optimality.
