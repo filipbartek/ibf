@@ -568,3 +568,27 @@ Equivalence
 \caption{Examples of interval functions}
 \label{tab:exampleintfns}
 \end{table}
+
+\section{\texorpdfstring{$l$}{l}-switch Boolean functions}
+
+When we discuss $2$-interval functions
+in \autoref{chap:2interval},
+we will find another distinction
+of Boolean functions useful.
+It is based on the concept of switch
+as introduced by \citet{Husek2014,Husek2015}.\footnote{
+\citeauthor{Husek2014} first used the Czech term
+\quot{\foreignlanguage{czech}{zlom}}
+in his thesis \citep[p.~13]{Husek2014}
+and later translated the term as \quot{switch}
+in personal communication \citep{Husek2015}.
+}
+
+\begin{definition}[$l$-switch function]
+A Boolean function $f$ is \definiendum{$l$-switch}
+if and only if
+there are exactly $l$ input vectors $x$ such that
+$f(x) \neq f(x+1)$.
+
+We call such vectors \definiendum{switches} of $f$.
+\end{definition}
