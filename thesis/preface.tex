@@ -1,4 +1,55 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-\todo[inline]{Write a proper introduction.}
+Boolean functions defined by intervals were introduced
+by \citet{Schieber2005154}.
+A pair of $n$-bit numbers $a, b$
+defines a $1$-interval function
+$\intervalfn{f}{n}{a}{b}$:
+
+\[
+\apply{\intervalfn{f}{n}{a}{b}}{x} = 1
+\iff a \leq x \leq b
+\]
+
+\citeauthor{Schieber2005154} showed an efficient method
+to find minimum \acrshort{dnf} representation
+of any $1$-interval Boolean function
+given by a pair of endpoints.
+
+Since the problem of Boolean minimization is in general
+$\Sigma_2^p$-complete \citep{Umans1998},
+\todo{Does Umans show this for term-wise minimization as well?}
+there is an interesting question of how difficult it is
+to minimize \acrshort{dnf} representation of
+a function defined by a set of intervals.
+\citeauthor{Dubovsky2012} investigated the problem
+for $2$-interval functions.
+
+In this thesis we review the existing results regarding
+minimization of \acrshort{dnf} representations of
+single- and multi-interval functions,
+and then present 3 new results:
+
+\begin{itemize}
+\item a simplified algorithm
+for minimizing \acrshort{dnf} representations
+of $2$-switch
+\todo{Define switch in Definitions.}
+$2$-interval functions (\autoref{sec:2int2switch}),
+\item
+show that the technique used for proving the optimality
+of the algorithms that minimize
+\acrshort{dnf} representation
+of $1$- and $2$-switch functions
+can not be used in
+functions with $3$ or more switches
+(\autoref{sec:3switch}) and
+\item
+introduce an algorithm
+for $k$-interval functions
+which gives a solution which is at worst
+$2k$ times larger than an optimal one
+(\autoref{chap:2kapprox}).
+\end{itemize}
+\todomaybe{Mention the "Better approximation is hard" result.}
