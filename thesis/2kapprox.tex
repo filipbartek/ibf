@@ -89,9 +89,9 @@ since $a_i \leq b_i$ and $a_i \neq b_i$.
 Now let $a'' = \bits{a_i}{j+2}{n}$
 and $b'' = \bits{b_i}{j+2}{n}$.
 Optimally span the suffix interval
-$\interval{a''}{1^{n-j-1}}$
+$\interval{a''}{\rep{1}{n-j-1}}$
 and the prefix interval
-$\interval{0^{n-j-1}}{b''}$
+$\interval{\rep{0}{n-j-1}}{b''}$
 using the (linear time) algorithm
 introduced in Section \ref{sec:prefixsuffix}.
 Prepend $\bits{a_i}{1}{j+1}$
