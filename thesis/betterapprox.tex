@@ -25,4 +25,175 @@ In order to do this,
 we will construct a class of \quot{hard} multi-interval
 Boolean functions.
 
+\section{Approximation-hard functions}
+
+Let $l \geq 1$
+denote the length of the interval prefix.
+Then $k = 2^{l-1} + 1$
+is the number of intervals
+of the multi-interval function we construct.
+Let $n \geq l+2$ be the target function arity.
+We will construct
+a proper $k$-interval $n$-ary function
+that consists of $2$ short intervals and $2^{l-1} - 1$
+long intervals.
+
+The short intervals reside in the subtrees associated
+with the prefixes $\rep{0}{l}$ and $\rep{1}{l}$:
+
+\begin{itemize}
+\item
+$\interval{a_1}{b_1} =
+\interval{\rep{0}{l} \; \rep{0}{n-l-1} 1}
+{\rep{0}{l} \; \rep{1}{n-l-1} 0}$
+\item
+$\interval{a_k}{b_k} =
+\interval{\rep{1}{l} \; \rep{0}{n-l-1} 1}
+{\rep{1}{l} \; \rep{1}{n-l-1} 0}$
+\end{itemize}
+
+The long intervals reside in the remaining subtrees
+and each of them intersects two of them:
+
+\begin{itemize}
+\item
+$\interval{a_2}{b_2} =
+\interval{\rep{0}{l-2} 01 \; \rep{0}{n-l-1} 1}{\rep{0}{l-2} 10 \; \rep{1}{n-l-1} 0}$
+\item
+$\interval{a_3}{b_3} =
+\interval{\rep{0}{l-3} 011 \; \rep{0}{n-l-1} 1}{\rep{0}{l-3} 100 \; \rep{1}{n-l-1} 0}$
+\item \vdots
+\todo{Typeset better; esp. don't show the bullet here.}
+\item
+$\interval{a_{k-1}}{b_{k-1}} =
+\interval{\rep{1}{l-2} 01 \; \rep{0}{n-l-1} 1}{\rep{1}{l-2} 10 \; \rep{1}{n-l-1} 0}$
+\end{itemize}
+
+In other words,
+for $i \in \curly{2, \ldots, k-1 = 2^{l-1}}$,
+the prefix of the endpoint $a_i$,
+denoted $p_i$,
+is the $l$-bit number $2 (i-2) + 1$
+(note that $p_i$s exhaust all the odd numbers
+between $1 = \rep{0}{l-2} \; 01$
+and $2^l - 3 = \rep{1}{l-2} \; 01$).
+Using $p_i$ we get the endpoints of the $i$-th interval:
+
+\begin{itemize}
+\item $a_i = (p_i \; \rep{0}{n-l-1} 1)$
+\item $b_i = ((p_i + 1) \; \rep{1}{n-l-1} 0)$
+\end{itemize}
+
+Note that $a_i$ for every $i$
+ends with the suffix $\rep{0}{n-l-1} 1$
+($\bits{a_i}{l+1}{n} = \rep{0}{n-l-1} 1$)
+and $b_i$ always ends with the suffix $\rep{1}{n-l-1} 0$.
+The $l$-bit prefixes of $a_i$ and $b_i$
+are either equal
+in case $i \in \curly{1, k}$,
+or successive numbers in case
+$i \in \curly{2, \ldots, k-1}$.
+
+We claim that $f =
+f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+can be spanned with as few as $n$
+\todo{Really?}
+ternary vectors,
+while the approximation algorithm produces a spanning set
+of size [?].
+\todo{Insert the number here.}
+
+\begin{lemma}
+[$dnf(f) \leq n$]
+The function
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+defined above can be spanned with as few as $n$ vectors.
+\end{lemma}
+
+\begin{proof}
+First observe that $f$
+has a limited number of false points,
+as each pair of successive intervals
+is separated by just two false points
+and there are just two false points
+which do not lie between the intervals
+(they are the two extreme outer points
+$\rep{0}{n}$ and $\rep{1}{n}$).
+There are $2k$ false points in total,
+each of them being either $a_i - 1$ or $b_i + 1$
+for some $i$.
+
+To span $f$,
+we first span the intervals
+$\interval{j \; \rep{0}{n-l-1} 1}{j \; \rep{1}{n-l-1} 0}$
+for every $j \in \booldom^l$.
+The set
+$\mathcal{T}_{in} =
+\curly{\phi^l \; s |
+s \text{ is a cyclic shift of } 01 \phi^{n-l-2}}$
+exactly spans the union of the intervals
+$\interval{j \; \rep{0}{n-l-1} 1}{j \; \rep{1}{n-l-1} 0}$.
+To see that it actually does,
+observe that for every $j$,
+we want to span all the vectors with prefix $j$
+except the two vectors $(j \; \rep{0}{n-l})$
+and $(j \; \rep{1}{n-l})$.
+The cyclic shifts of $01 \phi^{n-l-2}$ span exactly
+all the numbers with the exception of
+$\rep{0}{n-l}$ and $\rep{1}{n-l}$,
+since every number that contains both a $0$ and a $1$
+has some position $i$ such that
+$\bit{x}{i} = 0$
+and $\bit{x}{(i+1) \mod (n-l)} = 1$.
+The size of $\mathcal{T}_{in}$ is clearly $n-l$.
+
+We are left with two true points to span
+in each of the long intervals.
+There are $k-2 = 2^{l-1} - 1$ long intervals.
+Spanning each of the remaining true points separately,
+we get $\mathcal{T}_{out}$ of size
+$2(k-2) = 2(2^{l-1}-1) = 2^l - 2$.
+\todo[inline]{Use a better algorithm -- one that produces merely $n+l-2$ vectors.}
+
+%In total we use
+%$2^l$ vectors to span $f$.
+\end{proof}
+
+\begin{center}
+\begin{tabular}{l|llll}
+$l$
+& $k = 2^{l-1} + 1$
+& $\size{\mathcal{T}_{approx}} = 2^l (n-l)$
+& $\size{\mathcal{T}} = n + l - 2$
+& $\lim_{n \rightarrow \infty}
+{\frac{\size{\mathcal{T}_{approx}}}{\size{\mathcal{T}}}}$
+\\
+\hline
+$1$ & $2$ & $2n-4$ & $n-1$ & $2$ \\
+$2$ & $3$ & $4n-8$ & $n$ & $4$ \\
+$3$ & $5$ & $8n-24$ & $n+1$ & $8$ \\
+$4$ & $9$ & $16n-64$ & $n+2$ & $16$
+\end{tabular}
+\end{center}
+
+\[
+\lim_{n \rightarrow \infty}{
+\frac{\size{\mathcal{T}_{approx}}}{\size{\mathcal{T}}}
+}
+=
+2^l
+\]
+
+\[
+\lim_{l \rightarrow \infty}{
+\frac{
+\lim_{n \rightarrow \infty}{
+\frac{\size{\mathcal{T}_{approx}}}{\size{\mathcal{T}}}
+}
+}{k}
+}
+=
+2
+\]
+
 \todo[inline]{Finish.}
