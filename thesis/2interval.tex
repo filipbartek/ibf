@@ -57,6 +57,7 @@ a $2$-switch Boolean function such that $f(0) = 0$
 is $1$-interval.
 
 \section{\texorpdfstring{$2$}{2}-switch functions}
+\label{sec:2int2switch}
 
 \newcommand{\ftwointtwoswitch}[4]
 {#1^{#2}_{\interval{\rep{0}{#2}}{#3},
@@ -496,14 +497,20 @@ In $1$-switch (prefix and suffix)
 and $2$-switch ($1$-interval and $2$-interval
 with extreme outer endpoints)
 functions,
-we have implicitly \todo{Make it explicit.}
-used so-called orthogonal sets \todo{Cite Dubovsky.}
-for proving optimality of the spanning sets
-produced by our algorithms.
-\todo{Draw connection to \quot{essential sets}.}
+we managed to efficiently find minimum spanning sets.
+The proofs of optimality of the spanning sets
+depend on construction of sufficiently large
+orthogonal sets.\footnote{While we have only shown
+an orthogonal set explicitly
+in the case of prefix interval (\autoref{sec:prefix}),
+the other cases use orthogonal sets implicitly,
+both in \citep{Schieber2005154}
+and \autoref{sec:2int2switch}.}
+Doing so, we depended on \emph{coverability}
+of the functions in question.
 
-However,
-\citeauthor{Dubovsky2012} has identified a $3$-switch function
+\citeauthor{Dubovsky2012} has identified
+a $3$-switch function
 whose maximum orthogonal set is strictly smaller than its
 minimum spanning set.
 The function is
