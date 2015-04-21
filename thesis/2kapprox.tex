@@ -60,11 +60,32 @@ of a proper $k$-interval Boolean function.
 \end{description}
 
 \paragraph{Procedure}
-The algorithm goes through
-all the intervals $\interval{a_i}{b_i}$.
-For each $i$, the longest common prefix of $a_i$ and $b_i$
-is computed. Let $j$ be its length.
-Note that $\bit{a}{j+1} = 0$ and $\bit{b}{j+1} = 1$.
+The algorithm spans each of
+the intervals $\interval{a_i}{b_i}$ separately.
+The set that spans $\interval{a_i}{b_i}$ will be denoted
+$\mathcal{T}_i$,
+and the output set will be denoted
+$\mathcal{T} = \Cup_{i=1}^k{\mathcal{T}_i}$.
+\todo{Typeset union as Bigcup.}
+
+For each $i$,
+the longest common prefix of $a_i$ and $b_i$
+is computed.
+Let $j$ be its length.
+
+If $j = n$, that is $a_i = b_i$,
+$\mathcal{T}_i$ consists of the single vector $a_i = b_i$.
+
+If $j = n-1$,
+that is $\bits{a_i}{1}{n-1} = \bits{b_i}{1}{n-1}$,
+$\bit{a_i}{n} = 0$ and $\bit{b_i}{n} = 1$,
+$\mathcal{T}_i$ consists of the single vector
+$\bits{a_i}{1}{n-1} \phi = \bits{b_i}{1}{n-1} \phi$.
+
+We are left with the situation $j < n-1$.
+
+Note that $\bit{a_i}{j+1} = 0$ and $\bit{b_i}{j+1} = 1$,
+since $a_i \leq b_i$ and $a_i \neq b_i$.
 Now let $a'' = \bits{a_i}{j+2}{n}$
 and $b'' = \bits{b_i}{j+2}{n}$.
 Optimally span the suffix interval
