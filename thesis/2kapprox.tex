@@ -87,12 +87,13 @@ We are left with the situation $j < n-1$.
 
 Note that $\bit{a_i}{j+1} = 0$ and $\bit{b_i}{j+1} = 1$,
 since $a_i \leq b_i$ and $a_i \neq b_i$.
-Now let $a'' = \bits{a_i}{j+2}{n}$
-and $b'' = \bits{b_i}{j+2}{n}$.
+Now let $a' = \bits{a_i}{j+2}{n}$
+and $b' = \bits{b_i}{j+2}{n}$
+($a_i = c 0 a'$ and $b_i = c 1 b'$).
 Optimally span the suffix interval
-$\interval{a''}{\rep{1}{n-j-1}}$
+$\interval{a'}{\rep{1}{n-j-1}}$
 and the prefix interval
-$\interval{\rep{0}{n-j-1}}{b''}$
+$\interval{\rep{0}{n-j-1}}{b'}$
 using the (linear time)
 \todomaybe{Leave out "(linear time)".}
 algorithm
