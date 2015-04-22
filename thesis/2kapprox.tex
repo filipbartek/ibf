@@ -73,14 +73,15 @@ Let $c$ be the longest common prefix of $a_i$ and $b_i$.
 Let $j$ be its length ($\size{c} = j$).
 \todomaybe[inline]{Index $c$ and $j$ with $i$.}
 
-If $j = n$, that is $a_i = b_i$,
-$\mathcal{T}_i$ consists of the single vector $a_i = b_i$.
+If $j = n$, that is $c = a_i = b_i$,
+$\mathcal{T}_i$ consists of the single vector
+$c = a_i = b_i$.
 
 If $j = n-1$,
-that is $\bits{a_i}{1}{n-1} = \bits{b_i}{1}{n-1}$,
+that is $c = \bits{a_i}{1}{n-1} = \bits{b_i}{1}{n-1}$,
 $\bit{a_i}{n} = 0$ and $\bit{b_i}{n} = 1$,
 $\mathcal{T}_i$ consists of the single vector
-$\bits{a_i}{1}{n-1} \phi = \bits{b_i}{1}{n-1} \phi$.
+$c \phi$.
 
 We are left with the situation $j < n-1$.
 
