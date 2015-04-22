@@ -271,11 +271,11 @@ for the disjoint case as well:
 Let $\mathcal{T}_{disjoint}$ be an optimal \emph{disjoint}
 spanning set of
 $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
-and let $\mathcal{T}_{approx}$ be the (disjoint)
+and let $\mathcal{T}$ be the (disjoint)
 spanning set returned by our algorithm.
 We claim that:
 \begin{equation*}
-|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_{disjoint}|
+|\mathcal{T}| \leq 2k |\mathcal{T}_{disjoint}|
 \end{equation*}
 \end{theorem}
 
@@ -292,7 +292,7 @@ $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
 Using Theorem \ref{theorem:2kapproxratio} we get:
 
 \begin{equation*}
-|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_{opt}|
+|\mathcal{T}| \leq 2k |\mathcal{T}_{opt}|
 \leq k |\mathcal{T}_{disjoint}|
 \end{equation*}
 \end{proof}
@@ -304,7 +304,7 @@ The approximation ratio of $2k$ is tight.
 \begin{proof}
 For every $k$ that is a power of $2$
 we'll show a $k$-interval function such that
-$|\mathcal{T}_{approx}| = 2k |\mathcal{T}_{opt}|$
+$|\mathcal{T}| = 2k |\mathcal{T}_{opt}|$
 (following the notation from
 Theorem~\ref{theorem:2kapproxratio}).
 
@@ -347,7 +347,7 @@ since it spans each of the intervals separately
 and uses two vectors for each interval.
 
 We get
-$|\mathcal{T}_{approx}| = 2k |\mathcal{T}_{opt}|$.
+$|\mathcal{T}| = 2k = 2k |\mathcal{T}_{opt}|$.
 
 Note that the optimal spanning set is disjoint,
 so the ratio is tight in disjoint case as well.
