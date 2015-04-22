@@ -162,50 +162,104 @@ the union of the intervals.
 \label{theorem:2kapproxratio}
 Let $\mathcal{T}_{opt}$ be an optimal spanning set of
 $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
-and let $\mathcal{T}_{approx}$ be the spanning set returned
+and let $\mathcal{T}$ be the spanning set returned
 by the algorithm.
 We claim that:
 \begin{equation*}
-|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_{opt}|
+|\mathcal{T}| \leq 2k |\mathcal{T}_{opt}|
 \end{equation*}
 \end{theorem}
 
 \begin{proof}
-Let $\mathcal{T}_x$ be the largest ($n$-bit) spanning set
-of a \quot{suffix} or \quot{prefix} subinterval
-\todo{Clarify: the interval is prefix or suffix
-on $n - j - 1$ bits, but not in general on $n$ bits.}
-added in the algorithm.
-Without loss of generality,
-let the respective subinterval be \quot{prefix}
-$\interval{\bits{b_i}{1}{j+1} \rep{0}{n-j-1}}{b_i}$.
-From Section \ref{sec:prefixsuffix} we know that
-there is an orthogonal set of
-$\interval{\bits{b_i}{1}{j+1} \rep{0}{n-j-1}}{b_i}$
-of size $|\mathcal{T}_x|$,
-and moreover that its orthogonality only depends
-on the false point $b_i + 1$.
-Note, however, that $b_i + 1$ is also a false point in
+To prove the statement,
+we will show an orthogonal set $V$ of the function
 $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
-since $b_i < a_{i+1} - 1$.
-Thus we obtain an orthogonal set of size $|\mathcal{T}_x|$
-for the $k$-interval function,
-limiting the size of its optimal spanning set
-$|\mathcal{T}_{opt}| \geq |\mathcal{T}_x|$
-by \autoref{theorem:orthodnf}.
+of size
+$\size{V} \geq \frac{\size{\mathcal{T}}}{2k}$.
+By \autoref{theorem:orthodnf},
+the existence of such orthogonal set
+gives a lower bound $\size{V}$
+on $\size{\mathcal{T}_{opt}}$.
 
-Since $\mathcal{T}_x$ is the largest
-of the $2k$ partial sets used to span the function
-in the approximation algorithm,
-we know that
-$|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_x|$.
+First, let's consider the case that
+$\size{\mathcal{T}_i} = 1$ for every $i$.
+Note that this can only happen if
+$\bits{a_i}{1}{n-1} = \bits{b_i}{1}{n-1}$ for every $i$.
+In this case,
+the orthogonal set $V$ consists of the single vector $a_1$
+(in fact, we could use any true point
+as every set of size $1$ is trivially orthogonal).
+Since $\size{\mathcal{T}_i} = 1$
+for every $i \in \curly{1, \ldots, k}$,
+$\size{\mathcal{T}} = k$.
+It is now easy to see that
+$\size{V} = 1
+\geq \frac{1}{2} = \frac{k}{2k} =
+\frac{\size{\mathcal{T}}}{2k}$.
 
-Joining the inequalities together we conclude:
+We are now left with the case that
+$\size{\mathcal{T}_i} > 1$ for some $i$.
+Note that this can only happen if
+the corresponding $j < n-1$.
+\todomaybe{Index $j$ with $i$.}
 
-\begin{equation*}
-|\mathcal{T}_{approx}| \leq 2k |\mathcal{T}_x| \leq
-2k |\mathcal{T}_{opt}|
-\end{equation*}
+Let $\mathcal{T}_{i, \alpha}$ be the largest
+of the partial spanning sets of this type
+\todomaybe{Clarify.}
+produced during the course of the algorithm.
+Note that the corresponding
+$\mathcal{T}_i
+= \mathcal{T}_{i, \alpha}
+\cup \mathcal{T}_{i, \compl{\alpha}}$
+need not be the largest of the interval spanning sets
+in case
+$\mathcal{T}_{i, \compl{\alpha}}$ is small.
+
+Without loss of generality,
+\todomaybe{Discuss soundness.}
+let $\alpha = 1$.
+The set $\mathcal{T}_{i, 1}'$
+that exactly spans
+$\interval{\rep{0}{n-j-1}}{b' = \bits{b_i}{j+2}{n}}$
+was in this case obtained
+using the prefix algorithm
+introduced in \autoref{sec:prefix}.
+In the proof of optimality of this algorithm
+(\autoref{proof:prefixoptimal}),
+we showed an orthogonal set that matches the size
+of the spanning set produced by the algorithm.
+Let $V_{i, 1}'$ be this orthogonal set
+of $\interval{\rep{0}{n-j-1}}{b'}$
+($\size{V_{i, 1}'}
+= \size{\mathcal{T}_{i, 1}'}$).
+Recall that the orthogonality of points in $V_{i, 1}'$
+only depends on the single false point $b' + 1$.
+
+Let $V = \curly{c 1 v | v \in V_{i, 1}'}$.
+We claim that $V$ is an orthogonal set of
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
+
+By prepending $c 1$ to $(b' + 1)$
+we get $b_i + 1$.
+\todo{What if $b_i = \rep{1}{n}$?}
+Since $b_i < a_{i+1} - 1$,
+$b_i + 1$ is a false point of
+$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
+It follows that the points in $V$ are orthogonal,
+since their orthogonality only depends on the false point
+$c 1 (b' + 1) = b_i + 1$.
+From \autoref{theorem:orthodnf} we get
+$\size{\mathcal{T}_{opt}} \geq \size{V}$.
+
+Since $\mathcal{T}_{i, \alpha}$ is
+the largest of the at most $2k$ spanning sub-sets
+of this type
+and the spanning sets of the other types are singular
+and less numerous,
+\todo{Clarify.}
+necessarily
+$\size{T} \leq 2k \size{\mathcal{T}_{i, \alpha}}
+= 2k \size{V} \leq 2k \size{\mathcal{T}_{opt}}$.
 \end{proof}
 
 Note that the spanning set returned by the algorithm
