@@ -312,32 +312,44 @@ Let $k = 2^{n_k}$.
 Let $P$ be all the $n_k$-bit numbers,
 that is $P = \booldom^{n_k}$.
 Note that $|P| = 2^{n_k} = k$.
+Let $n = n_k + 3$.
 
 For each $p \in P$,
 we define the interval $\interval{a_p}{b_p}$
-by appending $2$-bit suffixes to $p$:
+by appending certain $3$-bit suffixes to $p$:
 
 \begin{itemize}
-\item $a_p = p 0 0$
-\item $b_p = p 0 1$
+\item $a_p = p 000$
+\item $b_p = p 011$
 \end{itemize}
 
-The first appended bit ($0$ for both $a_p$ and $b_p$)
+The first appended bit
+($0$ for $a_p$ and $0$ for $b_p$)
 ensures that there is at least one false point
 between any pair of intervals defined this way
-(all the points that have $1$ in their $(n_k + 1)$-st
-component are false points).
-The second appended bit ($0$ for $a_p$ and $1$ for $b_p$)
-ensures that the interval has two points,
-so the approximation algorithm will use two vectors
-to span it.
+(all the points that have a $1$ in their $(n_k + 1)$-st
+position are false points).
+
+The remaining pair of appended bits
+($00$ for $a_p$ and $11$ for $b_p$)
+ensures that
+$\bits{a_p}{1}{n-1} \neq \bits{b_p}{1}{n-1}$,
+so the algorithm will span the sub-intervals
+$\interval{a_p = p 000}{p 001}$
+and $\interval{p 010}{b_p = p 011}$ separately,
+producing at least $2$ vectors to span
+$\interval{a_p}{b_p}$.
+The configuration also enables
+the interval $\interval{a_p}{b_p}$
+to be spanned by the single ternary vector
+$p 0 \rep{\phi}{2}$.
+
 Thus we have $k$ intervals
-on $(n_k + 2)$-bit numbers,
 none of which intersect or touch.
 
 Since $P = \booldom^{n_k}$,
 we can span all the intervals by the single ternary vector
-$\rep{\phi}{n_k} 0 \phi$.
+$\rep{\phi}{n_k} 0 \rep{\phi}{2}$.
 Clearly $|\mathcal{T}_{opt}| = 1$.
 
 However,
