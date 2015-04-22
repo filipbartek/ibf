@@ -127,12 +127,33 @@ $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
 \end{theorem}
 
 \begin{proof}
-This is easy to see from the fact that the intervals
+We need to show that for each $i$,
+$\mathcal{T}_i$ spans exactly $\interval{a_i}{b_i}$.
+This is obvious in cases $j = n$ and $j = n-1$.
+
+In the remaining case $j < n-1$,
+observe that
+$0 \mathcal{T}_{i, 0}'
+= \curly{0 T | T \in \mathcal{T}_{i, 0}'}$
+spans exactly the interval
+$\interval{0 a'}{0 \rep{1}{n-j-1}}$
+and $1 \mathcal{T}_{i, 1}'$
+spans exactly the interval
+$\interval{1 \rep{0}{n-j-1}}{1 b'}$.
+Since $1 \rep{0}{n-j-1} = 0 \rep{1}{n-j-1} + 1$,
+the union of these sets
+spans exactly the interval
+$\interval{0 a'}{1 b'}
+= \interval{\bits{a_i}{j+1}{n}}{\bits{b_i}{j+1}{n}}$.
+Prepending the common prefix $c$ to
+$0 \mathcal{T}_{i, 0}' \cup 1 \mathcal{T}_{i, 1}'$
+preserves the spanning to
 $\interval{a_i}{b_i}$
-form a partition of the true point set
-and that each of them is spanned exactly
-by the suffix and prefix procedure.
-\todo{Go into more detail.}
+and matches the operation performed in the algorithm
+to produce $\mathcal{T}_i$.
+
+The union of such $\mathcal{T}_i$s clearly spans
+the union of the intervals.
 \end{proof}
 
 \section{Approximation ratio}
