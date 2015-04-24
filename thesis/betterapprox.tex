@@ -3,43 +3,38 @@ for \texorpdfstring{$k$}{k}-interval functions}
 \todo[inline]{Finish the chapter.}
 \todo[inline]{Define the algorithm properly.}
 
-A simple improvement can be performed
-on the $2k$-approximation algorithm introduced
-in the previous chapter
-by spanning each of the intervals
-$\interval{a_i}{b_i}$ optimally
-using \citeauthor{Schieber2005154}'s algorithm.
-\citeauthor{Dubovsky2012} has shown that such approach
-actually improves the approximation ratio to $2$
-(as opposed to $4$)
-in $2$-interval functions.
-However,
-we will show in this chapter that
-the improvement diminishes for larger numbers of intervals.
-\todo[inline]{Put the preceding introduction paragraph in context of the chapter.}
+The $2k$-approximation
+suffix-prefix decomposition algorithm
+introduced in \autoref{chap:2kapprox}
+can be naturally improved
+by spanning each of the $k$ intervals
+of the given $k$-interval function
+optimally using the minimization algorithm
+introduced in \autoref{chap:1interval}
+(originally in \citet{Schieber2005154}).
+We will call this improved algorithm
+\quot{interval decomposition algorithm}.
 
-\citeauthor{Dubovsky2012} has shown a $2$-approximation algorithm
-\todo{Add a section about Dubobvsky's 2-interval approximation algorithm.}
-for spanning general $2$-interval functions
-(including $3$-switch and $4$-switch).\citep[p.~33]{Dubovsky2012}
-The algorithm simply spans each of the two intervals
-separately optimally and then returns the union
-of these partial spanning sets.
-A natural generalization of this algorithm to $k$-interval
-functions spans each of the $k$ intervals separately
-optimally.
-It's easy to see that this algorithm performs
-at least as well as the $2k$-approximation algorithm
-shown in chapter \ref{chap:2kapprox}.
-We'll show, however,
-that for a large $k$,
-the approximation ratio of the improved algorithm
-converges to $2k$.
-\todo{Consider rewording.}
-
-In order to do this,
-we will construct a class of \quot{hard} multi-interval
-Boolean functions.
+Since the interval decomposition algorithm
+clearly performs at least as well
+as the suffix-prefix decomposition algorithm,
+it is $2k$-approximation as well.
+\citeauthor{Dubovsky2012} has managed
+to prove that on $2$-interval functions,
+the interval decomposition algorithm
+has an approximation ratio $2$
+\citep[p.~39]{Dubovsky2012}, % Theorem 4.2
+while the suffix-prefix decomposition algorithm
+has a tight approximation ratio $4$
+on $2$-interval functions.
+While this might lead us to believe
+that the interval decomposition algorithm
+performs significantly better in general,
+we will show in this chapter that its approximation ratio
+converges to $2k$ for large $k$
+(and namely that it is strictly larger than $k$
+for $k > 2$).
+\todo{Do we really prove this for all $k$s? Try to!}
 
 \section{Approximation-hard functions}
 
