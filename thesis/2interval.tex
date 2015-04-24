@@ -107,6 +107,11 @@ $a_2 \leq \rep{1}{n}$.
 {\textbit{b1}{1} = \textbit{a2}{1}}
 }
 
+\todo[inline]{Solve the whole common prefix at once.
+Alg.:
+1. Solve common prefix
+2. Transform to 1-interval}
+
 In case $b_1$ and $a_2$ have the same \acrshort{msb}s,
 we recursively solve the $(n-1)$-bit
 case
@@ -143,6 +148,8 @@ $\fnba$ (feasibility).
 \end{theorem}
 
 \begin{proof}
+\todo[inline]{Add an introductory paragraph.}
+
 \hfill % Break line to align the enumerate items
 \begin{enumerate}
 \item{$span(\mathcal{T}) \subseteq TP(f)$}
@@ -263,8 +270,7 @@ $\size{\mathcal{T}_{opt}}$
 and the optimality of $\mathcal{T}$.
 \end{proof}
 
-\todomaybe[inline]{Note that the proof could be rephrased
-using orthogonal sets explicitly.}
+\todo[inline]{Construct an orthogonal set explicitly.}
 
 We have shown that in case $\bit{b_1}{1} = \bit{a_2}{1}$,
 our algorithm produces a feasible and optimal spanning set.
@@ -273,6 +279,8 @@ our algorithm produces a feasible and optimal spanning set.
 \neq \bit{a_2}{1}$}
 {\textbit{b1}{1} \textneq{} \textbit{a2}{1}}
 }
+
+\todo[inline]{Use longer paragraphs.}
 
 Let $\bit{b_1}{1} \neq \bit{a_2}{1}$.
 Since $b_1 \leq a_2$,
@@ -325,6 +333,7 @@ if and only if
 \hfill % Break line to align the enumerate items
 \begin{enumerate}
 \item $\bit{c}{1} = 0$:
+\todo[inline]{Extend the paragraphs.}
 
 Let $c = 0 \bits{c}{2}{n}$ and $c' = 1 \bits{c}{2}{n}$.
 
