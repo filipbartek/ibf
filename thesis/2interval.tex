@@ -332,9 +332,11 @@ if and only if
 \end{lemma}
 
 \begin{proof}
-\hfill % Break line to align the enumerate items
-\begin{enumerate}
-\item $\bit{c}{1} = 0$:
+We distinguish two cases
+based on the leading bit of $c$.
+Since the cases are symmetric,
+without loss of generality let $\bit{c}{1} = 0$.
+
 \todo[inline]{Extend the paragraphs.}
 
 Let $c = 0 \bits{c}{2}{n}$ and $c' = 1 \bits{c}{2}{n}$.
@@ -366,12 +368,6 @@ c \leq 0 b \text{ or }c \geq 1 a
 &\iff c' \leq 1 b \\
 &\iff c' \leq 1 b \text{ and } c' \geq 0 a
 \end{align*}
-
-\item $\bit{c}{1} = 1$:
-
-This case is symmetric to the previous one.
-
-\end{enumerate}
 \end{proof}
 
 \begin{lemma}
