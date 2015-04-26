@@ -37,6 +37,40 @@ converges to $2k$ for large $k$
 for $k > 2$).
 \todo{Do we really prove this for all $k$s? Try to!}
 
+\section{Algorithm description}
+
+\begin{description}
+\item[Input] Numbers $a_1, b_1, \ldots, a_k, b_k$
+that satisfy the inequalities
+$\rep{0}{n} \leq a_1$,
+$a_1 \leq b_1$,
+$b_1 < a_2 - 1$,
+\ldots,
+$a_i \leq b_i$,
+$b_i < a_{i+1} - 1$
+(for $i \in \curly{1, \ldots, k-1}$),
+\ldots,
+$b_{k-1} < a_k - 1$,
+$a_k \leq b_k$,
+$b_k \leq \rep{1}{n}$.
+
+Such numbers are endpoints of intervals
+of a proper $k$-interval Boolean function.
+
+\item[Output] A set of ternary vectors.
+
+\item[Procedure]
+The algorithm spans each of the intervals
+$\interval{a_i}{b_i}$ separately.
+For every $i$,
+let $\mathcal{T}_i$ be the spanning set of the interval
+$\interval{a_i}{b_i}$ returned by the $1$-interval
+optimization algorithm
+introduced in \autoref{chap:1interval}.
+The algorithm returns
+$\mathcal{T} = \bigcup_{i=1}^k{\mathcal{T}_i}$.
+\end{description}
+
 \section{Approximation-hard functions}
 
 Let $l \geq 1$
