@@ -110,176 +110,588 @@ we will construct
 a proper $(2^{l-1} + 1)$-interval $n$-ary function $f_l^n$.
 
 Let $l \geq 1$
-denote the length of the interval prefix.
-Then $k = 2^{l-1} + 1$
-is the number of intervals
-of the multi-interval function we construct.
-Let $n \geq l+2$ be the target function arity.
-We will construct
-a proper $k$-interval $n$-ary function
-that consists of $2$ short intervals and $2^{l-1} - 1$
-long intervals.
+denote the length of the interval \quot{position} prefix
+and $n \geq l+2$
+denote the arity of the target function $f_l^n$
+(and thus the length of its points,
+especially the interval endpoints).
+Let $k$ denote the number of intervals of $f_l^n$.
+After we define the intervals,
+we will show that $k = 2^{l-1} + 1$.
 
-The short intervals reside in the subtrees associated
-with the prefixes $\rep{0}{l}$ and $\rep{1}{l}$:
+All the interval endpoints have a prefix of length $l$
+that specifies the \quot{position} of the interval
+and a suffix of length $n - l$
+that specifies the interval's \quot{shape}.
+We will denote the $l$-bit \quot{position} prefix
+of an $n$-bit binary vector $x$ with $p_x$
+($p_x = \bits{x}{1}{l}$)
+and the $(n-l)$-bit \quot{shape} suffix with $s_x$
+($s_x = \bits{x}{l+1}{n}$).
+Note that $x = p_x s_x$.
 
-\begin{itemize}
-\item
-$\interval{a_1}{b_1} =
-\interval{\rep{0}{l} \; \rep{0}{n-l-1} 1}
-{\rep{0}{l} \; \rep{1}{n-l-1} 0}$
-\item
-$\interval{a_k}{b_k} =
-\interval{\rep{1}{l} \; \rep{0}{n-l-1} 1}
-{\rep{1}{l} \; \rep{1}{n-l-1} 0}$
-\end{itemize}
-
-The long intervals reside in the remaining subtrees
-and each of them intersects two of them:
+The \quot{shape} is identical for all the intervals
+of a given $f_l^n$
+-- for every $i \in \curly{1, \ldots, k}$:
 
 \begin{itemize}
-\item
-$\interval{a_2}{b_2} =
-\interval{\rep{0}{l-2} 01 \; \rep{0}{n-l-1} 1}{\rep{0}{l-2} 10 \; \rep{1}{n-l-1} 0}$
-\item
-$\interval{a_3}{b_3} =
-\interval{\rep{0}{l-3} 011 \; \rep{0}{n-l-1} 1}{\rep{0}{l-3} 100 \; \rep{1}{n-l-1} 0}$
-\item \vdots
-\todo{Typeset better; esp. don't show the bullet here.}
-\item
-$\interval{a_{k-1}}{b_{k-1}} =
-\interval{\rep{1}{l-2} 01 \; \rep{0}{n-l-1} 1}{\rep{1}{l-2} 10 \; \rep{1}{n-l-1} 0}$
+\item $s_{a_i} = \rep{0}{n-l-1} 1$
+\item $s_{b_i} = \rep{1}{n-l-1} 0$
 \end{itemize}
+
+Note that for $n \geq l + 3$,
+this \quot{shape} corresponds to an extreme
+non-trivial endpoint combination in the $1$-interval
+optimization algorithm
+(namely case \quot{$b' \geq a' - 1$}
+in \autoref{sec:1interval0011}),
+which happens to be the case where the improvement
+of the optimization algorithm
+over the suffix-prefix approximation algorithm
+is the largest.
+
+We construct the \quot{position} prefixes of the endpoints
+so that they
+satisfy the following requirements:
+
+\begin{enumerate}
+\item \label{item:hardint1}
+$p_{a_1} = p_{b_1} = \rep{0}{l}$
+\item \label{item:hardintk}
+$p_{a_k} = p_{b_k} = \rep{1}{l}$
+\item \label{item:hardlength}
+$p_{b_i} = p_{a_i} + 1$
+for $i \in \curly{2, \ldots, k-1}$
+\item \label{item:hardspacing}
+$p_{a_{i+1}} = p_{b_i} + 1$
+for $i \in \curly{1, \ldots, k-1}$
+\end{enumerate}
+
+Using these requirements,
+we can inductively construct a sequence of $l$-bit numbers
+$p_{a_1}, p_{b_1}, p_{a_2}, p_{b_2}, \ldots,
+p_{a_k}, p_{b_k}$.
+We start with
+$p_{a_1} = p_{b_1} = \rep{0}{l}$
+by requirement \ref{item:hardint1}.
+We follow by
+constructing $p_{a_{i+1}}$ from $p_{b_i}$
+for $i \in \curly{1, 2, \ldots}$
+using requirement \ref{item:hardspacing} and
+constructing $p_{b_i}$ from $p_{a_i}$
+for $i \in \curly{2, 3, \ldots}$
+using requirement \ref{item:hardlength}.
+Note that the $p_{a_i}$s constructed this way
+for $i \in \curly{2, 3, \ldots}$
+systematically
+\todomaybe{Use a better term.}
+exhaust odd numbers,
+since $p_{a_2} = \rep{0}{l-1} 1$
+(recall that we require $l \geq 1$)
+and $p_{a_{i+1}} = p_{a_i} + 2$.
+We stop the induction
+as soon as we get to an index $k$ such that
+$p_{a_k} = \rep{1}{l}$.
+Since $p_{a_i}$s systematically exhaust odd numbers,
+there must be such $k$.
+\todomaybe{Add \quot{Moreover, $k = 2^{l-1} + 1$}, possibly with some simple analysis.}
+We terminate by constructing $p_{b_k} = \rep{1}{l}$
+by requirement \ref{item:hardintk}.
+
+Note that the sequence is defined unambiguously
+for a given $l$.
+
+The construction of $p_{a_i}$ and $p_{b_i}$
+together with the definition
+of $s_{a_i}$ and $s_{b_i}$ define a set of points
+$a_i = p_{a_i} s_{a_i}$ and $b_i = p_{b_i} s_{b_i}$
+for $i \in \curly{1, \ldots, k}$.
+To see that points defined this way
+satisfy the requirements on endpoints
+of a proper $k$-interval function
+(see \autoref{def:properkibf}),
+note that:
+
+\begin{itemize}
+\item $a_1 \leq b_1$ by requirement \ref{item:hardint1}
+and the fact that $s_{a_1} \leq s_{b_1}$
+\item $a_i \leq b_i$
+for $i \in \curly{2, \ldots, k-1}$
+by requirement \ref{item:hardlength}
+\item $b_i < a_{i+1} - 1$
+for $i \in \curly{1, \ldots, k-1}$
+by requirement \ref{item:hardspacing}
+and the fact that $s_{a_i} > \rep{0}{l}$
+(or $s_{b_i} < \rep{1}{l}$)
+\item $a_k \leq b_k$ by requirement \ref{item:hardintk}
+and the fact that $s_{a_k} \leq s_{b_k}$
+\end{itemize}
+
+To see that the number of intervals $k$ is $2^{l-1} + 1$,
+we will count the \quot{subtrees}
+intersected by the intervals.
+
+\begin{definition}[Subtree]
+Let $p$ be a binary vector of length $l$
+and $n \geq l$.
+Then \definiendum{level $l$ $p$-subtree} is the interval
+$\interval{p \; \rep{0}{n-l}}{p \; \rep{1}{n-l}}$.
+\end{definition}
+
+Clearly there are $2^l$ level $l$ subtrees
+that partition the full interval
+$\interval{\rep{0}{n}}{\rep{1}{n}}$.
+
+The requirements
+\ref{item:hardint1} and \ref{item:hardintk}
+force each of the intervals
+$\interval{a_1}{b_1}$ and $\interval{a_k}{b_k}$
+to intersect exactly 1 level $l$ subtree
+(the $\rep{0}{l}$-subtree
+and the $\rep{1}{l}$-subtree respectively).
+
+The requirement \ref{item:hardlength}
+forces each of the intervals
+$\interval{a_i}{b_i}$ for $i \in \curly{2, \ldots, k-1}$
+to intersect exactly 2 level $l$ subtrees
+(the $p_{a_i}$-subtree and the $(p_{a_i}+1)$-subtree).
+
+The requirement \ref{item:hardspacing}
+forces each adjacent pair of intervals
+to intersect adjacent level $l$ subtrees
+and not to intersect a common subtree.
+Since by requirements
+\ref{item:hardint1} and \ref{item:hardintk}
+the $\rep{0}{l}$-subtree
+and the $\rep{1}{l}$-subtree
+are intersected by some intervals,
+each of the level $l$ subtrees is intersected
+by some interval.
+
+Since there are $2^l$ level $l$ subtrees,
+each of them is intersected by exactly one interval,
+the first and the $k$-th interval intersect
+one subtree each
+and the remaining intervals intersect 2 subtrees each,
+there are $2 + \frac{2^l - 2}{2} = 2^{l-1} + 1 = k$
+intervals in total.
+
+\subsection{Interval decomposition spanning set size}
+
+Let $f_l^n =
+f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+be a $k$-interval function
+constructed using the definition
+shown in the previous section.
+In this section we will show the size of the spanning set
+returned by the interval decomposition algorithm
+when run on this function.
+We will denote this size with $hard_{id}(l, n)$.
+
+The interval decomposition algorithm spans
+each of the intervals separately
+using the optimization algorithm
+from \autoref{chap:1interval},
+so $hard_{id}(l, n) = \sum_{i=1}^k{\size{\mathcal{T}_i}}$,
+where $\mathcal{T}_i$ is the spanning set
+of the interval $\interval{a_i}{b_i}$
+returned by the optimization algorithm
+for $1$-interval functions.
+
+For every $i$,
+we will analyse how the $1$-interval algorithm solves
+the instance $\interval{a_i}{b_i}$.
+We will divide the analysis between the intervals
+such that $p_{b_i} = p_{a_i}$
+and the ones such that $p_{b_i} = p_{a_i} + 1$.
+We will analyse these types separately.
+
+\subsubsection{$i \in \curly{1, k}$}
+
+In case $i \in \curly{1, k}$,
+the endpoints have common prefixes of length $l$.
+Thus the instance $\interval{a_i}{b_i}$
+is reduced to the instance
+$\interval{s_{a_i}}{s_{b_i}}
+= \interval{\rep{0}{n-l-1} 1}{\rep{1}{n-l-1} 0}$.
+
+Recall that $n \geq l + 2$.
+
+If $n = l + 2$,
+the instance
+$\interval{\rep{0}{n-l-1} 1}{\rep{1}{n-l-1} 0}
+= \interval{01}{10}$
+is spanned using the procedure
+shown in \autoref{sec:1interval0110}.
+This procedure spans the two trivial sub-intervals
+$\interval{01}{01}$ and $\interval{10}{10}$
+separately,
+producing $2 = n-l$ ternary vectors.
+
+If $n \geq l + 3$,
+the instance
+$\interval{\rep{0}{n-l-1} 1}{\rep{1}{n-l-1} 0}$
+is spanned using the procedure
+shown in \autoref{sec:1interval0011}.
+This procedure reduces the instance
+to the instance $\interval{01}{10}$,
+which again contributes $2$ ternary vectors,
+and adds $n-l-2$ extra ternary vectors
+that span the sub-interval
+$\interval{\rep{0}{n-l-2} 10}{\rep{1}{n-l-2} 01}$.
+The spanning set of the interval in this case has the size
+$2 + n - l - 2 = n - l$.
+
+We conclude that in case $i \in \curly{1, k}$,
+$\size{\mathcal{T}_i} = n-l$.
+
+\subsubsection{$i \in \curly{2, \ldots, k-1}$}
+
+In case $i \in \curly{2, \ldots, k-1}$,
+recall that $p_{b_i} = p_{a_i} + 1$.
+This means that $p_{a_i} = c 0 \rep{1}{m}$
+and $p_{b_i} = c 1 \rep{0}{m}$
+for some binary vector $c$
+and number $m \in \curly{0, \ldots, l-1}$.
+
+To see that $m \geq 1$,
+recall that $p_{a_i}$ must be odd.
+
+This means that $a_i$ and $b_i$
+start with a common prefix $c$
+followed by the bits $01$ in $a_i$
+and $10$ in $b_i$.
+In the $1$-interval optimization algorithm,
+the common prefix $c$ is left out
+and then the procedure
+shown in \autoref{sec:1interval0110}
+is applied to the remainder of the endpoints
+(that is
+$\interval{01 \rep{1}{m-1} s_{a_i}}
+{10 \rep{0}{m-1} s_{b_i}}$).
+This procedure spans the two sub-intervals
+$\interval{\rep{1}{m} s_{a_i}}{\rep{1}{m+n-l}}$
+and $\interval{\rep{0}{m+n-l}}{\rep{0}{m} s_{b_i}}$
+separately using the suffix and prefix procedure
+respectively.
+
+Let's consider the sub-interval
+$\interval{\rep{0}{m+n-l}}{\rep{0}{m} s_{b_i}}$;
+the other one is symmetric.
+
+Note that this sub-interval can be immediately reduced
+to $\interval{\rep{0}{n-l}}{s_{b_i}}$
+by removing the common prefix of the endpoints.
+
+Recall that the prefix algorithm
+produces one ternary vector
+for each bit that is set to $1$
+in $s_{b_i} + 1 = \rep{1}{n-l}$.
+The returned spanning set of
+$\interval{\rep{0}{n-l}}{s_{b_i}}$
+thus has the size $n-l$.
+
+Joining it with the spanning set of the complementary
+sub-interval
+$\interval{s_{a_i}}{\rep{1}{n-l}}$
+and prepending the respective common prefixes,
+we get a spanning set $\mathcal{T}_i$ of size $2(n-l)$.
+
+\hfill
+
+Putting the interval spanning sets together,
+we get:
+\begin{align*}
+hard_{id}(l, n) &= \sum_{i=1}^k{\size{\mathcal{T}_i}} \\
+&= 2 (n-l) + \sum_{i=2}^{k-1}{2 (n-l)} \\
+&= 2 (n-l) + (k-2) 2 (n-l) \\
+%&= 2 (n-l) (1 + (k-2)) \\
+&= 2 (n-l) (k-1) \\
+&= 2 (n-l) ((2^{l-1} + 1) - 1) \\
+%&= 2 (n-l) 2^{l-1} \\
+&= 2^l (n-l)
+\end{align*}
+
+\subsection{Efficient spanning set size}
+
+In this section we will show a better spanning set
+of $f^n_l$.
+We will denote its size with
+$\mathit{hard}_{\mathit{eff}}(l,n)$.
+
+We will span the union of the intervals
+$\interval{p \rep{0}{n-l-1} 1}{p \rep{1}{n-l-1} 0}$
+for all $p \in \booldom^l$
+using $n-l$ ternary vectors
+and then we will add some extra vectors
+to span the remaining true points.
+
+First observe that all the false points of $f_l^n$
+end with either $\rep{0}{n-l}$ or $\rep{1}{n-l}$.
+\todo{Is this clear enough?}
+This means we need to span all the points that end
+with different $(n-l)$-bit suffixes.
+We can do that with the set
+$\mathcal{T}_{\mathit{out}}
+= \curly{\rep{\phi}{l} s
+| s \text{ is a cyclic shift of } 01 \rep{\phi}{n-l-2}}$.
+\todomaybe{Write the vectors more explicitly.}
+To see that $\mathcal{T}_{\mathit{out}}$
+spans all the points
+that do not end with $\rep{0}{n-l}$ or $\rep{1}{n-l}$,
+note that for every binary vector $x$
+that contains both a $0$ and a $1$
+there is a position $i$
+such that $\bit{x}{i} = 0$
+and $\bit{x}{(i+1) \bmod (n-l)} = 1$.
+Thus we have spanned the union of the intervals
+$\interval{p \rep{0}{n-l-1} 1}{p \rep{1}{n-l-1} 0}$
+using $n-l$ ternary vectors.
+
+Observe that
+all the true points
+that end with $\rep{1}{n-l}$
+start with $p_{a_i}$
+for some $i \in \curly{2, \ldots, k-1}$
+and that all such $p_{a_i}$ are odd numbers,
+which means they end with a $1$.
+In fact,
+$p_{a_i}$ for $i \in \curly{2, \ldots, k-1}$
+are all the $l$-bit odd numbers except $\rep{1}{l}$.
+We will use the technique of cyclic shifts
+to span these points efficiently.
+
+Let $\mathcal{T}_1 = \curly{c 1 \rep{1}{n-l}
+| c \text{ is a cyclic shift of } 0 \rep{\phi}{l-2}}$.
+To see that $\mathcal{T}_1$ spans all the true points
+that end with $\rep{1}{n-l}$,
+note that the cyclic shifts of $0 \rep{\phi}{l-2}$
+span exactly all the $(l-1)$-bit numbers that contain a $0$
+and the vectors $c 1$
+where $c$ is a cyclic shift of $0 \rep{\phi}{l-2}$
+span exactly all the $l$-bit \emph{odd} numbers
+that contain a $0$.
+Clearly $\size{\mathcal{T}_1} = l-1$.
+
+Similarly we construct $\mathcal{T}_0$ of size $l-1$
+that spans all the true points
+that end with $\rep{0}{n-l}$.
+
+Putting the partial spanning sets together,
+we get the size of a spanning set of $f_l^n$:
+
+\begin{align*}
+\mathit{hard}_{\mathit{eff}}(l,n)
+&= \size{\mathcal{T}_{\mathit{out}}}
++ \size{\mathcal{T}_0} + \size{\mathcal{T}_1} \\
+&= (n-l) + (l-1) + (l-1) \\
+&= n + l - 2
+\end{align*}
+
+\subsection{Approximation ratio}
+
+The spanning set shown in the previous section
+gives an upper bound on the size
+of the optimal spanning set:
+$$
+\mathit{dnf}(f^l_n)
+\leq \mathit{hard}_{\mathit{eff}}(l,n)
+$$
+
+We can use this to prove that the approximation ratio
+of the interval decomposition algorithm is close to $2k$
+for large $k$.
+
+The approximation ratio
+of the interval decomposition algorithm
+on the function $f_l^n$,
+denoted $\mathit{approx}(l,n)$,
+can be bounded:
+$$
+\mathit{approx}(l,n)
+= \frac{\mathit{hard}_{id}(l,n)}{\mathit{dnf}(f_l^n)}
+\geq \frac{\mathit{hard}_{id}(l,n)}
+{\mathit{hard}_{\mathit{eff}}(l,n)}
+= \frac{2^l(n-l)}{n+l-2}
+$$
+
+First see that for a fixed $l$ and large $n$,
+the approximation ratio converges to $2^l$
+or a larger number:
+\begin{align*}
+\mathit{approx}(l)
+&= \lim_{n \rightarrow \infty}{\mathit{approx}(l,n)} \\
+&\geq \lim_{n \rightarrow \infty}
+{\frac{\mathit{hard}_{\mathit{id}}(l,n)}
+{\mathit{hard}_{\mathit{eff}}(l,n)}} \\
+&= \lim_{n \rightarrow \infty}{\frac{2^l(n-l)}{n+l-2}} \\
+&= \lim_{n \rightarrow \infty}{\frac{2^l n}{n}} \\
+&= 2^l
+\end{align*}
 
 In other words,
-for $i \in \curly{2, \ldots, k-1 = 2^{l-1}}$,
-the prefix of the endpoint $a_i$,
-denoted $p_i$,
-is the $l$-bit number $2 (i-2) + 1$
-(note that $p_i$s exhaust all the odd numbers
-between $1 = \rep{0}{l-2} \; 01$
-and $2^l - 3 = \rep{1}{l-2} \; 01$).
-Using $p_i$ we get the endpoints of the $i$-th interval:
+for any $l \geq 1$ and a number $a < 2^l$,
+we can find $n$ such that
+$\mathit{hard}_{\mathit{id}}(l,n)
+\geq a \cdot \mathit{dnf}(f_l^n)$,
+which corresponds to finding an instance
+on which the interval decomposition algorithm performs
+at least $a$ times worse than the optimum.
 
-\begin{itemize}
-\item $a_i = (p_i \; \rep{0}{n-l-1} 1)$
-\item $b_i = ((p_i + 1) \; \rep{1}{n-l-1} 0)$
-\end{itemize}
+\begin{example}
+\label{example:3inthard}
+For example,
+let's try to find a $3$-interval function $f$
+that can be spanned using
+as few as
+$\mathit{dnf}(f)$ ternary vectors
+while the interval decomposition algorithm uses
+strictly more than $3 \cdot \mathit{dnf}(f)$ vectors
+to span $f$.
 
-Note that $a_i$ for every $i$
-ends with the suffix $\rep{0}{n-l-1} 1$
-($\bits{a_i}{l+1}{n} = \rep{0}{n-l-1} 1$)
-and $b_i$ always ends with the suffix $\rep{1}{n-l-1} 0$.
-The $l$-bit prefixes of $a_i$ and $b_i$
-are either equal
-in case $i \in \curly{1, k}$,
-or successive numbers in case
-$i \in \curly{2, \ldots, k-1}$.
+We will find a combination of $l$ and $n$
+such that $f_l^n$ is a $3$-interval function
+and
+$\mathit{hard}_{\mathit{id}}(l,n)
+> 3 \cdot \mathit{dnf}(f_l^n)$.
 
-We claim that $f =
-f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
-can be spanned with as few as $n$
-\todo{Really?}
-ternary vectors,
-while the approximation algorithm produces a spanning set
-of size [?].
-\todo{Insert the number here.}
+Recall that $k = 2^{l-1}+1$,
+so we need to use $l = 2$
+\todomaybe{Define an inverse mapping.}
+in order for $f_l^n$ to be $3$-interval.
 
-\begin{lemma}
-[$dnf(f) \leq n$]
-The function
-$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
-defined above can be spanned with as few as $n$ vectors.
-\end{lemma}
+Now let's choose the parameter $a$.
+It needs to satisfy the inequalities $a > 3$
+and $a < 4 = 2^l$.
+Let's take for example $a = 3.5 = \frac{7}{2}$.
 
-\begin{proof}
-First observe that $f$
-has a limited number of false points,
-as each pair of successive intervals
-is separated by just two false points
-and there are just two false points
-which do not lie between the intervals
-(they are the two extreme outer points
-$\rep{0}{n}$ and $\rep{1}{n}$).
-There are $2k$ false points in total,
-each of them being either $a_i - 1$ or $b_i + 1$
-for some $i$.
+We need to find $n$ such that:
+\begin{align*}
+\mathit{hard}_{\mathit{id}}(l,n) &= 2^l(n-l) \\
+&= 2^2(n-2) \\
+&= 4 (n-2) \\
+&= 4n - 16 \\
+&\geq \frac{7}{2} \cdot \mathit{dnf}(f_2^n) \\
+&= a \cdot \mathit{dnf}(f_l^n)
+\end{align*}
 
-To span $f$,
-we first span the intervals
-$\interval{j \; \rep{0}{n-l-1} 1}{j \; \rep{1}{n-l-1} 0}$
-for every $j \in \booldom^l$.
-The set
-$\mathcal{T}_{in} =
-\curly{\phi^l \; s |
-s \text{ is a cyclic shift of } 01 \phi^{n-l-2}}$
-exactly spans the union of the intervals
-$\interval{j \; \rep{0}{n-l-1} 1}{j \; \rep{1}{n-l-1} 0}$.
-To see that it actually does,
-observe that for every $j$,
-we want to span all the vectors with prefix $j$
-except the two vectors $(j \; \rep{0}{n-l})$
-and $(j \; \rep{1}{n-l})$.
-The cyclic shifts of $01 \phi^{n-l-2}$ span exactly
-all the numbers with the exception of
-$\rep{0}{n-l}$ and $\rep{1}{n-l}$,
-since every number that contains both a $0$ and a $1$
-has some position $i$ such that
-$\bit{x}{i} = 0$
-and $\bit{x}{(i+1) \mod (n-l)} = 1$.
-The size of $\mathcal{T}_{in}$ is clearly $n-l$.
+We will actually find an $n$ that satisfies
+an even stricter condition:
+\begin{align*}
+\mathit{hard}_{\mathit{id}}(l,n) &= 4n - 16 \\
+&\geq \frac{7}{2} n \\
+&= \frac{7}{2} (n+2-2) \\
+&= a (n+l-2) \\
+&= a \cdot \mathit{hard}_{\mathit{eff}}(l,n) \\
+&\geq a \cdot \mathit{dnf}(f_l^n)
+\end{align*}
 
-We are left with two true points to span
-in each of the long intervals.
-There are $k-2 = 2^{l-1} - 1$ long intervals.
-Spanning each of the remaining true points separately,
-we get $\mathcal{T}_{out}$ of size
-$2(k-2) = 2(2^{l-1}-1) = 2^l - 2$.
-\todo[inline]{Use a better algorithm -- one that produces merely $n+l-2$ vectors.}
+Any $n \geq 32$ satisfies the inequality:
 
-%In total we use
-%$2^l$ vectors to span $f$.
-\end{proof}
+\begin{align*}
+4n - 16 &\geq \frac{7}{2} n \\
+8n - 32 &\geq 7n \\
+n &\geq 32
+\end{align*}
 
-\begin{center}
-\begin{tabular}{l|llll}
+We conclude, for example for $n = 32$:
+\begin{align*}
+\mathit{hard}_{\mathit{id}}(2, 32)
+%&= 4 \cdot 32 - 16 \\
+%&= 128 - 16 \\
+&= 112 \\
+%&\geq 112 \\
+%&= 7 \cdot 16 \\
+%&= \frac{7}{2} 32 \\
+&> 96 \\
+&= 3 \cdot 32 \\
+&= 3 \cdot \mathit{hard}_{\mathit{eff}}(2,32) \\
+&\geq 3 \cdot \mathit{dnf}(f_2^{32})
+\end{align*}
+
+which means that the interval decomposition algorithm
+uses strictly more
+than $3$-times as many ternary vectors to span
+the $3$-interval function
+$f_2^{32}$ as the optimum.
+
+Note that this example namely shows
+that interval decomposition algorithm
+is not $k$-approximative in general,
+since it is not $3$-approximative
+on the $3$-interval function $f_2^{32}$.
+\end{example}
+
+\todomaybe[inline]{Start a subsection here.}
+
+In \cref{example:3inthard},
+we have shown a $k$-interval function
+on which the interval decomposition algorithm performs
+more than $k$ times worse than optimum.
+More specifically,
+the algorithm produces a spanning set
+of a $(k=3)$-interval function
+that is at least
+$\frac{7}{2}
+%= \frac{7}{2} \frac{3}{3}
+= \frac{7}{6} 3
+= \frac{7}{6} k$
+times as large as optimum.
+On $3$ intervals,
+we could get this error ratio arbitrarily close
+to $\frac{4}{3} k$
+by choosing larger $n$.
+We will show that if we allow using more intervals
+(that is larger $k$),
+we can get the error ratio arbitrarily close to $2k$.
+
+Let's consider $k$ a function of $l$
+-- $k(l) = 2^{l-1} + 1$.
+
+With this in mind,
+for a large $l$ we get:
+
+$$
+\lim_{l \rightarrow \infty}{\frac{approx(l)}{k(l)}}
+\geq \lim_{l \rightarrow \infty}{\frac{2^l}{2^{l-1}+1}}
+= \lim_{l \rightarrow \infty}{\frac{2^l}{2^{l-1}}}
+%= \lim_{l \rightarrow \infty}{2}
+= 2
+$$
+
+In other words,
+for any $b < 2$
+we can find a $k$-interval function
+on which the interval decomposition algorithm
+performs at least $bk$ times worse than the optimum.
+\todo{For large $n$...}
+
+For demonstration,
+\autoref{tab:hardsmalll} shows the lower bounds
+on error ratio computed using $f_l^n$
+for some small values of $l$.
+
+\begin{table}
+\centering
+\begin{tabular}{l|lllll}
 $l$
-& $k = 2^{l-1} + 1$
-& $\size{\mathcal{T}_{approx}} = 2^l (n-l)$
-& $\size{\mathcal{T}} = n + l - 2$
-& $\lim_{n \rightarrow \infty}
-{\frac{\size{\mathcal{T}_{approx}}}{\size{\mathcal{T}}}}$
+& $k$ % 2^{l-1}+1
+& $\mathit{hard}_{\mathit{id}}(l,n)$ % 2^l(n-l)
+& $\mathit{hard}_{\mathit{eff}}(l,n)$ % n+l-2
+& $\mathit{approx}(l) \geq$ % 2^l
+& $\frac{\mathit{approx}(l)}{k(l)} \geq$
+% \frac{2^l}{2^{l-1}+1}
 \\
 \hline
-$1$ & $2$ & $2n-4$ & $n-1$ & $2$ \\
-$2$ & $3$ & $4n-8$ & $n$ & $4$ \\
-$3$ & $5$ & $8n-24$ & $n+1$ & $8$ \\
-$4$ & $9$ & $16n-64$ & $n+2$ & $16$
+$1$ & $2$ & $2n-4$ & $n-1$ & $2$ & $1$ \\
+$2$ & $3$ & $4n-8$ & $n$ & $4$ & $\frac{4}{3}$ \\
+$3$ & $5$ & $8n-24$ & $n+1$ & $8$ & $\frac{8}{5}$ \\
+$4$ & $9$ & $16n-64$ & $n+2$ & $16$ & $\frac{16}{9}$
 \end{tabular}
-\end{center}
+\caption{Lower bound of approximation ratio using $f_l^n$
+for small $l$}
+\label{tab:hardsmalll}
+\end{table}
 
-\[
-\lim_{n \rightarrow \infty}{
-\frac{\size{\mathcal{T}_{approx}}}{\size{\mathcal{T}}}
-}
-=
-2^l
-\]
-
-\[
-\lim_{l \rightarrow \infty}{
-\frac{
-\lim_{n \rightarrow \infty}{
-\frac{\size{\mathcal{T}_{approx}}}{\size{\mathcal{T}}}
-}
-}{k}
-}
-=
-2
-\]
-
-\todomaybe[inline]{oznac horni cast jako funkci k}
 \todo{lim sup ~ horni odhad limity - pres k
 nebo lim pres l + justification v uvodu dukazu (lepsi) - beru jen nektera k}
-
-\todo[inline]{Finish.}
