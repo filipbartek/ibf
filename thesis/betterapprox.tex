@@ -71,6 +71,27 @@ The algorithm returns
 $\mathcal{T} = \bigcup_{i=1}^k{\mathcal{T}_i}$.
 \end{description}
 
+Since the algorithm
+spans each of the $k$ intervals separately and optimally,
+while the suffix-prefix decomposition algorithm
+spans each of them separately and possibly non-optimally,
+the approximation ratio of $2k$
+(as shown in \autoref{theorem:2kapproxratio})
+holds for the interval decomposition algorithm as well.
+However,
+the ratio $2k$ need not be tight
+for interval decomposition algorithm.
+
+\citeauthor{Dubovsky2012} has shown
+that the approximation ratio is strictly better than $2k$
+for $k = 2$,
+as the algorithm is $2$-approximation
+in this case \citep[p.~39]{Dubovsky2012}. % Theorem 4.2
+Similarly,
+it is obvious that the algorithm
+gives an optimal result in case $k = 1$
+(which corresponds to approximation ratio $1$).
+
 \section{Approximation-hard functions}
 
 Let $l \geq 1$
