@@ -484,14 +484,15 @@ such that $\bit{x}{i} = 0$
 and $\bit{x}{(i+1) \bmod (n-l)} = 1$.
 Thus we have spanned the union of the intervals
 $\interval{p \rep{0}{n-l-1} 1}{p \rep{1}{n-l-1} 0}$
+for all $p \in \booldom^l$
 using $n-l$ ternary vectors.
 
 Observe that
-all the true points
+the true points
 that end with $\rep{1}{n-l}$
-start with $p_{a_i}$
+are exactly all the points $p_{a_i} \rep{1}{n-l}$
 for some $i \in \curly{2, \ldots, k-1}$
-and that all such $p_{a_i}$ are odd numbers,
+and that all $p_{a_i}$ are odd numbers,
 which means they end with a $1$.
 In fact,
 $p_{a_i}$ for $i \in \curly{2, \ldots, k-1}$
