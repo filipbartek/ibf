@@ -466,8 +466,14 @@ with different $(n-l)$-bit suffixes.
 We can do that with the set
 $\mathcal{T}_{\mathit{out}}
 = \curly{\rep{\phi}{l} s
-| s \text{ is a cyclic shift of } 01 \rep{\phi}{n-l-2}}$.
-\todomaybe{Write the vectors more explicitly.}
+| s \text{ is a cyclic shift of } 01 \rep{\phi}{n-l-2}}
+= \curly{
+\rep{\phi}{l} 01 \rep{\phi}{n-l-2},
+\rep{\phi}{l} \phi 01 \rep{\phi}{n-l-3},
+\ldots,
+\rep{\phi}{l} 1 \rep{\phi}{n-l-2} 0
+}
+$.
 To see that $\mathcal{T}_{\mathit{out}}$
 spans all the points
 that do not end with $\rep{0}{n-l}$ or $\rep{1}{n-l}$,
