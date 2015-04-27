@@ -4,6 +4,7 @@ The basic terminology used in this thesis
 was introduced by \citet{Schieber2005154},
 \citet{Dubovsky2012}
 and \citet{Husek2014, Husek2015}.
+\todokucera{Dále používáte obecnou booleovskou terminologii, ke které by se hodila citace třeba té booleovský knížky od Y. Cramy a P.L. Hammera.}
 
 \section{Vector operations}
 
@@ -23,6 +24,7 @@ of the three vectors $00$, $v$ and $11$.
 Let $v$ be a vector of length $n$ and $1 \leq i \leq n$.
 Then $\bit{v}{i}$ is the $i$-th component of $v$.
 \end{definition}
+\todokucera{Možná bych to dal za D1.1.2 a řekl, že “as a special case we consider the extraction of a single component $v^{[i, i]}$ which will also be denoted as $v^{[i]}$.”}
 
 \begin{definition}
 [Subsequence extraction $\bits{v}{a}{b}$
@@ -95,6 +97,8 @@ The $n$ \definiendum{\acrlongpl{msb}} of a vector
 form its prefix of length $n$,
 that is $\bits{x}{1}{n}$.
 \end{definition}
+\todokucera{Tohle vypadá dost divně, když „the most significant bit (MSB) of a binary vector $x$ is its first bit, that is $x^{[1]}$”, tak logicky „n most significant bits” se dá vyložit jako $(x^{[1]})^{n}$”, navíc n používáte obvykle pro délku celého vektoru, tak by se možná hodilo jiné písmenko (třeba i, j, k, m).
+Co třeba: We shall often refer to $x^{[i]}$ as to the $i$-th most significant bit and in particular we shall refer to $x^{[1]}$ as to the most significant bit of $x$. We shall often consider the first $n$ most significant bits as a vector $x^{[1,n]}$.}
 
 \section{Boolean functions}
 
@@ -257,6 +261,8 @@ If $\bit{T}{i}$ is the \quot{don't care symbol} $\phi$,
 % "don't" is used in Schieber2005
 the spanned binary vector
 may have any value in its $i$-th position.
+
+\todokucera[inline]{\foreignlanguage{czech}{Možná bych zmínil, že \quot{T spans a binary vector x of length n, iff C(x)=1, kde C je term odpovídající T}.}}
 
 \begin{definition}[Spanned set]
 Let $T$ be a ternary vector of length $n$.
