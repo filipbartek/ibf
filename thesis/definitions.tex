@@ -9,14 +9,13 @@ and \citet{Husek2014, Husek2015}.
 
 Throughout the thesis we will use vectors
 over small finite domains extensively.
-We shall write a vector as a sequence of symbols
-and vectors.
-For example, if $v$ is a vector of length $n$,
-then $00v11$ denotes a vector of length $n+4$
-whose leading two components have the value $0$,
-trailing two components have the value $1$
-and $i$-th component for $i \in \curly{3, \ldots, n+2}$
-has the value of the $(i-2)$-th component of $v$.
+We shall write a vector as a sequence of symbols,
+for example $00101$ is a vector of length $5$.
+The concatenation of two vectors $u$ and $v$
+will be denoted simply as $uv$,
+for example $00v11$ denotes a vector
+which is formed as a concatenation
+of the three vectors $00$, $v$ and $11$.
 
 \begin{definition}
 [Component extraction $\bit{v}{i}$
