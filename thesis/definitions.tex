@@ -1,8 +1,5 @@
 \chapter{Definitions}
 
-\todo[inline]{Cite respective sources in definition and proof titles.
-When we define an existing term, say in advance that it was defined before somewhere else.}
-
 The basic terminology used in this thesis
 was introduced by \citet{Schieber2005154},
 \citet{Dubovsky2012}
@@ -21,12 +18,16 @@ trailing two components have the value $1$
 and $i$-th component for $i \in \curly{3, \ldots, n+2}$
 has the value of the $(i-2)$-th component of $v$.
 
-\begin{definition}[Component extraction $\bit{v}{i}$]
+\begin{definition}
+[Component extraction $\bit{v}{i}$
+{\definitionsource[p.~156]{Schieber2005154}}]
 Let $v$ be a vector of length $n$ and $1 \leq i \leq n$.
 Then $\bit{v}{i}$ is the $i$-th component of $v$.
 \end{definition}
 
-\begin{definition}[Subsequence extraction $\bits{v}{a}{b}$]
+\begin{definition}
+[Subsequence extraction $\bits{v}{a}{b}$
+{\definitionsource[p.~157]{Schieber2005154}}]
 Let
 $v$ be a vector of length $n$
 and
@@ -42,7 +43,9 @@ and ends at $b$-th position
 Notably,
 $v = \bit{v}{1} \ldots \bit{v}{n} = \bits{v}{1}{n}$.
 
-\begin{definition}[Symbol repetition $\rep{\alpha}{n}$]
+\begin{definition}
+[Symbol repetition $\rep{\alpha}{n}$
+{\definitionsource[p.~157]{Schieber2005154}}]
 Let $\alpha$ be a symbol (for example $0$ or $1$)
 and $n \in \nat$.
 Then $\rep{\alpha}{n}$ is the vector of length $n$
@@ -54,7 +57,9 @@ $\rep{0}{2} = 00$.
 
 \section{Binary vectors}
 
-\begin{definition}[Binary vector]
+\begin{definition}
+[Binary vector
+{\definitionsource[p.~156]{Schieber2005154}}]
 We will use the term \definiendum{binary vector}
 to denote a vector over the Boolean domain.
 That is, $x$ is a binary vector if and only if
@@ -188,7 +193,9 @@ Note that a function may have more than one minimum
 
 \section{Ternary vectors}
 
-\begin{definition}[Ternary vector]
+\begin{definition}
+[Ternary vector
+{\definitionsource[p.~156]{Schieber2005154}}]
 A \definiendum{ternary vector}
 is a vector over the set
 $\{0, 1, \phi\}$.
@@ -229,7 +236,9 @@ each of length $n$,
 corresponds to a \acrshort{dnf} \emph{formula}
 on $n$ variables.
 
-\begin{definition}[Spanning]
+\begin{definition}
+[Spanning
+{\definitionsource[p.~156]{Schieber2005154}}]
 A ternary vector $T$ of length $n$ \definiendum{spans}
 a binary vector $x$ of length $n$
 if and only if
@@ -298,7 +307,9 @@ to sets of ternary vectors
 if and only if
 $span(\mathcal{T}) = S$.
 
-\begin{definition}[Spanning set]
+\begin{definition}
+[Spanning set
+{\definitionsource[p.~156]{Schieber2005154}}]
 Let $f$ be an $n$-ary Boolean function.
 The set $\mathcal{T}$ of $n$-bit ternary vectors
 is a \definiendum{spanning set} of $f$
@@ -321,7 +332,9 @@ The correspondence preserves size
 so a minimum spanning set
 corresponds to a minimum \acrshort{dnf} representation.
 
-\begin{definition}[Disjoint spanning set]
+\begin{definition}
+[Disjoint spanning set
+{\definitionsource[p.~165]{Schieber2005154}}]
 A spanning set $\mathcal{T}$ is \definiendum{disjoint}
 if and only if the spanned sets of its vectors
 do not overlap,
@@ -364,7 +377,8 @@ in Boolean function representations
 \label{table:representations}
 \end{table}
 
-\begin{definition}[Complement]
+\begin{definition}[Complement
+{\definitionsource[p.~156]{Schieber2005154}}]
 The complement of a binary symbol $\alpha$
 ($\alpha \in \booldom$),
 denoted $\compl{\alpha}$,
@@ -390,9 +404,9 @@ by flipping all of its fixed bits.
 Introduce orthogonal sets as a proof tool used in Schieber implicitly and Dubovsky explicitly.}
 
 \begin{definition}
-[Orthogonality \citep{Dubovsky2012}]
-\todo{Cite with page number (page 6).}
-% Dubovsky2012: Definition 1.15, page 6
+[Orthogonality
+{\definitionsource[p.~6]{Dubovsky2012}}]
+% Dubovsky2012: Definition 1.15
 Let $x, y$ be true points of Boolean function $f$
 ($f(x) = f(y) = 1$).
 $x$ and $y$ are \definiendum{orthogonal}
@@ -406,8 +420,6 @@ if and only if
 all the vectors in $S$ are pairwise orthogonal.
 \end{definition}
 
-This notion of orthogonality was introduced
-by \citet{Dubovsky2012}.
 \todomaybe[inline]{Relate orthogonality to disjointness of essential sets. Don't forget to deal with DNF/CNF difference. Orthogonal vectors are a special case of disjoint essential sets. They suffice in our case.}
 
 For a given $f$,
@@ -422,10 +434,12 @@ Boros - where the inequality is shown
 Bersch - hypergraphs (?)
 ortho je dolni odhad ess}
 
-\begin{theorem}[$\apply{ortho}{f} \leq \apply{dnf}{f}$
-\citep{Boros2010}
-% Corollary 6.12; page 89
-]
+\begin{theorem}
+[$\apply{ortho}{f} \leq \apply{dnf}{f}$
+{\theoremsource[p.~89]{Boros2010}}
+% Corollary 6.12
+{\theoremsource[p.~6]{Dubovsky2012}}]
+% Observation 1.1
 \label{theorem:orthodnf}
 For any Boolean function,
 the size of its maximum orthogonal set
@@ -465,8 +479,10 @@ we conclude that the representation is minimum.
 The orthogonal set certifies
 optimality of the \acrshort{dnf} representation.
 
-\begin{definition}[Coverability \citep{Cepek2012}]
-% Definition 2.9; page 368
+\begin{definition}
+[Coverability
+{\definitionsource[p.~368]{Cepek2012}}]
+% Definition 2.9
 \label{def:coverable}
 Let $f$ be a Boolean function.
 $f$ is \definiendum{coverable}
@@ -600,7 +616,9 @@ and later translated the term as \quot{switch}
 in personal communication \citep{Husek2015}.
 }
 
-\begin{definition}[$l$-switch function]
+\begin{definition}
+[$l$-switch function
+{\definitionsource[pp.~13-14]{Husek2015}}]
 A Boolean function $f$ is \definiendum{$l$-switch}
 if and only if
 there are exactly $l$ input vectors $x$ such that
