@@ -272,7 +272,21 @@ If $\bit{T}{i}$ is the \quot{don't care symbol} $\phi$,
 the spanned binary vector
 may have any value in its $i$-th position.
 
-\todokucera[inline]{\foreignlanguage{czech}{Možná bych zmínil, že \quot{T spans a binary vector x of length n, iff C(x)=1, kde C je term odpovídající T}.}}
+In the correspondence between ternary vectors and terms,
+spanning corresponds to satisfying.
+The ternary vector $T$ of length $n$ spans $x$
+if and only if
+$C(x) \equiv 1$,
+where $C$ is the term on $n$ variables
+that corresponds to $T$.
+Similarly,
+it is easy to see that
+a set of ternary vectors $\mathcal{T}$ spans $x$
+if and only if
+$\mathcal{F}(x) \equiv 1$,
+where $\mathcal{F}$ is the \acrshort{dnf} formula
+on $n$ variables
+that corresponds to $\mathcal{T}$.
 
 \begin{definition}[Spanned set]
 Let $T$ be a ternary vector of length $n$.
