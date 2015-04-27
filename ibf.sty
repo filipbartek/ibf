@@ -60,6 +60,9 @@ color=yellow,#1]{#2}}
 \newcommand{\definiendum}[1]{\emph{#1}}
 \newcommand{\valuation}[2]{\apply{#1}{#2}} % Propositional formula substitution
 
+\newcommand{\kintfn}[5]{#1^{#2}_{\interval{#4_1}{#5_1}, \ldots, \interval{#4_{#3}}{#5_{#3}}}}
+\newcommand{\fnkab}{\kintfn{f}{n}{k}{a}{b}}
+
 \newcommand{\quantify}[3]{(#1 #2) [#3]}
 \newcommand{\ex}[2]{\quantify{\exists}{#1}{#2}}
 \newcommand{\fora}[2]{\quantify{\forall}{#1}{#2}}
