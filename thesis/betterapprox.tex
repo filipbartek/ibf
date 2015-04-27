@@ -435,6 +435,13 @@ of $f^n_l$.
 We will denote its size with
 $\mathit{hard}_{\mathit{eff}}(l,n)$.
 
+\begin{lemma}
+$dnf(f_l^n) \leq n+l-2$
+\end{lemma}
+
+\begin{proof}
+We will show a spanning set of $f_l^n$ of size $n+l-2$.
+
 We will span the union of the intervals
 $\interval{p \rep{0}{n-l-1} 1}{p \rep{1}{n-l-1} 0}$
 for all $p \in \booldom^l$
@@ -503,6 +510,7 @@ we get the size of a spanning set of $f_l^n$:
 &= (n-l) + (l-1) + (l-1) \\
 &= n + l - 2
 \end{align*}
+\end{proof}
 
 \subsection{Approximation ratio}
 
