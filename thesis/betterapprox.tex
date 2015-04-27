@@ -285,6 +285,12 @@ and the remaining intervals intersect 2 subtrees each,
 there are $2 + \frac{2^l - 2}{2} = 2^{l-1} + 1 = k$
 intervals in total.
 
+Equivalently,
+if we are looking for a \quot{hard} function
+with at least $k$ proper intervals,
+we can construct it using the parameter
+$l = \ceil{\log_2{(k-1)} + 1}$.
+
 \subsection{Interval decomposition spanning set size}
 
 Let $f_l^n =
