@@ -406,12 +406,17 @@ in $s_{b_i} + 1 = \rep{1}{n-l}$.
 The returned spanning set of
 $\interval{\rep{0}{n-l}}{s_{b_i}}$
 thus has the size $n-l$.
+Prepending the prefix $p_{b_i}$
+we get a spanning set of
+$\interval{p_{b_i} \rep{0}{n-l}}{p_{b_i} s_{b_i}}$.
 
-Joining it with the spanning set of the complementary
-sub-interval
-$\interval{s_{a_i}}{\rep{1}{n-l}}$
-and prepending the respective common prefixes,
-we get a spanning set $\mathcal{T}_i$ of size $2(n-l)$.
+We span the complementary sub-interval
+$\interval{p_{a_i} s_{a_i}}{p_{a_i} \rep{1}{n-l}}$
+in a symmetric manner,
+getting another spanning set of size $n-l$.
+
+Joining the sub-interval spanning sets together
+we get the spanning set $\mathcal{T}_i$ of size $2(n-l)$.
 
 \hfill
 
