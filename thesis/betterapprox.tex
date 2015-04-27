@@ -428,12 +428,15 @@ hard_{id}(l, n) &= \sum_{i=1}^k{\size{\mathcal{T}_i}} \\
 &= 2^l (n-l)
 \end{align*}
 
-\subsection{Efficient spanning set size}
+\subsection{Minimum spanning set size}
 
-In this section we will show a better spanning set
-of $f^n_l$.
+In this section we will show a spanning set
+of $f^n_l$ of size $n+l-2$
+and prove its optimality
+($dnf(f^n_l) = n+l-2$).
 We will denote its size with
 $\mathit{hard}_{\mathit{eff}}(l,n)$.
+\todo{Get rid of $hard_{eff}$ in the whole chapter. Use $dnf$ in its place.}
 
 \begin{lemma}
 $dnf(f_l^n) \leq n+l-2$
@@ -510,6 +513,81 @@ we get the size of a spanning set of $f_l^n$:
 &= (n-l) + (l-1) + (l-1) \\
 &= n + l - 2
 \end{align*}
+\end{proof}
+
+\begin{lemma}
+$dnf(f_l^n) \geq n+l-2$
+\end{lemma}
+
+\begin{proof}
+We will show that $f_l^n$ can not be spanned
+using fewer than $n-l-2$ ternary vectors
+by showing an orthogonal set of $f_l^n$ of size $n-l-2$.
+By \autoref{theorem:orthodnf},
+this proves that all the spanning sets of $f_l^n$
+have the size at least $n-l-2$.
+
+The orthogonal set $V$ consists of 3 components:
+\begin{itemize}
+\item
+$V_{out} = \curly{\rep{0}{l} s
+| s \text{ is a cyclic shift of } 1 \rep{0}{n-l-1}}$
+\item
+$V_0 = \curly{c 0 \rep{0}{n-l}
+| c \text{ is a cyclic shift of } 1 \rep{0}{l-2}}$
+\item
+$V_1 = \curly{c 1 \rep{1}{n-l}
+| c \text{ is a cyclic shift of } 0 \rep{1}{l-2}}$
+\end{itemize}
+
+To see that the sets $V_{out}$, $V_0$ and $V_1$
+are pairwise disjoint,
+consider any $v_{out} \in V_{out}$,
+$v_0 \in V_0$ and $v_1 \in V_1$.
+The vector $v_1$ differs from $v_{out}$ and $v_0$
+in the $l$-th position.
+The vector $v_0$ differs from $v_{out}$
+in the position $i \in \curly{1, \ldots, l-1}$
+such that $\bit{v_0}{i} = 1$.
+
+Since the sets $V_{out}$, $V_0$ and $V_1$
+are pairwise disjoint,
+their union $V$
+has the size
+$\size{V_{out}} + \size{V_0} + \size{V_1}
+= (n-l) + (l-1) + (l-1) = n+l-2$.
+
+To see that $V$ is orthogonal with respect to $f^n_l$,
+we need to show that any pair of different vectors in $V$
+cannot be spanned by a single ternary vector $T$.
+Let $x,y \in V$ and $x \neq y$.
+Let $T$ span both $x$ and $y$.
+We shall consider the 6 possible combinations one by one:
+\begin{itemize}
+\item $x,y \in V_{out}$:
+$T$ spans the false point $\rep{0}{n}$.
+\item $x,y \in V_0$:
+$T$ spans the false point $\rep{0}{n}$.
+\item $x,y \in V_1$:
+$T$ spans the false point $\rep{1}{n}$.
+\item $x \in V_{out}, y \in V_0$:
+$T$ spans the false point $\rep{0}{n}$.
+\item $x \in V_{out}, y \in V_1$:
+$T$ spans the false point $\rep{0}{l} \rep{1}{n-l}$.
+\item $x \in V_0, y \in V_1$:
+$T$ spans the false point
+$\bits{x}{1}{l} \bits{y}{l+1}{n}
+= \bits{x}{1}{l-1} 0 \rep{1}{n-l}$.
+To see that it is a false point,
+recall that
+all the true points that end with $\rep{1}{n-l}$
+have an \emph{odd} prefix of length $l$.
+\end{itemize}
+
+Thus we have found an orthogonal set $V$ of $f_l^n$
+of size $n+l-2$.
+
+We conclude that $dnf(f_l^n) \geq n+l-2$.
 \end{proof}
 
 \subsection{Approximation ratio}
