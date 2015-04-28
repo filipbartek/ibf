@@ -229,14 +229,22 @@ In the proof of optimality of this algorithm
 (see \autoref{proof:prefixoptimal}),
 we showed an orthogonal set that matches the size
 of the spanning set produced by the algorithm.
-Let $V_{i, 1}'$ be this orthogonal set
-of $\interval{\rep{0}{n-j-1}}{b'}$
-($\size{V_{i, 1}'}
-= \size{\mathcal{T}_{i, 1}'}$).
-Recall that the orthogonality of points in $V_{i, 1}'$
-only depends on the single false point $b' + 1$.
+Let's call this set $V_{i, 1}'$.
+%In \autoref{corollary:prefixdependence}
+%we showed that the orthogonality of $V_{i, 1}'$
+%only depends on the false point
+%$b' + 1$.
+%Let $V_{i, 1}'$ be this orthogonal set
+%of $\interval{\rep{0}{n-j-1}}{b'}$
+%($\size{V_{i, 1}'}
+%= \size{\mathcal{T}_{i, 1}'}$).
+Recall that by \cref{corollary:prefixdependence}
+all the pairs of vectors in $V_{i, 1}'$
+collide on the false point $b' + 1$
+of $\prefixfn{f}{n-j-1}{b'}$.
 
-Let $V = \curly{c 1 v | v \in V_{i, 1}'}$.
+Let $V = \curly{c 1 v | v \in V_{i, 1}'}$,
+where $c$ is the longest common prefix of $a_i$ and $b_i$.
 We claim that $V$ is an orthogonal set of
 $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
 
