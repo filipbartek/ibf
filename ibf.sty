@@ -65,6 +65,7 @@ color=yellow,#1]{#2}}
 \newcommand{\kintfn}[5]{#1^{#2}_{\interval{#4_1}{#5_1}, \ldots, \interval{#4_{#3}}{#5_{#3}}}}
 \newcommand{\fnkab}{\kintfn{f}{n}{k}{a}{b}}
 \newcommand{\twointfn}[6]{#1^{#2}_{\interval{#3}{#4}, \interval{#5}{#6}}} % \twointfn{f}{n}{a_1}{b_1}{a_2}{b_2}
+\newcommand{\prefixfn}[3]{\intervalfn{#1}{#2}{\rep{0}{#2}}{#3}} % \prefixfn{f}{n}{b}
 
 \newcommand{\quantify}[3]{(#1 #2) [#3]}
 \newcommand{\ex}[2]{\quantify{\exists}{#1}{#2}}
