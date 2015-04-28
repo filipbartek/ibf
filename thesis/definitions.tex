@@ -437,6 +437,16 @@ and \citet{Dubovsky2012} (explicitly)
 in the proofs of optimality of spanning algorithms.
 
 \begin{definition}
+[Collision]
+Let $x$, $y$ and $z$ be $n$-bit binary vectors.
+We say that \definiendum{$x$ and $y$ collide
+on the vector $z$}
+if and only if
+every ternary vector that spans both $x$ and $y$
+necessarily also spans $z$.
+\end{definition}
+
+\begin{definition}
 [Orthogonality
 {\definitionsource[p.~6]{Dubovsky2012}}]
 % Dubovsky2012: Definition 1.15
@@ -446,8 +456,7 @@ Let $x$ and $y$ be true points of a Boolean function $f$
 $x$ and $y$ are \definiendum{orthogonal}
 with respect to $f$
 if and only if
-every ternary vector that spans both $x$ and $y$
-necessarily also spans a false point of $f$.
+they collide on a false point of $f$.
 
 A set of true points $S$ is \definiendum{orthogonal}
 if and only if
