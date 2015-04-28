@@ -248,15 +248,20 @@ where $c$ is the longest common prefix of $a_i$ and $b_i$.
 We claim that $V$ is an orthogonal set of
 $\fnkab$.
 
-By prepending $c 1$ to $(b' + 1)$
-we get $b_i + 1$.
-\todo{What if $b_i = \rep{1}{n}$?}
-Since $b_i < a_{i+1} - 1$,
-$b_i + 1$ is a false point of
-$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
-It follows that the points in $V$ are orthogonal,
-since their orthogonality only depends on the false point
-$c 1 (b' + 1) = b_i + 1$.
+Let $c1x, c1y \in V$, $x \neq y$.
+Since by \cref{corollary:prefixdependence}
+$x$ and $y$ collide on $b'+1$,
+$c1x$ and $c1y$ collide on
+$c1(b'+1) = b_i+1$.
+\todo{What if $b_i = \rep{1}{n}$? Then $\size{V}=1$, which is handled separately in the proof of optimality.}
+To see that $b_i+1$ is a false point,
+note that $b_i < a_{i+1} - 1$
+\todo{What if $i = k$?}
+by the requirements on input data
+(we only consider \emph{proper} $k$-interval functions).
+
+It follows that $V$ is orthogonal
+with respect to $\fnkab$.
 From \autoref{theorem:orthodnf} we get
 $\size{\mathcal{T}_{opt}} \geq \size{V}$.
 
