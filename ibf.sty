@@ -69,6 +69,15 @@ color=yellow,#1]{#2}}
 
 \newcommand{\intervalfns}[1]{\apply{\mathit{INT}}{#1}} % \intervalfns{k}
 
+\newcommand{\approxratio}[2]{\apply{\mathit{approx}_{#1}}{#2}}
+% \approxratio{id}{\intervalfns{k}}
+\newcommand{\approxid}[1]{\approxratio{\mathit{ID}}{#1}}
+% \approxid{\intervalfns{k}}
+\newcommand{\approxidint}[1]{\approxid{\intervalfns{#1}}}
+% \approxidint{k}
+\newcommand{\approxidintk}{\approxidint{k}}
+\newcommand{\approxspdintk}{\approxratio{\mathit{SPD}}{\intervalfns{k}}}
+
 \newcommand{\quantify}[3]{(#1 #2) [#3]}
 \newcommand{\ex}[2]{\quantify{\exists}{#1}{#2}}
 \newcommand{\fora}[2]{\quantify{\forall}{#1}{#2}}
