@@ -587,7 +587,7 @@ $$
 \apply{f'}{x'} =
 \begin{cases}
 \apply{f}{\bits{x'}{2}{n+1}} & \text{if } \bit{x'}{1} = 0 \\
-0 & \text{if } x' \in \interval{1 \rep{0}{n}}{\rep{1}{n} 0} \\
+0 & \text{if } 1 \rep{0}{n} \leq x' \leq \rep{1}{n} 0 \\
 1 & \text{if } x' = \rep{1}{n+1}
 \end{cases}
 $$
