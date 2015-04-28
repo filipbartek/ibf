@@ -3,16 +3,12 @@ for \texorpdfstring{$k$}{k}-interval functions}
 \label{chap:2kapprox}
 \todo[inline]{Rename the algorithm to \quot{suffix-prefix decomposition algorithm}.}
 
-In this chapter,
-we will show an algorithm that computes
-a relatively
-small spanning set
-of any $k$-interval Boolean function.
-The input intervals are represented by pairs of endpoints
-($n$-bit numbers).
-An approximation ratio of $2k$ will be proved.
-
-The algorithm is a straightforward
+In this chapter
+we shall show a simple $2k$-approximation algorithm for the following problem:
+Given a proper $k$-interval function $f$,
+find a minimum spanning set of $f$.
+We shall assume that the function $f$ is represented by pairs of endpoints of the respective intervals.
+The algorithm we shall describe is a straightforward
 \todo{Check whether it really is straightforward.}
 extension of
 \citeauthor{Schieber2005154}'s suffix-prefix
@@ -21,7 +17,8 @@ for disjoint spanning sets of $1$-interval functions
 \citep[section 6]{Schieber2005154}.
 \todomaybe{Rephrase here or in Conclusion (almost identical sentence).}
 
-We will only consider
+In the rest of this chapter,
+we will only consider
 \emph{proper} $k$-interval Boolean functions,
 that is those whose adjacent intervals are separated by
 at least one false point
@@ -35,7 +32,8 @@ where $l < k$
 by joining the adjoint
 intervals.
 
-\section{Description}
+\section{Description of the algorithm}
+\todo{Unite with the following chapter.}
 
 \begin{description}
 \item[Input] Numbers $a_1, b_1, \ldots, a_k, b_k$
@@ -52,13 +50,13 @@ $b_{k-1} < a_k - 1$,
 $a_k \leq b_k$,
 $b_k \leq \rep{1}{n}$.
 
-Such numbers are endpoints of intervals
-of a proper $k$-interval Boolean function.
+Such numbers are the endpoints of the intervals
+of the proper $k$-interval Boolean function $\fnkab$.
 
-\item[Output] A set of ternary vectors.
-\end{description}
+\item[Output] A spanning set of $\fnkab$.
+\todo{Update in the interval decomposition algorithm.}
 
-\paragraph{Procedure}
+\item[Procedure]
 The algorithm spans each of
 the intervals $\interval{a_i}{b_i}$ separately.
 The set that spans $\interval{a_i}{b_i}$ will be denoted
@@ -69,7 +67,6 @@ $\mathcal{T} = \bigcup_{i=1}^k{\mathcal{T}_i}$.
 Let's consider the interval $\interval{a_i}{b_i}$.
 Let $c$ be the longest common prefix of $a_i$ and $b_i$.
 Let $j$ be its length ($\size{c} = j$).
-\todomaybe[inline]{Index $c$ and $j$ with $i$.}
 
 If $j = n$, that is $c = a_i = b_i$,
 $\mathcal{T}_i$ consists of the single vector
@@ -108,6 +105,7 @@ The spanning set of $\interval{a_i}{b_i}$
 is then
 $\mathcal{T}_i
 = \mathcal{T}_{i, 0} \cup \mathcal{T}_{i, 1}$.
+\end{description}
 
 \todomaybe[inline]{Treat more efficiently the cases
 $\bits{a_i}{j+1}{n} = \rep{0}{n-j}$ (prefix)
@@ -116,6 +114,7 @@ especially $a_1 = \rep{0}{n}$
 and $b_k = \rep{1}{n}$.
 This doesn't improve the approximation ratio though
 and may complicate the proof.}
+\todokucera[inline]{Můžete to dát do poznámky k algoritmu, jako „possible improvements“ s tím, že to nehraje roli pro aproximační poměr, ale v některých případech to může být užitečné.}
 
 \section{Feasibility}
 \begin{theorem}
