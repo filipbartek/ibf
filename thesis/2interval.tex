@@ -583,14 +583,14 @@ neither is $f'$.
 Let $f'$ be an $(n+1)$-ary function
 defined in the following way:
 
-\[
+$$
 \apply{f'}{x'} =
 \begin{cases}
 \apply{f}{\bits{x'}{2}{n+1}} & \text{if } \bit{x'}{1} = 0 \\
 0 & \text{if } x' \in \interval{1 \rep{0}{n}}{\rep{1}{n} 0} \\
 1 & \text{if } x' = \rep{1}{n+1}
 \end{cases}
-\]
+$$
 
 \todo[inline]{Note that with Kucera on 15 April 2015, we found it necessary for $f$ to also have the false point $\rep{1}{n-1} 0$ for the procedure to work. I believe that the proof also works in the other case as well.}
 
@@ -644,9 +644,9 @@ of a maximum orthogonal set of $f$.
 
 Putting the inequalities together:
 
-\[
+$$
 ortho(f') \leq ortho(f) + 1 < dnf(f) + 1 = dnf(f')
-\]
+$$
 
 We conclude that $f'$ is an $(l+1)$-switch non-coverable
 function.
