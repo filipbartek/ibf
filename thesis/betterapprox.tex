@@ -73,16 +73,55 @@ The algorithm returns
 $\mathcal{T} = \bigcup_{i=1}^k{\mathcal{T}_i}$.
 \end{description}
 
-Since the algorithm
+Note that the spanning set constructed
+by the interval decomposition algorithm
+need not be disjoint
+(unlike the spanning set constructed
+by the suffix-prefix decomposition algorithm).
+
+\section{Approximation ratio}
+
+Let $F$ be a class of Boolean functions.
+We shall denote the approximation ratio
+of the interval decomposition algorithm
+on functions from class $F$ with $\approxid{F}$:
+$$
+\approxid{F}
+= \sup_{f \in F}{\frac{id(f)}{dnf(f)}}
+$$
+\todo{Is this definition of approximation ratio correct?
+I'm afraid it may be inconsistent with some parts of the text.}
+where $id(f)$ is the size of the spanning set of $f$
+returned by the interval decomposition algorithm.
+
+We will analyse the approximation ratio
+of the interval decomposition algorithm
+on $k$-interval Boolean functions,
+that is $\approxidintk$,
+where $\intervalfns{k}$ is the class
+of $k$-interval Boolean functions.
+We will parametrise the approximation ratio
+with the number of intervals $k$.
+
+\subsection{Upper bound of $2k$}
+
+Since the interval decomposition algorithm
 spans each of the $k$ intervals separately and optimally,
 while the suffix-prefix decomposition algorithm
 spans each of them separately and possibly non-optimally,
 the approximation ratio of $2k$
 (as shown in \autoref{theorem:2kapproxratio})
-holds for the interval decomposition algorithm as well.
+holds for the interval decomposition algorithm as well:
+$$
+\approxidintk \leq \approxspdintk = 2k
+$$
 However,
 the ratio $2k$ need not be tight
 for the interval decomposition algorithm.
+We will continue to analyse the lower bounds
+on the approximation ratio.
+
+\subsection{Known lower bounds for $k \in \curly{1, 2}$}
 
 \citeauthor{Dubovsky2012} has shown
 that the approximation ratio is strictly smaller than $2k$
@@ -93,23 +132,20 @@ Similarly,
 it is obvious that the algorithm
 gives an optimal result in case $k = 1$
 (which corresponds to the approximation ratio $1$).
+\begin{align*}
+\approxidint{1} &= 1 \\
+\approxidint{2} &= 2
+\end{align*}
 
-Note that the spanning set constructed
-by the interval decomposition algorithm
-need not be disjoint
-(unlike the spanning set constructed
-by the suffix-prefix decomposition algorithm).
-
-\section{Approximation ratio converges
-to \texorpdfstring{$2k$}{2k}}
-
-In this section
+In the following sections,
 we will construct a class of Boolean functions
-on which the interval decomposition algorithm
+on some of which
+the interval decomposition algorithm
 performs strictly worse than $k$-approximately
 for $k = 3$.
 \todomaybe{Try to prove this for all $k > 2$.}
-We will show that the approximation ratio converges to $2k$
+We will continue to show
+that the approximation ratio converges to $2k$
 for large $k$.
 
 \subsection{Approximation-hard functions}
@@ -301,13 +337,13 @@ shown in the previous section.
 In this section we will show the size of the spanning set
 returned by the interval decomposition algorithm
 when run on this function.
-We will denote this size with $hard_{id}(l, n)$.
+We will denote its size with $id(f_l^n)$.
 
 The interval decomposition algorithm spans
 each of the intervals separately
 using the optimization algorithm
 from \autoref{chap:1interval},
-so $hard_{id}(l, n) = \sum_{i=1}^k{\size{\mathcal{T}_i}}$,
+so $id(f_l^n) = \sum_{i=1}^k{\size{\mathcal{T}_i}}$,
 where $\mathcal{T}_i$ is the spanning set
 of the interval $\interval{a_i}{b_i}$
 returned by the optimization algorithm
@@ -319,7 +355,6 @@ the instance $\interval{a_i}{b_i}$.
 We will divide the analysis between the intervals
 such that $p_{b_i} = p_{a_i}$
 and the ones such that $p_{b_i} = p_{a_i} + 1$.
-We will analyse these types separately.
 
 \subsubsection{$i \in \curly{1, k}$}
 
@@ -423,7 +458,7 @@ we get the spanning set $\mathcal{T}_i$ of size $2(n-l)$.
 Putting the interval spanning sets together,
 we get:
 \begin{align*}
-hard_{id}(l, n) &= \sum_{i=1}^k{\size{\mathcal{T}_i}} \\
+id(f_l^n) &= \sum_{i=1}^k{\size{\mathcal{T}_i}} \\
 &= 2 (n-l) + \sum_{i=2}^{k-1}{2 (n-l)} \\
 &= 2 (n-l) + (k-2) 2 (n-l) \\
 %&= 2 (n-l) (1 + (k-2)) \\
@@ -439,16 +474,14 @@ In this section we will show a spanning set
 of $f^n_l$ of size $n+l-2$
 and prove its optimality
 ($dnf(f^n_l) = n+l-2$).
-We will denote its size with
-$\mathit{hard}_{\mathit{eff}}(l,n)$.
-\todo{Get rid of $hard_{eff}$ in the whole chapter. Use $dnf$ in its place.}
 
 \begin{lemma}
 $dnf(f_l^n) \leq n+l-2$
 \end{lemma}
 
 \begin{proof}
-We will show a spanning set of $f_l^n$ of size $n+l-2$.
+We will show a spanning set $\mathcal{T}$
+of $f_l^n$ of size $n+l-2$.
 
 We will span the union of the intervals
 $\interval{p \rep{0}{n-l-1} 1}{p \rep{1}{n-l-1} 0}$
@@ -526,7 +559,7 @@ Putting the partial spanning sets together,
 we get the size of a spanning set of $f_l^n$:
 
 \begin{align*}
-\mathit{hard}_{\mathit{eff}}(l,n)
+\size{\mathcal{T}}
 &= \size{\mathcal{T}_{\mathit{out}}}
 + \size{\mathcal{T}_0} + \size{\mathcal{T}_1} \\
 &= (n-l) + (l-1) + (l-1) \\
@@ -534,14 +567,17 @@ we get the size of a spanning set of $f_l^n$:
 \end{align*}
 \end{proof}
 
+Having shown a spanning set of $f_l^n$ of size $n+l-2$,
+we conclude that $dnf(f_l^n) \leq n+l-2$.
+
 \begin{lemma}
 $dnf(f_l^n) \geq n+l-2$
 \end{lemma}
 
 \begin{proof}
 We will show that $f_l^n$ can not be spanned
-using fewer than $n-l-2$ ternary vectors
-by showing an orthogonal set of $f_l^n$ of size $n-l-2$.
+using fewer than $n+l-2$ ternary vectors
+by showing an orthogonal set of $f_l^n$ of size $n+l-2$.
 By \autoref{theorem:orthodnf},
 this proves that all the spanning sets of $f_l^n$
 have the size at least $n-l-2$.
@@ -563,7 +599,7 @@ To see that the sets $V_{out}$, $V_0$ and $V_1$
 are pairwise disjoint,
 consider any $v_{out} \in V_{out}$,
 $v_0 \in V_0$ and $v_1 \in V_1$.
-The vector $v_1$ differs from $v_{out}$ and $v_0$
+The vector $v_1$ differs from both $v_{out}$ and $v_0$
 in the $l$-th position.
 The vector $v_0$ differs from $v_{out}$
 in the position $i \in \curly{1, \ldots, l-1}$
@@ -581,7 +617,7 @@ we need to show that any pair of different vectors in $V$
 cannot be spanned by a single ternary vector $T$.
 Let $x,y \in V$ and $x \neq y$.
 Let $T$ span both $x$ and $y$.
-We shall consider the 6 possible combinations one by one:
+We shall consider 6 possible combinations one by one:
 \begin{itemize}
 \item $x,y \in V_{out}$:
 $T$ spans the false point $\rep{0}{n}$.
@@ -605,56 +641,66 @@ have an \emph{odd} prefix of length $l$.
 
 Thus we have found an orthogonal set $V$ of $f_l^n$
 of size $n+l-2$.
-
 We conclude that $dnf(f_l^n) \geq n+l-2$.
 \end{proof}
 
-\subsection{Approximation ratio}
+\subsection{Approximation ratio on hard functions}
 
-The spanning set shown in the previous section
-gives an upper bound on the size
-of the optimal spanning set:
-$$
-\mathit{dnf}(f^l_n)
-\leq \mathit{hard}_{\mathit{eff}}(l,n)
-$$
-
-We can use this to prove that the approximation ratio
+In the previous section,
+we have shown that $dnf(f_l^n) = n+l-2$.
+We can use this information to prove
+that the approximation ratio
 of the interval decomposition algorithm is close to $2k$
 for large $k$.
 
 The approximation ratio
 of the interval decomposition algorithm
 on the function $f_l^n$,
-denoted $\mathit{approx}(l,n)$,
-can be bounded:
+denoted $\approxid{f_l^n}$,
+can be computed like this:
 $$
-\mathit{approx}(l,n)
-= \frac{\mathit{hard}_{id}(l,n)}{\mathit{dnf}(f_l^n)}
-\geq \frac{\mathit{hard}_{id}(l,n)}
-{\mathit{hard}_{\mathit{eff}}(l,n)}
+\approxid{f_l^n}
+= \frac{id(f_l^n)}{\mathit{dnf}(f_l^n)}
 = \frac{2^l(n-l)}{n+l-2}
 $$
 
+Let $\mathit{HARD}(l) = \curly{f_l^n | n \geq l + 2}$
+be the set of all \quot{hard} functions constructed using
+\quot{position} prefixes of length $l$.
+Note that all of these functions
+are $(2^{l-1}+1)$-interval,
+that is
+$\mathit{HARD}(l) \subseteq \intervalfns{2^{l-1}+1}$.
+
 First see that for a fixed $l$ and large $n$,
-the approximation ratio converges to $2^l$
-or a larger number:
+the approximation ratio converges to $2^l$:
 \begin{align*}
-\mathit{approx}(l)
-&= \lim_{n \rightarrow \infty}{\mathit{approx}(l,n)} \\
-&\geq \lim_{n \rightarrow \infty}
-{\frac{\mathit{hard}_{\mathit{id}}(l,n)}
-{\mathit{hard}_{\mathit{eff}}(l,n)}} \\
-&= \lim_{n \rightarrow \infty}{\frac{2^l(n-l)}{n+l-2}} \\
-&= \lim_{n \rightarrow \infty}{\frac{2^l n}{n}} \\
+\approxid{HARD(l)}
+&= \sup_{f \in HARD(l)}{\frac{id(f)}{dnf(f)}} \\
+&= \sup_{n \geq l+2}{\frac{id(f_l^n)}{dnf(f_l^n)}} \\
+&= \sup_{n \geq l+2}{\frac{2^l(n-l)}{n+l-2}} \\
+%&= \lim_{n \rightarrow \infty}{\approxid{f_l^n}} \\
+%&= \lim_{n \rightarrow \infty}{\frac{2^l(n-l)}{n+l-2}} \\
+%&= \lim_{n \rightarrow \infty}{\frac{2^l n}{n}} \\
 &= 2^l
 \end{align*}
 
-In other words,
+To see that for any $l \geq 1$
+the number $2^l$ really is the supremum of the given sequence,
+note that $\frac{n-l}{n+l-2}
+= 1 - \frac{2l-2}{n+l-2} \leq 1$
+for all $n \geq l+2$
+and that
+$\lim_{n \rightarrow \infty}{\frac{2^l(n-l)}{n+l-2}}
+= \lim_{n \rightarrow \infty}{\frac{2^l n}{n}}
+= 2^l$.
+
+Since $2^l$ is the supremum of the approximation ratio
+for large $n$,
 for any $l \geq 1$ and a number $a < 2^l$,
 we can find $n$ such that
-$\mathit{hard}_{\mathit{id}}(l,n)
-\geq a \cdot \mathit{dnf}(f_l^n)$,
+%$approx(l,n) \geq a$
+$id(f_l^n) \geq a \cdot \mathit{dnf}(f_l^n)$,
 which corresponds to finding an instance
 on which the interval decomposition algorithm performs
 at least $a$ times worse than the optimum.
@@ -673,82 +719,67 @@ to span $f$.
 We will find a combination of $l$ and $n$
 such that $f_l^n$ is a $3$-interval function
 and
-$\mathit{hard}_{\mathit{id}}(l,n)
-> 3 \cdot \mathit{dnf}(f_l^n)$.
+$id(f_l^n) > 3 \cdot \mathit{dnf}(f_l^n)$.
 
 Recall that $k = 2^{l-1}+1$,
 so we need to use $l = 2$
-\todomaybe{Define an inverse mapping.}
+\todomaybe{Use the inverse mapping ($k \rightarrow l$).}
 in order for $f_l^n$ to be $3$-interval.
 
 Now let's choose the parameter $a$.
 It needs to satisfy the inequalities $a > 3$
 and $a < 4 = 2^l$.
+\todomaybe{Why?}
 Let's take for example $a = 3.5 = \frac{7}{2}$.
 
 We need to find $n$ such that:
 \begin{align*}
-\mathit{hard}_{\mathit{id}}(l,n) &= 2^l(n-l) \\
+id(f_l^n) &= 2^l(n-l) \\
 &= 2^2(n-2) \\
 &= 4 (n-2) \\
-&= 4n - 16 \\
-&\geq \frac{7}{2} \cdot \mathit{dnf}(f_2^n) \\
-&= a \cdot \mathit{dnf}(f_l^n)
-\end{align*}
-
-We will actually find an $n$ that satisfies
-an even stricter condition:
-\begin{align*}
-\mathit{hard}_{\mathit{id}}(l,n) &= 4n - 16 \\
+&= 4n - 8 \\
 &\geq \frac{7}{2} n \\
 &= \frac{7}{2} (n+2-2) \\
 &= a (n+l-2) \\
-&= a \cdot \mathit{hard}_{\mathit{eff}}(l,n) \\
-&\geq a \cdot \mathit{dnf}(f_l^n)
+&= a \cdot \mathit{dnf}(f_l^n)
 \end{align*}
 
-Any $n \geq 32$ satisfies the inequality:
-
+Any $n \geq 16$ satisfies the inequality:
 \begin{align*}
-4n - 16 &\geq \frac{7}{2} n \\
-8n - 32 &\geq 7n \\
-n &\geq 32
+4n - 8 &\geq \frac{7}{2} n \\
+8n - 16 &\geq 7n \\
+n &\geq 16
 \end{align*}
 
-We conclude, for example for $n = 32$:
+We conclude, for example for $n = 16$:
 \begin{align*}
-\mathit{hard}_{\mathit{id}}(2, 32)
-%&= 4 \cdot 32 - 16 \\
-%&= 128 - 16 \\
-&= 112 \\
-%&\geq 112 \\
-%&= 7 \cdot 16 \\
-%&= \frac{7}{2} 32 \\
-&> 96 \\
-&= 3 \cdot 32 \\
-&= 3 \cdot \mathit{hard}_{\mathit{eff}}(2,32) \\
-&\geq 3 \cdot \mathit{dnf}(f_2^{32})
+id(f_2^{16})
+&= 2^2 (16 - 2) \\
+&= 56 \\
+&> 48 \\
+&= 3 \cdot (16 - 2 + 2) \\
+&= 3 \cdot \mathit{dnf}(f_2^{16})
 \end{align*}
 
 which means that the interval decomposition algorithm
 uses strictly more
 than $3$-times as many ternary vectors to span
 the $3$-interval function
-$f_2^{32}$ as the optimum.
+$f_2^{16}$ as the optimum.
 
 Note that this example namely shows
-that interval decomposition algorithm
+that the interval decomposition algorithm
 is not $k$-approximative in general,
 since it is not $3$-approximative
-on the $3$-interval function $f_2^{32}$.
+on the $3$-interval function $f_2^{16}$.
 \end{example}
 
-\todomaybe[inline]{Start a subsection here.}
+\subsection{Approximation ratio lower bound on $k$-interval functions}
 
 In \cref{example:3inthard},
 we have shown a $k$-interval function
 on which the interval decomposition algorithm performs
-more than $k$ times worse than optimum.
+strictly more than $k$ times worse than optimum.
 More specifically,
 the algorithm produces a spanning set
 of a $(k=3)$-interval function
@@ -761,35 +792,31 @@ times as large as optimum.
 On $3$ intervals,
 we could get this error ratio arbitrarily close
 to $\frac{4}{3} k$
-by choosing larger $n$.
+by choosing a sufficiently large $n$.
 We will show that if we allow using more intervals
 (that is larger $k$),
 we can get the error ratio arbitrarily close to $2k$.
 
-Let's consider $k$ a function of $l$
--- $k(l) = 2^{l-1} + 1$.
-
-With this in mind,
-for a large $l$ we get:
-
-$$
-\lim_{l \rightarrow \infty}{\frac{approx(l)}{k(l)}}
-\geq \lim_{l \rightarrow \infty}{\frac{2^l}{2^{l-1}+1}}
-= \lim_{l \rightarrow \infty}{\frac{2^l}{2^{l-1}}}
-%= \lim_{l \rightarrow \infty}{2}
-= 2
-$$
+For every $k$ such that
+there is an $l \geq 1$ such that $k = 2^{l-1} + 1$,
+we know that the respective $l$
+is equal to $\log_2{(k-1)} + 1$.
+Since $\approxid{\mathit{HARD}(l)} = 2^l$ for all $l$,
+$\approxidintk \geq 2^{\log_2{(k-1)} + 1}
+= 2(k-1)$
+for all such $k$.
+It is easy to see that $2(k-1)$ converges to $2k$
+for large $k$.
 
 In other words,
 for any $b < 2$
 we can find a $k$-interval function
 on which the interval decomposition algorithm
 performs at least $bk$ times worse than the optimum.
-\todo{For large $n$...}
 
 For demonstration,
-\autoref{tab:hardsmalll} shows the lower bounds
-on error ratio computed using $f_l^n$
+\autoref{tab:hardsmalll} shows the limits
+of the approximation ratio on $f_l^n$
 for some small values of $l$.
 
 \begin{table}[h]
@@ -797,10 +824,10 @@ for some small values of $l$.
 \begin{tabular}{l|lllll}
 $l$
 & $k$ % 2^{l-1}+1
-& $\mathit{hard}_{\mathit{id}}(l,n)$ % 2^l(n-l)
-& $\mathit{hard}_{\mathit{eff}}(l,n)$ % n+l-2
-& $\mathit{approx}(l) \geq$ % 2^l
-& $\frac{\mathit{approx}(l)}{k(l)} \geq$
+& $id(f_l^n)$ % 2^l(n-l)
+& $dnf(f_l^n)$ % n+l-2
+& $\approxid{\mathit{HARD}(l)}$ % 2^l
+& $\frac{\approxid{\mathit{HARD}(l)}}{k}$
 % \frac{2^l}{2^{l-1}+1}
 \\
 \hline
@@ -809,10 +836,19 @@ $2$ & $3$ & $4n-8$ & $n$ & $4$ & $\frac{4}{3}$ \\
 $3$ & $5$ & $8n-24$ & $n+1$ & $8$ & $\frac{8}{5}$ \\
 $4$ & $9$ & $16n-64$ & $n+2$ & $16$ & $\frac{16}{9}$
 \end{tabular}
-\caption{Lower bound of approximation ratio using $f_l^n$
-for small $l$}
+\caption{Limits of the approximation ratio
+on $f_l^n$
+for some small $l$}
 \label{tab:hardsmalll}
 \end{table}
 
-\todo{lim sup ~ horni odhad limity - pres k
-nebo lim pres l + justification v uvodu dukazu (lepsi) - beru jen nektera k}
+\section{Conclusion}
+
+We have shown an approximation algorithm for the problem of minimization of $k$-interval Boolean functions.
+We continued to analyse its approximation ratio.
+An upper bound $2k$ on the approximation ratio
+directly follows from the analysis of the suffix-prefix decomposition algorithm presented in \autoref{chap:2kapprox}.
+A lower bound $2^l$
+for $k = 2^{l-1}+1$
+follows from the analysis of the algorithm's performance
+on a special class of \quot{hard} functions.
