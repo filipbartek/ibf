@@ -45,12 +45,38 @@ that is tautology.
 
 From now on, let $n \geq 1$.
 
-\subsection{\texorpdfstring{$a = b$}{a = b}}
+\subsection{\texorpdfstring{$\bit{a}{1} = \bit{b}{1}$}{\textbit{a}{1} = \textbit{b}{1}}}
 
-We span the interval $\interval{a}{a}$
-with the single ternary vector $a$.
+If $a$ and $b$ share the leading bit,
+let $c$ be the longest common prefix of $a$ and $b$
+and let $j$ be its length.
+Note that $j \geq 1$.
+Let $a' = \bits{a}{j+1}{n}$ and $b' = \bits{b}{j+1}{n}$
+($a = ca'$ and $b = cb'$).
+Let $\mathcal{T}'$ be the spanning set of
+the function $\intervalfn{f}{n-j}{a'}{b'}$.
+Since $n-j < n$,
+we can get such set by recursion.
+We get the spanning set of $\fnab$
+by prepending $c$
+to each of the vectors in $\mathcal{T}'$
+($\mathcal{T} = c \mathcal{T}'
+= \curly{cT' | T' \in \mathcal{T}'}$).
+It is easy to see that if $\mathcal{T}'$
+\todo{Is it easy to see at this point?}
+spans exactly $\interval{a'}{b'}$,
+then $c \mathcal{T}'$ spans exactly
+$\interval{c a'}{c b'} = \interval{a}{b}$.
 
-From now on, let $a < b$.
+Note that in the special case $a=b$
+(that is $c=a=b$ and $j=n$),
+$\mathcal{T}'$ consists of the single vector of length $0$
+and $\mathcal{T}$ correctly consists of the single vector $c=a=b$.
+
+From now on let $\bit{a}{1} \neq \bit{b}{1}$.
+Since $a \leq b$,
+necessarily $\bit{a}{1} = 0$ and $\bit{b}{1} = 1$.
+From now on we may especially assume that $a < b$.
 
 \subsection{\texorpdfstring
 {$a = \rep{0}{n}$}{a = \textrep{0}{n}}
