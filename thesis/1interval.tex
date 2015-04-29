@@ -33,6 +33,18 @@ while the simpler cases are solved iteratively.
 
 We will first deal with the trivial intervals.
 
+\subsection{\texorpdfstring{$n=0$}{n=0}}
+
+Since the algorithm is recursive,
+we need to deal with the degenerate case
+of $0$-bit endpoints.
+We span such interval using a single ternary vector
+of length $0$.
+Note that such vector corresponds to an empty term,
+that is tautology.
+
+From now on, let $n \geq 1$.
+
 \subsection{\texorpdfstring{$a = b$}{a = b}}
 
 We span the interval $\interval{a}{a}$
