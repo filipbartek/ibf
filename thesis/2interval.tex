@@ -10,15 +10,32 @@ provides a more detailed overview.
 
 \citeauthor{Dubovsky2012} identified several classes
 of $2$-interval functions \citep[p.~5]{Dubovsky2012}
-which seem to require different approaches to spanning.\todo{Reword \quot{seem to require}.}
-It turns out that it is useful to consider
-the number of switches
-to differentiate between these classes.
+based on the number of switches,
+although he did not use the term \quot{switch}.
 Recall that an $l$-switch function has exactly $l$ input
 vectors $x$ such that $\apply{f}{x} \neq \apply{f}{x+1}$.
+It is easy to see that a $2$-interval function
+can only have $2$, $3$ or $4$ switches.
+For $2$-switch functions
+\citeauthor{Dubovsky2012} proposed
+a polynomial minimization algorithm
+while for $3$- and $4$-switch functions
+he proposed a polynomial $2$-approximation algorithm.
 
-It is easy to see that
-prefix and suffix interval functions are $1$-switch.
+%It is easy to see that
+%prefix and suffix interval functions are $1$-switch.
+%Following \cref{example:switchesintervals},
+%a $2$-switch Boolean function such that $f(0) = 0$
+%is $1$-interval,
+%and a $2$-switch function such that $f(0) = 1$
+%is $2$-interval.
+
+In \cref{sec:2int2switch},
+we will present a simplified minimization algorithm
+for $2$-switch $2$-interval functions.
+In \cref{sec:3switch},
+we will show that functions with $3$ and more switches
+are not coverable in general.
 
 
 \section{\texorpdfstring{$2$}{2}-switch
