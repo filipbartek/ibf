@@ -243,16 +243,18 @@ all the pairs of vectors in $V_{i, 1}'$
 collide on the false point $b' + 1$
 of $\prefixfn{f}{n-j-1}{b'}$.
 
-Let $V = \curly{c 1 v | v \in V_{i, 1}'}$,
-where $c$ is the longest common prefix of $a_i$ and $b_i$.
+Let $\hat{b} = \bits{b_i}{1}{j+1}$ ($b_i = \hat{b} b'$).
+Let $V = \curly{\hat{b} v | v \in V_{i, 1}'}$.
 We claim that $V$ is an orthogonal set of
 $\fnkab$.
 
-Let $c1x, c1y \in V$, $x \neq y$.
+Let $\hat{b} x, \hat{b} y \in V$
+and $x \neq y$.
 Since by \cref{corollary:prefixdependence}
 $x$ and $y$ collide on $b'+1$,
-$c1x$ and $c1y$ collide on
-$c1(b'+1) = b_i+1$.
+$\hat{b} x$ and $\hat{b} y$
+collide on
+$\hat{b} (b'+1) = b_i+1$.
 \todo{What if $b_i = \rep{1}{n}$? Then $\size{V}=1$, which is handled separately in the proof of optimality.}
 To see that $b_i+1$ is a false point,
 note that $b_i < a_{i+1} - 1$
