@@ -71,13 +71,7 @@ If $j = n$, that is $c = a_i = b_i$,
 $\mathcal{T}_i$ consists of the single vector
 $c = a_i = b_i$.
 
-If $j = n-1$,
-that is $c = \bits{a_i}{1}{n-1} = \bits{b_i}{1}{n-1}$,
-$\bit{a_i}{n} = 0$ and $\bit{b_i}{n} = 1$,
-$\mathcal{T}_i$ consists of the single vector
-$c \phi$.
-
-We are left with the situation $j < n-1$.
+We are left with the situation $j < n$.
 
 Note that $\bit{a_i}{j+1} = 0$ and $\bit{b_i}{j+1} = 1$,
 since $a_i \leq b_i$ and $a_i \neq b_i$.
@@ -124,9 +118,9 @@ $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
 \begin{proof}
 We need to show that for each $i$,
 $\mathcal{T}_i$ spans exactly $\interval{a_i}{b_i}$.
-This is obvious in cases $j = n$ and $j = n-1$.
+This is obvious in case $j = n$.
 
-In the remaining case $j < n-1$,
+In the remaining case $j < n$,
 observe that
 $0 \mathcal{T}_{i, 0}'
 = \curly{0 T | T \in \mathcal{T}_{i, 0}'}$
@@ -179,7 +173,7 @@ on $\size{\mathcal{T}_{opt}}$.
 First, let's consider the case that
 $\size{\mathcal{T}_i} = 1$ for every $i$.
 Note that this can only happen if
-$\bits{a_i}{1}{n-1} = \bits{b_i}{1}{n-1}$ for every $i$.
+$a_i = b_i$ for every $i$.
 In this case,
 the orthogonal set $V$ consists of the single vector $a_1$
 (in fact, we could use any true point
@@ -198,8 +192,7 @@ Note that this can only happen if
 the length $j$
 of the longest common prefix
 of the corresponding endpoints $a_i$ and $b_i$
-is strictly smaller than $n-1$.
-%the corresponding $j < n-1$.
+is strictly smaller than $n$.
 
 Let $\mathcal{T}_{i, \alpha}$
 ($\alpha \in \booldom$)
