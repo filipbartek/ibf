@@ -1,8 +1,49 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-\todocepek[inline]{Přidej:
-Booleovské funkce obecně a jejich běžné reprezentace - formule, obvody, decision diagrams (bez definic); teprve potom reprezentace intervaly (mnoziny prir. cisel, zavedl Schieber); zobecneni na vice intervalu; prace Dubovskeho.}
+An $n$-ary Boolean function takes an $n$-tuple of Boolean values as input
+and outputs a single Boolean value.
+There are two Boolean values
+-- we will represent them with the symbols $0$ and $1$
+and we will call $\booldom$ the Boolean domain.
+
+A Boolean function can be represented in various ways.
+The basic representation is the table representation,
+\todomaybe{Can it really be called the basic representation?}
+which explicitly lists the output value for each possible input $n$-tuple.
+For example,
+the simple Boolean function $f^2_{\wedge}$ that realizes the binary logical operator of conjunction
+can be represented by the following table:
+\begin{center}
+\begin{tabular}{cc|c}
+$x_1$ & $x_2$ & $f^2_{\wedge}(x_1, x_2)$ \\
+\hline
+$0$ & $0$ & $0$ \\
+$0$ & $1$ & $0$ \\
+$1$ & $0$ & $0$ \\
+$1$ & $1$ & $1$ \\
+\end{tabular}
+\end{center}
+
+The upper index of $f^2_{\wedge}$
+signifies the arity of the function.
+In this case it is $2$,
+meaning it is a function of two Boolean variables,
+or equivalently of pairs of Boolean values
+or binary vectors of length $2$.
+\todomaybe{Clarify \quot{binary vectors}.}
+
+Other representations of Boolean functions
+include
+propositional formulas,
+circuits,
+decision diagrams
+\todomaybe{Cite proper literature.}
+and sets of intervals.
+
+In this thesis,
+we will deal with the interval representation of Boolean functions
+and relate it to propositional formula representation of a special form called \acrlong{dnf}.
 
 Boolean functions defined by intervals were introduced
 by \citet{Schieber2005154}.
