@@ -80,8 +80,6 @@ and relies on a quite complicated and technically involved case analysis.
 Here we will show that we can find a minimum \acrshort{dnf} formula representing a $2$-switch $2$-interval function $f$ by reducing the function to a $1$-interval function $f'$.
 \todomaybe{Use the name $f'$ in the algorithm.}
 This approach is much simpler
-\todomaybe{Change to \quot{simpler to describe}.
-It is simpler because the complexity stays hidden in Zaks' algorithm.}
 than the case analysis in \citet{Dubovsky2012}.
 
 A $2$-switch $2$-interval function $f$ necessarily has $f(\rep{0}{n})=f(\rep{1}{n})=1$
@@ -567,8 +565,6 @@ Thus we have shown that $f'$ is $(l+1)$-switch.
 
 There is
 a size preserving
-\todokucera{1-1 correspondence je bijekce a z toho plyne, že je samozřejmě size preserving, to není třeba zvlášť zmiňovat.}
-\todobartek{Dovedu si představit bijekci mezi spanning množinami, která nezachovává velikost těchto množin.}
 1-1 correspondence
 between the spanning sets of $f$ and $f'$.
 A spanning set $\mathcal{T}$ of $f$
@@ -592,8 +588,6 @@ $$
 \end{cases}
 $$
 
-\todo[inline]{Note that with Kucera on 15 April 2015, we found it necessary for $f$ to also have the false point $\rep{1}{n-1} 0$ for the procedure to work. I believe that the proof also works in the other case as well.}
-
 %f' is l+1 swtich
 Again,
 the $l$ switches of $f$ translate to $l$ switches of $f'$
@@ -609,7 +603,6 @@ we will prove bounds on the size of its minimum spanning set and maximum orthogo
 We need a dedicated ternary vector to span the true point
 $\rep{1}{n+1}$ in $f'$.
 If a ternary vector spanned
-\todokucera{\quot{would span}}
 both $\rep{1}{n+1}$
 and $0 x$ for any $n$-bit $x$,
 it would necessarily also span the false point
@@ -673,7 +666,6 @@ $l+1$.
 
 \begin{proof}
 Starting with the $4$-ary
-\todomaybe{Use a better word, e.g.~\quot{tetrary}.}
 $3$-switch function $\twointfn{f}{4}{0}{4}{11}{14}$ from \citet{Dubovsky2012},
 we can get a non-coverable $l$-switch function for any $l \geq 3$
 by using \cref{lemma:noncoverableinduction} inductively.
