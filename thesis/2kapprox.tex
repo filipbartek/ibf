@@ -172,33 +172,30 @@ the existence of such orthogonal set
 gives a lower bound $\size{V}$
 on $\size{\mathcal{T}_{opt}}$.
 
-First, let's consider the case that
-$\size{\mathcal{T}_i} = 1$ for every $i$.
-Note that this can only happen if
-$a_i = b_i$ for every $i$.
-In this case,
-the orthogonal set $V$ consists of the single vector $a_1$
-(in fact, we could use any true point
-as every set of size $1$ is trivially orthogonal).
-Since $\size{\mathcal{T}_i} = 1$
+Let's first consider the case that
+$\size{\mathcal{T}_i} \leq 2$ for every $i$.
+Since $\size{\mathcal{T}_i} \leq 2$
 for every $i \in \curly{1, \ldots, k}$,
-$\size{\mathcal{T}} = k$.
-It is now easy to see that
-$\size{V} = 1
-\geq \frac{1}{2} = \frac{k}{2k} =
-\frac{\size{\mathcal{T}}}{2k}$.
+$\size{\mathcal{T}} \leq 2k$.
+If $k = 0$
+(in the degenerate case that there are no intervals),
+$\size{\mathcal{T}} \leq 2k = 0
+= 2k \size{\mathcal{T}_{opt}}$.
+If $k \geq 1$,
+necessarily $\size{\mathcal{T}_{opt}} \geq 1$.
+It is then easy to see that
+$\size{\mathcal{T}}
+\leq 2k \leq 2k \size{\mathcal{T}_{opt}}$.
 
 We are now left with the case that
-$\size{\mathcal{T}_i} > 1$ for some $i$.
-Note that this can only happen if
-the length $j$
-of the longest common prefix
-of the corresponding endpoints $a_i$ and $b_i$
-is strictly smaller than $n$.
-Note that
-$\mathcal{T}_i
+$\size{\mathcal{T}_i} > 2$ for some $i$.
+Necessarily $\mathcal{T}_i
 = \mathcal{T}_{i,0} \cup \mathcal{T}_{i,1}$
-for all $i$ such that $\size{\mathcal{T}_i} > 1$.
+for such $i$.
+One of the sets
+$\mathcal{T}_{i,0}$ and $\mathcal{T}_{i,1}$
+must contain at least $2$ vectors
+because otherwise $\size{\mathcal{T}_i} = 2$.
 
 Let $\mathcal{T}_{i, \alpha}$
 ($i \in \curly{1, \ldots, k}, \alpha \in \booldom$)
@@ -208,13 +205,7 @@ of the partial spanning sets of this type
 produced during the course of the algorithm.
 %($\size{\mathcal{T}_{i, \alpha}}
 %= \max_{i \in \curly{1, \ldots, k}, \alpha \in \booldom}{\size{\mathcal{T}_{i, \alpha}}}$).
-Note that the corresponding
-$\mathcal{T}_i
-= \mathcal{T}_{i, \alpha}
-\cup \mathcal{T}_{i, \compl{\alpha}}$
-need not be the largest of the interval spanning sets
-in case
-$\mathcal{T}_{i, \compl{\alpha}}$ is small.
+Note that $\size{\mathcal{T}_{i,\alpha}} \geq 2$.
 
 Without loss of generality,
 \todomaybe{Discuss soundness, for example \quot{The complementary case is symmetric.}.}
@@ -225,6 +216,9 @@ $\interval{\rep{0}{n-j-1}}{b' = \bits{b_i}{j+2}{n}}$
 was in this case obtained
 using the prefix algorithm
 introduced in \cref{sec:prefix}.
+Note that $b' < \rep{1}{n-j-1}$
+because otherwise $\size{\mathcal{T}_{i,1}} = 1$.
+\todomaybe{Clarify.}
 In the proof of optimality of this algorithm
 (see \autoref{proof:prefixoptimal}),
 we showed an orthogonal set that matches the size
@@ -255,10 +249,9 @@ $x$ and $y$ collide on $b'+1$,
 $\hat{b} x$ and $\hat{b} y$
 collide on
 $\hat{b} (b'+1) = b_i+1$.
-\todo{What if $b_i = \rep{1}{n}$? Then $\size{V}=1$, which is handled separately in the proof of optimality.}
 To see that $b_i+1$ is a false point of $\fnkab$,
-note that $b_i < a_{i+1} - 1$
-\todo{What if $i = k$?}
+note that if $i<k$,
+then $b_i < a_{i+1} - 1$
 by the requirements on input data
 (we only consider \emph{proper} $k$-interval functions).
 
