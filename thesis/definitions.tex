@@ -683,4 +683,38 @@ $f(x) \neq f(x+1)$.
 We call such $x$ a \definiendum{switch} of $f$.
 \end{definition}
 
+\begin{example}
+[Switches and intervals]
+\label{example:switchesintervals}
+Depending on $f(0)$,
+an $l$-switch Boolean function $f$
+is proper $\ceil*{\frac{l}{2}}$-interval
+in case $f(0) = 0$,
+% f(0) = 0:
+% 1-switch: 1-interval
+% 2-switch: 1-interval
+% 3-switch: 2-interval
+% 4-switch: 2-interval
+% l-switch: \ceil{l/2}-interval
+or proper $\ceil*{\frac{l+1}{2}}$-interval
+in case $f(0) = 1$.
+% f(0) = 1:
+% 1-switch: 1-interval
+% 2-switch: 2-interval
+% 3-switch: 2-interval
+% 4-switch: 3-interval
+% l-switch: \ceil{(l+1)/2}-interval
+
+Equivalently,
+a proper $k$-interval $n$-ary function is:
+\begin{itemize}
+\item
+$(2k)$-switch in case $f(\rep{0}{n}) = f(\rep{1}{n}) = 0$
+\item
+$(2k-1)$-switch in case $f(\rep{0}{n}) \neq f(\rep{1}{n})$
+\item
+$(2k-2)$-switch in case $f(\rep{0}{n}) = f(\rep{1}{n}) = 1$
+\end{itemize}
+\end{example}
+
 \todomaybe[inline]{Show that complementing bits preserves number of switches.}
