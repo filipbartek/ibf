@@ -79,16 +79,23 @@ corresponds to a number between $0$ and $2^n - 1$.
 We will not differentiate between a number
 and its binary vector representation.
 Specifically,
-we will use a lexicographic linear ordering
-on binary vectors --
-for $n$-bit vectors $a$ and $b$,
-$a \leq b$ if and only if $a = b$ or
-$\bit{a}{i} = 0$ and $\bit{b}{i} = 1$
-where $i$ is the smallest index such that
-$\bit{a}{i} \neq \bit{b}{i}$.
-Clearly,
-this ordering corresponds to the natural ordering
-on the represented numbers.
+we will use the standard linear order of natural numbers
+to compare binary vectors.
+Note that the linear order on natural numbers
+corresponds to lexicographic order
+on binary vectors:
+\begin{observation}
+\label{observation:lexicographicorder}
+If $a$ and $b$ are $n$-bit binary vectors,
+then $a < b$
+if and only if
+there are binary vectors $c$,
+$a'$ and $b'$
+such that
+$a = c 0 a'$ and $b = c 1 b'$.
+We call such $c$ the \definiendum{longest common prefix}
+of $a$ and $b$.
+\end{observation}
 
 \section{Boolean functions}
 
