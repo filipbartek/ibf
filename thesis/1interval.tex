@@ -127,13 +127,71 @@ $\compl{\mathcal{T}}
 = \curly{\compl{T} | T \in \mathcal{T}}$
 of the prefix interval
 $\interval{\rep{0}{n}}{\compl{a}}$.
+
+We will prove the correctness of this transformation
+by a series of simple lemmas.
+
+\begin{lemma}
+[Complementing flips inequality]
+\label{lemma:complinequality}
+Let $a$ and $b$ be binary vectors of equal length.
+Then $a \leq b$ if and only if $\compl{b} \leq \compl{a}$.
+\end{lemma}
+
+\begin{proof}
+The equivalence follows from \Cref{observation:lexicographicorder}.
+\begin{align*}
+a \leq b &\iff a=b \text{ or } \ex{c, a', b'}{a=c0a' \text{ and } b=c1b'} \\
+&\iff \compl{a}=\compl{b} \text{ or } \ex{\compl{c}, \compl{a'}, \compl{b'}}{\compl{a}=\compl{c}1\compl{a'} \text{ and } \compl{b}=\compl{c}0\compl{b'}} \\
+&\iff \compl{a} \geq \compl{b}
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+[Complementing preserves interval membership]
+\label{lemma:complinterval}
+Let $x$, $a$ and $b$ be binary vectors of equal length.
+Then $x \in \interval{a}{b}$ if and only if $\compl{x} \in \interval{\compl{b}}{\compl{a}}$.
+\end{lemma}
+
+\begin{proof}
+The equivalence follows from \cref{lemma:complinequality}:
+\begin{align*}
+x \in \interval{a}{b} &\iff x \geq a \text{ and } x \leq b \\
+&\iff \compl{x} \leq \compl{a} \text{ and } \compl{x} \geq \compl{b} \\
+&\iff \compl{x} \in \interval{\compl{b}}{\compl{a}}
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+[Complementing preserves interval spanning]
+\label{lemma:complspanning}
+Let $a$ and $b$ be $n$-bit binary vectors
+and let $\mathcal{T}$ be a set of ternary vectors of length $n$.
+Then
+$\mathcal{T}$ spans $\interval{a}{b}$
+if and only if
+$\compl{\mathcal{T}}$ spans $\interval{\compl{b}}{\compl{a}}$.
+\end{lemma}
+
+\begin{proof}
+The equivalence follows from \cref{lemma:complinterval}:
+\begin{align*}
+\mathcal{T} \text{ spans } \interval{a}{b}
+&\iff \fora{x}{\mathcal{T} \text{ spans } x \iff x \in \interval{a}{b}} \\
+&\iff \fora{\compl{x}}{\compl{\mathcal{T}} \text{ spans } \compl{x} \iff \compl{x} \in \interval{\compl{b}}{\compl{a}}} \\
+&\iff \compl{\mathcal{T}} \text{ spans } \interval{\compl{b}}{\compl{a}}
+\end{align*}
+\end{proof}
+
+As a special application of \cref{lemma:complspanning}
+we get:
 $$
 \mathcal{T} \text{ spans } \interval{a}{\rep{1}{n}}
 \iff
 \compl{\mathcal{T}}
 \text{ spans } \interval{\rep{0}{n}}{\compl{a}}
 $$
-\todo{Prove correctness if the proof is short.}
 
 Since the correspondence preserves
 size of the spanning sets,
