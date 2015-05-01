@@ -300,42 +300,43 @@ shows a more detailed comparison
 of the corresponding subvectors of $x$, $y$ and $c$
 in case $o_x < o_y$.
 
+\newcommand{\emphvector}[1]{\dotuline{#1}}
+
 \begin{table}[h]
 \centering
-\begin{tabular}{c|ccccc}
-& $\interval{1}{o_x - 1}$ & $[o_x]$
-& $\interval{o_x + 1}{o_y - 1}$ & $[o_y]$
-& $\interval{o_y + 1}{n}$ \\
+$$\begin{array}{c|ccccc}
+& \interval{1}{o_x - 1} & [o_x]
+& \interval{o_x + 1}{o_y - 1} & [o_y]
+& \interval{o_y + 1}{n} \\
 \hline
-$x$
-& \underline{$\bits{c}{1}{o_x - 1}$}
-& $0$
-& \underline{$\bits{c}{o_x + 1}{o_y - 1}$}
-& \underline{$\bit{c}{o_y}$}
-& \underline{$\bits{c}{o_y + 1}{n}$} \\
-$y$
-& \underline{$\bits{c}{1}{o_x - 1}$}
-& \underline{$\bit{c}{o_x}$}
-& \underline{$\bits{c}{o_x + 1}{o_y - 1}$}
-& $0$
-& \underline{$\bits{c}{o_y + 1}{n}$} \\
+x
+& \emphvector{\bits{c}{1}{o_x - 1}}
+& 0
+& \emphvector{\bits{c}{o_x + 1}{o_y - 1}}
+& \emphvector{\bit{c}{o_y}}
+& \emphvector{\bits{c}{o_y + 1}{n}} \\
+y
+& \emphvector{\bits{c}{1}{o_x - 1}}
+& \emphvector{\bit{c}{o_x}}
+& \emphvector{\bits{c}{o_x + 1}{o_y - 1}}
+& 0
+& \emphvector{\bits{c}{o_y + 1}{n}} \\
 \hline
-$c$
-& $\bits{c}{1}{o_x - 1}$
-& $\bit{c}{o_x}$
-& $\bits{c}{o_x + 1}{o_y - 1}$
-& $\bit{c}{o_y}$
-& $\bits{c}{o_y + 1}{n}$
-\end{tabular}
+c
+& \bits{c}{1}{o_x - 1}
+& \bit{c}{o_x}
+& \bits{c}{o_x + 1}{o_y - 1}
+& \bit{c}{o_y}
+& \bits{c}{o_y + 1}{n}
+\end{array}$$
 \caption[Subvectors of $x$, $y$ and $c$
 in case $o_x < o_y$]
 {Subvectors of $x$, $y$ and $c$
 in case $o_x < o_y$.
-The underlined subvectors of $x$ and $y$
+The \emphvector{emphasized} subvectors of $x$ and $y$
 match their counterparts in $c$.}
 \label{tab:xyc}
 \end{table}
-\todo{Use a different emphasis for the matching subvectors in the table. Underline may get mistaken for complement. Try dash underline.}
 
 %This example demonstrates a basic technique
 %of proving orthogonality of vectors.
