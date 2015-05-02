@@ -77,7 +77,6 @@ Here we will show that we can find a minimum \acrshort{dnf} formula representing
 The $1$-interval function $f'$ is then spanned optimally
 using the polynomial algorithm
 shown in \cref{chap:1interval}.
-\todomaybe{Use the name $f'$ in the algorithm.}
 This approach is much simpler
 than the case analysis in \citet{Dubovsky2012}.
 
@@ -94,393 +93,376 @@ We can also say that $f$ is a \emph{false point $1$-interval function}
 as the false points of $f$ form a single interval
 $\interval{b_1+1}{a_2-1}$.
 
-\subsection{\texorpdfstring{$\bit{b_1}{1} = \bit{a_2}{1}$}
-{\textbit{b1}{1} = \textbit{a2}{1}}
-}
+\subsection{\algdesctitle}
 
-\todo[inline]{Solve the whole common prefix at once.
-Alg.:
-1. Solve common prefix
-2. Transform to 1-interval}
+\begin{description}
+\item[Input] A pair of $n$-bit numbers $b_1, a_2$ that satisfy the inequality $b_1 < a_2 - 1$.
 
-In case $b_1$ and $a_2$ have the same leading bit,
-we recursively solve the $(n-1)$-bit
-case
-$\interval{\rep{0}{n-1}}{\bits{b_1}{2}{n}},
-\interval{\bits{a_2}{2}{n}}{\rep{1}{n-1}}$,
-and add an extra ternary vector to span the remainder
-of the true points.
+The numbers $b_1$ and $a_2$
+are two of the four endpoints
+of the $2$-switch proper $2$-interval
+function $\fnba = f$.
 
-Without loss of generality,
-let $\bit{b_1}{1} = \bit{a_2}{1} = 0$.
-The complementary case is symmetric.
+\item[Output] A spanning set of $f$.
+We will denote the output set with $\mathcal{T}$.
 
-Let $b_1' = \bits{b_1}{2}{n}$
-and $a_2' = \bits{a_2}{2}{n}$.
-Let $\mathcal{T}_0'$ be an optimal spanning set of
-$f' = \ftwointtwoswitch{f}{n-1}{b_1'}{a_2'}$.
-Note that $f'$ is of the same type
-(that is $2$-interval $2$-switch)
-and has a lower arity,
-so we can span it by recursion.
-Let $\mathcal{T}_0$ be the $n$-bit set we get
-by prepending the symbol $0$
-to each vector from $\mathcal{T}_0'$
-($\mathcal{T}_0 = \curly{0 T | T \in \mathcal{T}_0'}$).
-Let $\mathcal{T}_1 = \curly{1 \rep{\phi}{n-1}}$.
-Let $\mathcal{T} = \mathcal{T}_0 \cup \mathcal{T}_1$.
-We claim that $\mathcal{T}$ spans exactly
-$\fnba$
-and that $\mathcal{T}$ is minimum such.
+\item[Procedure]
+The algoritm constructs $\mathcal{T}$ from two partial spanning sets, $\mathcal{T}_{out}$ and $\mathcal{T}_{in}$.
+
+Let $c$ be the longest common prefix of $b_1$ and $a_2$
+and let $j$ be its length.
+Since $b_1 < a_2$, necessarily $j < n$.
+
+We will split the true points of $f$
+into two sets $S_{out}$ and $S_{in}$
+based on the $j$-bit prefix.
+We will span the sets $S_{out}$ and $S_{in}$ separately.
+
+Let $S_{out}$ be the set of all true points of $f$
+that do not start with the prefix $c$.
+Note that all vectors
+that do not start with the prefix $c$
+are true points of $f$,
+since each of them is either smaller than $b_1$
+or larger than $a_2$.
+The set $S_{out}$ then contains precisely
+all the $n$-bit binary vectors
+that are strictly smaller than $c \rep{0}{n-j}$
+or strictly larger than $c \rep{1}{n-j}$:
+\begin{align*}
+S_{out}
+&= \curly{x \in \booldom^n
+| \binand{f(x) = 1}{\bits{x}{1}{j} \neq c}} \\
+&= \curly{x \in \booldom^n
+| \bits{x}{1}{j} \neq c} \\
+&= \curly{x \in \booldom^n
+| \binor{x < c \rep{0}{n-j}}{x > c \rep{1}{n-j}}}
+\end{align*}
+
+We get the set $\mathcal{T}_{out}$ that spans exactly
+$S_{out}$
+in the following way:
+$$
+\mathcal{T}_{out} = \curly{\bits{c}{1}{o-1} \compl{\bit{c}{o}} \rep{\phi}{n-o} | o \in \curly{1, \ldots, j}}
+$$
+
+%Note that $\size{\mathcal{T}_{out}} = j$.
+
+We still need to span all the true points of $f$
+that start with the prefix $c$.
+Let $S_{in}$ denote the set of these points:
+\begin{align*}
+S_{in}
+&= \curly{x \in \booldom^n
+| f(x) = 1 \text{ and } \bits{x}{1}{j} = c} \\
+&= \curly{x \in \booldom^n
+| \binand{(\binor{x \leq b_1}{x \geq a_2})}{\bits{x}{1}{j} = c}}
+\end{align*}
+
+Since $b_1 < a_2$,
+necessarily $\bit{b_1}{j+1} = 0$ and $\bit{a_2}{j+1} = 1$.
+Let $b_1' = \bits{b_1}{j+2}{n}$
+and $a_2' = \bits{a_2}{j+2}{n}$.
+Note that $b_1 = c 0 b_1'$ and $a_2 = c 1 a_2'$.
+
+Let's span the $1$-interval function
+$f' = f^{n-j}_{\interval{0 a_2'}{1 b_1'}}$
+optimally using the procedure shown in \cref{chap:1interval}.
+Let's denote the resulting minimum spanning set of $f'$
+with $\mathcal{T}_{\interval{0 a_2'}{1 b_1'}}$.
+We can use this set to span $S_{in}$:
+$$
+\mathcal{T}_{in} =
+\curly{c \compl{\bit{T}{1}} \bits{T}{2}{n-j}
+| T \in \mathcal{T}_{\interval{0 a_2'}{1 b_1'}}}
+$$
+
+Having constructed both of the sets
+$\mathcal{T}_{out}$ and $\mathcal{T}_{in}$,
+the algorithm returns their union.
+\end{description}
+
+\subsection{\titlefeasibility}
 
 \begin{theorem}
-$\mathcal{T}$ spans exactly
-$\fnba$ (feasibility).
+\label{theorem:2switch2intfeasibility}
+$\mathcal{T}$ spans exactly $\fnba$.
 \end{theorem}
 
+We will separately prove that $\mathcal{T}_{out}$ spans exactly $S_{out}$
+and that $\mathcal{T}_{in}$ spans exactly $S_{in}$.
+Since $\mathcal{T} = \mathcal{T}_{out} \cup \mathcal{T}_{in}$
+and $TP(\fnba) = S_{out} \cup S_{in}$,
+the correctness of
+\cref{theorem:2switch2intfeasibility} will follow.
+
+\begin{lemma}
+$\mathcal{T}_{out}$ spans exactly $S_{out}$.
+\end{lemma}
+
 \begin{proof}
-\todo[inline]{Add an introductory paragraph.}
+In order to show that
+$span(\mathcal{T}_{out}) = S_{out}$,
+we will prove the two inclusions separately.
 
-\hfill % Break line to align the enumerate items
+\begin{description}
+\item[$span(\mathcal{T}_{out}) \subseteq S_{out}$]
+Let $\bits{c}{1}{o-1} \compl{\bit{c}{o}} \rep{\phi}{n-o}
+\in \mathcal{T}_{out}$
+span $x$.
+Since the $j$-bit prefix of $x$ differs from $c$,
+we conclude that $x \in S_{out}$.
+
+\item[$span(\mathcal{T}_{out}) \supseteq S_{out}$]
+Let $x \in S_{out}$ such that $x < c \rep{0}{n-j}$.
+Recall that by \Cref{observation:lexicographicorder},
+there must be binary vectors $\hat{c}$, $x'$ and $c'$
+such that $x = \hat{c} 0 x'$
+and $c \rep{0}{n-j} = \hat{c} 1 c'$
+(namely $\hat{c}$ is a proper prefix of $c$).
+Let $o = \size{\hat{c}} + 1$.
+It is easy to see that the vector
+$\hat{c} 0 \rep{\phi}{n-o} \in \mathcal{T}_{out}$
+spans $x$.
+If $x > c \rep{1}{n-j}$,
+a symmetric argument shows a vector in $\mathcal{T}_{out}$
+that spans $x$.
+We conclude that $\mathcal{T}_{out}$ spans $x$.
+\end{description}
+\end{proof}
+
+\begin{lemma}
+$\mathcal{T}_{in}$ spans exactly $S_{in}$.
+\end{lemma}
+
+\begin{proof}
+Again
+we will prove the two inclusions separately.
 \begin{enumerate}
-\item{$span(\mathcal{T}) \subseteq TP(f)$}
+\item $span(\mathcal{T}_{in}) \subseteq S_{in}$:
 
-Let $c \in span(T)$, $T \in \mathcal{T}$.
-We need to show that $c \leq b_1$ or $c \geq a_2$.
+Let $c \compl{\bit{T}{1}} \bits{T}{2}{n-j} \in \mathcal{T}_{in}$ span $x$.
+Clearly $x$ starts with the prefix $c$.
+Let $x = c \alpha x'$ where $\alpha \in \booldom$.
+Without loss of generality let $\alpha = 0$
+(the complementary case is symmetric).
 
-\begin{enumerate}
-\item $\bit{c}{1} = 1$: Since $\bit{a_2}{1} = 0$,
-necessarily $c \geq a_2$.
+Since $c \compl{\bit{T}{1}} \bits{T}{2}{n-j}$ spans
+$x = c 0 x'$,
+$T$ spans $1 x'$.
+Since
+$T \in \mathcal{T}_{\interval{0 a_2'}{1 b_1'}}$,
+we have $1 x' \in \interval{0 a_2'}{1 b_1'}$
+and especially $1 x' \leq 1 b_1'$.
+It follows that $x' \leq b_1'$
+and $x = c 0 x' \leq c 0 b_1' = b_1$.
 
-\item $\bit{c}{1} = 0$: Necessarily $T \in \mathcal{T}_0$.
-Let $T' = \bits{T}{2}{n}$ and $c' = \bits{c}{2}{n}$.
-Since $T$ spans $c$, $T'$ spans $c'$.
-By construction of $\mathcal{T}_0$
-necessarily $T' \in \mathcal{T}_0'$,
-so $T'$ does not span any number
-in $\interval{b_1' + 1}{a_2' - 1}$.
-Thus $c' \leq b_1'$ or $c' \geq a_2'$.
-Observe that prepending a $0$ bit
-to $c'$, $b_1'$ and $a_2'$
-preserves the inequalities:
-\[
-c' \leq b_1' \text{ or } c' \geq a_2'
-\Rightarrow
-0 c' \leq 0 b_1' \text{ or } 0 c' \geq 0 a_2'
-\]
+\item $span(\mathcal{T}_{in}) \supseteq S_{in}$:
 
-Since $0 c' = c$, $0 a' = a$ and $0 b' = b$,
-we get $c \leq b_1$ or $c \geq a_2$.
-% meaning f(c) = 1
-\end{enumerate}
+Let $x \in S_{in}$.
+This means that $\bits{x}{1}{j} = c$,
+and $x \leq b_1$ or $x \geq a_2$.
+Without loss of generality let $\bit{x}{j+1} = 0$
+(the complementary case is symmetric)
+and let $x = c 0 x'$.
 
-\item{$TP(f) \subseteq span(\mathcal{T})$}
+Since $\bits{x}{1}{j+1} = c 0 < c 1 = \bits{a_2}{1}{j+1}$,
+$x$ cannot be greater than or equal to $a_2$.
+Thus necessarily $x \leq b_1$.
+Since $x$ and $b_1$ share the prefix $c 0$,
+necessarily $x' \leq b_1'$
+and by extension $1 x' \leq 1 b_1'$.
+Trivially $1 x' \geq 0 a_2'$.
 
-Let $c \leq b_1$ or $c \geq a_2$.
-We need a $T \in \mathcal{T}$ that spans $c$.
-
-\begin{enumerate}
-\item $\bit{c}{1} = 1$:
-$1 \phi^{n-1} \in \mathcal{T}_1 \subseteq \mathcal{T}$
-spans $c$.
-
-\item $\bit{c}{1} = 0$:
-Similarly to $b_1'$ and $a_2'$, let $c' = \bits{c}{2}{n}$.
-Since $b_1$, $a_2$ and $c$ all start with a $0$ bit,
-$c' \leq b_1'$ or $c' \geq a_2'$.
-Since $\mathcal{T}_0'$ spans
-$\ftwointtwoswitch{f}{n-1}{b_1'}{a_2'}$,
-there is $T \in \mathcal{T}_0'$ that spans $c'$.
-Prepending the symbol $0$ to both $T$ and $c'$
-preserves spanning,
-so $0 T \in \mathcal{T}_0 \subseteq \mathcal{T}$ spans $c$.
-\end{enumerate}
-
+Since $1 x' \in \interval{0 a_2'}{1 b_1'}$,
+there must be some
+$T \in \mathcal{T}_{\interval{0 a_2'}{1 b_1'}}$
+that spans $1 x'$.
+The corresponding
+$c \compl{\bit{T}{1}} \bits{T}{2}{n-j}
+\in \mathcal{T}_{in}$ clearly spans $x = c 0 x'$.
 \end{enumerate}
 \end{proof}
 
-\begin{theorem}
-$\mathcal{T}$ is a minimum spanning set of
-$\fnba$ (optimality).
-\end{theorem}
+We conclude that $\mathcal{T}$ spans exactly $\fnba$.
+
+\subsection{\titleoptimality}
+
+To show that $\mathcal{T}$
+is a minimum spanning set of $f = \fnba$,
+we will construct an orthogonal set $V$ of $f$
+of size $\size{\mathcal{T}}$.
+By \cref{theorem:orthodnf} this proves
+that the spanning set $\mathcal{T}$ is minimum.
+
+The set $V$ consists of three subsets:
+\begin{itemize}
+\item $V_{in} = \curly{c \compl{\bit{v}{1}} \bits{v}{2}{n-j}
+| v \in V_{\interval{0 a_2'}{1 b_1'}}}$,
+where $V_{\interval{0 a_2'}{1 b_1'}}$ is an orthogonal set of $f_{\interval{0 a_2'}{1 b_1'}}$
+of size $\size{\mathcal{T}_{\interval{0 a_2'}{1 b_1'}}} = \size{\mathcal{T}_{in}}$.
+Such set exists because all $1$-interval functions
+are coverable
+(see \Cref{observation:1intervalcoverable}).
+
+\item $V_0 =
+\curly{\bits{c}{1}{o - 1} 0 \bits{c}{o + 1}{j} \bits{(b_1 + 1)}{j+1}{n}
+| \bit{c}{o} = 1}$
+
+\item $V_1 =
+\curly{\bits{c}{1}{o - 1} 1 \bits{c}{o + 1}{j} \bits{(a_2 - 1)}{j+1}{n}
+| \bit{c}{o} = 0}$
+\end{itemize}
+
+Note that the vector
+$\bits{c}{1}{o - 1} 0 \bits{c}{o + 1}{j} \bits{(b_1 + 1)}{j+1}{n} \in V_0$
+(for any $o$ such that $\bit{c}{o} = 1$)
+is equal to
+$\bits{(b_1+1)}{1}{o - 1} 0 \bits{(b_1+1)}{o + 1}{n}$
+because $\bit{b_1}{j+1} = 0$,
+and by extension
+$\bits{(b_1+1)}{1}{j} = \bits{b_1}{1}{j} = c$.
+A symmetric observation can be made for vectors in $V_1$.
+
+It is easy to see that
+$\size{V_{in}} = \size{\mathcal{T}_{in}}$.
+Since there is one vector in $V_0$
+for each $1$ bit of $c$
+and one vector in $V_1$
+for each $0$ bit of $c$,
+$\size{V_0} + \size{V_1} = \size{c} = j = \size{\mathcal{T}_{out}}$.
+
+To see that the sets $V_{in}$, $V_0$ and $V_1$ are pairwise disjoint,
+consider any $v_{in} \in V_{in}$, $v_0 \in V_0$ and $v_1 \in V_1$.
+The $j$-prefix of both $v_0$ and $v_1$ differs from $c$,
+so $v_0 \neq v_{in}$ and $v_1 \neq v_{in}$.
+If $\bits{v_0}{1}{j} = \bits{c}{1}{o-1} 0 \bits{c}{o+1}{j}$,
+then $v_0$ differs from $v_1$ in the $o$-th position.
+We conclude that $\size{V} = \size{V_{in}} + \size{V_0} + \size{V_1}$.
+Since $\size{V_{in}} = \size{\mathcal{T}_{in}}$
+and $\size{V_0} + \size{V_1} = \size{\mathcal{T}_{out}}$,
+$\size{V} = \size{\mathcal{T}}$.
+
+We still need to prove that $V$ is orthogonal
+with respect to $f$.
+Recall that by \cref{def:orthogonal},
+the set $V$ is orthogonal
+if and only if
+it only contains true points
+and every pair of vectors in $V$ is orthogonal.
+
+\begin{lemma}
+$V \subseteq TP(\fnba)$
+\end{lemma}
 
 \begin{proof}
-Let $\mathcal{T}_{opt}$ be an optimal spanning set of
-$\fnba$.
-We'll show that
-$\size{\mathcal{T}_{opt}} \geq \size{\mathcal{T}}$.
+It is easy to see that $v_0 \leq b_1$ and $v_1 \geq a_2$
+for any $v_0 \in V_0$ and $v_1 \in V_1$.
 
-First recall that
-$\mathcal{T}_0'$ is an optimal spanning set of
-$\ftwointtwoswitch{f}{n-1}{b_1'}{a_2'}$
-and
-$\size{\mathcal{T}} = \size{\mathcal{T}_0'} + 1$.
-Thus we need to show
-$\size{\mathcal{T}_{opt}} \geq \size{\mathcal{T}_0'} + 1$
+Let $v_{in} \in V_{in}$.
+Let $v$ be the corresponding vector
+in $V_{\interval{0 a_2'}{1 b_1'}}$
+($v_{in} = c \compl{\bit{v}{1}} \bits{v}{2}{n-j}$).
+Since $V_{\interval{0 a_2'}{1 b_1'}}$
+is orthogonal with respect to
+$f_{\interval{0 a_2'}{1 b_1'}}$,
+necessarily $v \geq 0 a_2'$ and $v \leq 1 b_1'$.
+Without loss of generality let $\bit{v}{1} = 0$
+(the complementary case is symmetric).
+Since $v = 0 \bits{v}{2}{n-j} \geq 0 a_2'$,
+$v_{in} = c 1 \bits{v}{2}{n-j}
+\geq c 1 a_2' = a_2$.
 
-$\mathcal{T}_{opt}$ must span the true point
-$\bar{b}_1 = 1 \bits{(b_1 + 1)}{2}{n}$
-(since $a_2$ starts with a $0$,
-all numbers that start with a $1$ must be true points).
-We don't need more than $n$ bits for $\bar{b}_1$
-because $b_1 < a_2 \leq 0 \rep{1}{n-1}$.
-Let $T_{\bar{b}_1} \in \mathcal{T}_{opt}$
-be a ternary vector that spans $\bar{b}_1$.
-If $T_{\bar{b}_1}$ spanned
-any vector that starts with a $0$,
-then $T_{\bar{b}_1}$ would also span
-the vector $b_1 + 1$.
-However,
-since $f$ is \emph{proper} $2$-interval,
-$b_1 + 1$ is a false point ($b_1 < b_1 + 1 < a_2$).
-So $T_{\bar{b}_1}$
-can't span any vector that starts with a $0$.
-
-To get a contradiction,
-let's suppose that
-$\size{\mathcal{T}_{opt}} \leq \size{\mathcal{T}_0'}$.
-Since we need a dedicated vector
-$T_{\bar{b}_1} \in \mathcal{T}_{opt}$ to span $\bar{b}_1$,
-there are at most
-$\size{\mathcal{T}_{opt}} - 1
-\leq \size{\mathcal{T}_0'} - 1$
-vectors in $\mathcal{T}_{opt}$ that span a number
-that starts with $0$
-(so these vectors start with $0$ or $\phi$).
-Removing the first symbol of these vectors,
-we get a spanning set of
-$\ftwointtwoswitch{f}{n-1}{b_1'}{a_2'}$
-of size at most $\size{\mathcal{T}_0'} - 1$,
-which contradicts $\mathcal{T}_0'$'s optimality.
-
-We conclude that we need at least
-$\size{\mathcal{T}_0'} + 1$ vectors to span
-$\fnba$,
-proving the lower bound of
-$\size{\mathcal{T}_{opt}}$
-and the optimality of $\mathcal{T}$.
+We conclude that all the vectors in $V$
+are true points of $\fnba$.
 \end{proof}
 
-\todo[inline]{Construct an orthogonal set explicitly.}
+\begin{lemma}
+Let $x, y \in V$, $x \neq y$.
+Then $x$ and $y$ are orthogonal with respect to $\fnba$.
+\end{lemma}
 
-We have shown that in case $\bit{b_1}{1} = \bit{a_2}{1}$,
-our algorithm produces a feasible and optimal spanning set.
+\begin{proof}
+We need to show that $x$ and $y$
+cannot be spanned by a single ternary vector.
+Let $T$ be any ternary vector that spans both $x$ and $y$.
+We shall consider all six possible combinations
+one by one:
+\begin{itemize}
+\item $x,y \in V_{in}$:
+Let $x = c \compl{\bit{v_x}{1}} \bits{v_x}{2}{n-j}$
+and $y = c \compl{\bit{v_y}{1}} \bits{v_y}{2}{n-j}$.
+The vectors $v_x$ and $v_y$ are orthogonal with respect to $f_{\interval{0 a_2'}{1 b_1'}}$
+by definition of $V_{\interval{0 a_2'}{1 b_1'}}$.
 
-\subsection{\texorpdfstring{$\bit{b_1}{1}
-\neq \bit{a_2}{1}$}
-{\textbit{b1}{1} \textneq{} \textbit{a2}{1}}
-}
+Let $\hat{T} = \compl{\bit{T}{j+1}} \bits{T}{j+2}{n}$.
+Since $v_x$ and $v_y$ are orhtogonal with respect to
+$f_{\interval{0 a_2'}{1 b_1'}}$
+and since $\hat{T}$ spans both $v_x$ and $v_y$,
+let $\hat{z}$ be a false point
+of $f_{\interval{0 a_2'}{1 b_1'}}$
+that is spanned by $\hat{T}$.
+Without loss of generality let $\bit{\hat{z}}{1} = 0$
+(the complementary case is symmetric).
+Since $\hat{z}$ is a false point
+of $f_{\interval{0 a_2'}{1 b_1'}}$
+and $\bit{\hat{z}}{1} = 0$,
+necessarily
+$\hat{z} = 0 \bits{\hat{z}}{2}{n-j} < 0 a_2'$
+and by extension
+\todomaybe{Replace with \quot{contraction}.}
+$\bits{\hat{z}}{2}{n-j} < a_2'$.
 
-\todo[inline]{Use longer paragraphs.}
+Let $z
+= c \compl{\bit{\hat{z}}{1}} \bits{\hat{z}}{2}{n-j}
+= c 1 \bits{\hat{z}}{2}{n-j}$.
+To see that $z$ is a false point of $\fnba$,
+note that $z > b_1$ since $\bit{z}{j+1} = 1$
+and $z < a_2$ since $\bits{z}{j+2}{n} < a_2'$.
+To see that $T$ spans $z$,
+note that
+$\bits{T}{1}{j}$ spans
+$\bits{x}{1}{j} = c = \bits{z}{1}{j}$
+and $\bits{T}{j+1}{n} = \compl{\bit{\hat{T}}{1}} \bits{\hat{T}}{2}{n-j}$ spans $\compl{\bit{\hat{z}}{1}} \bits{\hat{z}}{2}{n-j} = \bits{z}{j+1}{n}$.
+\item $x,y \in V_0$:
+$T$ spans the false point $b_1 + 1$.
+\item $x,y \in V_1$:
+$T$ spans the false point $a_2 - 1$.
+\item $x \in V_{in}, y \in V_0$:
+$T$ spans the false point $b_1 + 1$.
+\item $x \in V_{in}, y \in V_1$:
+$T$ spans the false point $a_2 - 1$.
+\item $x \in V_0, y \in V_1$:
+$T$ spans the false point $b_1 + 1$.
+\end{itemize}
 
-Let $\bit{b_1}{1} \neq \bit{a_2}{1}$.
-Since $b_1 \leq a_2$,
-necessarily $\bit{b_1}{1} = 0$ and $\bit{a_2}{1} = 1$.
-
-By flipping the leading bit in each of the endpoints
-$b_1$ and $a_2$,
-we will reduce this case
-to an instance of spanning a single true point interval
-on $n$ bits.
-% TODO: Rephrase.
-
-%Let $a_1 = a - 1$ and $b_1 = b + 1$.
-
-Let $b_1' = 1 \bits{b_1}{2}{n}$
-and $a_2' = 0 \bits{a_2}{2}{n}$
-(flipping the leading bits of $b_1$ and $a_2$).
-Note that $a_2' \leq b_1'$.
-
-Let $\mathcal{T}'$ be a minimum spanning set
-of $\intervalfn{f}{n}{a_2'}{b_1'}$.
-This set can be computed efficiently
-using the method shown
-in chapter \ref{chap:1interval}.
-
-Let's flip all the non-$\phi$ leading symbols
-of vectors in $\mathcal{T}'$,
-forming $\mathcal{T}$.
-Note that $\size{\mathcal{T}} = \size{\mathcal{T}'}$
-and also that all the vectors in $\mathcal{T}'$
-and $\mathcal{T}$ have the length $n$.
-
-We claim that $\mathcal{T}$ is a minimum spanning set
+We have shown that no matter which combination
+of different vectors $x, y$ from $V$
+and a ternary vector that spans both $x$ and $y$
+we choose,
+the ternary vector necessarily spans some false point
 of $\fnba$.
-
-The argument is based on a pair of lemmas.
-
-\begin{lemma}
-\label{lemma:cflip}
-Let $c$ be an $n$-bit binary vector
-and $a, b$ be $(n-1)$-bit binary vectors.
-Let $c' = \compl{\bit{c}{1}} \bits{c}{2}{n}$
-(flipping the leading bit of $c$).
-Then ($c \leq 0 b$ or $c \geq 1 a$)
-if and only if
-($c' \geq 0 a$ and $c' \leq 1 b$).
-\end{lemma}
-
-\begin{proof}
-We shall distinguish two cases
-based on the leading bit of $c$.
-Since the cases are symmetric,
-without loss of generality let $\bit{c}{1} = 0$.
-
-\todo[inline]{Extend the paragraphs.}
-
-Let $c = 0 \bits{c}{2}{n}$ and $c' = 1 \bits{c}{2}{n}$.
-
-Since $\bit{c}{1} = 0$,
-$c \ngeq 1 a$.
-Thus ($c \leq 0 b$ or $c \geq 1 a$)
-if and only if
-$c \leq 0 b$.
-
-Since $\bit{c}{1} = 0$,
-$c \leq 0 b$
-if and only if
-$\bits{c}{2}{n} \leq b$.
-
-Since $\bit{c'}{1} = 1$
-and $\bits{c'}{2}{n} = \bits{c}{2}{n}$,
-$\bits{c}{2}{n} \leq b$
-if and only if
-$c' \leq 1 b$.
-
-From $\bit{c'}{1} = 1$ we immediately get $c' \geq 0 a$.
-
-Chaining the equivalences together:
-\begin{align*}
-c \leq 0 b \text{ or }c \geq 1 a
-&\iff c \leq 0 b \\
-&\iff \bits{c}{2}{n} \leq b \\
-&\iff c' \leq 1 b \\
-&\iff c' \leq 1 b \text{ and } c' \geq 0 a
-\end{align*}
 \end{proof}
 
-\begin{lemma}
-\label{lemma:tflip}
-Let $\mathcal{T}$ be a set of ternary vectors
-and $\mathcal{T}'
-= \curly{\compl{\bit{T}{1}} \bits{T}{2}{n}
-|T \in \mathcal{T}}$.
-Let $a, b$ be any $(n-1)$-bit binary vectors.
-% such that $0 b \leq 1 a - 2$.
-Then $\mathcal{T}$ spans $\ftwointtwoswitch{f}{n}{0 b}{1 a}$
-if and only if
-$\mathcal{T}'$ spans
-$\intervalfn{f}{n}{0 a}{1 b}$.\footnote{Note that
-the statement holds even in the single case that
-the function is not proper $2$-interval,
-that is $a = \rep{1}{n-1}$ and $b = \rep{0}{n-1}$.}
-% TODO: Add "However, we won't use this case."
-\end{lemma}
+We conclude that $V$ is orthogonal
+with respect to $\fnba$.
+Since $\size{V} = \size{\mathcal{T}}$,
+by \cref{theorem:orthodnf} $\mathcal{T}$
+is a minimum spanning set of $\fnba$.
 
-\begin{proof}
-\hfill % Break line to align the enumerate items
-% TODO: Prevent page break here.
-\begin{enumerate}
-\item
-If $\mathcal{T}$ spans $\ftwointtwoswitch{f}{n}{0 b}{1 a}$,
-then $\mathcal{T}'$ spans $\intervalfn{f}{n}{0 a}{1 b}$:
+\begin{corollary}
+\label{corollary:2switch2intervalcoverable}
+Every $2$-switch $2$-interval function is coverable.
+\end{corollary}
 
-Let $\mathcal{T}$ span $\ftwointtwoswitch{f}{n}{0 b}{1 a}$.
-
-Let $c'$ be an $n$-bit binary vector.
-We need to show that
-$\mathcal{T}'$ spans $c'$
-if and only if
-$c' \geq 0 a$ and $c' \leq 1 b$.
-
-Let $c = \compl{\bit{c'}{1}} \bits{c'}{2}{n}$.
-By definition of $\mathcal{T}'$,
-$\mathcal{T}'$ spans $c'$
-if and only if
-$\mathcal{T}$ spans $c$.
-
-Since $\mathcal{T}$ spans
-$\ftwointtwoswitch{f}{n}{0 b}{1 a}$,
-$\mathcal{T}$ spans $c$
-if and only if
-$c \leq 0 b$ or $c \geq 1 a$.
-
-From Lemma \ref{lemma:cflip}
-we get ($c \leq 0 b$ or $c \geq 1 a$)
-if and only if
-($c' \geq 0 a$ and $c' \leq 1 b$).
-
-Chaining the equivalences together:
-\begin{align*}
-\mathcal{T}' \text{ spans } c' &\iff \mathcal{T} \text{ spans } c \\
-&\iff c \leq 0 b \text{ or } c \geq 1 a \\
-&\iff c' \geq 0 a \text{ and } c' \leq 1 b \\
-&\iff \intervalfn{f}{n}{0 a}{1 b}(c') = 1
-\end{align*}
-
-\item
-If $\mathcal{T}'$ spans $\intervalfn{f}{n}{0 a}{1 b}$,
-then $\mathcal{T}$ spans $\ftwointtwoswitch{f}{n}{0 b}{1 a}$:
-
-Let $\mathcal{T}'$ span $\intervalfn{f}{n}{0 a}{1 b}$.
-
-Let $c$ be an $n$-bit binary vector.
-We need to show that $\mathcal{T}$ spans $c$
-if and only if
-$c \leq 0 b$ or $c \geq 1 a$.
-
-Let $c' = \compl{\bit{c}{1}} \bits{c}{2}{n}$.
-By definition of $\mathcal{T}'$,
-$\mathcal{T}$ spans $c$
-if and only if
-$\mathcal{T}'$ spans $c'$.
-
-Since $\mathcal{T}'$ spans $\intervalfn{f}{n}{0 a}{1 b}$,
-$\mathcal{T}'$ spans $c'$
-if and only if
-$c' \geq 0 a$ and $c' \leq 1 b$.
-
-Using Lemma \ref{lemma:cflip},
-we get
-($c' \geq 0 a$ and $c' \leq 1 b$)
-if and only if
-($c \leq 0 b$ or $c \geq 1 a$).
-
-Chaining the equivalences together:
-\begin{align*}
-\mathcal{T} \text{ spans } c
-&\iff \mathcal{T}' \text{ spans } c' \\
-&\iff c' \geq 0 a \text{ and } c' \leq 1 b \\
-&\iff c \leq 0 b \text{ or } c \geq 1 a \\
-&\iff \ftwointtwoswitch{f}{n}{0 b}{1 a}(c) = 1
-\end{align*}
-
-\end{enumerate}
-\end{proof}
-
-Lemma \ref{lemma:tflip} shows
-a size preserving
-bijection
-between
-the spanning sets of functions of form
-$\ftwointtwoswitch{f}{n}{0 b}{1 a}$
-and $\intervalfn{f}{n}{0 a}{1 b}$
-for general $a$ and $b$.
-Since $b_1$ starts with a $0$ ($b_1 = 0 b$),
-$a_2$ starts with a $1$ ($a_2 = 1 a$)
-and the set $\mathcal{T}$ was constructed
-from an optimal spanning set $\mathcal{T}'$
-of
-$\intervalfn{f}{n}{0 \bits{a_2}{2}{n}}{1 \bits{b_1}{2}{n}}$
-using the bijection
-shown in \ref{lemma:tflip},
-that is flipping the leading symbols
-of all the ternary vectors,
-both feasibility and optimality of $\mathcal{T}$
-with respect to $\fnba$
-follow from the feasibility and optimality
-of $\mathcal{T}'$ with respect to
-$\intervalfn{f}{n}{0 \bits{a_2}{2}{n}}{1 \bits{b_1}{2}{n}}$.
+Since every $2$-switch function is either $1$- or $2$-interval (see \cref{example:switchesintervals})
+and every $1$-switch function is $1$-interval,
+we collect the results from \Cref{observation:1intervalcoverable}
+and \cref{corollary:2switch2intervalcoverable}
+in the following statement:
+\begin{corollary}
+Every function with at most $2$ switches is coverable.
+\end{corollary}
 
 \section{Functions with \texorpdfstring{$3$}{3}
 and more switches}
