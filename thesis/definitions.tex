@@ -439,16 +439,6 @@ and \citet{Dubovsky2012} (explicitly)
 in the proofs of optimality of spanning algorithms.
 
 \begin{definition}
-[Collision]
-Let $x$, $y$ and $z$ be $n$-bit binary vectors.
-We say that \definiendum{$x$ and $y$ collide
-on the vector $z$}
-if and only if
-every ternary vector that spans both $x$ and $y$
-necessarily also spans $z$.
-\end{definition}
-
-\begin{definition}
 [Orthogonality
 {\definitionsource[p.~6]{Dubovsky2012}}] % Definition 1.15
 \label{def:orthogonal}
@@ -468,6 +458,17 @@ We shall denote the size of
 a maximum orthogonal set
 of function $f$
 with \definiendum{$\apply{ortho}{f}$}.
+\end{definition}
+
+\begin{definition}
+[Collision]
+\label{def:collision}
+Let $x$, $y$ and $z$ be $n$-bit binary vectors.
+We say that \definiendum{$x$ and $y$ collide
+on the vector $z$}
+if and only if
+every ternary vector that spans both $x$ and $y$
+necessarily also spans $z$.
 \end{definition}
 
 \todomaybe[inline]{Relate orthogonality to disjointness of essential sets. Don't forget to deal with DNF/CNF difference. Orthogonal vectors are a special case of disjoint essential sets. They suffice in our case.}
