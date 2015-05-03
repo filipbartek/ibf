@@ -3,12 +3,12 @@
 
 The $2k$-approximation
 suffix-prefix decomposition algorithm
-introduced in \autoref{chap:2kapprox}
+introduced in \cref{chap:2kapprox}
 can be naturally improved
 by spanning each of the $k$ intervals
 of the given $k$-interval function
 optimally using the minimization algorithm
-introduced in \autoref{chap:1interval}
+introduced in \cref{chap:1interval}
 (originally in \citet{Schieber2005154}).
 We will call this improved algorithm
 \quot{interval decomposition algorithm}.
@@ -25,7 +25,7 @@ has an approximation ratio $2$
 while the suffix-prefix decomposition algorithm
 has a tight approximation ratio $4$
 on $2$-interval functions
-(see \autoref{theorem:2kapproxtight}).
+(see \cref{theorem:2kapproxtight}).
 This might lead us to expect
 that the interval decomposition algorithm
 performs significantly better in general.
@@ -54,7 +54,7 @@ For every $i$,
 let $\mathcal{T}_i$ be the spanning set of the interval
 $\interval{a_i}{b_i}$ returned by the $1$-interval
 optimization algorithm
-introduced in \autoref{chap:1interval}.
+introduced in \cref{chap:1interval}.
 The algorithm returns
 $\mathcal{T} = \bigcup_{i=1}^k{\mathcal{T}_i}$.
 \end{description}
@@ -186,7 +186,7 @@ this \quot{shape} corresponds to an extreme
 non-trivial endpoint combination in the $1$-interval
 optimization algorithm
 (namely case \quot{$b' \geq a' - 1$}
-in \autoref{sec:1interval0011}),
+in \cref{sec:1interval0011}),
 which happens to be the case where the improvement
 of the optimization algorithm
 over the suffix-prefix approximation algorithm
@@ -251,7 +251,7 @@ for $i \in \curly{1, \ldots, k}$.
 To see that points defined this way
 satisfy the requirements on endpoints
 of a proper $k$-interval function
-(see \autoref{def:properkibf}),
+(see \cref{def:properkibf}),
 note that:
 
 \begin{itemize}
@@ -576,7 +576,7 @@ $dnf(f_l^n) \geq n+l-2$
 We will show that $f_l^n$ can not be spanned
 using fewer than $n+l-2$ ternary vectors
 by showing an orthogonal set of $f_l^n$ of size $n+l-2$.
-By \autoref{theorem:orthodnf},
+By \cref{theorem:orthodnf},
 this proves that all the spanning sets of $f_l^n$
 have the size at least $n-l-2$.
 
@@ -805,6 +805,7 @@ $\approxidintk \geq 2^{\log_2{(k-1)} + 1}
 for all such $k$.
 It is easy to see that $2(k-1)$ converges to $2k$
 for large $k$.
+\todokucera[inline]{Tohle bych dal hned za ten odhad aproximačního poměru $2^l$.}
 
 In other words,
 for any $b < 2$
@@ -813,7 +814,7 @@ on which the interval decomposition algorithm
 performs at least $bk$ times worse than the optimum.
 
 For demonstration,
-\autoref{tab:hardsmalll} shows the limits
+\cref{tab:hardsmalll} shows the limits
 of the approximation ratio on $f_l^n$
 for some small values of $l$.
 
@@ -845,7 +846,7 @@ for some small $l$}
 We have shown an approximation algorithm for the problem of minimization of $k$-interval Boolean functions.
 We continued to analyse its approximation ratio.
 An upper bound $2k$ on the approximation ratio
-directly follows from the analysis of the suffix-prefix decomposition algorithm presented in \autoref{chap:2kapprox}.
+directly follows from the analysis of the suffix-prefix decomposition algorithm presented in \cref{chap:2kapprox}.
 A lower bound $2^l = 2(k-1)$
 for $k = 2^{l-1}+1$ for every $l \geq 1$
 follows from the analysis of the algorithm's performance
