@@ -165,6 +165,7 @@ All the interval endpoints have a prefix of length $l$
 that specifies the \quot{position} of the interval
 and a suffix of length $n - l$
 that specifies the interval's \quot{shape}.
+\todokucera{Co myslíte tím position a shape? Tohle by asi chtělo obrázek.}
 We will denote the $l$-bit \quot{position} prefix
 of an $n$-bit binary vector $x$ with $p_x$
 ($p_x = \bits{x}{1}{l}$)
@@ -208,6 +209,24 @@ for $i \in \curly{2, \ldots, k-1}$
 $p_{a_{i+1}} = p_{b_i} + 1$
 for $i \in \curly{1, \ldots, k-1}$
 \end{enumerate}
+
+\todokucera[inline]{[See comment in source.]}
+%Tohle mi připadá strašně složitě napsané, přitom by stačilo říct:
+%p_{a_1}=p_{b_1}=0^{l}
+%p_{a_i}=2*(i-1)+1 pro $i\in{2, ..., k-1}$, kde $k=2^{l}$ plus mínus 1 (nebo tak nějak).
+%p_{b_i}=2*(i-1)
+%p_{a_k}=p_{b_k}=1.
+%(no asi to značit jinak než s a_i a b_i, třeba p_i a q_i?)
+%
+%Prostě lepší, než popsat jakési abstraktní podmínky a potom říct, co je to vlastně za čísla, tak rovnou můžete říct, co je to za čísla a ty podmínky už z toho vypadnou samy.
+%
+%pak říct, jak vypadají s_{a_i} a $s_{b_i}$ a potom definovat a_i a b_i jako p_{a_i}s_{a_i}, p_{b_i}s_{b_i} 
+%
+%celá definice a_i a b_i se dá napsat do jednoho odstavce mnohem přehledněji. Pak k tomu nakreslíte obrázek s příkladem (třeba n=4, l=2, nebo tak nějak) a je to. Pojmům position a shape bych se vyhnul, protože u nich není jasné, co mají s tou funkcí společného (aspoň mně nedávají ty dva pojmy moc logiku).
+%
+%K tomu, že k=2^{l-1}+1 není potřeba žádná analýza, prostě na začátku řeknete, že pro dané l zavedeme k=2^{l-1}+1 a sestavíme k-intervalovou funkci následujícím způsobem, nechť p jsou čísla... a s jsou čísla ..., pak hranice intervalu a_i=... a b_i=...
+%
+%To, že je funkce k-intervalová, je z toho pak vidět. Na tom není co ukazovat.
 
 Using these requirements,
 we can inductively construct a sequence of $l$-bit numbers
@@ -476,6 +495,7 @@ and prove its optimality
 \begin{lemma}
 $dnf(f_l^n) \leq n+l-2$
 \end{lemma}
+\todokucera[inline]{Tohle pro odhad toho poměru ani nepotřebujete, ne? I když pro úplnost se to sem hodí.}
 
 \begin{proof}
 We will show a spanning set $\mathcal{T}$
@@ -485,7 +505,9 @@ We will span the union of the intervals
 $\interval{p \rep{0}{n-l-1} 1}{p \rep{1}{n-l-1} 0}$
 for all $p \in \booldom^l$
 using $n-l$ ternary vectors
-and then we will add some extra vectors
+and then we will add some extra
+\todokucera{How many? Probably $2l-2$.}
+vectors
 to span the remaining true points.
 
 First observe that all the false points of $f_l^n$
@@ -496,6 +518,7 @@ $s_{a_i} = \rep{0}{n-l-1} 1$
 and $s_{b_i} = \rep{1}{n-l-1} 0$
 and the fact that the intervals intersect every
 level $l$ subtree.
+\todokucera[inline]{Tohle bych dal do té podsekce s definicí $f^n_l$ jako pozorování a tady bych se na to odkázal (ujasní to tam i to, jak ty funkce vypadají).}
 
 This means we need to span all the points that end
 with different $(n-l)$-bit suffixes.
@@ -536,6 +559,7 @@ are all the $l$-bit odd numbers except $\rep{1}{l}$.
 We will employ the technique of cyclic shifts
 again
 to span these points efficiently.
+\todokucera[inline]{Tohle by také mohlo být v té části s definicí $f^n_l$ jako poznámka/pozorování a tady byste se na to mohl odkázat (pomohlo by to tam pochopení toho, jak ta funkce vypadá) V té sekci s definicí $f^n_l$ by to chtělo asi obrázek, ten by to taky vyjasnil.}
 
 Let $\mathcal{T}_1 = \curly{c 1 \rep{1}{n-l}
 | c \text{ is a cyclic shift of } 0 \rep{\phi}{l-2}}$.
@@ -682,6 +706,7 @@ the approximation ratio converges to $2^l$:
 %&= \lim_{n \rightarrow \infty}{\frac{2^l n}{n}} \\
 &= 2^l
 \end{align*}
+\todokucera[inline]{Nahoře slibujete 2k, to by se zde mělo projevit, je potřeba dotáhnout, jak z toho dostanete těch 2k. Aha, teď koukám, že je to až v další sekci, což je ovšem matoucí, na začátku této sekce slibujete 2k. Ty sekce nejsou zase tak dlouhé, klidně byste je mohl spojit dohromady.}
 
 To see that for any $l \geq 1$
 the number $2^l$ really is the supremum of the given sequence,
@@ -770,6 +795,7 @@ that the interval decomposition algorithm
 is not $k$-approximative in general,
 since it is not $3$-approximative
 on the $3$-interval function $f_2^{16}$.
+\todokucera[inline]{Vy přece ukazujete, že limitně je ten poměr 2k, takže proč by zde mělo být zajímavé to, že ten poměr je někdy větší, než k?}
 \end{example}
 
 \subsection{Approximation ratio lower bound on $k$-interval functions}
@@ -842,6 +868,7 @@ for some small $l$}
 \end{table}
 
 \section{Conclusion}
+\todokucera[inline]{Sem conclusion nepatří, napište to do celkových Conclusion k celé práci.}
 
 We have shown an approximation algorithm for the problem of minimization of $k$-interval Boolean functions.
 We continued to analyse its approximation ratio.
