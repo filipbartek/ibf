@@ -714,6 +714,48 @@ each of them represented by its endpoints
 ($\allintervalfns = \bigcup_{k \geq 0}{\intervalfns{k}}$).
 \end{definition}
 
+\section{Minimization of \texorpdfstring{$k$}{k}-interval functions}
+
+\begin{problem}
+[Boolean minimization]
+\label{problem:minimization}
+Let $F$ be a class of Boolean functions.
+Then the problem $\minimization{F}$ is defined as follows:
+Given a Boolean function $f \in F$,
+find a minimum spanning set of $f$.
+\end{problem}
+
+Having defined all the necessary terms,
+let's present the central problem
+we will discuss throughout the thesis:
+\begin{problem}
+[Minimization of proper $k$-interval functions]
+\label{problem:allintervalfnsminimization}
+The problem $\minimization{\allintervalfns}$ is defined as follows:
+Given the endpoints
+of a proper $k$-interval function $f$ for any $k \geq 0$,
+find a minimum spanning set of $f$.
+\end{problem}
+
+Note that since the problem of Boolean minimization is not tractable \citep{Umans1998}
+\todoforkucera{It's $\Sigma_2$-hard. Does that mean it's not tractable?}
+and the class $\allintervalfns$ contains all Boolean functions,
+we do not expect that we will be able to solve the problem $\minimization{\allintervalfns}$ in polynomial time.
+However,
+an algorithm polynomial with respect to $n$ still may exist and would be interesting to show.
+\todoforkucera{Is there a $\Sigma_2$-hard problem that has a parametrized polynomial solution?}
+\todo{Mention in Conclusion.}
+
+We will also touch upon the alternative version
+of the minimization problem
+that involves disjoint representations:
+\begin{problem}
+[Disjoint minimization of $k$-interval function]
+Given the endpoints
+of a proper $k$-interval function $f$,
+find a minimum disjoint spanning set of $f$.
+\end{problem}
+
 \section{\texorpdfstring{$l$}{l}-switch Boolean functions}
 
 Given a $k$-interval function,
