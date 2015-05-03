@@ -34,26 +34,11 @@ intervals.
 \todo[inline]{Unite with the following chapter.}
 
 \begin{description}
-\item[Input] Numbers $a_1, b_1, \ldots, a_k, b_k$
-for $k \geq 0$
-that satisfy the inequalities
-$\rep{0}{n} \leq a_1$,
-$a_1 \leq b_1$,
-$b_1 < a_2 - 1$,
-\ldots,
-$a_i \leq b_i$,
-$b_i < a_{i+1} - 1$
-(for $i \in \curly{1, \ldots, k-1}$),
-\ldots,
-$b_{k-1} < a_k - 1$,
-$a_k \leq b_k$,
-$b_k \leq \rep{1}{n}$.
+\item[Input]
+\minintinput
 
-Such numbers are the endpoints of the intervals
-of the proper $k$-interval Boolean function $\fnkab$.
-
-\item[Output] A spanning set of $\fnkab$.
-\todo{Update in the interval decomposition algorithm.}
+\item[Output]
+\minintoutput
 
 \item[Procedure]
 The algorithm spans each of

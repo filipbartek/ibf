@@ -96,6 +96,29 @@
 \newcommand{\titleoptimality}{Optimality}
 \newcommand{\titleapproxratio}{Approximation ratio}
 
+% Common paragraphs
+\newcommand{\minintinput}
+{$n$-bit binary vectors $a_1, b_1, \ldots, a_k, b_k$
+for $n \geq 0$ and $k \geq 0$
+that satisfy the inequalities
+$\rep{0}{n} \leq a_1$,
+$a_1 \leq b_1$,
+$b_1 < a_2 - 1$,
+\ldots,
+$a_i \leq b_i$,
+$b_i < a_{i+1} - 1$
+(for $i \in \curly{1, \ldots, k-1}$),
+\ldots,
+$b_{k-1} < a_k - 1$,
+$a_k \leq b_k$,
+$b_k \leq \rep{1}{n}$.
+
+Such numbers are the endpoints of the intervals
+of the proper $k$-interval Boolean function $\fnkab$.}
+
+\newcommand{\minintoutput}
+{A spanning set of $\fnkab$.}
+
 \newcommand{\quantify}[3]{(#1 #2) [#3]}
 \newcommand{\ex}[2]{\quantify{\exists}{#1}{#2}}
 \newcommand{\fora}[2]{\quantify{\forall}{#1}{#2}}
