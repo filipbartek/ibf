@@ -32,6 +32,8 @@
 %\usepackage[top=1.5cm, bottom=1.5cm, outer=5cm, inner=2cm, heightrounded, marginparwidth=2.5cm, marginparsep=2cm]{geometry}
 \RequirePackage[obeyFinal]{todonotes}
 
+\newcommand{\todomaybe}[2][]{\todo[color=pink,#1]{?` #2}}
+
 \newcommand{\todokucera}[2][]
 {\todo[author=\foreignlanguage{czech}{Kučera},
 color=green,#1]{#2}}
@@ -47,8 +49,6 @@ color=yellow,#1]{#2}}
 \newcommand{\todoforkucera}[2][]
 {\todo[color=green,#1]{!` #2}}
 
-\newcommand{\todomaybe}[2][]
-{\todo[color=pink,#1]{?` #2}}
 
 % Macros
 \newcommand{\apply}[2]{#1 \round{#2}}
