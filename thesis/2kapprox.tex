@@ -3,32 +3,21 @@
 \todo[inline]{Rename the algorithm to \quot{suffix-prefix decomposition algorithm}.}
 
 In this chapter
-we shall show a simple $2k$-approximation algorithm for the following problem:
-\emph{Given a proper $k$-interval function $f$,
-find a minimum spanning set of $f$.}
-\todo{Move problem definition in Definitions. Refer to the problem by a name or a number (\LaTeX reference).}
-We shall assume that the function $f$ is represented by pairs of endpoints of the respective intervals.
-The algorithm we shall describe is a straightforward
+we will show a simple polynomial
+$2k$-approximation algorithm for the problem
+$\minimization{\allintervalfns}$
+(see
+\Cref{problem:allintervalfnsminimization,def:allintervalfns}),
+where $k$ is the number of intervals
+of the proper $k$-interval function $f$ to be minimized.
+\todomaybe{Rephrase as \quot{general [\ldots] algorithm for the class of problems $\minimization{\intervalfns{k}}$ for all $k \geq 0$}.}
+We shall assume that the function $f$ is represented by the endpoints of its intervals.
+The algorithm we will describe is a straightforward
 extension of
 \citeauthor{Schieber2005154}'s suffix-prefix
 approximation algorithm
 for disjoint spanning sets of $1$-interval functions
 \citep[Section 6]{Schieber2005154}.
-
-In the rest of this chapter,
-we will only consider
-\emph{proper} $k$-interval Boolean functions,
-that is those whose adjacent intervals are separated by
-at least one false point
-(see \cref{def:properkibf}).
-% \autoref doesn't recognize definitions,
-% so we're better of with \cref.
-A $k$-interval Boolean function
-which is not proper $k$-interval
-can be efficiently reduced to a proper $l$-interval
-where $l < k$
-by joining the adjoint
-intervals.
 
 \section{\algdesctitle}
 \todo[inline]{Unite with the following chapter.}
