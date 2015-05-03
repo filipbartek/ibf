@@ -39,6 +39,21 @@ In this thesis,
 we will deal with the interval representation of Boolean functions
 and relate it to propositional formula representation of a special form called \acrfull{dnf}.
 
+The \acrshort{dnf} representation of Boolean functions
+has been applied in constraint-based software
+\citep{DeMillo1991} % Section IV.A, p.~906
+and hardware
+\citep{Lewin1995} % Section 4, p.~47
+testing systems.
+In these systems,
+\acrshort{dnf} formulas act as characteristic functions
+of constrained variable domains.
+Since some of the basic constraints
+reduce variable domains to small (often singular) sets of intervals,
+\todo{Cite some source, or simplify and cite Schieber.}
+it is interesting to look for economic \acrshort{dnf}
+representations of intervals.
+
 Boolean functions defined by intervals were introduced
 by \citet{Schieber2005154}.
 A pair of $n$-bit numbers $a, b$
