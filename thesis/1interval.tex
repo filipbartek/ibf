@@ -482,13 +482,15 @@ and $\interval{10 \rep{0}{n-2}}{10 \hat{b}}$.
 }
 
 This case is complementary to case \ref{sec:0010}.
-As in suffix case,
-note that flipping all the bits in the endpoints
-transforms this case to case \ref{sec:0010}
-and flipping the fixed bits in the resulting spanning set
-preserves correctness.
-\todo{Napiš explicitně, na který interval redukuji - $\interval{\compl{b}}{\compl{a}}$.
-Zamysli se, jestli se dá zformulovat obecně pro obě tyto aplikace.}
+We reduce the instance $\interval{01 \hat{a}}{11 \hat{b}}$
+to the instance
+$\interval{00 \compl{\hat{b}}}{10\compl{\hat{a}}}
+= \interval{\compl{b}}{\compl{a}}$.
+By \cref{lemma:complspanning},
+complementing all the ternary vectors
+in a minimum spanning set
+of $\interval{\compl{b}}{\compl{a}}$
+yields a minimum spanning set of $\interval{a}{b}$.
 
 \subsection{\texorpdfstring
 {$\bits{a}{1}{2} = 00$ and $\bits{b}{1}{2} = 11$}
