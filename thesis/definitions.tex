@@ -515,6 +515,38 @@ Note that the inverse implication holds as well
 but we will not use it in this thesis.
 \todo{Do we use the theorem in the thesis? If not, throw it away, possibly along with definition of collision. If yes, label and cref it.}
 
+The orthogonal sets were studied in \citet{Cepek2012}.
+\citeauthor{Cepek2012}
+use the notion of a falsepoint essential set
+for the case of \acrlong{cnf}
+which in a \acrshort{dnf} setting
+translates into a truepoint essential set.
+A truepoint essential set $\mathcal{E}(x)$
+associated with a true point $x$
+of a given function $f$
+is a set of implicants
+\todokucera{pozn. definoval jste implikant?}
+of $f$ which are satisfied on $x$.
+The fact that the two true points $x$ and $y$
+are orthogonal then naturally corresponds to
+the fact that their associated truepoint essential sets
+$\mathcal{E}(x)$ and $\mathcal{E}(y)$ are disjoint.
+An orthogonal set then corresponds
+to a set of pairwise disjoint truepoint essential sets.
+The truepoint essential set defined in this way
+is in fact just a special case of a more general notion
+of essential set which was introduced in \citet{Boros2010}.
+The results in \citet{Cepek2012}
+show that for our purpose it is enought
+to consider the truepoint essential sets.
+
+The following proposition appears in \citep{Dubovsky2012},
+it was also shown for truepoint
+\todobartek{\citet{Cepek2012} use falsepoint essential sets. Shouldn't I refer to the result that way here?}
+essential sets in \citep{Cepek2012}.
+To have the thesis self-contained,
+we include the proof here as well.
+
 \begin{theorem}
 [$\apply{ortho}{f} \leq \apply{dnf}{f}$
 {\theoremsource[Observation 1.1]{Dubovsky2012}} % p.~6
@@ -551,6 +583,7 @@ which contradicts the premise that $\mathcal{T}$
 is a feasible spanning set of $f$.
 \end{proof}
 
+\todo[inline]{Remove the following paragraph if an introduction to the preceding theorem makes more sense.}
 Note that \citeauthor{Cepek2012}
 show the inequality
 for disjoint essential sets of implicants of $f$
