@@ -755,10 +755,14 @@ for a fixed $k \geq 0$,
 find a minimum spanning set of $f$.
 \end{problem}
 
-Note that since the problem of Boolean minimization is not tractable \citep{Umans1998}
-\todoforkucera{It's $\Sigma_2$-hard. Does that mean it's not tractable?}
-and the class $\allintervalfns$ contains all Boolean functions,
-we do not expect that we will be able to solve the problem $\minimization{\allintervalfns}$ in polynomial time.
+Note that since the problem
+of general Boolean minimization
+is $\Sigma_2$-hard \citep{Umans1998}
+and every Boolean function is $k$-interval for some $k$,
+we do not expect to be able to find
+a general polynomial minimization algorithm,
+that is one that is polynomial
+with respect to both $k$ (number of intervals) and $n$ (function arity).
 However,
 an algorithm polynomial with respect to $n$ still may exist and would be interesting to show.
 \todoforkucera{Is there a $\Sigma_2$-hard problem that has a parametrized polynomial solution?}
