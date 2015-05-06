@@ -132,7 +132,7 @@ representations of Boolean functions}
 
 % http://en.wikipedia.org/wiki/Boolean_function
 Every $n$-ary Boolean function $f$ can be expressed
-as a propositional formula $\mathcal{F}$ on $n$ variables
+as a Boolean formula $\mathcal{F}$ on $n$ variables
 $x_1, \ldots, x_n$.
 There's a natural bijection
 between binary vectors of length $n$
@@ -152,12 +152,11 @@ in the valuation).
 A \definiendum{literal} is an occurrence
 of a variable ($x_i$) or its negation ($\nott{x_i}$)
 in a Boolean formula.
-\todo{Change from \quot{propositional} to \quot{Boolean} in the rest of the text. This is to adhere to \citet{Crama2011}.}
 A \definiendum{term} is
 an elementary conjunction of literals,
 that is a conjunction in which every variable appears
 at most once.
-A \definiendum{\acrfull{dnf}} propositional formula
+A \definiendum{\acrfull{dnf}} Boolean formula
 is a disjunction of terms.
 We will often view terms as sets of literals
 and \acrshort{dnf} formulas as sets of terms.
@@ -727,7 +726,7 @@ shows examples of interval functions.
 \begin{table}[h]
 \centering
 \begin{tabular}{lll}
-Interval function & Propositional formula & Description \\
+Interval function & Boolean formula & Description \\
 \hline
 %$\intervalfn{f}{2}{11}{11}$ &
 %$x_1 \wedge x_2$ & Conjunction \\
