@@ -483,30 +483,43 @@ with \definiendum{$\apply{ortho}{f}$}.
 \end{definition}
 
 \begin{definition}
-[Collision]
-\label{def:collision}
+[Separating vector
+{\definitionsource[Definition 3.3]{Cepek2012}}]
+\label{def:separatingvector}
 Let $x$, $y$ and $z$ be $n$-bit binary vectors.
-We say that \definiendum{$x$ and $y$ collide
-on the vector $z$}
+We say that $z$ \definiendum{separates} $x$ and $y$
 if and only if
-every ternary vector that spans both $x$ and $y$
-necessarily also spans $z$.
-
-\todo[inline]{Get rid of collision altogether (in case we don't use it in the text), or prove that it is equivalent to orthogonality, preferably using established terminology.}
-\todonote[inline]{Note that $x$ and $y$ collide on $z$ if and only if $z$ separates $x$ and $y$ in terminology of \citet[Definition 3.3]{Cepek2012}. Consider using the same terminology.}
+for every $i \in \curly{1, \ldots, n}$
+we have
+$\bit{z}{i} = \bit{x}{i}$ or $\bit{z}{i} = \bit{y}{i}$.
 \end{definition}
 
 \begin{theorem}
-[Collision and orthogonality]
+[Separating false point and orthogonality]
+\label{theorem:separatingfportho}
 Let $x$ and $y$ be true points of function $f$.
-If the vectors $x$ and $y$
-collide on some false point of $f$,
-they are orthogonal.
+If any false point of $f$ separates $x$ and $y$,
+then $x$ and $y$ are orthogonal.
+\todonote[inline]{The definition requires $x$ and $y$ to differ.}
 \end{theorem}
 
 \begin{proof}
-The statement is a trivial application of
-\cref{def:collision,def:orthogonal}.
+Let $x$ and $y$ be true points of an $n$-ary function $f$.
+Let $z$ be a false point of $f$
+that separates $x$ and $y$.
+Let an arbitrary ternary vector $T$ span $x$ and $y$.
+We claim that $T$ necessarily also spans $z$.
+
+For every position $i \in \curly{1, \ldots, n}$
+such that $\bit{T}{i} \neq \phi$
+we have $\bit{T}{i} = \bit{x}{i} = \bit{y}{i}$
+since $T$ spans both $x$ and $y$
+(see \cref{def:spans}).
+Because $z$ separates $x$ and $y$,
+we have
+$\bit{z}{i} = \bit{x}{i} = \bit{y}{i} = \bit{T}{i}$.
+
+We conclude that $T$ spans $z$.
 \end{proof}
 
 Note that the inverse implication holds as well
@@ -702,8 +715,9 @@ be a $k$-interval Boolean function.
 If the endpoints satisfy the inequalities
 $b_1 < a_2 - 1$, \ldots, $b_i < a_{i+1} - 1$, \ldots,
 $b_{k-1} < a_k - 1$
-(in other words, adjacent intervals
-are separated by at least one false point),
+(in other words,
+there is at least one false point
+between any pair of adjacent intervals),
 we call
 $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
 a \definiendum{proper $k$-interval Boolean function}.

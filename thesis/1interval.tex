@@ -290,13 +290,14 @@ $y = \bits{c}{1}{o_y - 1} 0 \bits{c}{o_y + 1}{n}$).
 Since $x \neq y$, necessarily $o_x \neq o_y$.
 %Without loss of generality
 %let $o_x < o_y$.
-
-Let $T$ be any ternary vector that spans both $x$ and $y$.
-To see that $T$ must also span the false point $c$,
-note that every component $i$ of $c$
-matches the respective component in at least one of $x,y$
-(for every $i$,
-$\bit{c}{i} = \bit{x}{i}$ or $\bit{c}{i} = \bit{y}{i}$).
+Since every component $i$ of $c$
+clearly matches the respective component
+in at least one of $x, y$,
+the vector $c$ separates $x$ and $y$
+by \cref{def:separatingvector}.
+Having found a separating false point for $x$ and $y$
+we conclude that $x$ and $y$ are orthogonal
+by \cref{theorem:separatingfportho}.
 
 \Cref{tab:xyc}
 shows a more detailed comparison
@@ -362,7 +363,8 @@ there is an orthogonal set $V$
 of size $dnf(\prefixfn{f}{n}{b})$
 such that
 every pair of vectors $x,y \in V$, $x \neq y$,
-collides on the false point $b+1$.
+is separated the false point $b+1$
+(see \cref{def:separatingvector}).
 \end{corollary}
 
 It is easy to see that the spanning set $\mathcal{T}$

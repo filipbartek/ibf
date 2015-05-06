@@ -217,9 +217,10 @@ Let's call this set $V_{i, 1}'$.
 %($\size{V_{i, 1}'}
 %= \size{\mathcal{T}_{i, 1}'}$).
 Recall that by \cref{corollary:prefixdependence}
-all the pairs of vectors in $V_{i, 1}'$
-collide on the false point $b' + 1$
-of $\prefixfn{f}{n-j-1}{b'}$.
+every pair of distinct vectors in $V_{i, 1}'$
+is separated by the false point $b' + 1$
+of $\prefixfn{f}{n-j-1}{b'}$
+(see \cref{def:separatingvector}).
 
 Let $\hat{b} = \bits{b_i}{1}{j+1}$ ($b_i = \hat{b} b'$).
 Let $V = \curly{\hat{b} v | v \in V_{i, 1}'}$.
@@ -229,10 +230,9 @@ $\fnkab$.
 Let $\hat{b} x, \hat{b} y \in V$
 and $x \neq y$.
 Since by \cref{corollary:prefixdependence}
-$x$ and $y$ collide on $b'+1$,
-$\hat{b} x$ and $\hat{b} y$
-collide on
-$\hat{b} (b'+1) = b_i+1$.
+the vector $b'+1$ separates $x$ and $y$,
+the vector $\hat{b} (b'+1) = b_i+1$ separates
+$\hat{b} x$ and $\hat{b} y$.
 To see that $b_i+1$ is a false point of $\fnkab$,
 note that if $i<k$,
 then $b_i < a_{i+1} - 1$
