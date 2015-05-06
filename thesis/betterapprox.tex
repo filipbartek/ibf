@@ -112,9 +112,14 @@ while the suffix-prefix decomposition algorithm
 spans each of them separately and possibly non-optimally,
 we get an upper bound $2k$
 on $\approxidintk$ by \cref{theorem:2kapproxratio}:
-$$
-\approxidintk \leq \approxspdintk = 2k
-$$
+
+\begin{observation}
+\label{observation:approxidintkupper}
+Let $k \geq 1$.
+Then $\approxidintk \leq \approxspdintk = 2k$.
+\todo{Define $\approxspdintk$.}
+\end{observation}
+
 However,
 the ratio $2k$ need not be tight
 for the interval decomposition algorithm.
