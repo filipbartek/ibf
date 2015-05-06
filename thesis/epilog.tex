@@ -1,11 +1,73 @@
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
 
-\todo[inline]{
-Make a section about disjoint representations, collect (review) the results from the thesis. Can be done in Conclusion.
-When we discuss Scheiber's results, mention disjoint dnfs and the results - Sheiber has two algs. and results.
-Motivation: generating test data for software testing - esp. with disjoint dnfs - uniform polling
-}
+\todo[inline]{Cite sources and reference sections throughout this chapter.}
+
+The central question of this thesis
+is finding minimum spanning sets
+of $k$-interval Boolean functions
+for general $k$.
+
+\citeauthor{Schieber2005154} showed a polynomial algorithm
+that minimizes spanning sets of $1$-interval functions.
+\citeauthor{Schieber2005154}'s proof of optimality
+of the algorithm
+is based on the fact that every $1$-interval function
+is coverable.
+
+While \citeauthor{Dubovsky2012} showed
+a polynomial minimization algorithm
+for the class of $2$-switch $2$-interval functions,
+we presented a simplified version of such algorithm
+that reduces every $2$-switch $2$-interval function
+to a $1$-interval function.
+
+\citeauthor{Dubovsky2012} showed
+a $3$-switch $2$-interval function
+that is not coverable.
+We extended his result by showing
+an $l$-switch non-coverable function for every $l \geq 3$.
+These functions include some $k$-interval functions
+for every $k \geq 2$.
+This suggests that a possible future algorithm
+that optimally spans a whole class
+of $k$-interval functions
+for any $k \geq 2$
+is going to require a different approach
+for proving optimality.
+
+We presented a $2k$-approximation polynomial algorithm
+for $k$-interval functions for general $k$.
+The algorithm naturally extends
+\citeauthor{Schieber2005154}'s suffix-prefix
+approximation algorithm
+for disjoint spanning sets of $1$-interval functions
+\citep[section 6]{Schieber2005154}.
+
+We proposed an improved approximation algorithm
+for $k$-interval functions.
+This algorithm has the approximation ratio $1$
+on $1$-interval functions
+and the approximation ratio $2$
+on $2$-interval functions.
+We continued to show an upper bound $2k$
+and a lower bound $2(k-1)$
+for $k$ that is of the form $2^{l-1}+1$ for some $l$.
+This lower bound is interesting
+because its ratio to the upper bound $2k$ approaces $1$
+for large $k$.
+
+Disjoint spanning sets have found use in generating test data,
+\todo{Cite source.}
+since they allow fast uniform polling of true points.
+\citeauthor{Schieber2005154} showed
+a polynomial algorithm that minimizes
+disjoint spanning sets
+of $1$-interval functions.
+We have shown a $2k$-approximation algorithm
+for minimization of disjoint spanning sets of $k$-interval Boolean functions.
+
+\todo[inline]{Outdated text follows.}
 
 We have shown that
 with respect to finding
@@ -37,32 +99,10 @@ and has the approximation ratio of $2k$
 for the problem of finding
 a minimum disjoint representation as well.
 
-We have shown an improved approximation algorithm for the problem of minimization of $k$-interval Boolean functions.
+We proposed an improved approximation algorithm for the problem of minimization of $k$-interval Boolean functions.
 We continued to analyze its approximation ratio.
 We managed to find an upper bound $2k$ and a lower bound $2(k-1)$
 for $k = 2^{l-1}+1$ for some $l \geq 1$.
-
-Some interesting questions are still left to be answered
-regarding multi-interval Boolean functions.
-Since general Boolean minimization is
-$\Sigma_2^p$-hard \citep{Umans1998},
-there must
-\todo{No -- there may be an approximation scheme. For example, if the complexity is $n^k$, there's no $k$ for which the problem is hard, while the problem remains hard in general.}
-be some $k$ such that minimization
-of $k$-interval functions is $\Sigma_2^p$-hard,
-and a $k'$ for which minimization is NP-hard.
-\citeauthor{Schieber2005154} showed that such $k' > 1$,
-which is the only bound shown so far.
-There is a substantial difference
-between $1$- and $2$-interval functions
-since the former are coverable in general,
-while the latter are not.
-This prevents us from using a similar approach
-to minimizing $2$-interval functions.
-I suspect this difference could correspond to
-a difference in computational complexity of the problem.
-\todo{Is it a good idea to "suspect" in a thesis?}
-\todomaybe{Suspect more explicitly, e.g. $3$-switch functions are NP-hard.}
 
 The $2k$-approximation algorithm presented in this thesis
 is constructed so that we can use the orthogonal sets
