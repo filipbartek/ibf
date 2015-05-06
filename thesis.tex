@@ -41,8 +41,9 @@
 \renewcommand{\arraystretch}{1.2} % Make table rows taller
 
 \usepackage[capitalise]{cleveref}
-\crefname{observation}{observation}{observations}
-\crefname{problem}{problem}{problems}
+% The names are defined capitalized because we use capitalized names in general and `cleveref` doesn't capitalize new names correctly.
+\Crefname{observation}{Observation}{Observations}
+\Crefname{problem}{Problem}{Problems}
 
 \begin{document}
 
