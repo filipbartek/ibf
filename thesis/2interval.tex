@@ -281,15 +281,15 @@ and $x = c 0 x' \leq c 0 b_1' = b_1$.
 Let $x \in S_{in}$.
 This means that $\bits{x}{1}{j} = c$,
 and $x \leq b_1$ or $x \geq a_2$.
-Without loss of generality let $\bit{x}{j+1} = 0$
-(the complementary case is symmetric)
-and let $x = c 0 x'$.
+Without loss of generality let
+us assume that $x \leq b_1$,
+in particular
+$\bit{x}{j+1} = 0$
+(the complementary case is symmetric),
+and let $x' = \bits{x}{j+2}{n}$
+(that is $x = c 0 x'$).
 
-Since $\bits{x}{1}{j+1} = c 0 < c 1 = \bits{a_2}{1}{j+1}$,
-$x$ cannot be greater than or equal to $a_2$.
-Thus necessarily $x \leq b_1$.
-Since $x$ and $b_1$ share the prefix $c 0$,
-necessarily $x' \leq b_1'$
+It follows that $x'\leq b_1'$
 and by extension $1 x' \leq 1 b_1'$.
 Trivially $1 x' \geq 0 a_2'$.
 
