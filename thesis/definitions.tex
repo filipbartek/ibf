@@ -462,6 +462,19 @@ if and only if
 all the vectors in $S$ are pairwise
 orthogonal.\footnote{This notion of orthogonality is not related to orthogonal \acrshort{dnf} formulas \citep[Definition 1.13]{Crama2011}.}
 \todo{Typeset the footnote on the same page.}
+\todonote[inline]{
+$$
+\fora{x,y \in S}{x \neq y \Rightarrow
+\fora{T}{\ex{z}{\binand{f(z) = 0}{T \text{ spans } z}}}
+}
+$$
+as opposed to
+$$
+\fora{x,y \in S}{x \neq y \Rightarrow
+\ex{z}{\binand{f(z) = 0}{\fora{T}{T \text{ spans } z}}}
+}
+$$
+}
 
 We shall denote the size of
 a maximum orthogonal set
