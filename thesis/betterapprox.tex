@@ -310,15 +310,15 @@ $p_{a_2}
 = p_{b_1} + 1$
 
 \item $i = k-1$:
-\begin{align*}
+\begin{multline*}
 p_{a_k}
-&= \rep{1}{l} \\
-&= 2^l - 1 \\
-&= (2 \cdot 2^{l-1} - 2) + 1 \\
-&= (2 \cdot ((2^{l-1} + 1) - 1) - 2) + 1 \\
-&= (2 \cdot (k-1) - 2) + 1 \\
-&= p_{b_{k-1}} + 1
-\end{align*}
+= \rep{1}{l}
+= 2^l - 1
+= (2 \cdot 2^{l-1} - 2) + 1 \\
+= (2 \cdot ((2^{l-1} + 1) - 1) - 2) + 1
+= (2 \cdot (k-1) - 2) + 1
+= p_{b_{k-1}} + 1
+\end{multline*}
 \end{itemize}
 \end{proof}
 
@@ -504,13 +504,13 @@ To see that $i \leq k$,
 recall that $k = 2^{l-1} + 1$ by \cref{def:difficultfn}
 and note that $p_x \leq 2^l-1$
 since $p_x$ is an $l$-bit vector.
-\begin{align*}
-i &= \ceil*{\frac{p_x}{2}} + 1 \\
-&\leq \ceil*{\frac{2^l-1}{2}} + 1 \\
-&= \ceil*{2^{l-1} - \frac{1}{2}} + 1 \\
-&= 2^{l-1} + 1 \\
-&= k
-\end{align*}
+$$
+i = \ceil*{\frac{p_x}{2}} + 1
+\leq \ceil*{\frac{2^l-1}{2}} + 1
+= \ceil*{2^{l-1} - \frac{1}{2}} + 1
+= 2^{l-1} + 1
+= k
+$$
 
 \item $x \in \interval{a_i}{b_i}$:
 
@@ -530,28 +530,28 @@ It is easy to see that
 the inequality \labelcref{ineq:difficultprefix} holds
 in case $p_x$ is even.
 In case $p_x = 2r + 1$ for some $r$:
-\begin{align*}
+\begin{multline*}
 2 \cdot \ceil*{\frac{p_x}{2}}
-&= 2 \cdot \ceil*{\frac{2r + 1}{2}} \\
-&= 2 \cdot \ceil*{r + \frac{1}{2}} \\
-&= 2 \cdot \round*{r + \ceil*{\frac{1}{2}}} \\
-&= 2 \cdot (r + 1) \\
-&= 2r + 2 \\
-&= (2r + 1) + 1 \\
-&= p_x + 1
-\end{align*}
+= 2 \cdot \ceil*{\frac{2r + 1}{2}}
+= 2 \cdot \ceil*{r + \frac{1}{2}}
+= 2 \cdot \round*{r + \ceil*{\frac{1}{2}}} \\
+= 2 \cdot (r + 1)
+= 2r + 2
+= (2r + 1) + 1
+= p_x + 1
+\end{multline*}
 
 We conclude that $p_{a_i} \leq p_x$.
 
 To see that $p_{b_i} \geq p_x$:
-\begin{align*}
+$$
 p_{b_i}
-&= 2 \cdot i - 2 \\
-&= 2 \cdot \round*{\ceil*{\frac{p_x}{2}} + 1} - 2 \\
-&= 2 \cdot \ceil*{\frac{p_x}{2}} + 2 - 2 \\
-&= 2 \cdot \ceil*{\frac{p_x}{2}} \\
-&\geq p_x
-\end{align*}
+= 2 \cdot i - 2
+= 2 \cdot \round*{\ceil*{\frac{p_x}{2}} + 1} - 2
+= 2 \cdot \ceil*{\frac{p_x}{2}} + 2 - 2
+= 2 \cdot \ceil*{\frac{p_x}{2}}
+\geq p_x
+$$
 
 Since $p_{a_i} \leq p_x$ and $s_a \leq s_x$
 (by \cref{def:difficultfn}
@@ -797,16 +797,16 @@ $\mathit{id}(f_l^n) = 2^l(n-l)$
 \end{lemma}
 
 \begin{proof}
-\begin{align*}
-id(f_l^n) &= \sum_{i=1}^k{\size{\mathcal{T}_i}} \\
-&= 2 (n-l) + \sum_{i=2}^{k-1}{2 (n-l)} \\
-&= 2 (n-l) + (k-2) 2 (n-l) \\
-%&= 2 (n-l) (1 + (k-2)) \\
-&= 2 (n-l) (k-1) \\
-&= 2 (n-l) ((2^{l-1} + 1) - 1) \\
-%&= 2 (n-l) 2^{l-1} \\
-&= 2^l (n-l)
-\end{align*}
+\begin{multline*}
+id(f_l^n) = \sum_{i=1}^k{\size{\mathcal{T}_i}}
+= 2 (n-l) + \sum_{i=2}^{k-1}{2 (n-l)}
+= 2 (n-l) + (k-2) 2 (n-l) \\
+%= 2 (n-l) (1 + (k-2))
+= 2 (n-l) (k-1)
+= 2 (n-l) ((2^{l-1} + 1) - 1)
+%= 2 (n-l) 2^{l-1}
+= 2^l (n-l)
+\end{multline*}
 \end{proof}
 
 \subsection{Minimum spanning set size}
