@@ -498,51 +498,6 @@ of function $f$
 with \definiendum{$\apply{ortho}{f}$}.
 \end{definition}
 
-\begin{definition}
-[Separating vector
-{\definitionsource[Definition 3.3]{Cepek2012}}]
-\label{def:separatingvector}
-Let $x$, $y$ and $z$ be $n$-bit binary vectors.
-We say that $z$ \definiendum{separates} $x$ and $y$
-if and only if
-for every $i \in \curly{1, \ldots, n}$
-we have
-$\bit{z}{i} = \bit{x}{i}$ or $\bit{z}{i} = \bit{y}{i}$.
-\end{definition}
-
-\begin{theorem}
-[Separating false point and orthogonality]
-\label{theorem:separatingfportho}
-Let $x$ and $y$ be true points of function $f$.
-If any false point of $f$ separates $x$ and $y$,
-then $x$ and $y$ are orthogonal.
-\todonote[inline]{The definition forces $x$ and $y$ to differ.}
-\end{theorem}
-
-\begin{proof}
-Let $x$ and $y$ be true points of an $n$-ary function $f$.
-Let $z$ be a false point of $f$
-that separates $x$ and $y$.
-Let an arbitrary ternary vector $T$ span $x$ and $y$.
-We claim that $T$ necessarily also spans $z$.
-
-For every position $i \in \curly{1, \ldots, n}$
-such that $\bit{T}{i} \neq \phi$
-we have $\bit{T}{i} = \bit{x}{i} = \bit{y}{i}$
-since $T$ spans both $x$ and $y$
-(see \cref{def:spans}).
-Because $z$ separates $x$ and $y$,
-we have
-$\bit{z}{i} = \bit{x}{i} = \bit{y}{i} = \bit{T}{i}$.
-
-We conclude that $T$ spans $z$.
-\end{proof}
-
-Note that the inverse implication holds as well
-\citep[Lemma 3.7]{Cepek2012},
-\todokucera{Každopádně tam se používá jiná notace, ten odstavec, který máte níže a který dává do souvislosti esenciální množiny s tímhle, je potřeba dát před první odkaz na článek \citep{Cepek2012}, sem by se to docela hodilo.}
-but we will not use it in this thesis.
-
 The orthogonal sets were studied in \citet{Cepek2012}.
 \citeauthor{Cepek2012}
 use the notion of a falsepoint essential set
@@ -669,6 +624,54 @@ and $2$-switch $2$-interval functions
 are coverable.
 We will show examples of functions which are not coverable
 in \cref{sec:3switch}.
+
+\begin{definition}
+[Separating vector
+{\definitionsource[Definition 3.3]{Cepek2012}}]
+\label{def:separatingvector}
+Let $x$, $y$ and $z$ be $n$-bit binary vectors.
+We say that $z$ \definiendum{separates} $x$ and $y$
+if and only if
+for every $i \in \curly{1, \ldots, n}$
+we have
+$\bit{z}{i} = \bit{x}{i}$ or $\bit{z}{i} = \bit{y}{i}$.
+\end{definition}
+
+The following proposition appears
+in \citet[Lemma 3.7]{Cepek2012}.
+We include the proof for completeness.
+
+\begin{theorem}
+[Separating false point and orthogonality]
+\label{theorem:separatingfportho}
+Let $x$ and $y$ be true points of function $f$.
+If any false point of $f$ separates $x$ and $y$,
+then $x$ and $y$ are orthogonal.
+\todonote[inline]{The definition forces $x$ and $y$ to differ.}
+\end{theorem}
+
+\begin{proof}
+Let $x$ and $y$ be true points of an $n$-ary function $f$.
+Let $z$ be a false point of $f$
+that separates $x$ and $y$.
+Let an arbitrary ternary vector $T$ span $x$ and $y$.
+We claim that $T$ necessarily also spans $z$.
+
+For every position $i \in \curly{1, \ldots, n}$
+such that $\bit{T}{i} \neq \phi$
+we have $\bit{T}{i} = \bit{x}{i} = \bit{y}{i}$
+since $T$ spans both $x$ and $y$
+(see \cref{def:spans}).
+Because $z$ separates $x$ and $y$,
+we have
+$\bit{z}{i} = \bit{x}{i} = \bit{y}{i} = \bit{T}{i}$.
+
+We conclude that $T$ spans $z$.
+\end{proof}
+
+Note that the inverse implication holds as well
+\citep[Lemma 3.7]{Cepek2012},
+but we will not use it in this thesis.
 
 \section{\texorpdfstring{$k$}{k}-interval
 Boolean functions}
