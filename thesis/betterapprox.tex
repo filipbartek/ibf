@@ -447,57 +447,18 @@ all the $l$-bit even numbers.
 \end{observation}
 
 \begin{proof}
-\hfill
-\todokucera[inline]{Dohromady jste definoval k-1 po dvou různých sudých čísel, tedy $k-1=2^{l-1}+1-1=2^{l-1}$, víc sudých čísel do l bitů nenacpete, připadá mi to jako jednodušší argument, než rozbor níže.}
-Every $p_{b_i}$ for $i \in \curly{1, \ldots, k-1}$
-is $l$-bit by \cref{observation:difficultprefixlbit}
-and it is even
+There are $2^{l-1}$ $l$-bit
+distinct even numbers
+and we have defined $k-1 = 2^{l-1}$
+$l$-bit
+prefixes $p_{b_i}$ for $i \in \curly{1, \ldots, k-1}$
+each of which is even
 by \cref{observation:difficultprefixbeven}.
-%None of them is $\rep{0}{l}$,
-%since $p_{b_1} = \rep{0}{l}$
-%by \cref{def:difficultprefix}
-%and $p_{b_{i+1}} \geq p_{a_{i+1}} > p_{b_i}$
-%for $i \in \curly{1, \ldots, k-1}$
-%by \cref{observation:difficultineqab,corollary:difficultineqba}.
-
-To show that every $l$-bit even number
-is equal to $p_{b_i}$
-for some $i \in \curly{1, \ldots, k-1}$,
-let $p_x$ be any $l$-bit even number
-and let $i = \frac{p_x}{2} + 1$.
-We claim that $i \in \curly{1, \ldots, k-1}$
-and $p_x = p_{b_i}$.
-
-\begin{enumerate}
-\item $i \in \curly{1, \ldots, k-1}$:
-
-It is easy to see that
-if $p_x$ is even,
-then $i$ defined as $\frac{p_x}{2} + 1$
-is a whole number greater than or equal to $1$.
-To see that $i \leq k-1$,
-recall that $k = 2^{l-1} + 1$ by \cref{def:difficultfn}
-and note that $p_x \leq \rep{1}{l-1} 0 = 2^l-2$
-since $p_x$ is an $l$-bit even number.
-The inequality follows:
-\begin{align*}
-i
-&= \frac{p_x}{2} + 1 \\
-&\leq \frac{2^l-2}{2} + 1 \\
-&= 2^{l-1} - 1 + 1 \\
-&= 2^{l-1} \\
-&= k - 1
-\end{align*}
-
-\item $p_x = p_{b_i}$:
-$$
-p_{b_i}
-= 2 \cdot i - 2
-= 2 \cdot \round*{\frac{p_x}{2} + 1} - 2
-= p_x + 2 - 2
-= p_x
-$$
-\end{enumerate}
+\cref{corollary:difficultineqba,observation:difficultineqab}
+show that these prefixes are pairwise different.
+We conclude that the prefixes
+$p_{b_i}$ for $i \in \curly{1, \ldots, k-1}$
+exhaust all $l$-bit even numbers.
 \end{proof}
 
 \begin{observation}
