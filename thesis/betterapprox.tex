@@ -1302,18 +1302,20 @@ $id(f_2^n) > 3 \cdot dnf(f_2^n)$.
 Expanding the inequality by using
 \cref{lemma:difficultid,corollary:difficultdnf},
 we get a restriction on $n$:
-\begin{align*}
-id(f_l^n) &= 2^l(n-l) \\
-&= 2^2(n-2) \\
-&= 4 (n-2) \\
-&= 4n - 8 \\
-&> 3n \\
-&= 3 \cdot (n+2-2) \\
-&= 3 \cdot (n+l-2) \\
-&= 3 \cdot \mathit{dnf}(f_l^n)
-\end{align*}
+\begin{align}
+id(f_l^n) &= 2^l(n-l)
+= 2^2(n-2)
+= 4 (n-2) \nonumber \\
+&= 4n - 8
+> 3n
+\label{ineq:examplef29} \\
+&= 3 \cdot (n+2-2)
+= 3 \cdot (n+l-2)
+= 3 \cdot \mathit{dnf}(f_l^n) \nonumber
+\end{align}
 
-Any $n > 8$ satisifes the inequality:
+Any $n > 8$ satisifes
+inequality \labelcref{ineq:examplef29}:
 \begin{align*}
 4n - 8 &> 3n \\
 n - 8 &> 0 \\
