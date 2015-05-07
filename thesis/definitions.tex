@@ -498,31 +498,6 @@ of function $f$
 with \definiendum{$\apply{ortho}{f}$}.
 \end{definition}
 
-The orthogonal sets were studied in \citet{Cepek2012}.
-\citeauthor{Cepek2012}
-use the notion of a falsepoint essential set
-for the case of \acrlong{cnf}
-which in a \acrshort{dnf} setting
-translates into a truepoint essential set.
-A truepoint essential set $\mathcal{E}(x)$
-associated with a true point $x$
-of a given function $f$
-is a set of implicants
-\todokucera{pozn. definoval jste implikant?}
-of $f$ which are satisfied on $x$.
-The fact that the two true points $x$ and $y$
-are orthogonal then naturally corresponds to
-the fact that their associated truepoint essential sets
-$\mathcal{E}(x)$ and $\mathcal{E}(y)$ are disjoint.
-An orthogonal set then corresponds
-to a set of pairwise disjoint truepoint essential sets.
-The truepoint essential set defined in this way
-is in fact just a special case of a more general notion
-of essential set which was introduced in \citet{Boros2010}.
-The results in \citet{Cepek2012}
-show that for our purpose it is enought
-to consider the truepoint essential sets.
-
 The following proposition appears
 in \citet{Dubovsky2012}.
 It was also shown for falsepoint
@@ -566,30 +541,34 @@ which contradicts the premise that $\mathcal{T}$
 is a feasible spanning set of $f$.
 \end{proof}
 
-\todo[inline]{Remove the following paragraph if an introduction to the preceding theorem makes more sense.}
-Note that \citeauthor{Cepek2012}
-show the inequality
-for disjoint essential sets of implicants of $f$
-in place of orthogonal vectors
-\citep[Theorem 2.8]{Cepek2012}. %p.~368
-An orthogonal set corresponds
-to a set of pairwise disjoint
-\emph{truepoint} essential sets
-\citep[Section 3]{Cepek2012}, % p.~368
-\todoforkucera{Does the correspondence really hold? Note that the essential sets only contain resolvents of prime implicates ($l(f)$), while we consider all ternary vectors (no matter what their relation to $f$ is).}
-where truepoint essential set
-is a special case of essential set.
-\citeauthor{Cepek2012} continue to
-show that the lower bound on $dnf(f)$ is maintained
-if we restrict ourselves
-to sets of truepoint essential sets
-\citep[Corollary 3.2]{Cepek2012}. % p.~368
-Also note that their results are presented in the dual
-\todo{Is \quot{dual} a correct word to describe the relation?}
-terminology of \acrfull{cnf},
-as opposed to the \acrshort{dnf} terminology
-used throughout this thesis.
-\todomaybe{Add \quot{I have taken the liberty to translate.}.}
+\begin{remark}
+\label{remark:cepeknotation}
+Orthogonal sets were studied in \citet{Cepek2012}.
+\citeauthor{Cepek2012}, however,
+use the notion of a falsepoint essential set
+for the case of \acrlong{cnf}
+\todo{Don't break page in \acrlong{cnf}.}
+which in a \acrshort{dnf} setting
+translates into a truepoint essential set.
+A truepoint essential set $\mathcal{E}(x)$
+associated with a true point $x$
+of a given function $f$
+is a set of implicants
+\todonote{\quot{Implicant} is not defined in the thesis.}
+of $f$ which are satisfied on $x$.
+The fact that the two true points $x$ and $y$
+are orthogonal then naturally corresponds to
+the fact that their associated truepoint essential sets
+$\mathcal{E}(x)$ and $\mathcal{E}(y)$ are disjoint.
+An orthogonal set then corresponds
+to a set of pairwise disjoint truepoint essential sets.
+The truepoint essential set defined in this way
+is in fact just a special case of a more general notion
+of essential set which was introduced in \citet{Boros2010}.
+The results in \citet{Cepek2012}
+show that for our purpose it is enought
+to consider the truepoint essential sets.
+\end{remark}
 
 We conclude that the size of any orthogonal set
 is a lower bound on the size of any
