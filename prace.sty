@@ -1,0 +1,52 @@
+%%% Údaje o práci
+
+% Druh práce - bc nebo mgr
+%\def\DruhPrace{mgr} % diplomová
+
+% Název práce v jazyce práce (přesně podle zadání)
+\def\NazevPrace{Minimální reprezentace víceintervalových booleovských funkcí}
+
+% Jméno autora
+\def\AutorPrace{\ThesisAuthor}
+
+% Název katedry nebo ústavu, kde byla práce oficiálně zadána
+% (dle Organizační struktury MFF UK, případně plný název pracoviště mimo MFF)
+\def\Katedra{Katedra teoretické informatiky a matematické logiky}
+
+% Jedná se o katedru (department) nebo o ústav (institute)?
+\def\TypPracoviste{Katedra}
+
+% Vedoucí práce: Jméno a příjmení s~tituly
+\def\Vedouci{\Supervisor}
+
+% Pracoviště vedoucího (opět dle Organizační struktury MFF)
+\def\KatedraVedouciho{Katedra teoretické informatiky a matematické logiky}
+
+% Abstrakt (doporučený rozsah cca 80-200 slov; nejedná se o zadání práce)
+\def\Abstrakt{%
+Když interpretujeme vstupní vektory booleovské funkce
+jako binárně zapsaná čísla,
+intervalovou booleovskou funkci $\intervalfn{f}{n}{a}{b}$
+definujeme tak,
+že $\intervalfn{f}{n}{a}{b}(x) = 1$
+právě tehdy když $a \leq x \leq b$.
+Disjunktivní normální forma je
+jeden z běžných způsobů reprezentace
+booleovských funkcí.
+Minimalizaci DNF reprezentace
+$1$-intervalové booleovské funkce
+zadané okrajovými hodnotami intervalu
+lze provést v lineárním čase.
+Zobecnění na $k$-intervalové funkce
+se zdá být obtížnější.
+V této diplomové práci diskutujeme problémy s hledáním
+optimální DNF reprezentace $k$-intervalové funkce
+a představíme $2k$-aproximační algoritmus.
+}
+
+% 3 až 5 klíčových slov (doporučeno), každé uzavřeno ve složených závorkách
+\def\KlicovaSlova{%
+booleovská minimalizace,
+disjunktivní normální forma,
+intervalové funkce
+}
