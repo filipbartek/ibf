@@ -63,12 +63,12 @@ $2$-interval function $f$,
 find a minimum spanning set of $f$.
 \end{problem}
 
-\Cref{problem:2switch2intminimization}
-can be described as
-$\minimization{\intervalfns{2} \cap \switchfns{2}}$
-using
-\Cref{problem:minimization,def:intervalfns,def:switchfns}.
-
+To relate this problem to \cref{problem:minint},
+note that
+since every $2$-switch $2$-interval function
+is proper $2$-interval,
+any algorithm that solves the problem $\minint{2}$
+also solves \cref{problem:2switch2intminimization}.
 Let $f$ be a $2$-switch $2$-interval Boolean function
 (necessarily $f(\rep{0}{n}) = f(\rep{1}{n})
 = 1$)
