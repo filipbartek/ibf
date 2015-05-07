@@ -467,13 +467,15 @@ orthogonal.\footnote{This notion of orthogonality is not related to orthogonal \
 \todonote[inline]{
 $$
 \fora{x,y \in S}{x \neq y \Rightarrow
-\fora{T}{\ex{z}{\binand{f(z) = 0}{T \text{ spans } z}}}
+\fora{T}{T \text{ spans } x,y \Rightarrow
+\ex{z}{\binand{f(z) = 0}{T \text{ spans } z}}}
 }
 $$
 as opposed to
 $$
 \fora{x,y \in S}{x \neq y \Rightarrow
-\ex{z}{\binand{f(z) = 0}{\fora{T}{T \text{ spans } z}}}
+\ex{z}{\binand{f(z) = 0}{\fora{T}{T \text{ spans } x,y
+\Rightarrow T \text{ spans } z}}}
 }
 $$
 }
