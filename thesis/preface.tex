@@ -52,10 +52,19 @@ testing systems
 In these systems,
 \acrshort{dnf} formulas act as characteristic functions
 of constrained variable domains.
-Since some of the basic constraints
-reduce variable domains to small (often singular) sets of intervals,
-\todo{Cite some source, or simplify and cite Schieber.}
-it is interesting to look for economic \acrshort{dnf}
+It can be especially useful to represent the constrained
+domains with disjoint spanning sets,
+since these allow fast uniform polling
+of admissible values.
+\todo{Cite source.}
+
+Since the constrained variables are typically numeric
+and comparison is one of the basic constraints,
+the variable domains are often constrained
+to small sets of intervals.
+\todo{Cite some source, e.g.~Handbook of Constraint Programming, or simplify and cite Schieber.}
+Therefore it can be interesting to look
+for compact \acrshort{dnf}
 representations of intervals.
 
 Boolean functions defined by intervals were introduced
