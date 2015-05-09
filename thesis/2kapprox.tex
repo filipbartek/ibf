@@ -146,14 +146,8 @@ where $\intervalfns{k}$ is the class of all $k$-interval Boolean functions
 \label{theorem:2kapproxratio}
 \todo{Remove label \texttt{theorem:2kapproxratio}.}
 \label{theorem:spd2kapprox}
-Let $\mathcal{T}_{opt}$ be an optimal spanning set of
-$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
-and let $\mathcal{T}$ be the spanning set returned
-by the algorithm.
-We claim that:
-\begin{equation*}
-|\mathcal{T}| \leq 2k |\mathcal{T}_{opt}|
-\end{equation*}
+Let $f = \fnkab$ be a $k$-interval function for $k \geq 1$.
+Then $spd(f) \leq 2k \cdot \mathit{dnf}(f)$.
 \end{theorem}
 
 \begin{proof}
@@ -161,26 +155,26 @@ To prove the statement,
 we will show an orthogonal set $V$ of the function
 $f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
 of size
-$\size{V} \geq \frac{\size{\mathcal{T}}}{2k}$.
+$\size{V} \geq \frac{\spd{f}}{2k}$.
 By \cref{theorem:orthodnf},
 the existence of such orthogonal set
 gives a lower bound $\size{V}$
-on $\size{\mathcal{T}_{opt}}$.
+on $\dnf{f}$.
+
+Let $\mathcal{T} = \bigcup_{i=1}^k{\mathcal{T}_i}$ be the spanning set of $f$
+returned by the suffix-prefix decomposition algorithm
+($\size{\mathcal{T}} = \spd{f}$).
 
 Let us first consider the case that
 $\size{\mathcal{T}_i} \leq 2$ for every $i$.
 Since $\size{\mathcal{T}_i} \leq 2$
 for every $i \in \curly{1, \ldots, k}$,
-$\size{\mathcal{T}} \leq 2k$.
-If $k = 0$
-(in the degenerate case that there are no intervals),
-$\size{\mathcal{T}} \leq 2k = 0
-= 2k \size{\mathcal{T}_{opt}}$.
-If $k \geq 1$,
-necessarily $\size{\mathcal{T}_{opt}} \geq 1$.
+clearly $\size{\mathcal{T}} \leq 2k$.
+Since $k \geq 1$,
+necessarily $\dnf{f} \geq 1$.
 It is then easy to see that
 $\size{\mathcal{T}}
-\leq 2k \leq 2k \size{\mathcal{T}_{opt}}$.
+\leq 2k \leq 2k \cdot \dnf{f}$.
 
 We are now left with the case that
 $\size{\mathcal{T}_i} > 2$ for some $i$.
@@ -254,7 +248,7 @@ by the requirements on input data
 It follows that $V$ is orthogonal
 with respect to $\fnkab$.
 From \cref{theorem:orthodnf} we get
-$\size{\mathcal{T}_{opt}} \geq \size{V}$.
+$\dnf{f} \geq \size{V}$.
 
 Since $\mathcal{T}_{i, \alpha}$ is
 the largest of the at most $2k$ spanning sub-sets
@@ -263,8 +257,10 @@ and the spanning sets of the other types are of size $1$,
 %and less numerous,
 \todo{Clarify.}
 necessarily
-$\size{\mathcal{T}} \leq 2k \size{\mathcal{T}_{i, \alpha}}
-= 2k \size{V} \leq 2k \size{\mathcal{T}_{opt}}$.
+$\spd{f}
+= \size{\mathcal{T}}
+\leq 2k \size{\mathcal{T}_{i, \alpha}}
+= 2k \size{V} \leq 2k \cdot \dnf{f}$.
 \end{proof}
 
 Note that the spanning set returned by the algorithm
