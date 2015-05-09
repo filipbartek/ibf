@@ -1151,8 +1151,7 @@ the number of intervals $k$.
 \label{observation:approxidintklower}
 Let $k$ be any number that is equal to $2^{l-1} + 1$
 for some $l \geq 1$.
-Then $\approxidintk \geq 2(k-1)$.
-\todo{Change to $2(k-1)$ to $2k-2$ globally.}
+Then $\approxidintk \geq 2k-2$.
 \end{observation}
 
 \begin{proof}
@@ -1167,12 +1166,12 @@ on the whole $\intervalfns{k}$.
 We know from \cref{observation:difficultapproxidl} that
 $\approxid{\difficultl{l}} = 2^l$
 and since $l = \log_2{(k-1)} + 1$ we get that
-$\approxid{\difficultl{l}} = 2(k-1)$.
+$\approxid{\difficultl{l}} = 2(k-1) = 2k-2$.
 We conclude:
 $$
 \approxid{\intervalfns{k}}
 \geq \approxid{\difficultl{\log_2{(k-1)} + 1}}
-= 2(k-1)
+= 2k-2
 $$
 \end{proof}
 
@@ -1190,11 +1189,10 @@ so $\frac{\approxidintk}{2k} \leq 1$.
 
 From \cref{observation:approxidintklower}
 we know that we can find arbitrarily large $k$
-such that $\approxidintk \geq 2(k-1)$.
+such that $\approxidintk \geq 2k-2$.
 \begin{align*}
 \limsup_{k \rightarrow \infty}{\frac{\approxidintk}{2k}}
-&\geq \lim_{k \rightarrow \infty}{\frac{2(k-1)}{2k}} \\
-&= 1
+&\geq \lim_{k \rightarrow \infty}{\frac{2k-2}{2k}} = 1
 \end{align*}
 
 We conclude:
