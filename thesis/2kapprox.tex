@@ -272,7 +272,7 @@ for the disjoint case as well:
 \begin{theorem}
 Let $\mathcal{T}_{disjoint}$ be an optimal \emph{disjoint}
 spanning set of the function
-$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
+$f = \fnkab$
 and let $\mathcal{T}$ be the (disjoint)
 spanning set returned by our algorithm.
 We claim that:
@@ -284,17 +284,14 @@ We claim that:
 \begin{proof}
 Since every disjoint spanning set
 is a spanning set in general,
-$\size{\mathcal{T}_{opt}} \leq
-\size{\mathcal{T}_{disjoint}}$,
-where $\mathcal{T}_{opt}$ is an optimal
-(not necessarily disjoint)
-spanning set of
-$f^n_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$.
+necessarily
+$\dnf{f} \leq
+\size{\mathcal{T}_{disjoint}}$.
 
 Using \cref{theorem:2kapproxratio} we get:
 
 \begin{equation*}
-|\mathcal{T}| \leq 2k |\mathcal{T}_{opt}|
+|\mathcal{T}| \leq 2k \cdot \dnf{f}
 \leq 2k |\mathcal{T}_{disjoint}|
 \end{equation*}
 \end{proof}
