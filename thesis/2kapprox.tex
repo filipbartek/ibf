@@ -218,23 +218,21 @@ In the proof of optimality of the prefix algorithm
 we showed an orthogonal set that matches the size
 of the spanning set produced by the algorithm.
 Let us denote this orthogonal set of $\prefixfn{f}{n-j-1}{b'}$ with $V_{i, 1}'$.
+
+Let $V = \curly{c1v | v \in V_{i, 1}'}$.
+We claim that $V$ is an orthogonal set of
+$\fnkab$.
+
+Let $c1 x, c1 y \in V$
+and $x \neq y$.
 Recall that by \cref{corollary:prefixdependence}
 every pair of distinct vectors in $V_{i, 1}'$
 is separated by the false point $b' + 1$
 of $\prefixfn{f}{n-j-1}{b'}$
 (see \cref{def:separatingvector}).
-
-Let $\hat{b} = \bits{b_i}{1}{j+1}$ ($b_i = \hat{b} b'$).
-Let $V = \curly{\hat{b} v | v \in V_{i, 1}'}$.
-We claim that $V$ is an orthogonal set of
-$\fnkab$.
-
-Let $\hat{b} x, \hat{b} y \in V$
-and $x \neq y$.
-Since by \cref{corollary:prefixdependence}
-the vector $b'+1$ separates $x$ and $y$,
-the vector $\hat{b} (b'+1) = b_i+1$ separates
-$\hat{b} x$ and $\hat{b} y$.
+Since the vector $b'+1$ separates $x$ and $y$,
+the vector $c1 (b'+1) = b_i+1$ separates
+$c1 x$ and $c1 y$.
 To see that $b_i+1$ is a false point of $\fnkab$,
 note that if $i<k$,
 then $b_i < a_{i+1} - 1$
