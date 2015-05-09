@@ -688,7 +688,7 @@ the endpoints have common prefixes of length $l$
 ($p_{b_i} = p_{a_i}$).
 Thus the instance $\interval{a_i}{b_i}$
 is reduced to the instance
-$\interval{s_{a_i}}{s_{b_i}}
+$\interval{s_a}{s_b}
 = \interval{\rep{0}{n-l-1} 1}{\rep{1}{n-l-1} 0}$.
 
 Recall that $n \geq l + 2$ by \cref{def:difficultfn}.
@@ -745,36 +745,36 @@ and then the procedure
 shown in \cref{sec:1interval0110}
 is applied to the remainder of the endpoints
 (that is
-$\interval{01 \rep{1}{m-1} s_{a_i}}
-{10 \rep{0}{m-1} s_{b_i}}$).
+$\interval{01 \rep{1}{m-1} s_a}
+{10 \rep{0}{m-1} s_b}$).
 This procedure spans the two sub-intervals
-$\interval{\rep{1}{m} s_{a_i}}{\rep{1}{m+n-l}}$
-and $\interval{\rep{0}{m+n-l}}{\rep{0}{m} s_{b_i}}$
+$\interval{\rep{1}{m} s_a}{\rep{1}{m+n-l}}$
+and $\interval{\rep{0}{m+n-l}}{\rep{0}{m} s_b}$
 separately using the suffix and prefix procedure
 respectively
 (see \cref{sec:prefixsuffix}).
 
 Let us consider the sub-interval
-$\interval{\rep{0}{m+n-l}}{\rep{0}{m} s_{b_i}}$;
+$\interval{\rep{0}{m+n-l}}{\rep{0}{m} s_b}$;
 the other one is symmetric.
 
 Note that this sub-interval can be immediately reduced
-to $\interval{\rep{0}{n-l}}{s_{b_i}}$
+to $\interval{\rep{0}{n-l}}{s_b}$
 by removing the common prefix of the endpoints.
 
 Recall that the prefix algorithm
 produces one ternary vector
 for each bit that is set to $1$
-in $s_{b_i} + 1 = \rep{1}{n-l}$.
+in $s_b + 1 = \rep{1}{n-l}$.
 The returned spanning set of
-$\interval{\rep{0}{n-l}}{s_{b_i}}$
+$\interval{\rep{0}{n-l}}{s_b}$
 thus has the size $n-l$.
 Prepending the prefix $p_{b_i}$
 we get a spanning set of
-$\interval{p_{b_i} \rep{0}{n-l}}{p_{b_i} s_{b_i}}$.
+$\interval{p_{b_i} \rep{0}{n-l}}{p_{b_i} s_b}$.
 
 We span the complementary sub-interval
-$\interval{p_{a_i} s_{a_i}}{p_{a_i} \rep{1}{n-l}}$
+$\interval{p_{a_i} s_a}{p_{a_i} \rep{1}{n-l}}$
 in a symmetric manner,
 getting another spanning set of size $n-l$.
 
