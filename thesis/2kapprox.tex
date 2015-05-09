@@ -126,6 +126,17 @@ the union of the intervals.
 
 \todo[inline]{Unite terminology with chapter "betterapprox".}
 
+Let $F$ be a class of Boolean functions.
+We shall denote the worst case approximation ratio
+of \cref{algorithm:spd}
+on functions from class $F$ with $\approxspd{F}$:
+$$
+\approxspd{F}
+= \sup_{f \in F}{\frac{spd(f)}{dnf(f)}}
+$$
+where $spd(f)$ is the size of the spanning set of $f$
+returned by the suffix-prefix decomposition algorithm.
+
 \begin{theorem}
 \label{theorem:2kapproxratio}
 \todo{Remove label \texttt{theorem:2kapproxratio}.}
