@@ -303,10 +303,12 @@ The approximation ratio of $2k$ is tight.
 
 \begin{proof}
 For every $k$ that is a power of $2$
-we will show a $k$-interval function such that
-$|\mathcal{T}| = 2k |\mathcal{T}_{opt}|$
-(following the notation from
-\cref{theorem:2kapproxratio}).
+we will show a $k$-interval function $f$ such that
+$|\mathcal{T}| = 2k \cdot \dnf{f}$,
+where $\mathcal{T}$ is the spanning set of $f$
+returned by the suffix-prefix decomposition algorithm.
+%(following the notation from
+%\cref{theorem:2kapproxratio}).
 
 Let $k = 2^{n_k}$.
 Let $P$ be all the $n_k$-bit numbers,
