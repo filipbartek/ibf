@@ -1,0 +1,8 @@
+288c288
+<     { new.block "URL \url{" url * "}" * }
+---
+>     { new.block "Available from: \url{" url * "}" * }
+864d863
+<       format.pages output
+877a877
+>       format.pages output
