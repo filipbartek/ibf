@@ -1,0 +1,102 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ibf-commands}
+
+\RequirePackage{paireddelimiters}
+
+% Macros
+\newcommand{\apply}[2]{#1 \round{#2}}
+\newcommand{\interval}[2]{\bracketsquare{#1, #2}}
+\newcommand{\textinterval}[2]{\textbracketsquare{#1,#2}}
+\newcommand{\compl}[1]{\overline{#1}}
+\newcommand{\bit}[2]{#1^{[#2]}}
+\newcommand{\textbit}[2]{#1\textbracketsquare{#2}}
+\newcommand{\bits}[3]{#1^{\interval{#2}{#3}}}
+\newcommand{\textbits}[3]{#1\textinterval{#2}{#3}}
+\newcommand{\booldom}{\curly{0, 1}} % Boolean domain
+\newcommand{\rep}[2]{#1^{\curly{#2}}} % symbol repetition
+\newcommand{\textrep}[2]{#1\textcurly{#2}}
+\newcommand{\definiendum}[1]{\emph{#1}}
+\newcommand{\valuation}[2]{\apply{#1}{#2}} % Propositional formula substitution
+
+\newcommand{\intervalfn}[4]{#1^{#2}_{\interval{#3}{#4}}}
+\newcommand{\fnab}{\intervalfn{f}{n}{a}{b}}
+\newcommand{\kintfn}[5]{#1^{#2}_{\interval{#4_1}{#5_1}, \ldots, \interval{#4_{#3}}{#5_{#3}}}}
+\newcommand{\fnkab}{\kintfn{f}{n}{k}{a}{b}}
+\newcommand{\twointfn}[6]{#1^{#2}_{\interval{#3}{#4}, \interval{#5}{#6}}} % \twointfn{f}{n}{a_1}{b_1}{a_2}{b_2}
+\newcommand{\prefixfn}[3]{\intervalfn{#1}{#2}{\rep{0}{#2}}{#3}} % \prefixfn{f}{n}{b}
+
+\newcommand{\intervalfns}[1]{\apply{\mathit{INT}}{#1}} % \intervalfns{k}
+%\newcommand{\allintervalfns}{\mathit{INT}}
+
+%\newcommand{\switchfns}[1]{\apply{\mathit{SWITCH}}{#1}} % \switchfns{l}
+
+%\newcommand{\minimization}[1]{\apply{\mathit{MIN}}{#1}}
+\newcommand{\minint}[1]{\apply{\mathit{MIN\text{-}INT}}{#1}}
+\newcommand{\minintk}{\minint{k}}
+
+\newcommand{\approxratio}[2]{\apply{\mathit{approx}_{#1}}{#2}}
+% \approxratio{id}{\intervalfns{k}}
+\newcommand{\approxspd}[1]{\approxratio{\mathit{SPD}}{#1}}
+\newcommand{\approxid}[1]{\approxratio{\mathit{ID}}{#1}}
+% \approxid{\intervalfns{k}}
+\newcommand{\approxidint}[1]{\approxid{\intervalfns{#1}}}
+% \approxidint{k}
+\newcommand{\approxidintk}{\approxidint{k}}
+\newcommand{\approxspdintk}{\approxratio{\mathit{SPD}}{\intervalfns{k}}}
+
+\newcommand{\approxtitle}[1]{#1 algorithm for \texorpdfstring{$k$}{k}-interval functions}
+% \approxtitle{Suffix-prefix decomposition}
+
+\newcommand{\dnf}[1]{\apply{\mathit{dnf}}{#1}}
+\newcommand{\spd}[1]{\apply{\mathit{spd}}{#1}}
+
+% Common section titles
+\newcommand{\algdesctitle}{Description of the algorithm}
+\newcommand{\titlefeasibility}{Feasibility}
+\newcommand{\titleoptimality}{Optimality}
+\newcommand{\titleapproxratio}{Approximation ratio}
+
+% Common paragraphs
+\newcommand{\minintinput}
+{$n$-bit binary vectors $a_1, b_1, \ldots, a_k, b_k$
+for $n \geq 0$ and $k \geq 0$
+that satisfy the inequalities
+$\rep{0}{n} \leq a_1$,
+$a_1 \leq b_1$,
+$b_1 < a_2 - 1$,
+\ldots,
+$a_i \leq b_i$,
+$b_i < a_{i+1} - 1$
+(for $i \in \curly{1, \ldots, k-1}$),
+\ldots,
+$b_{k-1} < a_k - 1$,
+$a_k \leq b_k$,
+$b_k \leq \rep{1}{n}$.
+
+Such numbers are the endpoints of the intervals
+of the proper $k$-interval Boolean function $\fnkab$.}
+
+\newcommand{\minintoutput}
+{A spanning set of $\fnkab$.}
+
+\newcommand{\quantify}[3]{(#1 #2) [#3]}
+\newcommand{\ex}[2]{\quantify{\exists}{#1}{#2}}
+\newcommand{\fora}[2]{\quantify{\forall}{#1}{#2}}
+
+\newcommand{\quot}[1]{``#1''}
+\newcommand{\nott}[1]{\overline{#1}}
+\newcommand{\size}[1]{\vertical{#1}}
+
+\newcommand{\textneq}{≠}
+
+\newcommand{\nat}{\curly{0, 1, \ldots}} % Natural numbers
+
+\newcommand{\definitionsource}[2][]{\citep[#1]{#2}}
+%\newcommand{\definitionsource}[2][]{\citep{#2}}
+%\newcommand{\definitionsource}[2][]{\unskip}
+\newcommand{\theoremsource}[2][]{\citep[#1]{#2}}
+
+\newcommand{\binand}[2]{#1 \text{ and } #2}
+\newcommand{\binor}[2]{#1 \text{ or } #2}
+
+\endinput
