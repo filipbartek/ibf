@@ -1,0 +1,14 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{paireddelimiters}
+
+\RequirePackage{mathtools}
+\DeclarePairedDelimiter{\round}{(}{)}
+\DeclarePairedDelimiter{\bracketsquare}{[}{]}
+\newcommand{\textbracketsquare}[1]{[#1]}
+\DeclarePairedDelimiter{\curly}{\{}{\}}
+\newcommand{\textcurly}[1]{\{#1\}}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\vertical}{|}{|}
+
+\endinput
