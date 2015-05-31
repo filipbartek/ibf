@@ -1,0 +1,327 @@
+% https://d3s.mff.cuni.cz/~ceres/adm/jak-obhajit-diplomovou-praci.php
+
+% $Header: /Users/joseph/Documents/LaTeX/beamer/solutions/generic-talks/generic-ornate-15min-45min.en.tex,v 90e850259b8b 2007/01/28 20:48:30 tantau $
+
+\documentclass{beamer}
+
+% This file is a solution template for:
+
+% - Giving a talk on some subject.
+% - The talk is between 15min and 45min long.
+% - Style is ornate.
+
+
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice.
+
+\usepackage[utf8]{inputenc}
+
+\mode<presentation>
+{
+% https://www.hartwork.org/beamer-theme-matrix/
+
+  %\usetheme{Warsaw}
+  \usetheme{Boadilla}
+  % or ...
+
+  %\setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+\usepackage[english,czech]{babel}
+
+%\usepackage{times} % Change font
+
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+
+% Local packages
+\usepackage{defense}
+\usepackage{ibf-commands}
+\usepackage{glossary-cs}
+\usepackage{beamer-cs}
+
+\theoremstyle{remark}
+\newtheorem{observation}{Pozorování}
+\newtheorem{algorithm}{Algoritmus}
+\newtheorem{conclusion}{Závěr}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%\frame{\tableofcontents}
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+
+\begin{frame}{Hlavní problém}
+
+\begin{problem}[Minimalizace $k$-intervalové funkce]
+\begin{description}
+\item[Vstup]
+Meze $k$ celočíselných intervalů
+
+\item[Výstup]
+\acrshort{dnf} reprezentace s~nejmenším počtem termů
+%\citet[sekce~3.3]{Crama2011}
+\end{description}
+\end{problem}
+
+Meze intervalů jsou $n$-bitová celá čísla.
+Meze $i$-tého intervalu značíme $a_i, b_i$.
+
+Termy \acrshort{dnf} reprezentujeme vektory nad abecedou $\curly{0, 1, \phi}$.
+% TODO: Definuj "pokrytí"
+
+\begin{example}
+\begin{description}
+\item[Vstup] $a_1 = 001, b_1 = 110$
+
+($k=1$, $n=3$)
+
+% TODO: Vysviť postupně ternární vektory spolu s odpovídajícími true pointy.
+
+\item[True pointy]
+$001, 010, 011, 100, 101, 110$
+
+\item[Výstup]
+Pokrytí $\curly{01 \phi, \phi 01, 1 \phi 0}$
+
+(odpovídá \acrshort{dnf}
+$\nott{x_1} x_2
+\wedge
+\nott{x_2} x_3
+\wedge \nott{x_3} x_1$)
+\end{description}
+\end{example}
+
+\end{frame}
+
+\begin{frame}{$l$-zlomové funkce}
+\begin{definition}[$l$-zlomová funkce]
+Funkce $f$ je $l$-zlomová,
+pokud existuje právě $l$ vektorů $x$ takových,
+že $f(x) \neq f(x+1)$.
+\end{definition}
+
+\begin{example}
+Funkce definovaná intervalem $\interval{001}{110}$ má dva zlomy: $000$ a $110$.
+
+% TODO: Doplň obrázek.
+\end{example}
+
+\begin{observation}
+$k$-intervalová funkce má $2k$, $2k-1$ nebo $2k-2$ zlomů.
+\end{observation}
+\end{frame}
+
+\begin{frame}{Stávající výsledky}
+\begin{itemize}
+\item
+Optimalizační algoritmus pro $1$-intervalové funkce \citep{Schieber2005154}
+\begin{itemize}
+\item Používám jako proceduru
+\end{itemize}
+
+\item
+Optimalizační algoritmus pro $2$-zlomové $2$-intervalové funkce \citep{Dubovsky2012}
+
+\item
+$2$-aproximační algoritmus pro $2$-intervalové funkce \citep{Dubovsky2012}
+
+\item Existují $3$-zlomová a $4$-zlomová funkce,
+které nejsou coverable \citep{Dubovsky2012}
+\begin{itemize}
+\item Používám jako výchozí protipříklad
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Nové výsledky v~diplomové práci}
+\begin{itemize}
+\item Zjednodušený optimalizační algoritmus pro $2$-zlomové $2$-intervalové funkce
+\item Důkaz, že pro libovolné $l \geq 3$ není třída $l$-zlomových funkcí coverable
+\item $2k$-aproximační algoritmus pro $k$-intervalové funkce pro každé $k \geq 0$
+\item Důkaz, že přirozené vylepšení aproximačního algoritmu moc nepomůže
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Zjednodušený algoritmus pro $2$-zlomové funkce}
+Instanci $2$-zlomové $2$-intervalové funkce lze převést na instanci $1$-intervalové funkce.
+
+% TODO: Přidej obrázek
+
+\begin{example}
+\begin{description}
+\item[Vstup]
+$a_1 = 000, b_1 = 010, a_2 = 101, b_2 = 111$
+
+($\bit{b_1}{1} = 0, \bit{a_2}{1} = 1$)
+\end{description}
+
+Převrácením prvního bitu mezí dostaneme instanci $1$-intervalové funkce:
+
+\begin{align*}
+a = \compl{\bit{b_1}{1}} \bits{b_1}{2}{3} = 001 \\
+b = \compl{\bit{a_2}{1}} \bits{a_2}{2}{3} = 110
+\end{align*}
+
+Převrácením prvního symbolu v pokrytí $\interval{a}{b}$ dostaneme pokrytí původní dvojice intervalů
+\end{example}
+
+\end{frame}
+
+\begin{frame}{Pro libovolné $l \geq 3$ není třída $l$-zlomových funkcí coverable}
+Důkazy optimality optimalizačních algoritmů jsou založené na konstrukci ortogonálních množin.
+
+\begin{definition}[Ortogonální množina, coverability]
+\definiendum{Ortogonální množina} funkce $f$ obsahuje true pointy $f$,
+z nichž žádnou dvojici nelze pokrýt jedním ternárním vektorem.
+
+Funkce je \definiendum{coverable},
+pokud má nějakou ortogonální množinu a pokrytí, které jsou stejně velké.
+\end{definition}
+
+\citet{Dubovsky2012} ukázal příklad $3$-zlomové funkce,
+která není coverable.
+
+Tento příklad jsem rozšířil na $l$-zlomovou funkci pro libovolné $l \geq 3$.
+
+\begin{conclusion}
+Optimalitu algoritmu pro třídu všech $k$-intervalových funkcí pro $k \geq 2$ nelze dokázat konstrukcí ortogonální množiny.
+\end{conclusion}
+\end{frame}
+
+\begin{frame}{Jednoduchý $2k$-aproximační algoritmus}
+\begin{algorithm}[Suffix-prefix dekompozice]
+Každý interval rozdělíme podle na dva \uv{hezké} podintervaly.
+Každý z~těchto podintervalů pokryjeme zvlášť optimálně.
+\end{algorithm}
+
+Sjednocení takovýchto pokrytí je v~nejhorším případě $2k$-krát větší než optimální pokrytí.
+
+\begin{example}
+\begin{description}
+\item[Vstup]
+$a_1 = 000, b_1 = 001, a_2 = 100, b_2 = 101$
+
+\item[Výstup]
+$\curly{000, 001, 100, 101}$
+
+\item[Optimum]
+$\curly{\phi 0 \phi}$
+\end{description}
+\end{example}
+
+Horní odhad aproximačního poměru jsem ukázal konstrukcí dostatečně velké ortogonální množiny.
+\end{frame}
+
+\begin{frame}{Vylepšený $2k$-aproximační algoritmus}
+\begin{algorithm}[Intervalová dekompozice]
+Každý interval pokryjeme zvlášť optimálně.
+\end{algorithm}
+
+Tento algoritmus má aproximační poměr mezi $2k-2$ a $2k$.
+
+\begin{example}
+\begin{description}
+\item[Vstup]
+$a_1 = 000, b_1 = 001, a_2 = 100, b_2 = 101$
+
+\item[Výstup]
+$\curly{00 \phi, 10 \phi}$
+
+\item[Optimum]
+$\curly{\phi 0 \phi}$
+\end{description}
+\end{example}
+
+Dolní odhad aproximačního poměru jsem ukázal konstrukcí třídy \uv{zlých} funkcí.
+\end{frame}
+
+% TODO: Ukaž tabulku dosud dosažených aproximačních poměrů
+
+\begin{frame}{Shrnutí}
+
+  % Keep the summary *very short*.
+  \begin{itemize}
+  \item
+    Některé $l$-zlomové funkce pro $l \geq 3$ nejsou coverable.
+  \item
+    Ortogonální množiny však stále mohou dát horní odhad aproximačního poměru.
+  \item
+    Dekompozice na intervaly se pro velké $k$ nechová o mnoho lépe než $2k$-aproximačně.
+  \end{itemize}
+  
+  % The following outlook is optional.
+  \vskip0pt plus.5fill
+  \begin{itemize}
+  \item
+    Stále chybí:
+    \begin{itemize}
+    \item
+      Efektivní optimalizační algoritmus pro třídu všech $k$-intervalových funkcí pro nějaké $k \geq 2$
+    \item
+      Aproximační algoritmus pro obecné $k$ s~aproximačním poměrem lepším než $2k-2$
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Bibliografie}
+
+\bibliography{ibf}
+
+\end{frame}
+
+\begin{frame}{Výpočetní složitost algoritmů v~\acrshort{dp}}
+Výpočetní složitost uvedených algoritmů je polynomiální.
+\end{frame}
+
+\begin{frame}{Suffix-prefix dekompozice}
+
+Algoritmus 4.1 (suffix-prefix dekompozice) jsem navrhl jako horší, než přímočaré rozšíření algoritmu z \citet{Schieber2005154}, abych usnadnil analýzu aproximačního poměru.
+
+Uvedené zlepšení aproximační poměr zlepší jen málo.
+
+\begin{algorithm}[Zlepšená suffix-prefix dekompozice]
+Každý interval pokryjeme zvlášť.
+Pokud je interval po odstranění společného prefixu mezí prefixový ($a = \rep{0}{m}$) nebo suffixový ($b = \rep{1}{m}$), pokryjeme jej optimálně.
+Jinak jej rozdělíme na suffixový a prefixový interval a každý z~nich pokryjeme optimálně.
+\end{algorithm}
+
+%Důkaz horního odhadu $2k$ aproximačního poměru zůstává stejný.
+
+Dolní odhad aproximačního poměru $2k$ dostaneme pomocí množiny \uv{zlých} funkcí:
+
+$$
+f_l^n \sim \curly{\interval{p \rep{0}{n-l-1} 1}{p \rep{1}{n-l-1} 0} | p \in \booldom^l}
+$$
+%($l \geq 0$, $n \geq l + 2$)
+
+Počet intervalů $f_l^n$: $k = 2^l$
+
+Velikost optima: $n-l$.
+
+Velikost výstupu algoritmu: $2k (n-l-1)$.
+
+\begin{conclusion}
+Proti každému aproximačnímu poměru menšímu než $2k$ (pro $k = 2^l$) existuje protipříklad.
+\end{conclusion}
+\end{frame}
+
+\end{document}
