@@ -26,24 +26,7 @@
 \RequirePackage{marginnote}
 \RequirePackage[marginparwidth=30mm, marginparsep=5mm]{geometry}
 %\usepackage[top=1.5cm, bottom=1.5cm, outer=5cm, inner=2cm, heightrounded, marginparwidth=2.5cm, marginparsep=2cm]{geometry}
-\RequirePackage[obeyFinal]{todonotes}
-
-\newcommand{\todomaybe}[2][]{\todo[color=pink,#1]{?` #2}}
-\newcommand{\todonote}[2][]{\todo[nolist,color=gray,#1]{#2}}
-
-\newcommand{\todoauthorcolor}[4][]
-{\todo[author=#2,color=#3,#1]{#4}}
-
-\newcommand{\todokucera}[2][]
-{\todoauthorcolor[#1]{\foreignlanguage{czech}{Kučera}}{green}{#2}}
-
-\newcommand{\todocepek}[2][]
-{\todoauthorcolor[#1]{\foreignlanguage{czech}{Čepek}}{blue}{#2}}
-
-\newcommand{\todobartek}[2][]
-{\todoauthorcolor[#1]{\foreignlanguage{czech}{Bártek}}{yellow}{#2}}
-
-\newcommand{\todoforkucera}[2][]{\todo[color=green,#1]{!` #2}}
+\RequirePackage{ibf-todonotes}
 
 \RequirePackage{ibf-commands}
 
