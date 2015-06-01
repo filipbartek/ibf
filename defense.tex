@@ -349,6 +349,24 @@ $$T(n) \leq T(n-1) + O(n^l) \leq n O(n^l) + c \in O(n^{l+1})$$
 
 \todonote[inline]{Ortogonální množiny jsem ze \citep{Schieber2005154} nevytáhl, protože jejich popis je poněkud komplikovaný (nicméně na stranu by se asi vešel, samozřejmě bez důkazu ortogonality).}
 
+\begin{frame}{Permutace souřadnic}
+Permutaci souřadnic jsem zvážil pouze jako pre-processing mezí, kde obecně nefunguje (nezachovává pokrytí).
+
+\begin{example}[Permutace souřadnic v~mezích]
+$a = 001, b = 110, \mathcal{T}_{\interval{a}{b}} = \curly{01 \phi, \phi 01, 1 \phi 0}$
+
+$\pi = (2,3)$
+
+$\pi(a) = 010, \pi(b) = 010,
+\mathcal{T}_{\interval{\pi(a)}{\pi(b)}} = \curly{01 \phi, 10 \phi},
+\pi(\mathcal{T}_{\interval{\pi(a)}{\pi(b)}}) = \curly{0 \phi 1, 1 \phi 0}$
+\end{example}
+
+Permutace souřadnic by šlo použít i pro post-processing v~aproximačním algoritmu a je to zajímavý nápad otevřený dalšímu zkoumání.
+
+\todonote[inline]{Vskutku, pro malá $n$ a $l \geq 2$ ($k \geq 3$) pro každou $f_l^n$ z DP existuje permutace, která $f_l^n$ změní na $2$-intervalovou (zjištěno hrubou silou).}
+\end{frame}
+
 \begin{frame}{Suffix-prefix dekompozice}
 
 Algoritmus 4.1 (suffix-prefix dekompozice) jsem navrhl jako horší, než přímočaré rozšíření algoritmu z \citet{Schieber2005154}, abych usnadnil analýzu aproximačního poměru.
