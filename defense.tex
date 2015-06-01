@@ -112,6 +112,38 @@ $\nott{x_1} x_2
 
 \end{frame}
 
+\begin{frame}
+
+\begin{example}
+\begin{description}
+\item[Vstup] $a_1 = 001, b_1 = 110$
+
+($k=1$, $n=3$)
+
+\todo[inline]{Vysviť postupně ternární vektory spolu s odpovídajícími true pointy.}
+
+\item[True pointy]
+$001, 010, 011, 100, 101, 110$
+
+\item[Výstup]
+Pokrytí $\curly{01 \phi, \phi 01, 1 \phi 0}$
+
+(odpovídá \acrshort{dnf}
+$\nott{x_1} x_2
+\wedge
+\nott{x_2} x_3
+\wedge \nott{x_3} x_1$)
+\end{description}
+\end{example}
+
+\begin{figure}[h]
+\centering
+\input{fig/defense-001-110}
+%\label{fig:001100}
+\end{figure}
+
+\end{frame}
+
 \begin{frame}{$l$-zlomové funkce}
 \begin{definition}[$l$-zlomová funkce]
 Funkce $f$ je $l$-zlomová,
