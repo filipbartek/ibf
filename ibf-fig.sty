@@ -1,0 +1,44 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ibf-fig}
+
+
+\newcommand{\drawaxis}[2]{
+
+\pgfmathsetmacro{\nn}{#1}
+\pgfmathsetlengthmacro{\labeldist}{#2}
+
+\pgfmathsetmacro{\expn}{2 ^ \nn}
+\pgfmathsetmacro{\expnd}{\expn - 1}
+
+\foreach \x in {0,...,\expnd} {
+    \pgfmathtruncatemacro{\nnd}{\nn - 1}
+    \gdef\t{}
+    \foreach \i in {0,...,\nnd} {
+        \pgfmathtruncatemacro{\tn}{Mod(div(\x, (2^\i)), 2)};
+        \global\edef\t{\tn\t}
+    };
+    \draw (\x,-4pt) -- (\x,4pt)
+        node [below,yshift=-0ex] (\t) {};
+    \node [above=\labeldist] at (\t) {\t};
+}
+
+\draw (0,0) -- (\expnd,0);
+
+}
+
+
+\newcommand{\drawinterval}[3]{
+
+\pgfmathsetlengthmacro{\spanlabeldist}{8pt};
+
+\node [name = a, truepoint] at (#1) {};
+
+\ifthenelse{\equal{#1}{#2}}{
+    \node [below=\spanlabeldist] at (a) {#3};
+}{
+\node [name = b, truepoint] at (#2) {};
+\draw [trueinterval] (a) -- (b)
+    node [midway, below=\spanlabeldist - 1pt] {#3};
+}
+
+}

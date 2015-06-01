@@ -50,6 +50,7 @@
 \usepackage{glossary-cs}
 \usepackage{beamer-cs}
 \usepackage{ibf-todonotes}
+\usepackage{ibf-fig}
 
 \theoremstyle{remark}
 \newtheorem{observation}{Pozorování}
@@ -71,92 +72,124 @@
 % - Talk about 30s to 2min per frame. So there should be between about
 %   15 and 30 frames, all told.
 
-\begin{frame}{Hlavní problém}
+\begin{frame}{Intervalové funkce}
+$$
+\text{binární vektor délky $n$} \sim \text{$n$-bitové celé číslo}
+$$
+\todonote[inline]{Na binární (neboli booleovské) vektory nahlížíme jako na binární reprezentace celých čísel, což nám dává především (zajímavé) uspořádání na binárních vektorech ($\leq$).}
+
+\begin{definition}[$1$-intervalová funkce \citep{Schieber2005154}]
+$f_{\interval{a}{b}}(x) = 1 \iff a \leq x \leq b$
+\end{definition}
+
+\begin{example}[$1$-intervalová funkce]
+$$f_{\interval{001}{101}}$$
+\todonote[inline]{Ternární funkce definovaná intervalem $001$, $101$}
+
+\begin{figure}[h]
+\centering
+\input{fig/axis-001-101}
+\end{figure}
+\end{example}
+\end{frame}
+
+\begin{frame}{$k$-intervalové funkce}
+\todonote[inline]{Přirozeným zobecněním na množiny intervalů dostaneme víceintervalové funkce.}
+
+\begin{definition}[$k$-intervalová funkce]
+$f_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}(x) = 1 \iff a_i \leq x \leq b_i$ pro některé $i$
+\end{definition}
+
+\begin{example}[$2$-intervalová funkce]
+$$f_{\interval{000}{001}, \interval{011}{110}}$$
+
+\begin{figure}[h]
+\centering
+\input{fig/axis-2int}
+\end{figure}
+\end{example}
+\end{frame}
+
+\begin{frame}{\acrshort{dnf} reprezentace a pokrytí}
+\todonote[inline]{Je známým faktem, že každou booleovskou funkci lze reprezentovat formulí v disjunktivně normální formě.}
+
+$$
+\text{\acrshort{dnf} term} \sim \text{ternární vektor nad abecedou $\curly{0, 1, \phi}$}
+$$
+
+\todonote[inline]{DNF term nad proměnnými $x_1, \ldots, x_n$ odpovídá ternárnímu vektoru délky $n$.}
+
+\begin{example}[\acrshort{dnf} term a ternární vektor]
+$$
+\nott{x_1} x_2 \sim 01 \phi
+$$
+\end{example}
+
+\todonote[inline]{Symbol na $i$-té pozici určuje přítomnost a polaritu proměnné $x_i$ v termu. $\phi$ figuruje jako žolík -- neomezuje hodnotu odpovídající proměnné.}
+\todonote[inline]{Namísto \acrshort{dnf} formulí budeme uvažovat množiny ternárních vektorů. Říkáme jim pokrytí.}
+\todomaybe[inline]{Definuj pokrytí.}
+
+\todonote[inline]{Odteď budeme hovořit o ternárních vektorech, ale budeme mít na paměti, že odpovídají DNF termům.}
+\end{frame}
+
+\begin{frame}{Pokrytí}
+\begin{definition}[Pokrytí]
+\definiendum{Pokrytí} funkce $f$ je množina ternárních vektorů ekvivalentní \acrshort{dnf} reprezentaci $f$.
+\end{definition}
+
+\begin{example}[Pokrytí]
+$$
+f_{\interval{001}{110}} \sim \curly{001, 01 \phi, 10 \phi, 110}
+$$
+
+\begin{figure}[h]
+\centering
+\input{fig/axis-1int-span}
+\end{figure}
+\end{example}
+\end{frame}
+
+\begin{frame}{Booleovská minimalizace}
+\todonote[inline]{Minimální pokrytí odpovídá DNF formuli minimální v počtu termů. Funkce může mít více než jedno minimální pokrytí.}
 
 \begin{problem}[Minimalizace $k$-intervalové funkce]
 \begin{description}
 \item[Vstup]
-Meze $k$ celočíselných intervalů
+$n$-bitová čísla
+$a_1, b_1, \ldots, a_k, b_k$
 
 \item[Výstup]
-\acrshort{dnf} reprezentace s~nejmenším počtem termů
+Minimální pokrytí funkce $f_{\interval{a_1}{b_1}, \ldots, \interval{a_k}{b_k}}$
 %\citet[sekce~3.3]{Crama2011}
 \end{description}
 \end{problem}
 
-Meze intervalů jsou $n$-bitová celá čísla.
-Meze $i$-tého intervalu značíme $a_i, b_i$.
-
-Termy \acrshort{dnf} reprezentujeme vektory nad abecedou $\curly{0, 1, \phi}$.
-\todo[inline]{Definuj pokrytí.}
-
-\begin{example}
-\begin{description}
-\item[Vstup] $a_1 = 001, b_1 = 110$
-
-($k=1$, $n=3$)
-
-\todo[inline]{Vysviť postupně ternární vektory spolu s odpovídajícími true pointy.}
-
-\item[True pointy]
-$001, 010, 011, 100, 101, 110$
-
-\item[Výstup]
-Pokrytí $\curly{01 \phi, \phi 01, 1 \phi 0}$
-
-(odpovídá \acrshort{dnf}
-$\nott{x_1} x_2
-\wedge
-\nott{x_2} x_3
-\wedge \nott{x_3} x_1$)
-\end{description}
-\end{example}
-
-\end{frame}
-
-\begin{frame}
-
-\begin{example}
-\begin{description}
-\item[Vstup] $a_1 = 001, b_1 = 110$
-
-($k=1$, $n=3$)
-
-\todo[inline]{Vysviť postupně ternární vektory spolu s odpovídajícími true pointy.}
-
-\item[True pointy]
-$001, 010, 011, 100, 101, 110$
-
-\item[Výstup]
-Pokrytí $\curly{01 \phi, \phi 01, 1 \phi 0}$
-
-(odpovídá \acrshort{dnf}
-$\nott{x_1} x_2
-\wedge
-\nott{x_2} x_3
-\wedge \nott{x_3} x_1$)
-\end{description}
-\end{example}
+\begin{example}[Minimální pokrytí $2$-intervalové funkce]
+$$
+f_{\interval{001}{110}} \sim \curly{01 \phi, \phi 01, 1 \phi 0}
+$$
 
 \begin{figure}[h]
 \centering
-\input{fig/defense-001-110}
-%\label{fig:001100}
+\input{fig/axis-1int-span-opt}
 \end{figure}
-
+\end{example}
 \end{frame}
 
 \begin{frame}{$l$-zlomové funkce}
-\begin{definition}[$l$-zlomová funkce]
+\begin{definition}[$l$-zlomová funkce \citep{Husek2014}]
 Funkce $f$ je $l$-zlomová,
 pokud existuje právě $l$ vektorů $x$ takových,
 že $f(x) \neq f(x+1)$.
 \end{definition}
 
-\begin{example}
-Funkce definovaná intervalem $\interval{001}{110}$ má dva zlomy: $000$ a $110$.
+\begin{example}[$3$-zlomová funkce]
+$$f_{\interval{000}{001}, \interval{100}{110}}$$
 
-\todo[inline]{Doplň obrázek.}
+\begin{figure}[h]
+\centering
+\input{fig/axis-3switch}
+\end{figure}
 \end{example}
 
 \begin{observation}
