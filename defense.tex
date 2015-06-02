@@ -59,6 +59,9 @@
 \newtheorem{algorithm}{Algoritmus}
 \newtheorem{conclusion}{Závěr}
 
+%\AtBeginSection{}
+\AtBeginSubsection{} % Neukazuj Outline frame na začátku subsekce
+
 \begin{document}
 
 \begin{frame}
@@ -71,6 +74,10 @@
 % - At *most* three subsections per section.
 % - Talk about 30s to 2min per frame. So there should be between about
 %   15 and 30 frames, all told.
+
+\section{Definice}
+
+\subsection{Intervalové funkce}
 
 \begin{frame}{$1$-intervalové funkce}
 $$
@@ -132,6 +139,8 @@ $k$-intervalová funkce má $2k$, $2k-1$ nebo $2k-2$ zlomů.
 \end{observation}
 \end{frame}
 
+\subsection{\acrshort{dnf} a pokrytí}
+
 \begin{frame}{\acrshort{dnf} termy a ternární vektory}
 \todonote[inline]{Je známým faktem, že každou booleovskou funkci lze reprezentovat formulí v disjunktivně normální formě.}
 
@@ -170,6 +179,8 @@ $$
 \end{example}
 \end{frame}
 
+\subsection{Booleovská minimalizace}
+
 \begin{frame}{Booleovská minimalizace}
 \todonote[inline]{Minimální pokrytí odpovídá DNF formuli minimální v počtu termů. Funkce může mít více než jedno minimální pokrytí.}
 
@@ -197,6 +208,10 @@ $$
 \end{example}
 \end{frame}
 
+\section{Výsledky}
+
+\subsection{Dosavadní výsledky}
+
 \begin{frame}{Dosavadní výsledky}
 \begin{itemize}
 \item
@@ -218,6 +233,8 @@ které nejsou coverable \citep{Dubovsky2012}
 \end{itemize}
 \end{itemize}
 \end{frame}
+
+\subsection{Nové výsledky}
 
 \begin{frame}{Nové výsledky v~diplomové práci}
 \begin{itemize}
@@ -320,6 +337,8 @@ $\curly{\phi 0 \phi}$
 
 Dolní odhad aproximačního poměru jsem ukázal konstrukcí třídy \uv{zlých} funkcí.
 \end{frame}
+
+\section{Závěr}
 
 \begin{frame}{Shrnutí}
 
