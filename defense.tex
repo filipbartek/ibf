@@ -62,6 +62,19 @@
 %\AtBeginSection{}
 \AtBeginSubsection{} % Neukazuj Outline frame na začátku subsekce
 
+% http://tex.stackexchange.com/a/136995
+% Prevent "Sekce *" from showing up in \sectionpage.
+\defbeamertemplate{section page}{mine}[1][]{%
+  \begin{centering}
+    {\usebeamerfont{section name}\usebeamercolor[fg]{section name}#1}
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=12pt,center]{part title}
+      \usebeamerfont{section title}\insertsection\par
+    \end{beamercolorbox}
+  \end{centering}
+}
+\setbeamertemplate{section page}[mine]
+
 \begin{document}
 
 \frame{\titlepage}
