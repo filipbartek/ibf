@@ -44,6 +44,8 @@
 \usepackage{natbib}
 \bibliographystyle{plainnat}
 
+\usepackage{appendixnumberbeamer}
+
 % Local packages
 \usepackage{defense}
 \usepackage{ibf-commands}
@@ -345,9 +347,11 @@ Dolní odhad aproximačního poměru jsem ukázal konstrukcí třídy \uv{zlých
   \end{itemize}
 \end{frame}
 
+\appendix
+
 \section{Záložní slidy}
 
-\begin{frame}[noframenumbering]{Výpočetní složitost algoritmů v~\acrshort{dp}}
+\begin{frame}{Výpočetní složitost algoritmů v~\acrshort{dp}}
 Výpočetní složitost všech uvedených algoritmů je \emph{polynomiální} vzhledem k~$n$ i $k$.
 \todonote[inline]{Nic víc mne nezajímalo.}
 
@@ -376,7 +380,7 @@ $$T(n) \leq T(n-1) + O(n^2) \leq n O(n^2) + O(1) \in O(n^{3})$$
 
 \todonote[inline]{Ortogonální množiny jsem ze \citep{Schieber2005154} nevytáhl, protože jejich popis je poněkud komplikovaný (nicméně na stranu by se asi vešel, samozřejmě bez důkazu ortogonality).}
 
-\begin{frame}[noframenumbering]{Permutace souřadnic}
+\begin{frame}{Permutace souřadnic}
 Permutaci souřadnic jsem zvážil pouze jako pre-processing mezí, kde obecně nefunguje (nezachovává pokrytí).
 
 \begin{example}[Permutace souřadnic v~mezích]
@@ -394,7 +398,7 @@ Permutace souřadnic by šlo použít i pro post-processing v~aproximačním alg
 \todonote[inline]{Vskutku, pro malá $n$ a $l \geq 2$ ($k \geq 3$) pro každou $f_l^n$ z DP existuje permutace, která $f_l^n$ změní na $2$-intervalovou (zjištěno hrubou silou).}
 \end{frame}
 
-\begin{frame}[noframenumbering]{Suffix-prefix dekompozice}
+\begin{frame}{Suffix-prefix dekompozice}
 
 Algoritmus 4.1 (suffix-prefix dekompozice) jsem navrhl takto špatně, abych zjednodušil analýzu aproximačního poměru.
 
@@ -428,7 +432,7 @@ Proti každému aproximačnímu poměru menšímu než $2k$ (pro $k = 2^l$) exis
 
 \section{Bibliografie}
 
-\begin{frame}[noframenumbering]{Bibliografie}
+\begin{frame}{Bibliografie}
 \bibliography{ibf}
 \end{frame}
 
