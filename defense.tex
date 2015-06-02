@@ -75,6 +75,8 @@
 }
 \setbeamertemplate{section page}[mine]
 
+\newcommand{\downmapsto}{\downarrow}
+
 \begin{document}
 
 \frame{\titlepage}
@@ -259,26 +261,25 @@ které nejsou coverable \citep{Dubovsky2012}
 \end{frame}
 
 \begin{frame}{Zjednodušený algoritmus pro $2$-zlomové funkce}
-Instanci $2$-zlomové $2$-intervalové funkce převedeme na instanci $1$-intervalové funkce.
 
-\todo[inline]{Přidej obrázek.}
+$$
+\text{$2$-zlomová $2$-intervalová funkce}
+\mapsto \text{$1$-intervalová funkce}
+$$
 
-\begin{example}
-\begin{description}
-\item[Vstup]
-$a_1 = 000, b_1 = 010, a_2 = 101, b_2 = 111$
-
-($\bit{b_1}{1} = 0, \bit{a_2}{1} = 1$)
-\end{description}
-
-Převrácením prvního bitu mezí dostaneme instanci $1$-intervalové funkce:
-
-\begin{align*}
-a = \compl{\bit{b_1}{1}} \bits{b_1}{2}{3} = 001 \\
-b = \compl{\bit{a_2}{1}} \bits{a_2}{2}{3} = 110
-\end{align*}
-
-Převrácením prvního symbolu v pokrytí $\interval{a}{b}$ dostaneme pokrytí původní dvojice intervalů
+\todomaybe[inline]{Vynechej příklad.}
+\begin{example}[Transformace $2$-zlomové funkce na $1$-intervalovou]
+\begin{figure}[h]
+\centering
+\input{fig/axis-000-010-101-111}
+\end{figure}
+$$
+\downmapsto
+$$
+\begin{figure}[h]
+\centering
+\input{fig/axis-001-110}
+\end{figure}
 \end{example}
 
 \end{frame}

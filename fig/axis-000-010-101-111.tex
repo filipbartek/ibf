@@ -1,0 +1,18 @@
+\begin{tikzpicture}[
+    point/.style = {draw, circle, inner sep=2pt},
+    truepoint/.style = {point, fill = black},
+    trueinterval/.style = {line width = 2pt},
+    spanpoint/.style = {point, fill = black, inner sep=1pt},
+    spaninterval/.style = {line width = 1pt}
+]
+
+\pgfmathsetmacro{\nn}{3}
+
+\pgfmathsetlengthmacro{\labeldist}{8pt}
+\pgfmathsetlengthmacro{\spandist}{12pt}
+
+\drawaxis{\nn}{\labeldist}
+\drawinterval{000}{010}{}
+\drawinterval{101}{111}{}
+
+\end{tikzpicture}
