@@ -108,6 +108,28 @@ $$f_{\interval{000}{001}, \interval{100}{110}}$$
 \end{example}
 \end{frame}
 
+\begin{frame}{$l$-zlomové funkce}
+\begin{definition}[$l$-zlomová funkce \citep{Husek2014}]
+Funkce $f$ je $l$-zlomová,
+pokud existuje právě $l$ vektorů $x$ takových,
+že $f(x) \neq f(x+1)$.
+\end{definition}
+
+\begin{example}[$3$-zlomová funkce]
+$$f_{\interval{000}{001}, \interval{100}{110}}$$
+
+\begin{figure}[h]
+\centering
+\input{fig/axis-3switch}
+\end{figure}
+\end{example}
+
+\todonote[inline]{Jde dobře vidět, že počet zlomů je těsně svázaný s počtem intervalů.}
+\begin{observation}
+$k$-intervalová funkce má $2k$, $2k-1$ nebo $2k-2$ zlomů.
+\end{observation}
+\end{frame}
+
 \begin{frame}{\acrshort{dnf} reprezentace a pokrytí}
 \todonote[inline]{Je známým faktem, že každou booleovskou funkci lze reprezentovat formulí v disjunktivně normální formě.}
 
@@ -171,27 +193,6 @@ $$
 \input{fig/axis-1int-span-opt}
 \end{figure}
 \end{example}
-\end{frame}
-
-\begin{frame}{$l$-zlomové funkce}
-\begin{definition}[$l$-zlomová funkce \citep{Husek2014}]
-Funkce $f$ je $l$-zlomová,
-pokud existuje právě $l$ vektorů $x$ takových,
-že $f(x) \neq f(x+1)$.
-\end{definition}
-
-\begin{example}[$3$-zlomová funkce]
-$$f_{\interval{000}{001}, \interval{100}{110}}$$
-
-\begin{figure}[h]
-\centering
-\input{fig/axis-3switch}
-\end{figure}
-\end{example}
-
-\begin{observation}
-$k$-intervalová funkce má $2k$, $2k-1$ nebo $2k-2$ zlomů.
-\end{observation}
 \end{frame}
 
 \begin{frame}{Dosavadní výsledky}
