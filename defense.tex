@@ -455,9 +455,15 @@ Permutace souřadnic by šlo použít i pro post-processing výstupu aproximačn
 
 \begin{frame}{Suffix-prefix dekompozice -- zdůvodnění}
 
-Algoritmus 4.1 (suffix-prefix dekompozice) jsem navrhl takto špatně, abych zjednodušil analýzu aproximačního poměru.
 
-Uvedené zlepšení sníží aproximační poměr v~některých instancích, nikoliv však v~celé třídě $INT(k)$.
+Proč jsem nezobecnil přímo algoritmus z~\citet{Schieber2005154}?
+
+\begin{itemize}
+\item Jednodušší analýza aproximačního poměru
+\item Aproximační poměr je nezměněn ($2k$)
+\item Algoritmus \emph{intervalová dekompozice} (uvedený v~následující kapitole) je lepší
+\item Algoritmus \emph{suffix-prefix dekompozice} především dává horní odhad $2k$ na aproximační poměr algoritmu \emph{intervalová dekompozice}
+\end{itemize}
 
 \end{frame}
 
