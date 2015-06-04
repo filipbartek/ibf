@@ -2,29 +2,41 @@
 \ProvidesPackage{ibf-fig}
 
 
-\newcommand{\drawaxis}[2]{
+\newcommand{\tprefix}{}
+
+\newcommand{\drawaxisoff}[4]{
 
 \pgfmathsetmacro{\nn}{#1}
 \pgfmathsetlengthmacro{\labeldist}{#2}
+\pgfmathsetlengthmacro{\figwidth}{#3}
+\pgfmathsetlengthmacro{\yoffset}{-#4}
 
 \pgfmathsetmacro{\expn}{2 ^ \nn}
 \pgfmathsetmacro{\expnd}{\expn - 1}
 
+\pgfmathsetlengthmacro{\step}{\figwidth / \expn}
+
 \foreach \x in {0,...,\expnd} {
-    \pgfmathtruncatemacro{\nnd}{\nn - 1}
-    \gdef\t{}
+    \gdef\t{};
+    \pgfmathtruncatemacro{\nnd}{\nn - 1};
     \foreach \i in {0,...,\nnd} {
         \pgfmathtruncatemacro{\tn}{Mod(div(\x, (2^\i)), 2)};
-        \global\edef\t{\tn\t}
+        \global\edef\t{\tn\t};
     };
-    \draw (\x,-4pt) -- (\x,4pt)
-        node [below,yshift=-0ex] (\t) {};
-    \node [above=\labeldist] at (\t) {\t};
+    \def\tname{\tprefix\t};
+    \draw (\x * \step, \yoffset - 4pt) -- (\x * \step, \yoffset + 4pt)
+        node [below,yshift=-0ex] (\tname) {};
+    \pgfmathnotgreater{\nn}{3};
+    \ifthenelse{\pgfmathresult = 1}{
+        \node [above=\labeldist] at (\tname) {\t};
+    }{};
 }
 
-\draw (0,0) -- (\expnd,0);
+\draw (0, \yoffset) -- (\expnd * \step, \yoffset);
 
 }
+
+\newcommand{\drawaxis}[3]{\drawaxisoff{#1}{#2}{#3}{0}}
 
 
 \newcommand{\drawinterval}[3]{
