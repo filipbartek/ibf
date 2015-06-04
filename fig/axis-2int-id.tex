@@ -1,0 +1,46 @@
+\begin{tikzpicture}[
+    point/.style = {draw, circle, inner sep=2pt},
+    truepoint/.style = {point, fill = black},
+    trueinterval/.style = {line width = 2pt}
+]
+
+\pgfmathsetmacro{\nn}{4}
+
+\pgfmathsetlengthmacro{\labeldist}{8pt}
+\pgfmathsetlengthmacro{\spandist}{12pt}
+
+\drawaxis{\nn}{\labeldist}{\textwidth - 1cm}
+
+\node [right=0.5, yshift=4pt] at (1111) (A) {};
+
+\node [above=\labeldist] at (0000) {$0000$};
+\node [above=\labeldist] at (0100) {$0100$};
+\node [above=\labeldist] at (1001) {$1001$};
+\node [above=\labeldist] at (1110) {$1110$};
+
+\drawinterval{0000}{0100}{}
+\drawinterval{1001}{1110}{}
+
+\begin{scope}[nodes = {below=\spandist}]
+    \drawinterval{0000}{0011}{$00 \phi \phi$};
+    \drawinterval{0100}{0100}{$0100$};
+\end{scope}
+
+\begin{scope}[nodes = {below=\spandist * 2}]
+    \drawinterval{1010}{1011}{};
+    \node at (A) {$101 \phi$};
+\end{scope}
+
+\begin{scope}[nodes = {below=\spandist * 3}]
+    \drawinterval{1001}{1001}{};
+    \drawinterval{1101}{1101}{};
+    \node at (A) {$1 \phi 01$};
+\end{scope}
+
+\begin{scope}[nodes = {below=\spandist * 4}]
+    \drawinterval{1100}{1100}{};
+    \drawinterval{1110}{1110}{};
+    \node at (A) {$11 \phi 0$};
+\end{scope}
+
+\end{tikzpicture}
