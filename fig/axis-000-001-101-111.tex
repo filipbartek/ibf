@@ -1,0 +1,34 @@
+\begin{tikzpicture}[
+    point/.style = {draw, circle, inner sep=2pt},
+    truepoint/.style = {point, fill = black},
+    trueinterval/.style = {line width = 2pt},
+    spanpoint/.style = {point, fill = black, inner sep=1pt},
+    spaninterval/.style = {line width = 1pt}
+]
+
+\pgfmathsetmacro{\nn}{3}
+
+\pgfmathsetlengthmacro{\labeldist}{8pt}
+\pgfmathsetlengthmacro{\spandist}{12pt}
+
+\renewcommand{\tprefix}{A}
+\drawaxis{\nn}{\labeldist}{\textwidth}
+
+\drawinterval{A000}{A001}{}
+\drawinterval{A101}{A111}{}
+
+\renewcommand{\tprefix}{B}
+\drawaxisoff{\nn}{-16pt - \labeldist}{\textwidth}{\spandist * 4}
+\drawinterval{B001}{B101}{}
+\drawinterval{B011}{B011}{}
+\drawinterval{B100}{B100}{}
+
+\draw (A001) -- (B101);
+\draw (A000) -- (B100);
+
+\draw (A101) -- (B001);
+\draw (A111) -- (B011);
+
+\renewcommand{\tprefix}{}
+
+\end{tikzpicture}
