@@ -504,6 +504,41 @@ Proti každému aproximačnímu poměru menšímu než $2k$ (pro $k = 2^l$) exis
 
 \end{frame}
 
+\begin{frame}{Ortogonální množina}
+
+\todonote[inline]{Jak se dá o pokrytí dokázat, že je minimální? Základní technika je konstrukce ortogonální množiny stejné velikosti.}
+
+\begin{definition}[Ortogonální množina]
+\definiendum{Ortogonální množina} funkce $f$ je množina true pointů $f$ takových, že žádné dva z~nich nelze pokrýt jedním ternárním vektorem.
+\end{definition}
+
+\begin{example}[Ortogonální množina]
+$$
+V = \curly{001, 010, 100}
+$$
+
+\begin{figure}
+\centering
+\input{fig/axis-1int-span-opt-orto}
+\end{figure}
+
+\todonote[inline]{U této funkce jsme našli ortogonální množinu a pokrytí stejné velikosti, toto pokrytí je tedy nutně minimální. Funkci, která má ortogonální množinu a pokrytí stejné velikosti, říkáme coverable.}
+\end{example}
+
+\end{frame}
+
+\begin{frame}{Coverable funkce}
+
+\begin{definition}[Coverability]
+Funkce je \definiendum{coverable}, pokud má pokrytí a ortogonální množinu stejné velikosti.
+\end{definition}
+
+\begin{observation}
+Takové pokrytí je nutně minimální.
+\end{observation}
+
+\end{frame}
+
 \section{Bibliografie}
 
 \begin{frame}{Bibliografie}
