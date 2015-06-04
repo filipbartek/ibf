@@ -2,20 +2,41 @@
     point/.style = {draw, circle, inner sep=2pt},
     truepoint/.style = {point, fill = black},
     trueinterval/.style = {line width = 2pt},
-    switchpoint/.style = {point, rectangle, fill = none, inner sep = 4pt}
+    %switchpoint/.style = {point, rectangle, fill = none, inner sep = 4pt}
+    switchpoint/.style = {shape=coordinate},
+    anchornode/.style = {shape=coordinate}
 ]
 
 \pgfmathsetmacro{\nn}{3}
 
 \pgfmathsetlengthmacro{\labeldist}{8pt}
 \pgfmathsetlengthmacro{\spandist}{12pt}
+\pgfmathsetlengthmacro{\signaldiff}{16pt}
 
-\drawaxis{\nn}{\labeldist}
+\drawaxis{\nn}{-16pt -\labeldist}{\textwidth}
+
 \drawinterval{000}{001}{}
 \drawinterval{100}{110}{}
 
-\draw [draw opacity = 0] (001) -- (010) node [midway, switchpoint, draw opacity = 1] {};
-\draw [draw opacity = 0] (011) -- (100) node [midway, switchpoint, draw opacity = 1] {};
-\draw [draw opacity = 0] (110) -- (111) node [midway, switchpoint, draw opacity = 1] {};
+\draw [draw opacity = 0] (001) -- (010) node [midway, switchpoint, draw opacity = 1] (001-010) {};
+\draw [draw opacity = 0] (011) -- (100) node [midway, switchpoint, draw opacity = 1] (011-100) {};
+\draw [draw opacity = 0] (110) -- (111) node [midway, switchpoint, draw opacity = 1] (110-111) {};
+
+\begin{scope}[nodes = {above=\spandist * 1}]
+\node [anchornode, yshift=\signaldiff] at (000) (000-1) {};
+
+\node [anchornode, yshift=\signaldiff] at (001-010) (001-010-1) {};
+\node [anchornode] at (001-010) (001-010-0) {};
+
+\node [anchornode] at (011-100) (011-100-0) {};
+\node [anchornode, yshift=\signaldiff] at (011-100) (011-100-1) {};
+
+\node [anchornode, yshift=\signaldiff] at (110-111) (110-111-1) {};
+\node [anchornode] at (110-111) (110-111-0) {};
+
+\node [anchornode] at (111) (111-0) {};
+\end{scope}
+
+\draw (000-1) -- (001-010-1) -- (001-010-0) -- (011-100-0) -- (011-100-1) -- (110-111-1) -- (110-111-0) -- (111-0);
 
 \end{tikzpicture}
