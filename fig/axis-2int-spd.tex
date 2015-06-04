@@ -1,0 +1,53 @@
+\begin{tikzpicture}[
+    point/.style = {draw, circle, inner sep=2pt},
+    truepoint/.style = {point, fill = black},
+    trueinterval/.style = {line width = 2pt},
+    ortho/.style = {point, rectangle, fill = none, inner sep = 6pt}
+]
+
+\pgfmathsetmacro{\nn}{4}
+
+\pgfmathsetlengthmacro{\labeldist}{8pt}
+\pgfmathsetlengthmacro{\spandist}{12pt}
+
+\drawaxis{\nn}{\labeldist}{\textwidth}
+
+\node [above=\labeldist] at (0000) {$\textcolor{gray}{0}\underline{0}00$};
+\node [above=\labeldist] at (0100) {$\textcolor{gray}{0}\underline{1}00$};
+\node [above=\labeldist] at (1001) {$\textcolor{gray}{1}\underline{0}01$};
+\node [above=\labeldist] at (1110) {$\textcolor{gray}{1}\underline{1}10$};
+
+%\node [ortho] at (1001) {};
+%\node [ortho] at (1010) {};
+
+\drawinterval{0000}{0100}{}
+\drawinterval{1001}{1110}{}
+
+\drawaxisoff{\nn}{\labeldist}{\textwidth}{\spandist * 3}
+
+\drawinterval{0000}{0011}{};
+\drawinterval{0100}{0100}{};
+
+\drawinterval{1001}{1011}{};
+\drawinterval{1100}{1110}{};
+
+\node [above=\labeldist, xshift=4pt] at (0000) {$\textcolor{gray}{00}00$};
+\node [above=\labeldist, xshift=-4pt] at (0011) {$\textcolor{gray}{00}11$};
+\node [above=\labeldist] at (0100) {$\textcolor{gray}{0100}$};
+
+\node [above=\labeldist, xshift=4pt] at (1001) {$\textcolor{gray}{10}01$};
+\node [above=\labeldist, xshift=-4pt] at (1011) {$\textcolor{gray}{10}11$};
+\node [above=\labeldist, xshift=4pt] at (1100) {$\textcolor{gray}{11}00$};
+\node [above=\labeldist, xshift=-4pt] at (1110) {$\textcolor{gray}{11}10$};
+
+\begin{scope}[nodes = {below=\spandist * 2}]
+    \drawinterval{0000}{0011}{$00 \phi \phi$};
+    \drawinterval{0100}{0100}{$0100$};
+    
+    \drawinterval{1001}{1001}{$1001$};
+    \drawinterval{1010}{1011}{$101 \phi$};
+    \drawinterval{1100}{1101}{$110 \phi$};
+    \drawinterval{1110}{1110}{$1110$};
+\end{scope}
+
+\end{tikzpicture}
