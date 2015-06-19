@@ -227,7 +227,7 @@ Thus we get the following spanning set:
 
 \begin{equation*}
 \mathcal{T} =
-\{\bits{c}{1}{o - 1} 0 \rep{\phi}{n - o} | \bit{c}{o} = 1\}
+\{\bits{c}{1}{o - 1} 0 \rep{\phi}{n - o} \mid \bit{c}{o} = 1\}
 \end{equation*}
 
 \begin{theorem}[Feasibility]
@@ -274,7 +274,7 @@ the orthogonal true points correspond to $1$-bits of $c$:
 $$
 V =
 \curly{\bits{c}{1}{o - 1} 0 \bits{c}{o + 1}{n}
-| \bit{c}{o} = 1}
+\mid \bit{c}{o} = 1}
 $$
 
 Clearly $|V| = |\mathcal{T}|$.
@@ -570,11 +570,11 @@ in the following way:
 
 \begin{align*}
 \mathcal{T}' &= \curly{
-\rep{\phi}{j-1} T | T \in \mathcal{T}'' \text{ and }
+\rep{\phi}{j-1} T \mid T \in \mathcal{T}'' \text{ and }
 \bit{T}{1} \in \curly{0, \phi}
 } \\
 &\cup \curly{
-1 \rep{\phi}{j-1} \bits{T}{2}{n-j+1} | T \in \mathcal{T}''
+1 \rep{\phi}{j-1} \bits{T}{2}{n-j+1} \mid T \in \mathcal{T}''
 \text{ and } \bit{T}{1} = 1
 }
 \end{align*}
