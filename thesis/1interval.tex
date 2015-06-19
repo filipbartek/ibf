@@ -175,28 +175,28 @@ x \in \interval{a}{b} &\iff x \geq a \text{ and } x \leq b \\
 Let $a$ and $b$ be $n$-bit binary vectors
 and let $\mathcal{T}$ be a set of ternary vectors of length $n$.
 Then
-$\mathcal{T}$ spans $\interval{a}{b}$
+$\mathcal{T}$ spans exactly $\interval{a}{b}$
 if and only if
-$\compl{\mathcal{T}}$ spans $\interval{\compl{b}}{\compl{a}}$.
+$\compl{\mathcal{T}}$ spans exactly $\interval{\compl{b}}{\compl{a}}$.
 \end{lemma}
 
 \begin{proof}
 The equivalence follows from \cref{lemma:complinterval}:
 \begin{align*}
-\mathcal{T} \text{ spans } \interval{a}{b}
+\mathcal{T} \text{ spans exactly } \interval{a}{b}
 &\iff \fora{x}{\mathcal{T} \text{ spans } x \iff x \in \interval{a}{b}} \\
 &\iff \fora{\compl{x}}{\compl{\mathcal{T}} \text{ spans } \compl{x} \iff \compl{x} \in \interval{\compl{b}}{\compl{a}}} \\
-&\iff \compl{\mathcal{T}} \text{ spans } \interval{\compl{b}}{\compl{a}}
+&\iff \compl{\mathcal{T}} \text{ spans exactly } \interval{\compl{b}}{\compl{a}}
 \end{align*}
 \end{proof}
 
 As a special application of \cref{lemma:complspanning}
 we get:
 $$
-\mathcal{T} \text{ spans } \interval{a}{\rep{1}{n}}
+\mathcal{T} \text{ spans exactly } \interval{a}{\rep{1}{n}}
 \iff
 \compl{\mathcal{T}}
-\text{ spans } \interval{\rep{0}{n}}{\compl{a}}
+\text{ spans exactly } \interval{\rep{0}{n}}{\compl{a}}
 $$
 
 Since the correspondence preserves
